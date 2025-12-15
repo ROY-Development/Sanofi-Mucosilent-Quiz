@@ -32,7 +32,6 @@ export class PageService
 		});
 		
 		this.videoBackgroundPachinkoUrls = [
-			AppRoutesEnum.gameMultiplier
 		].map((value) => {
 			return '/' + value;
 		});

@@ -26,7 +26,7 @@ export class BackgroundAnimationService
 	
 	private imageUrls: Array<{ fileName: string, url: string }> = [];
 	private animType: BackgroundAnimationTypeEnum = BackgroundAnimationTypeEnum.oneStep;
-	private appHeight: number = 1920 + 50;
+	private appHeight: number = 2160 + 50;
 	
 	public readonly onInitComplete = new EventEmitter<void>();
 	

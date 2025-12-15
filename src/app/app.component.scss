@@ -27,8 +27,8 @@
 	touch-action: none;
 
 	.element-to-scale {
-		width: 1080px;
-		height: 1920px;
+		width: 1620px;
+		height: 2160px;
 		transform-origin: 0 0;
 		/*overflow: hidden; this is not working with game background*/
 
@@ -55,7 +55,7 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	//aspect-ratio: 16/9;
+	//aspect-ratio: 4/3;
 	height: 100%;
 	transition: height 300ms;
 

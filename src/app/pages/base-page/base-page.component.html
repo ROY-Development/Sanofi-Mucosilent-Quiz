@@ -28,7 +28,7 @@
 				@if (!!gameService.signalGameTitleImage()) {
 					<div [style.text-align]="gameService.signalGameConfig()!.titleAlignment"
 						 class="game-logo-image-container"
-						[class]="gameService.signalGameConfig()!.titleAni > 0 ? 'animation' + gameService.signalGameConfig()!.titleAni : ''"
+						 [class]="gameService.signalGameConfig()!.titleAni > 0 ? 'animation' + gameService.signalGameConfig()!.titleAni : ''"
 					>
 						<img [src]="gameService.signalGameTitleImage()" height="auto" width="auto"
 							 [alt]="'quiz-name' | nativeTranslate"
@@ -49,9 +49,10 @@
 					></div>
 				}
 			} @else {
-				<div class="name1 special-font">ROY</div>
-				<div class="name2 special-font">50/50</div>
-				<div class="name3">SPEED QUIZ</div>
+				<!--<div class="name1 special-font">ROY</div>
+				<div class="name2 special-font">50/50</div>-->
+				<div class="name1 text-center">TITEL</div>
+				<div style="margin-bottom: 30%;"></div>
 			}
 		</div>
 	</div>
@@ -62,27 +63,37 @@
 				<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
 			</div>
 		} @else {
-			<div class="button-start-container"
-				 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
-			>
-				<app-button-start
-					[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
-					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-					[btnContentWidth]="'400px'"
-					[btnContentHeight]="'400px'"
-					[btnRadius]="'50%'"
-					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
-					(clickButton)="onClickStart()"
-				><span class="start"
-					   [style.mask-image]="signalBtnPlayImageUrl()"
-					   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+			<!--	<div class="button-start-container"
+					 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
 				>
-					<!--@if (signalBtnPlayImageUrl() !== 'none') {
-						<img [src]="signalBtnPlayImageUrl()" alt="Start" width="386" height="385">
-					}-->
-				</span>
-				</app-button-start>
-			</div>
+					<app-button-start
+						[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
+						[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+						[btnContentWidth]="'400px'"
+						[btnContentHeight]="'400px'"
+						[btnRadius]="'50%'"
+						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
+						(clickButton)="onClickStart()"
+					><span class="start"
+						   [style.mask-image]="signalBtnPlayImageUrl()"
+						   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+					>
+					
+					</span>
+					</app-button-start>
+				</div> -->
+			
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'670px'"
+				[btnContentPadding]="'30px 10px'"
+				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
+				(clickButton)="onClickStart()"
+			>{{ 'start' | nativeTranslate }}
+			</app-base-button>
+			
+			<div style="margin-bottom: 30px;"></div>
 			
 			<app-base-button
 				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
@@ -93,43 +104,27 @@
 				(clickButton)="onClickHowToPLay()"
 			>{{ 'how-to-play' | nativeTranslate }}
 			</app-base-button>
-			
-			@if (!initService.isScormPackage &&
-			(!gameService.signalGameConfig() || gameService.signalGameConfig()?.includesHighscore)) {
-				<div class="row-space"></div>
-				
-				<app-base-button
-					[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
-					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-					[btnContentWidth]="'670px'"
-					[btnContentPadding]="'30px 10px'"
-					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
-					(clickButton)="onClickHighScore()"
-				>{{ 'high-score' | nativeTranslate }}
-				</app-base-button>
-			}
 		}
 	</div>
 	
-	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
-		<app-game-title></app-game-title>
-	</div>
+	<!--	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
+			<app-game-title></app-game-title>
+		</div>-->
 	
 	<div class="legal-links">
-		@if (gameService.signalGameConfig()?.typeImprint) {
-			<button type="button" class="btn btn-link btn-legal"
-					[style.color]="gameService.signalGameConfig()?.fontColorLink"
-					(click)="onClickLegalText('imprint')"
-			>{{ 'imprint' | nativeTranslate }}
-			</button>
-		}
-		@if (gameService.signalGameConfig()?.typePrivacyPolicy) {
-			<button type="button" class="btn btn-link btn-legal"
-					[style.color]="gameService.signalGameConfig()?.fontColorLink"
-					(click)="onClickLegalText('privacy-policy')"
-			>{{ 'privacy-policy' | nativeTranslate }}
-			</button>
-		}
+		
+		<button type="button" class="btn btn-link btn-legal"
+				[style.color]="gameService.signalGameConfig()?.fontColorLink"
+				(click)="onClickLegalText('imprint')"
+		>{{ 'imprint' | nativeTranslate }}
+		</button>
+		
+		<button type="button" class="btn btn-link btn-legal"
+				[style.color]="gameService.signalGameConfig()?.fontColorLink"
+				(click)="onClickLegalText('privacy-policy')"
+		>{{ 'privacy-policy' | nativeTranslate }}
+		</button>
+	
 	</div>
 	
 	<app-button-sound-on-off

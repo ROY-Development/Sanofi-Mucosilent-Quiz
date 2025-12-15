@@ -90,7 +90,7 @@ export class ViewTransitionService
 		}
 		else if (
 			fromRoute && toRoute && this.isGameHighScoreGroup(fromRoute) && this.isGameHighScoreGroup(toRoute) ||
-			(fromRoute === AppRoutesEnum.game && toRoute === AppRoutesEnum.gameMultiplier)
+			(fromRoute === AppRoutesEnum.game && toRoute === AppRoutesEnum.gameResult)
 		)
 		{
 			return 'fade';

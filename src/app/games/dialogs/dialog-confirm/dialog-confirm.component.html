@@ -39,7 +39,9 @@
 				[btnContentPadding]="'15px 10px'"
 				[btnContentFontSize]="'56px'"
 				(clickButton)="onClickClose(true)"
-			>{{ 'yes' | nativeTranslate }}
+			><span
+				[innerHTML]="contentYes ? contentYes : (contentYesKey ? (contentYesKey | nativeTranslate) : 'yes' | nativeTranslate)"
+			></span>
 			</app-base-button>
 			
 			<div class="empty-line"></div>
@@ -51,7 +53,9 @@
 				[btnContentPadding]="'15px 10px'"
 				[btnContentFontSize]="'56px'"
 				(clickButton)="onClickClose(false)"
-			>{{ 'no' | nativeTranslate }}
+			><span
+				[innerHTML]="contentNo ? contentNo : (contentNoKey ? (contentNoKey | nativeTranslate) : 'no' | nativeTranslate)"
+			></span>
 			</app-base-button>
 		</div>
 	</div>

@@ -103,11 +103,11 @@ export class ShapeSlingshotComponent implements AfterViewInit, OnDestroy
 		// happens at start that windowHeight is 0, so it needs to be calculated
 		if (windowWidth && windowHeight === 0)
 		{
-			windowHeight = windowWidth * 9 / 16 - this.shapeSlingshotGame.nativeElement.offsetTop;
+			windowHeight = windowWidth * 3 / 4 - this.shapeSlingshotGame.nativeElement.offsetTop;
 		}
 		
 		const oldWindowWidthFactor: number = this.windowWidthFactor;
-		this.windowWidthFactor = windowWidth / 3840;
+		this.windowWidthFactor = windowWidth / 2160;
 		
 		if (canvas)
 		{

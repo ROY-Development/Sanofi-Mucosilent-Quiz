@@ -20,6 +20,10 @@ export class DialogConfirmComponent
 	@Input() public titleKey: string | null = null;
 	@Input() public content: string | null = null;
 	@Input() public contentKey: string | null = null;
+	@Input() public contentYes: string | null = null;
+	@Input() public contentYesKey: string | null = null;
+	@Input() public contentNo: string | null = null;
+	@Input() public contentNoKey: string | null = null;
 	@Input() public isJsonContent: boolean = false;
 	@Input() public hasSafetyCheck: boolean = false;
 	

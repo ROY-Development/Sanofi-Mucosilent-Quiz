@@ -17,7 +17,7 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	height: 100%;
-	padding: 4% 2% 0;
+	//padding: 4% 2% 0;
 
 	overflow: hidden;
 }
@@ -69,6 +69,7 @@
 	//top: 79px;
 	//left: 54px;
 	line-height: 1;
+	margin-top: 50%;
 
 	.game-logo-image-container {
 		width: 100%;
@@ -147,11 +148,6 @@
 		color: #fff;
 		font-size: 64px;
 		line-height: 1.1;
-	}
-
-	.subtitle {
-		margin-top: 30px;
-		font-size: 96px;
 	}
 }
 

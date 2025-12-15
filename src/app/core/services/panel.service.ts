@@ -20,8 +20,7 @@ export class PanelService
 			AppRoutesEnum.gameCountdown,
 			AppRoutesEnum.gameTopic,
 			AppRoutesEnum.game,
-			AppRoutesEnum.gameBetting,
-			AppRoutesEnum.gameMultiplier
+			AppRoutesEnum.gameResult
 		].map((value) => {
 			return '/' + value;
 		});

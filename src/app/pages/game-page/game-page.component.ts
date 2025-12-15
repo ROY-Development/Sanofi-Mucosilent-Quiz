@@ -471,7 +471,7 @@ export class GamePageComponent implements OnInit, AfterViewInit, OnDestroy
 			)
 			{
 				this.gameService.setNextMultiplierGame();
-				this.initService.navigateToRoute(AppRoutesEnum.gameMultiplier).then();
+				this.initService.navigateToRoute(AppRoutesEnum.gameResult).then();
 			}
 			else
 			{

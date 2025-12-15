@@ -178,7 +178,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 1500);
 		
 		//	UtilTimeout.setTimeout(() => {
-		this.initService.navigateToRoute(AppRoutesEnum.gameTopic).then();
+		this.initService.navigateToRoute(AppRoutesEnum.question).then();
 		//}, 1500);
 		//}, 500);
 		
@@ -206,17 +206,6 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		
 		this.soundService.playSound(SoundNameEnum.click, true);
 		this.initService.navigateToRoute(AppRoutesEnum.howToPlay).then();
-	}
-	
-	protected onClickHighScore(): void
-	{
-		if (this.signalClickedStart())
-		{
-			return;
-		}
-		
-		this.soundService.playSound(SoundNameEnum.click, true);
-		this.initService.navigateToRoute(AppRoutesEnum.highScoreWeekly).then();
 	}
 	
 	protected onClickLegalText(type: 'imprint' | 'privacy-policy' | 'crm-info'): void

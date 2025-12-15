@@ -1,0 +1,69 @@
+<div class="header">
+	<app-base-button
+		[configBtn]="null"
+		[btnContentWidth]="'120px'"
+		[btnContentHeight]="'120px'"
+		[btnContentPadding]="'0 0'"
+		[btnRadius]="'50%'"
+		[btnDisabled]="false"
+		(clickButton)="onClickExit()"
+	><span [style.mask-image]="signalBtnCloseImageUrl()"
+		   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
+	></span>
+	</app-base-button>
+</div>
+
+<div class="content">
+	<div class="question-counter">Frage {{ questionIndex + 1 }} / {{ maxQuestionNr }}</div>
+	<div class="question">{{ currentQuestion.question }}</div>
+	<div class="answer-buttons">
+		<app-base-button
+			[configBtn]="null"
+			[btnWidth]="'100%'"
+			[btnContentWidth]="'100%'"
+			[btnContentPadding]="'15px 10px'"
+			[btnDisabled]="false"
+			(clickButton)="onClickAnswer1()"
+		>
+			<div class="answer">{{ currentQuestion.answer1 }}</div>
+		</app-base-button>
+		
+		<app-base-button
+			[configBtn]="null"
+			[btnWidth]="'100%'"
+			[btnContentWidth]="'100%'"
+			[btnContentPadding]="'15px 10px'"
+			[btnDisabled]="false"
+			(clickButton)="onClickAnswer2()"
+		>
+			<div class="answer">{{ currentQuestion.answer2 }}</div>
+		</app-base-button>
+		
+		<app-base-button
+			[configBtn]="null"
+			[btnWidth]="'100%'"
+			[btnContentWidth]="'100%'"
+			[btnContentPadding]="'15px 10px'"
+			[btnDisabled]="false"
+			(clickButton)="onClickAnswer3()"
+		>
+			<div class="answer">{{ currentQuestion.answer3 }}</div>
+		</app-base-button>
+	</div>
+</div>
+
+@if (isShowingConfirmCancelDialog()) {
+	<div class="dialog-animation-container"
+		 animate.enter="dialog-enter"
+		 animate.leave="dialog-leave">
+		<app-dialog-confirm
+			[titleKey]="'end-game'"
+			[content]="'Quizrunde abbrechen und zum Startbildschirm zurückkehren?'"
+			[contentYes]="'Quiz abbrechen'"
+			[contentNo]="'Weiterspielen'"
+			[isJsonContent]="false"
+			[hasSafetyCheck]="false"
+			(cancelDialog)="onCancel($event)"
+		></app-dialog-confirm>
+	</div>
+}

@@ -537,7 +537,7 @@ export class SwipeYesNoComponent implements AfterViewInit, OnDestroy
 		{
 			this.currentQuestion.targetPos = {
 				x: this.currentQuestion!.x + this.currentQuestion!.width * 0.5,
-				y: 1920 + this.currentQuestion!.height * 0.5
+				y: 2160 + this.currentQuestion!.height * 0.5
 			};
 		}
 	}

@@ -23,11 +23,7 @@ import {ConfigButtonModel} from '../../shared/models/config/config-button.model'
 import {QuizGameScreenHighscoreModel} from '../../shared/models/config/quiz-game-screen-highscore.model';
 import {ConfigContainerModel} from '../../shared/models/config/config-container.model';
 import {QuizGameScreenQuizModel} from '../../shared/models/config/quiz-game-screen-quiz.model';
-import {QuizGameScreenMinigamesModel} from '../../shared/models/config/quiz-game-screen-minigames.model';
 import {QuizGameScreenEndGameModel} from '../../shared/models/config/quiz-game-screen-end-game.model';
-import {QuizGameScreenMgPachinkoModel} from '../../shared/models/config/quiz-game-screen-mg-pachinko.model';
-import {QuizGameScreenMgRouletteModel} from '../../shared/models/config/quiz-game-screen-mg-roulette.model';
-import {QuizGameScreenMgPointShooterModel} from '../../shared/models/config/quiz-game-screen-mg-point-shooter.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -93,20 +89,6 @@ export class IframeEventRuleService
 		if (url !== '/' + AppRoutesEnum.game)
 		{
 			this.initService.navigateToRoute(AppRoutesEnum.game).then();
-		}
-	}
-	
-	private restartMiniGameSplitScreenTitleAnimation(): void
-	{
-		// this.changeDetectorRef.detectChanges();
-		window.dispatchEvent(new Event('resize')); // calls game category page resize
-		
-		this.aniSplitScreenTitleService.restart();
-		
-		const url: string = this.router.url.split('?')[0];
-		if (url !== '/' + AppRoutesEnum.gameMultiplier)
-		{
-			this.initService.navigateToRoute(AppRoutesEnum.gameMultiplier).then();
 		}
 	}
 	
@@ -322,79 +304,6 @@ export class IframeEventRuleService
 						}
 					});
 			}
-			else if (config instanceof QuizGameScreenMinigamesModel)
-			{
-				const configModel = config as QuizGameScreenQuizModel;
-				event.data.route = AppRoutesEnum.gameMultiplier;
-				
-				this.updateValuesInScreenModel(event, configModel, event.data.route,
-					() => { // changed the base model
-					
-					},
-					() => { // changed the submodel
-					
-					});
-			}
-			else if (config instanceof QuizGameScreenMgPachinkoModel)
-			{
-				const configModel = config as QuizGameScreenMgPachinkoModel;
-				event.data.route = AppRoutesEnum.gameMultiplier;
-				
-				const mGame: number = 1;
-				if (this.gameService.signalCurrentMultiplierGame() !== mGame)
-				{
-					this.gameService.signalCurrentMultiplierGame.set(mGame);
-					this.aniSplitScreenTitleService.restart();
-				}
-				
-				this.updateValuesInScreenModel(event, configModel, event.data.route,
-					() => { // changed the base model
-					
-					},
-					() => { // changed the submodel
-					
-					});
-			}
-			else if (config instanceof QuizGameScreenMgRouletteModel)
-			{
-				const configModel = config as QuizGameScreenMgRouletteModel;
-				event.data.route = AppRoutesEnum.gameMultiplier;
-				
-				const mGame: number = 2;
-				if (this.gameService.signalCurrentMultiplierGame() !== mGame)
-				{
-					this.gameService.signalCurrentMultiplierGame.set(mGame);
-					this.aniSplitScreenTitleService.restart();
-				}
-				
-				this.updateValuesInScreenModel(event, configModel, event.data.route,
-					() => { // changed the base model
-					
-					},
-					() => { // changed the submodel
-					
-					});
-			}
-			else if (config instanceof QuizGameScreenMgPointShooterModel)
-			{
-				const configModel = config as QuizGameScreenMgPointShooterModel;
-				event.data.route = AppRoutesEnum.gameMultiplier;
-				
-				const mGame: number = 3;
-				if (this.gameService.signalCurrentMultiplierGame() !== mGame)
-				{
-					this.gameService.signalCurrentMultiplierGame.set(mGame);
-					this.aniSplitScreenTitleService.restart();
-				}
-				
-				this.updateValuesInScreenModel(event, configModel, event.data.route,
-					() => { // changed the base model
-					
-					},
-					() => { // changed the submodel
-					
-					});
-			}
 			else if (config instanceof QuizGameScreenEndGameModel)
 			{
 				const configModel = config as QuizGameScreenEndGameModel;
@@ -508,46 +417,6 @@ export class IframeEventRuleService
 				
 				// this.changeDetectorRef.detectChanges();
 				window.dispatchEvent(new Event('resize')); // calls appAutoFitFont
-			}
-		}
-		else if (event.data.formModelName === 'activeMiniGames' && 'activeMiniGames' in event.data)
-		{
-			const gameConfig = this.gameService.signalGameConfig();
-			
-			if (gameConfig)
-			{
-				const currentActiveMiniGames: Array<number> = this.gameService.signalGameConfig()!.activeMiniGames ?? [];
-				const newGame: number | undefined = findAddedNumber(
-					currentActiveMiniGames,
-					event.data.activeMiniGames
-				);
-				
-				gameConfig.activeMiniGames = event.data.activeMiniGames;
-				
-				if (
-					event.data.isEnabled &&
-					newGame !== undefined &&
-					this.gameService.signalCurrentMultiplierGame() !== newGame
-				)
-				{
-					this.gameService.signalCurrentMultiplierGame.set(newGame);
-					this.aniSplitScreenTitleService.restart();
-					
-					this.initService.navigateToRoute(AppRoutesEnum.gameMultiplier).then();
-				}
-				
-				function findAddedNumber(original: number[], updated: number[]): number | undefined
-				{
-					const originalSet = new Set(original);
-					for (const num of updated)
-					{
-						if (!originalSet.has(num))
-						{
-							return num;
-						}
-					}
-					return undefined;
-				}
 			}
 		}
 		else if (event.data.formModelName === 'maxQuizQuestionCount' && 'count' in event.data)
@@ -843,7 +712,7 @@ export class IframeEventRuleService
 				
 				this.changeDetectorRef?.detectChanges();
 				
-				this.gameCoinsService.start(1080 * 0.5, 1000, targetX, targetY, 4, null, null);
+				this.gameCoinsService.start(1620 * 0.5, 1000, targetX, targetY, 4, null, null);
 			}
 		}
 		else if (event.data.formModelName === 'backgroundColorsDuration' && 'duration' in event.data)
@@ -942,47 +811,6 @@ export class IframeEventRuleService
 				{
 					this.imageLoadService.removeImage('splitScreenBgImage');
 					this.restartSplitScreenTitleAnimation();
-				}
-			}
-		}
-		else if (event.data.formModelName === 'miniGameSplitScreenAnimationType' && 'type' in event.data)
-		{
-			this.gameService.signalGameConfig()!.miniGameSplitScreenAnimationType = event.data.type;
-			
-			this.restartMiniGameSplitScreenTitleAnimation();
-		}
-		else if (event.data.formModelName === 'miniGameSplitScreenColorBg' && 'color' in event.data)
-		{
-			if (this.gameService.signalGameConfig())
-			{
-				this.gameService.signalGameConfig()!.miniGameSplitScreenColorBg = event.data.color;
-				
-				this.restartMiniGameSplitScreenTitleAnimation();
-			}
-		}
-		else if (event.data.formModelName === 'imageMiniGameSplitScreenBg' && 'base64Image' in event.data)
-		{
-			if (this.gameService.signalGameConfig())
-			{
-				const base64Image: string | null = event.data?.base64Image ?? null;
-				
-				if (base64Image)
-				{
-					if (base64Image.indexOf('data:image/') !== -1 && base64Image.indexOf(';base64') !== -1)
-					{
-						const blob = UtilBlob.getBlobFromBase64String(base64Image);
-						
-						if (blob)
-						{
-							this.imageLoadService.addImage('miniGameSplitScreenBgImage', blob);
-							this.restartMiniGameSplitScreenTitleAnimation();
-						}
-					}
-				}
-				else
-				{
-					this.imageLoadService.removeImage('miniGameSplitScreenBgImage');
-					this.restartMiniGameSplitScreenTitleAnimation();
 				}
 			}
 		}

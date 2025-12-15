@@ -41,9 +41,6 @@ import {FontStyleService} from './core/services/font-style.service';
 import {IframeEventRuleService} from './core/services/iframe-event-rule.service';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {ScormService} from './core/services/scorm.service';
-import {PachinkoGameConfig} from './games/pachinko/pachinko-game.config';
-import {RouletteGameConfig} from './games/roulette/roulette-game.config';
-import {PointShooterGameConfig} from './games/point-shooter/point-shooter-game.config';
 import {BackgroundAnimationTypeEnum} from './shared/enums/background-animation-type.enum';
 import {SwipeYesNoService} from './games/swipe-yes-no/services/swipe-yes-no.service';
 
@@ -98,8 +95,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 	public readonly signalScaleTransform = signal<string>('none');
 	public readonly signalScaling = signal<number>(1);
 	
-	private readonly appWidth: number = 1080;
-	private readonly appHeight: number = 1920;
+	private readonly appWidth: number = 1620;
+	private readonly appHeight: number = 2160;
 	
 	private nfcUserHasChangedSubscription!: Subscription;
 	
@@ -361,7 +358,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			const innerWidth = window.innerWidth;
 			const innerHeight = window.innerHeight;
 			
-			const targetAspectRatio = 9 / 16;
+			const targetAspectRatio = 3 / 4;
 			
 			let maxWidth, maxHeight;
 			
@@ -632,59 +629,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'highscoreWeekly', url: 'assets/images/svg/highscore-weekly.svg'}
 			// {name: 'howToPlay01', url: 'assets/images/how-to-play.png'}
 		);
-		
-		if (
-			hasMiniGamePachinko && PachinkoGameConfig.isUsingImages ||
-			hasMiniGameRoulette && RouletteGameConfig.isUsingImages ||
-			hasMiniGamePointShooter && PointShooterGameConfig.isUsingImages
-		)
-		{
-			loadObjs.push(
-				{name: 'ballImage', url: ballGamePath + 'images/ball.png'},
-				{name: 'ballHolderImage', url: ballGamePath + 'images/ball-holder.png'},
-				{name: 'ballHolderOpenImage', url: ballGamePath + 'images/ball-holder-open.png'},
-				{name: 'borderImage', url: ballGamePath + 'images/border.png'}
-			);
-		}
-		
-		// minigame pachinko
-		if (hasMiniGamePachinko && PachinkoGameConfig.isUsingImages)
-		{
-			loadObjs.push(
-				{name: 'nailImage', url: 'assets/games/pachinko/images/nail.png'},
-				{name: 'nailActiveImage', url: 'assets/games/pachinko/images/nail-active.png'}
-			);
-		}
-		
-		// minigame roulette
-		if (hasMiniGameRoulette && RouletteGameConfig.isUsingImages)
-		{
-			loadObjs.push(
-				{name: 'rouletteSlingshotImage', url: roulettePath + 'images/slingshot.png'},
-				{name: 'rouletteWheelImage', url: roulettePath + 'images/roulette-wheel.png'},
-				{name: 'rouletteWheelSegmentImage', url: roulettePath + 'images/roulette-wheel-segment.png'},
-				{
-					name: 'rouletteWheelSegmentSelectedImage',
-					url: roulettePath + 'images/roulette-wheel-segment-selected.png'
-				}
-			);
-		}
-		
-		// minigame point shooter
-		if (hasMiniGamePointShooter && PointShooterGameConfig.isUsingImages)
-		{
-			loadObjs.push(
-				{name: 'pointShooterSlingshotImage', url: pointShooterPath + 'images/slingshot.png'},
-				{name: 'pointShooterTargetImage', url: pointShooterPath + 'images/ball-target.png'},
-				{name: 'pointShooterTgtOverImg', url: pointShooterPath + 'images/ball-target-overlay.png'},
-				{name: 'pointShooterTargetHitImage', url: pointShooterPath + 'images/ball-target-hit.png'},
-				{name: 'pointShooterTarget2Image', url: pointShooterPath + 'images/ball-target2.png'},
-				{name: 'pointShooterTarget2OverlayImage', url: pointShooterPath + 'images/ball-target2-overlay.png'},
-				{name: 'pointShooterTarget2HitImage', url: pointShooterPath + 'images/ball-target2-hit.png'},
-				{name: 'pointShooterBreakPadLeftImage', url: pointShooterPath + 'images/break-pad-left.png'},
-				{name: 'pointShooterBreakPadRightImage', url: pointShooterPath + 'images/break-pad-right.png'}
-			);
-		}
 		
 		// set special score animation image
 		if (this.gameService.signalGameConfig())

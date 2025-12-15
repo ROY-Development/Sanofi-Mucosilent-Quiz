@@ -13,8 +13,8 @@ export enum AppRoutesEnum
 	startGame = 'start-game',
 	gameCountdown = 'game-countdown',
 	game = 'game',
-	gameBetting = 'game-betting',
-	gameMultiplier = 'game-multiplier',
+	question = 'question',
+	gameResult = 'game-result',
 	gameTopic = 'game-topic',
 	endGameCrm = 'end-game-c', // end game for CRM
 	endGame = 'end-game'
