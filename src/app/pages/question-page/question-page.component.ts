@@ -1,10 +1,12 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, signal} from '@angular/core';
 import {ImageLoadService} from '../../core/services/image-load.service';
 import {SoundService} from '../../core/services/sound.service';
 import {SoundNameEnum} from '../../shared/enums/sound-name.enum';
 import {InitService} from '../../core/services/init.service';
 import {AppRoutesEnum} from '../../app-routes.enum';
 import {GameQuestionsService} from '../../core/services/game-questions.service';
+import {Subscription} from 'rxjs';
+import {UtilTimeout} from '../../shared/utils/util-timeout';
 
 @Component({
 	selector: 'app-question-page',
@@ -12,7 +14,7 @@ import {GameQuestionsService} from '../../core/services/game-questions.service';
 	templateUrl: './question-page.component.html',
 	styleUrl: './question-page.component.scss'
 })
-export class QuestionPageComponent implements OnInit
+export class QuestionPageComponent implements OnInit, OnDestroy
 {
 	protected initService = inject(InitService);
 	protected gameQuestionsService = inject(GameQuestionsService);
@@ -23,12 +25,32 @@ export class QuestionPageComponent implements OnInit
 	
 	protected readonly signalBtnCloseImageUrl = signal<string>('none');
 	
+	private backgroundSoundTimeoutSubscription: Subscription | null = null;
+	
 	public ngOnInit(): void
 	{
 		const image: HTMLImageElement | null = this.imageLoadService.getImage('btnClose');
 		if (image)
 		{
 			this.signalBtnCloseImageUrl.set(`url('${image.src}')`);
+		}
+		
+		const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
+		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 2000);
+		this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
+			() => {
+				this.backgroundSoundTimeoutSubscription = null;
+				this.soundService.playBackgroundSound(songName);
+			}, 1600// 500
+		);
+	}
+	
+	public ngOnDestroy(): void
+	{
+		if (this.backgroundSoundTimeoutSubscription)
+		{
+			this.backgroundSoundTimeoutSubscription.unsubscribe();
+			this.backgroundSoundTimeoutSubscription = null;
 		}
 	}
 	

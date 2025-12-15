@@ -32,7 +32,6 @@ import {GameCoinsComponent} from './core/components/game-coins/game-coins.compon
 import {GameHeaderComponent} from './core/components/game-header/game-header.component';
 import {GameCoinsService} from './core/services/game-coins.service';
 import {SoundNameEnum} from './shared/enums/sound-name.enum';
-import {StopTypeEnum} from './games/enums/stop-type.enum';
 import {BackgroundGradientService} from './core/services/background-gradient.service';
 import {BackgroundAnimationService} from './core/services/background-animation.service';
 import {BackgroundShapeService} from './core/services/background-shape.service';
@@ -179,13 +178,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 				//this.stillThereService.updateRoute(url);
 				
 				//this.soundService.fadeOutSound('taskMusic', 1000, StopTypeEnum.stop);
-				this.soundService.fadeOutSound(SoundNameEnum.chooseTopicMusic01, 500, StopTypeEnum.stop);
-				this.soundService.fadeOutSound(SoundNameEnum.mainMusic01, 500, StopTypeEnum.stop);
-				this.soundService.fadeOutSound(SoundNameEnum.mainMusic02, 500, StopTypeEnum.stop);
-				this.soundService.fadeOutSound(SoundNameEnum.mainMusic03, 500, StopTypeEnum.stop);
-				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic01, 500, StopTypeEnum.stop);
-				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic02, 500, StopTypeEnum.stop);
-				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic03, 500, StopTypeEnum.stop);
+//				this.soundService.fadeOutSound(SoundNameEnum.chooseTopicMusic01, 500, StopTypeEnum.stop);
+//				this.soundService.fadeOutSound(SoundNameEnum.mainMusic01, 500, StopTypeEnum.stop);
+//				this.soundService.fadeOutSound(SoundNameEnum.mainMusic02, 500, StopTypeEnum.stop);
+//				this.soundService.fadeOutSound(SoundNameEnum.mainMusic03, 500, StopTypeEnum.stop);
+//				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic01, 500, StopTypeEnum.stop);
+//				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic02, 500, StopTypeEnum.stop);
+//				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic03, 500, StopTypeEnum.stop);
 				//		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 500, StopTypeEnum.stop); // turned off - important for menu switch
 				// this.soundService.fadeOutSound(SoundNameEnum.endGameMusic, 500, StopTypeEnum.stop);
 			}
@@ -958,7 +957,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 		else // base game bg image
 		{
-	//		this.signalBackgroundImage.set("url('../assets/images/ROY_Deepsea_Light.jpg')");
+			//		this.signalBackgroundImage.set("url('../assets/images/ROY_Deepsea_Light.jpg')");
 		}
 	}
 	

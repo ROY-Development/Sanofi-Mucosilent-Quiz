@@ -1,3 +1,11 @@
+<app-confetti #confetti
+			  [left]="'300px'" [top]="'0'"
+			  [width]="'180px'" [height]="'460px'" [scale]="1"
+			  [color1]="'#1786a8'"
+			  [color2]="'#a6254c'"
+			  [color3]="'#a710f2'"
+></app-confetti>
+
 <div class="header">
 	<app-base-button
 		[configBtn]="null"
@@ -14,19 +22,17 @@
 </div>
 
 <div class="content">
-	
-	
 	<div>[QUIZ BEENDET]</div>
-	<div>{{gameQuestionsService.validAnswerCount}} von {{gameQuestionsService.maxQuestionNr}} Antworten richtig</div>
+	<div>{{ gameQuestionsService.validAnswerCount }} von {{ gameQuestionsService.maxQuestionNr }} Antworten richtig
+	</div>
 	<div>[Dank + Glückwunsch-Text]</div>
 	
 	
 	<div>Lorem ipsum dolor sit amet, consetetur
-	sadipscing elitr, sed diam nonumy eirmod
-	tempor invidunt ut labore et dolore
-		magna aliquyam erat, sed diam voluptua</div>
-	
-	
+		sadipscing elitr, sed diam nonumy eirmod
+		tempor invidunt ut labore et dolore
+		magna aliquyam erat, sed diam voluptua
+	</div>
 	
 	
 	<app-base-button
@@ -39,5 +45,5 @@
 	>
 		<span>Beenden</span>
 	</app-base-button>
-	
+
 </div>
