@@ -5,6 +5,7 @@ import {ButtonSoundOnOffComponent} from './button-sound-on-off/button-sound-on-o
 import {InlineConsoleComponent} from './inline-console/inline-console.component';
 import {OnScreenKeyboardComponent} from './on-screen-keyboard/on-screen-keyboard.component';
 import {LoadingBlockComponent} from './loading-block/loading-block.component';
+import {ScratchFreeComponent} from './scratch-free/scratch-free.component';
 
 @NgModule({
 	declarations: [
@@ -12,14 +13,16 @@ import {LoadingBlockComponent} from './loading-block/loading-block.component';
 		ButtonSoundOnOffComponent,
 		InlineConsoleComponent,
 		LoadingBlockComponent,
-		OnScreenKeyboardComponent
+		OnScreenKeyboardComponent,
+		ScratchFreeComponent
 	],
 	exports: [
 		ButtonFullscreenComponent,
 		ButtonSoundOnOffComponent,
 		InlineConsoleComponent,
 		LoadingBlockComponent,
-		OnScreenKeyboardComponent
+		OnScreenKeyboardComponent,
+		ScratchFreeComponent
 	],
 	imports: [
 		CommonModule

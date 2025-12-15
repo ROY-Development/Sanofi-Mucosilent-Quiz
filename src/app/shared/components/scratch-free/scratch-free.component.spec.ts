@@ -1,16 +1,16 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {OnScreenKeyboardComponent} from './on-screen-keyboard.component';
+import {ScratchFreeComponent} from './scratch-free.component';
 
 describe('OnScreenKeyboardComponent', () => {
-	let component: OnScreenKeyboardComponent;
-	let fixture: ComponentFixture<OnScreenKeyboardComponent>;
+	let component: ScratchFreeComponent;
+	let fixture: ComponentFixture<ScratchFreeComponent>;
 	
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [OnScreenKeyboardComponent]
+			declarations: [ScratchFreeComponent]
 		});
-		fixture = TestBed.createComponent(OnScreenKeyboardComponent);
+		fixture = TestBed.createComponent(ScratchFreeComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

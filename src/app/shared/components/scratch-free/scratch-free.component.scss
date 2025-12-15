@@ -1,0 +1,24 @@
+.scratch-container {
+	position: relative;
+	width: 350px;
+	height: 200px;
+	display: flex;
+}
+
+canvas {
+	/*position: absolute;
+	top: 0;
+	left: 0;*/
+	transition: opacity 1.5s, scale 1.5s, filter 1.5s;
+}
+
+.canvas-fly-away {
+	opacity: 0;
+	scale: 1.2;
+	filter: blur(10px);
+}
+
+.image {
+	width: auto;
+	height: 200px;
+}
