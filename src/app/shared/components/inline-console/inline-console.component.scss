@@ -1,0 +1,66 @@
+.inline-console-container {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	max-height: 100dvh;
+	z-index: 100000;
+	background-color: #000;
+	//color: #cccccc;
+	padding: 10px;
+	font-size: 12px;
+	line-height: 1.5;
+
+	border: none;
+	color: #e4e4e4;
+	resize: none;
+	overflow-y: auto;
+	font-family: monospace;
+
+
+	.title {
+		padding: 0.3em;
+		margin: 0;
+		font-family: monospace;
+	}
+
+
+	.btn-clear {
+		font-size: 14px;
+		float: right;
+		color: #000;
+	}
+
+	.inline-console {
+		.message {
+			&.log {
+				.type {
+					color: #6c6cff;
+				}
+			}
+
+			&.error {
+				.type {
+					color: #ff4343;
+				}
+			}
+
+			&.warning {
+				.type {
+					color: #fbcb6e;
+				}
+			}
+
+			&.info {
+				.type {
+					color: #7effff;
+				}
+			}
+
+			&.debug {
+				.type {
+					color: #6767ff;
+				}
+			}
+		}
+	}
+}

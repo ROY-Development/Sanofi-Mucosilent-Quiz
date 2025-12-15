@@ -1,0 +1,291 @@
+<div class="dialog-container dialog-questions-result">
+	<div class="dialog scrollbar"
+		 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReview.fontColor : undefined"
+		 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReview.colorBg : undefined"
+		 [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReview.radius : undefined"
+		 [style.border-width.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReview.border : undefined"
+		 [style.border-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReview.borderColor : undefined"
+	>
+		<div class="btn-close-container">
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.btnDialogReview : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'76px'"
+				[btnHeight]="'76px'"
+				[btnContentWidth]="'100%'"
+				[btnContentHeight]="'100%'"
+				[btnContentPadding]="'0'"
+				(clickButton)="onClickClose(false)"
+			
+			><span [style.mask-image]="signalBtnCloseImageUrl()"
+				   [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.btnDialogReview.fontColor : undefined"
+				   [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.btnDialogReview.radius : undefined"
+				   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
+			></span></app-base-button>
+		</div>
+		
+		<div class="dialog-header">
+			<div class="dialog-title">
+				<div class="star-image"
+					 [style.mask-image]="signalStarImageUrl()"
+					 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewStarColor : undefined"
+				></div>
+				<div class="title"
+					 [style.border-bottom-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewStarColor : undefined"
+				>
+					<div
+						[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewTitleColor : undefined"
+					>{{ 'review' | nativeTranslate }}
+						<!--{{ (roundScore > 0 ? 'great' : 'too-bad') | nativeTranslate }}--></div>
+					<!--<div class="game-time">{{ runtime * 1000 | date:'mm:ss' }}</div>-->
+				</div>
+				<div class="star-image"
+					 [style.mask-image]="signalStarImageUrl()"
+					 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewStarColor : undefined"
+				></div>
+			</div>
+			<!--<button type="button" class="btn" aria-label="Close"
+			(click)="onClickClose(false)"
+			>
+			<fa-icon [icon]="['fas', 'times']"></fa-icon>
+		  </button>-->
+		</div>
+		<div class="dialog-body font-secondary">
+			<div class="bonus">
+				@for (value of questionResultList; track value; let i = $index) {
+					@if (i === 0 || value.round !== questionResultList[i - 1].round) {
+						<div class="round-number"
+							 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewRoundLabelColor : undefined"
+						>{{ 'round-nr' | nativeTranslate : {round: value.round} }}
+						</div>
+						<div class="category-name"
+							 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCatLabelColor : undefined"
+							 [innerHTML]="value.categoryLocalisationKey | nativeTranslate  : null : null: true"></div>
+					}
+					<div class="question-container"
+						 [style.background-color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrect.colorBg :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrong.colorBg) : undefined"
+						 [style.border-radius.px]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrect.radius :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrong.radius) : undefined"
+						 [style.border-width.px]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrect.border :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrong.border) : undefined"
+						 [style.border-color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrect.borderColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrong.borderColor) : undefined"
+					>
+						<div class="question"
+							 [style.color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrect.fontColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrong.fontColor) : undefined"
+						>{{ value.questionLocalisationKey | nativeTranslate }}
+						</div>
+						<div class="answers">
+							<div class="answer-container">
+								<div class="selected-container">
+									@if (value.isSelectedCorrect) {
+										@if (value.isLeftCorrect) {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewCorrectImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectIconCorrectColor : undefined"
+											></div>
+										} @else {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewWrongImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectIconWrongColor : undefined"
+											></div>
+										}
+									} @else {
+										@if (value.isLeftCorrect) {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewCorrectImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongIconCorrectColor : undefined"
+											></div>
+										} @else {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewWrongImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongIconWrongColor : undefined"
+											></div>
+										}
+									}
+								</div>
+								@if (value.isSelectedLeft) {
+									<div class="answer selected"
+										 [style.color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.fontColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.fontColor) : undefined"
+										 [style.background-color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.colorBg :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.colorBg) : undefined"
+										 [style.border-radius.px]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.radius :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.radius) : undefined"
+										 [style.border-width.px]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.border :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.border) : undefined"
+										 [style.border-color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.borderColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.borderColor) : undefined"
+									>{{ value.answerLeftLocalisationKey | nativeTranslate }}
+									</div>
+								} @else {
+									<div class="answer"
+										 [style.color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectOptNotSelectedColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongOptNotSelectedColor) : undefined"
+									>{{ value.answerLeftLocalisationKey | nativeTranslate }}
+									</div>
+								}
+							</div>
+							
+							
+							<div class="answer-container">
+								<div class="selected-container">
+									@if (value.isSelectedCorrect) {
+										@if (!value.isLeftCorrect) {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewCorrectImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectIconCorrectColor : undefined"
+											></div>
+										} @else {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewWrongImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectIconWrongColor : undefined"
+											></div>
+										}
+									} @else {
+										@if (!value.isLeftCorrect) {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewCorrectImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongIconCorrectColor : undefined"
+											></div>
+										} @else {
+											<div class="right-one-image"
+												 [style.mask-image]="signalIconReviewWrongImageUrl()"
+												 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongIconWrongColor : undefined"
+											></div>
+										}
+									}
+								</div>
+								@if (value.isSelectedLeft !== null && !value.isSelectedLeft) {
+									<div class="answer selected"
+										 [style.color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.fontColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.fontColor) : undefined"
+										 [style.background-color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.colorBg :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.colorBg) : undefined"
+										 [style.border-radius.px]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.radius :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.radius) : undefined"
+										 [style.border-width.px]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.border :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.border) : undefined"
+										 [style.border-color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectAnswerOptSel.borderColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongAnswerOptSel.borderColor) : undefined"
+									>{{ value.answerRightLocalisationKey | nativeTranslate }}
+									</div>
+								} @else {
+									<div class="answer"
+										 [style.color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectOptNotSelectedColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongOptNotSelectedColor) : undefined"
+									>{{ value.answerRightLocalisationKey | nativeTranslate }}
+									</div>
+								}
+							
+							</div>
+						</div>
+						<div class="feedback-btn-container">
+							<app-base-button
+								[configBtn]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.btnDialogReviewCardCorrectFeedback :
+							 	globalGameService.signalGameConfig()!.screenEndGame.btnDialogReviewCardWrongFeedback) : null"
+								[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+								[btnContentWidth]="'84px'"
+								[btnContentHeight]="'84px'"
+								[btnRadius]="'50%'"
+								[btnContentPadding]="'0'"
+								[btnContentFontSize]="'16px'"
+								(clickButton)="clickShowFeedback(value)"
+								style="padding: 0 30px;"
+							><!--<img class="show-feedback-img" [src]="signalBtnQuestionImageUrl()" alt="" width="190"
+								  height="191"
+							>-->
+								<div class="show-feedback-img"
+									 [style.mask-image]="signalBtnQuestionImageUrl()"
+									 [style.background-color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.btnDialogReviewCardCorrectFeedback.fontColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.btnDialogReviewCardWrongFeedback.fontColor) : undefined"
+								></div>
+							</app-base-button>
+						</div>
+						
+						@if (value.isFeedbackVisible) {
+							<div class="feedback-container"
+								 style="animation-duration: 300ms"
+								 animate.enter="fade-in-800ms"
+								 animate.leave="fade-out-800ms"
+							>
+								<div class="feedback"
+									 [style.color]="globalGameService.signalGameConfig() ? (
+							 	value.isSelectedCorrect ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectFeedbackColor :
+							 	globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongFeedbackColor) : undefined"
+									 [innerHTML]="value.feedbackLocalisationKey | nativeTranslate : null : null: true"
+								></div>
+							</div>
+						}
+						<div class="result-container">
+							@if (value.isSelectedCorrect) {
+								<span class="correct"
+									  [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardCorrectResultColor : undefined"
+								>{{ 'correctly-selected' | nativeTranslate | uppercase }}</span>
+							} @else if (value.isSelectedLeft === null) {
+								<span class="nothing"
+									  [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongResultColor : undefined"
+								>{{ 'nothing-selected' | nativeTranslate | uppercase }}</span>
+							} @else if (!value.isSelectedCorrect) {
+								<span
+									[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.dialogReviewCardWrongResultColor : undefined"
+									class="incorrectly">{{ 'incorrectly-selected' | nativeTranslate | uppercase }}</span>
+							}
+						</div>
+					</div>
+				}
+			</div>
+			<!--<div class="result">
+				<div>{{ 'round-result' | nativeTranslate }}:</div>
+				@if (questionResultList.length > 0) {
+					<div
+						[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+						[timeout]="questionResultList.length * 800"
+					></div>
+				}
+			</div>
+			<div class="total">
+				<div>{{ 'in-total' | nativeTranslate }}:</div>
+				@if (questionResultList.length > 0) {
+					<div
+						[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+						[timeout]="questionResultList.length * 800 + 800"
+					></div>
+				}
+			</div>-->
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenEndGame.btnDialogReview : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'100%'"
+				[btnContentPadding]="'15px 10px'"
+				[btnContentFontSize]="'56px'"
+				(clickButton)="onClickClose(true)"
+			>{{ 'close' | nativeTranslate }}
+			</app-base-button>
+		</div>
+		<!--<div class="dialog-footer justify-content-center">
+		
+		</div>-->
+	</div>
+</div>

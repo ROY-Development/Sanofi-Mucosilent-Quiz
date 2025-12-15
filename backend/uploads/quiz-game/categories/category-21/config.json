@@ -1,0 +1,34 @@
+{
+	"categoryKey": "category-21",
+	"questionColor": "#003cffff",
+	"backgroundColors": [
+		"#53843f88"
+	],
+	"backgroundAnimationImageUrls": [
+		"uploads/quiz-game/categories/category-21/images/bg-ani/hot-air-balloon.png",
+		"uploads/quiz-game/categories/category-21/images/bg-ani/football-tv.png",
+		"uploads/quiz-game/categories/category-21/images/bg-ani/sweet01---------.png"
+	],
+	"answers": [
+		{
+			"key": "quiz-category-21-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-21-answer2",
+			"imageUrl": null
+		}
+	],
+	"questions": [
+		{
+			"id": 30,
+			"leftCorrect": true,
+			"hasAutomaticAnswer": true
+		},
+		{
+			"id": 54,
+			"leftCorrect": true,
+			"hasAutomaticAnswer": true
+		}
+	]
+}

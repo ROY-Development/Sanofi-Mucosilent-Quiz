@@ -1,0 +1,28 @@
+<div class="topic"
+	 [class.nr2]="nr === 2"
+	 [class.has-transition]="hasTransition"
+	 [class.selected]="selected"
+	 [class.not-selected]="notSelected"
+>
+	<app-base-button
+		[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+		[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+		[btnContentWidth]="'450px'"
+		[btnContentHeight]="'450px'"
+		[btnContentPadding]="'12px 35px'"
+		[btnTouchDownClass]="'touch-down'"
+		[btnPointerEventsNone]="btnPointerEventsNone"
+		(clickButton)="clickTopic.emit(topic)"
+	>
+		<div class="category-name"
+			 appAutoFitFont
+			 [heightPx]="390"
+			 [maxFontSize]="52"
+			 [minFontSize]="30"
+			 [innerHTML]="'quiz-' + topic!.name | nativeTranslate  : null : null: true"
+		></div>
+		<!--{{ topic!.id }}
+		{{ topic!.url }}-->
+		<!--{{ 'quiz-' + topic!.name | nativeTranslate }}-->
+	</app-base-button>
+</div>

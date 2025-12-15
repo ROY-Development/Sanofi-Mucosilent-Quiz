@@ -1,0 +1,8 @@
+<!--<h1 class="game-title">{{ appConfig().gameTitle }}</h1>-->
+<div class="logo-container" [class.visible]="signalIsShowingLogo()">
+	<button type="button" class="btn btn-logo image-container" (click)="onClickLogo()">
+		@if (signalLogoImageUrl() !== 'none') {
+			<img [src]="signalLogoImageUrl()" alt="Logo" class="logo" width="702" height="274">
+		}
+	</button>
+</div>

@@ -1,0 +1,29 @@
+{
+	"companyPath": "uploads/company/TVR5NDFrQndoOGM0cGdkWVdhRzJXeTFocDhsK0EzaktwWVFMVmJsaEx0MD0/",
+	"titleAlignment": "left",
+	"titleFontSize": 158,
+	"titleLineHeight": 0.75,
+	"includesHighscore": true,
+	"mainFont": "",
+	"fontColorTitle": "#1b3848",
+	"fontColorMain": "#ffffff",
+	"fontColorButton": "#ffffff",
+	"colorButtonBg": "#d4d4d442",
+	"colorCategoryPath": "#6c6cff",
+	"backgroundColors": [
+		"#53843f88"
+	],
+	"activeMiniGames": [
+		1,
+		2,
+		3
+	],
+	"maxQuizRoundCount": 3,
+	"maxQuizQuestionCount": 5,
+	"isRotatingFlyingAni": false,
+	"scormQuestionFinishPercentage": 100,
+	"totalQuestions": 0,
+	"quizGamePath": "uploads/quiz-game/eWs0N044bzI3WUdML1ZoS3JMMzVjZVRoQVRPM09uMjZMazgvSjhSSllrcz0/",
+	"backgroundAnimationImageUrls": [],
+	"categories": []
+}

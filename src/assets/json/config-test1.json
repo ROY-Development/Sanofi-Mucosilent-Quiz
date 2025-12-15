@@ -1,0 +1,96 @@
+{
+	"categoryKey": "topic-rudi-or-lothar",
+	"questionColor": "#000",
+	"backgroundImageUrl": "assets/images/quiz/rudi-voeller.jpg",
+	"backgroundColors": [
+		"#53843f",
+		"#000",
+		"#DD0000",
+		"#FFCC00"
+	],
+	"backgroundAnimationImageUrls": [
+		"assets/images/icons/flying/car01.png",
+		"assets/images/icons/flying/house01.png",
+		"assets/images/icons/flying/trees01.png",
+		"assets/images/icons/flying/globe01.png"
+	],
+	"answers": [
+		{
+			"key": "question-topic-rudi-or-lothar-1-answer1",
+			"imageUrl": "assets/images/quiz/lothar-matthaeus.jpg"
+		},
+		{
+			"key": "question-topic-rudi-or-lothar-1-answer2",
+			"imageUrl": "assets/images/quiz/rudi-voeller.jpg"
+		}
+	],
+	"questions": [
+		{
+			"id": 1,
+			"leftCorrect": true,
+			"backgroundColors": [
+				"#fff",
+				"#000"
+			]
+		},
+		{
+			"id": 2,
+			"leftCorrect": false,
+			"questionColor": "#fff",
+			"backgroundImageUrl": "assets/images/quiz/lothar-matthaeus.jpg"
+		},
+		{
+			"id": 3,
+			"leftCorrect": true
+		},
+		{
+			"id": 4,
+			"leftCorrect": false
+		},
+		{
+			"id": 5,
+			"answers": [
+				{
+					"key": "question-test1-2-answer1",
+					"imageUrl": "assets/images/quiz/lothar-matthaeus.jpg",
+					"isCorrect": false
+				},
+				{
+					"key": "question-test1-2-answer2",
+					"imageUrl": "assets/images/quiz/rudi-voeller.jpg",
+					"isCorrect": true
+				}
+			]
+		},
+		{
+			"id": 6,
+			"answers": [
+				{
+					"key": "question-test1-2-answer2",
+					"imageUrl": "assets/images/quiz/rudi-voeller.jpg",
+					"isCorrect": true
+				},
+				{
+					"key": "question-test1-2-answer1",
+					"imageUrl": "assets/images/quiz/lothar-matthaeus.jpg",
+					"isCorrect": false
+				}
+			]
+		},
+		{
+			"id": 7,
+			"answers": [
+				{
+					"key": "question-test1-2-answer2",
+					"imageUrl": "assets/images/quiz/rudi-voeller.jpg",
+					"isCorrect": true
+				},
+				{
+					"key": "question-test1-2-answer1",
+					"imageUrl": "assets/images/quiz/lothar-matthaeus.jpg",
+					"isCorrect": false
+				}
+			]
+		}
+	]
+}

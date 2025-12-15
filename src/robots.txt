@@ -1,0 +1,2 @@
+Sitemap: https://www.editor-speed-quiz.r-o-y.de/sitemap.xml
+User-Agent: *

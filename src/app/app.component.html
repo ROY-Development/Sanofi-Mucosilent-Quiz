@@ -1,0 +1,54 @@
+@if (signalBackgroundImage()) {
+	<div class="background-container"
+		 [style.background-image]="signalBackgroundImage()"
+	></div>
+}
+<div #overlayContainer class="page-container"
+	 [style.width.px]="signalPageWidth()"
+	 [style.height.px]="signalPageHeight()"
+>
+	<div #elementToScale class="element-to-scale"
+		 [style.transform]="signalScaleTransform()"
+		 [style.margin-block-start]="signalScaleMargin()"
+		 [style.height.px]="signalScaleHeight()"
+		 [style.color]="gameService.signalGameConfig()?.fontColorMain"
+		 [style.--bs-table-color]="gameService.signalGameConfig()?.fontColorMain"
+	>
+		<app-game-background [pageHeight]="signalPageHeight()" [scaling]="signalScaling()"></app-game-background>
+		<!--<button type="button" class="btn"
+				style="position: absolute; top: 100px; left: 0; z-index: 123"
+				(click)="panelService.signalIsGameHeaderEnabled.set(!panelService.signalIsGameHeaderEnabled())"
+		>GameHeader
+		</button>-->
+		<!--<div style="position: absolute; top: 100px; left: 0; z-index: 123">
+			<button type="button" class="btn" (click)="backgroundImageService.setBackgroundImageUrl('assets/images/quiz/rudi-voeller.jpg')"
+			>BackgroundImage 1</button><br>
+			<button type="button" class="btn" (click)="backgroundImageService.setBackgroundImageUrl('assets/images/quiz/lothar-matthaeus.jpg')"
+			>BackgroundImage 2</button><br>
+			<button type="button" class="btn" (click)="backgroundImageService.setBackgroundImageUrl(null)"
+			>BackgroundImage null</button>
+		</div>-->
+		<div class="game-header"
+			 [class.game-header-enabled]="panelService.signalIsGameHeaderEnabled()">
+			<app-game-header #gameHeader></app-game-header>
+		</div>
+		<div class="main-content" [class.game-header-enabled]="panelService.signalIsGameHeaderEnabled()">
+			<div #main class="main scrollbar">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+		<app-game-coins #gameCoins></app-game-coins>
+		<!--<button *ngIf="initService.signalAreValidAppQueryParams() && pageService.signalIsExitButtonEnabled()"
+				type="button" class="btn btn-exit" (click)="onClickExit()"
+		>
+			<div class="img-container"><img [ngSrc]="'assets/images/svg/close01-white.svg'" alt="" fill priority></div>
+		</button>-->
+	</div>
+</div>
+<app-toast
+	[fontSize]="16"
+></app-toast>
+<!--<app-still-there (away)="onAway()"></app-still-there>-->
+@if (signalIsInlineConsoleVisible()) {
+	<app-inline-console></app-inline-console>
+}

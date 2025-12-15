@@ -1,0 +1,156 @@
+@use "../../../../assets/scss/variables" as variables;
+
+.modal-header {
+	.modal-title {
+		font-weight: 700;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-evenly;
+		align-items: center;
+		width: 100%;
+
+		.title {
+			position: relative;
+			color: #d7d7d7;
+			font-size: 1.5em;
+		}
+
+		.star-image {
+			position: absolute;
+			font-size: 1em;
+			display: inline-block;
+
+			// background-image: url('../../../../assets/images/svg/star.svg');
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: top;
+			background-color: transparent;
+
+			width: 50px;
+			height: 50px;
+			transform-origin: center;
+			animation: spin 10s linear infinite;
+
+			&:first-child {
+				top: 57px;
+				left: -70px;
+			}
+
+			&:last-child {
+				top: 57px;
+				right: -70px;
+			}
+		}
+
+		.game-time {
+			font-size: 20px;
+			font-weight: 500;
+			display: block;
+			text-align: center;
+		}
+	}
+}
+
+.modal-body {
+	overflow-wrap: break-word;
+	font-size: 24px;
+	color: #000;
+	padding: 20px 50px;
+
+	.bonus {
+		padding: 10px 0;
+		margin-bottom: 20px;
+		font-size: 56px;
+		color: #d7d7d7;
+
+		.table {
+			margin-bottom: 0;
+
+			tr {
+				th {
+					font-size: 32px;
+				}
+			}
+
+			td, th {
+				padding: 5px 0;
+				text-align: center;
+				position: relative;
+			}
+
+			.col-bg {
+				background-color: rgb(255 255 255 / 0.03);
+			}
+
+			.col-add {
+				position: relative;
+				top: -5px;
+				left: 0;
+				font-size: 26px;
+				//color: rgba(255, 255, 255, 0.3);
+				color: rgb(194 228 228);
+				background-color: #00000008;
+			}
+		}
+	}
+
+	.result, .total {
+		color: #fff;
+		background-color: #ffffff1a;
+	}
+
+	.result {
+		//background-color: #fff;
+		//border-radius: 3.5em;
+		padding: 10px 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		//font-weight: 700;
+		font-size: 56px;
+	}
+
+	.total {
+		//background-color: #fff;
+		//border-radius: 3.5em;
+		padding: 10px 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 700;
+		font-size: 56px;
+		margin-bottom: 20px;
+	}
+}
+
+.modal-footer {
+	padding: 30px 40px;
+
+	.btn-primary {
+		padding: 15px 10px;
+		border-radius: 0;
+		width: 100%;
+		font-size: 56px;
+	}
+}
+
+.pre-timeout-ani01 {
+	opacity: 0;
+}
+
+.timeout-ani01 {
+	will-change: scale, opacity;
+	animation: appear 1s ease-in-out;
+}
+
+@keyframes appear {
+	from {
+		scale: 1.6;
+		opacity: 0;
+	}
+	to {
+		scale: 1;
+		opacity: 1;
+	}
+}

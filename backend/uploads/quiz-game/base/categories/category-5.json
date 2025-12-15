@@ -1,0 +1,110 @@
+{
+	"categoryKey": "category-5",
+	"questionColor": "#fff",
+	"backgroundColors": [
+		"#53843f88",
+		"#0008",
+		"#DD000088",
+		"#FFCC0088"
+	],
+	"backgroundImageUrl": null,
+	"backgroundAnimationImageUrls": [
+		"assets/images/icons/flying/house01.png",
+		"assets/images/icons/flying/icecream01.png",
+		"assets/images/icons/flying/lolly01.png",
+		"assets/images/icons/flying/megaphone01.png",
+		"assets/images/icons/flying/sweet01.png"
+	],
+	"answers": [
+		{
+			"key": "quiz-category-5-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-5-answer2",
+			"imageUrl": null
+		}
+	],
+	"questions": [
+		{
+			"id": 1,
+			"leftCorrect": true
+		},
+		{
+			"id": 2,
+			"leftCorrect": false
+		},
+		{
+			"id": 3,
+			"leftCorrect": true
+		},
+		{
+			"id": 4,
+			"leftCorrect": false
+		},
+		{
+			"id": 5,
+			"leftCorrect": true
+		},
+		{
+			"id": 6,
+			"leftCorrect": false
+		},
+		{
+			"id": 7,
+			"leftCorrect": true
+		},
+		{
+			"id": 8,
+			"leftCorrect": false
+		},
+		{
+			"id": 9,
+			"leftCorrect": true
+		},
+		{
+			"id": 10,
+			"leftCorrect": false
+		},
+		{
+			"id": 11,
+			"leftCorrect": false
+		},
+		{
+			"id": 12,
+			"leftCorrect": true
+		},
+		{
+			"id": 13,
+			"leftCorrect": true
+		},
+		{
+			"id": 14,
+			"leftCorrect": false
+		},
+		{
+			"id": 15,
+			"leftCorrect": false
+		},
+		{
+			"id": 16,
+			"leftCorrect": true
+		},
+		{
+			"id": 17,
+			"leftCorrect": false
+		},
+		{
+			"id": 18,
+			"leftCorrect": true
+		},
+		{
+			"id": 19,
+			"leftCorrect": false
+		},
+		{
+			"id": 20,
+			"leftCorrect": true
+		}
+	]
+}

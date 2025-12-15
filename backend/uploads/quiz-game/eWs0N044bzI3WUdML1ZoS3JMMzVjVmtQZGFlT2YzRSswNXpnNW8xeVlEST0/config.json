@@ -1,0 +1,113 @@
+{
+	"categories": [
+		21
+	],
+	"backgroundColors": [
+		"#53843f88",
+		"#ff00c6f4",
+		"#ceff0088"
+	],
+	"fontColorTitle": "#1b3848",
+	"fontColorButton": "#ffffff",
+	"colorButtonBg": "#d4d4d442",
+	"colorCategoryPath": "#6c6cff",
+	"titleAlignment": "left",
+	"titleFontSize": 158,
+	"titleLineHeight": 0.75,
+	"maxQuizQuestionCount": 5,
+	"companyPath": "uploads/company/TVR5NDFrQndoOGM0cGdkWVdhRzJXeTFocDhsK0EzaktwWVFMVmJsaEx0MD0/",
+	"quizGamePath": "uploads/quiz-game/eWs0N044bzI3WUdML1ZoS3JMMzVjVmtQZGFlT2YzRSswNXpnNW8xeVlEST0/",
+	"fontColorMain": "#ffffff",
+	"fontColorLink": "#ffffff",
+	"dialogColorBg": "#000000cc",
+	"fontColorDialog": "#ffffff",
+	"dialogBorderColor": "#000000",
+	"buttonBorderColor": "#000000",
+	"fontColorIconButton": "#ffffff",
+	"colorIconButtonBg": "#d4d4d442",
+	"iconButtonBorderColor": "#000000",
+	"miniGameColorBackground1": "#00000080",
+	"miniGameColorBackground2": "#000000",
+	"miniGameColorFont": "#ffffff",
+	"miniGameColorMain": "#BB59F0",
+	"miniGameColorOutline": "#BB59F099",
+	"miniGameColorBall": "#ec6a1e",
+	"backgroundColorsDuration": 25,
+	"splitScreenColorBg": "#d4d4d442",
+	"maxQuizRoundCount": 3,
+	"scormQuestionFinishPercentage": 100,
+	"totalQuestions": 2,
+	"startBtn": {
+		"fontColor": "#ffffff",
+		"colorBg": "#d4d4d442",
+		"border": 0,
+		"borderColor": "#ffffff",
+		"glowColor": "#ffffff",
+		"glowRadius": 1,
+		"pulseScale": 0.95,
+		"pulseDuration": 2.5
+	},
+	"screenTitleBtnDefault": {
+		"fontColor": "#ffffff",
+		"colorBg": "#d4d4d442",
+		"border": 0,
+		"borderColor": "#ffffff"
+	},
+	"screenTitleBtnIcon": {
+		"fontColor": "#ffffff",
+		"colorBg": "#d4d4d442",
+		"border": 0,
+		"borderColor": "#ffffff"
+	},
+	"headerBtnIcon": {
+		"fontColor": "#ffffff",
+		"colorBg": "#d4d4d442",
+		"border": 0,
+		"borderColor": "#ffffff"
+	},
+	"screenHighscore": {
+		"titleFontColor": "#1b3848",
+		"titleAlignment": "left",
+		"curFilterFontColor": "#ffffff",
+		"fCTitleHead": "#ffffff",
+		"tableFontColor": "#ffffff",
+		"tableColorBg": "#ffffff17",
+		"tableColorBgRowOdd": "#ffffff1a",
+		"tableRadius": 0,
+		"tableBorder": 0,
+		"tableBorderColor": "#000000",
+		"fontColorRank": "#ffffff",
+		"rankColorBackground1": "#71afa540",
+		"rankColorBackground2": "#00897e1a",
+		"rankColorBackground3": "#71afa540",
+		"rankColorBackground4": "#00917e1a",
+		"rankAniDuration": 2,
+		"rankRadius": 0,
+		"rankBorder": 0,
+		"rankBorderColor": "#000000",
+		"btnFilter": {
+			"fontColor": "#ffffff",
+			"colorBg": "#d4d4d442",
+			"border": 0,
+			"borderColor": "#000000"
+		},
+		"btnClose": {
+			"fontColor": "#ffffff",
+			"colorBg": "#d4d4d442",
+			"border": 0,
+			"borderColor": "#000000"
+		},
+		"btnIcon": {
+			"fontColor": "#ffffff",
+			"colorBg": "#d4d4d442",
+			"border": 0,
+			"borderColor": "#000000"
+		}
+	},
+	"screenEndGameBtnIcon": {
+		"fontColor": "#ffffff",
+		"colorBg": "#d4d4d442",
+		"border": 0,
+		"borderColor": "#ffffff"
+	}
+}

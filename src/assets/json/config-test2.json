@@ -1,0 +1,55 @@
+{
+	"categoryKey": "test2",
+	"backgroundColors": [
+		"#53843f88",
+		"#0008",
+		"#DD000088",
+		"#FFCC0088"
+	],
+	"backgroundAnimationImageUrls": [
+		"assets/images/icons/flying/hot-air-balloon.png",
+		"assets/images/icons/flying/globe01.png"
+	],
+	"questions": [
+		{
+			"id": 6,
+			"correctId": 2,
+			"answerKey1": "question1-answer1",
+			"answerKey2": "question1-answer2",
+			"imageUrl1": "assets/images/quiz/lothar-matthaeus.jpg",
+			"imageUrl2": "assets/images/quiz/rudi-voeller.jpg"
+		},
+		{
+			"id": 7,
+			"correctId": 2,
+			"answerKey1": "question1-answer1",
+			"answerKey2": "question1-answer2",
+			"imageUrl1": "assets/images/quiz/lothar-matthaeus.jpg",
+			"imageUrl2": "assets/images/quiz/rudi-voeller.jpg"
+		},
+		{
+			"id": 8,
+			"correctId": 2,
+			"answerKey1": "question1-answer1",
+			"answerKey2": "question1-answer2",
+			"imageUrl1": "assets/images/quiz/lothar-matthaeus.jpg",
+			"imageUrl2": "assets/images/quiz/rudi-voeller.jpg"
+		},
+		{
+			"id": 9,
+			"correctId": 2,
+			"answerKey1": "question1-answer1",
+			"answerKey2": "question1-answer2",
+			"imageUrl1": "assets/images/quiz/lothar-matthaeus.jpg",
+			"imageUrl2": "assets/images/quiz/rudi-voeller.jpg"
+		},
+		{
+			"id": 10,
+			"correctId": 2,
+			"answerKey1": "question1-answer1",
+			"answerKey2": "question1-answer2",
+			"imageUrl1": "assets/images/quiz/lothar-matthaeus.jpg",
+			"imageUrl2": "assets/images/quiz/rudi-voeller.jpg"
+		}
+	]
+}

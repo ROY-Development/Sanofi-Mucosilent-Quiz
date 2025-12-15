@@ -1,0 +1,35 @@
+{
+	"highScore": [
+		{
+			"nickname": "André",
+			"score": 3381,
+			"correctRate": 0.571,
+			"createdAt": "2025-12-09T16:42:26Z"
+		},
+		{
+			"nickname": "sdsf",
+			"score": 3328,
+			"correctRate": 0.429,
+			"createdAt": "2025-12-09T17:05:02Z"
+		},
+		{
+			"nickname": "Anonym",
+			"score": 2954,
+			"correctRate": 0.429,
+			"createdAt": "2025-12-09T16:56:26Z"
+		},
+		{
+			"nickname": "dffff",
+			"score": 2833,
+			"correctRate": 0.429,
+			"createdAt": "2025-12-09T16:37:42Z"
+		},
+		{
+			"nickname": "André",
+			"score": 2288,
+			"correctRate": 0.286,
+			"createdAt": "2025-12-09T16:46:17Z"
+		}
+	],
+	"updated": "2025-12-09T17:05:02Z"
+}

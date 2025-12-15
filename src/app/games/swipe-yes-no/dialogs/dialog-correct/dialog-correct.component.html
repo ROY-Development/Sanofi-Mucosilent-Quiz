@@ -1,0 +1,42 @@
+<div class="correct-container"
+	 [class.visible]="gameState === GameStateEnum.correct || swipeYesNoService.signalIsEditorShowingCorrectScreen()"
+	 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.fontColorFeedback : undefined"
+>
+	<div #comboContainer class="combo-container"
+		 [class.visible]="gameState === GameStateEnum.correct && correctComboCount >= AppConfig.minCorrectComboCount"
+	>{{ 'correct-combo' | nativeTranslate : {count: correctComboCount} | uppercase }}
+	</div>
+	
+	<div class="circle">
+		<div class="image">
+			<img [src]="signalGreatImageUrl()" alt="great" class="great">
+		</div>
+	</div>
+	
+	<div class="text-center">
+		<div class="mb-3">{{ 'great' | nativeTranslate }}</div>
+		
+		<div #superfastContainer class="superfast-container"
+			 [class.visible]="gameState === GameStateEnum.correct && swipeYesNoService.signalAnswerTimerFactor() >= 3 / 4"
+		>{{ 'superfast' | nativeTranslate | uppercase }}
+		</div>
+	</div>
+	
+	<div class="btn-show-dialog-container">
+		<app-base-button
+			[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.btnFeedback : null"
+			[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+			[btnContentWidth]="'193px'"
+			[btnContentHeight]="'193px'"
+			[btnContentPadding]="'0'"
+			[btnRadius]="'50%'"
+			(clickButton)="clickShowAnswer.emit()"
+		>
+			<div class="show-dialog-img"
+				 (touchend)="clickShowAnswer.emit()"
+				 [style.mask-image]="signalBtnQuestionImageUrl()"
+				 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.btnFeedback.fontColor : null"
+			></div>
+		</app-base-button>
+	</div>
+</div>

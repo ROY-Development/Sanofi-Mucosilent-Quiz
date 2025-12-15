@@ -1,0 +1,13 @@
+<div class="screen-part"
+	 [ngClass]="screenPartSide"
+	 [ngStyle]="{width: width, zIndex: zIndex}"
+>
+	<div class="sq-content">
+		@if (template) {
+			<ng-container
+				[ngTemplateOutlet]="template"
+				[ngTemplateOutletContext]="context"
+			></ng-container>
+		}
+	</div>
+</div>

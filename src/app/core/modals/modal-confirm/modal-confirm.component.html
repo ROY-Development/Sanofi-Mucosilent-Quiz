@@ -1,0 +1,39 @@
+<app-modal-background></app-modal-background>
+
+<div class="modal-header">
+	<div class="modal-title mx-auto my-auto">
+		<div class="title" [innerHTML]="titleKey ? (titleKey | nativeTranslate) : title"></div>
+	</div>
+	<!--<button type="button" class="btn" aria-label="Close"
+	(click)="onClickClose(false)"
+	>
+	<fa-icon [icon]="['fas', 'times']"></fa-icon>
+  </button>-->
+</div>
+<div class="modal-body font-secondary">
+	@if (isJsonContent) {
+		<div>{{ content | json }}</div>
+	} @else {
+	<div [innerHTML]="(contentKey ? (contentKey | nativeTranslate) : content)"></div>
+}
+</div>
+<div class="modal-footer justify-content-evenly">
+	@if (hasSafetyCheck) {
+		<input type="checkbox"
+			   id="safetyCheck"
+			   [checked]="isSafetyChecked"
+			   (change)="isSafetyChecked = !isSafetyChecked;"
+		>&nbsp;<label for="safetyCheck" class="me-auto user-select-none">{{ 'safety-check' }}</label>
+	}
+	
+	<button type="button"
+			class="btn btn-primary"
+			(click)="onClickClose(true)"
+			[disabled]="hasSafetyCheck && !isSafetyChecked"
+	>{{ 'yes' | nativeTranslate }}
+	</button>
+	<div class="empty-line"></div>
+	<button type="button" class="btn btn-secondary" (click)="onClickClose(false)"
+	>{{ 'no' | nativeTranslate }}
+	</button>
+</div>

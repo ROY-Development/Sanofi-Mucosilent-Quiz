@@ -1,0 +1,103 @@
+{
+	"categoryKey": "category-25",
+	"questionColor": "#ffffffff",
+	"backgroundColors": [
+		"#53843f88"
+	],
+	"backgroundAnimationImageUrls": [
+		"uploads/quiz-game/categories/category-25/images/bg-ani/checkmark.png",
+		"uploads/quiz-game/categories/category-25/images/bg-ani/cam01.png"
+	],
+	"answers": [
+		{
+			"key": "quiz-category-25-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-25-answer2",
+			"imageUrl": null
+		}
+	],
+	"questions": [
+		{
+			"id": 29,
+			"leftCorrect": true
+		},
+		{
+			"id": 33,
+			"leftCorrect": true
+		},
+		{
+			"id": 34,
+			"leftCorrect": true
+		},
+		{
+			"id": 35,
+			"leftCorrect": true
+		},
+		{
+			"id": 36,
+			"leftCorrect": true
+		},
+		{
+			"id": 37,
+			"leftCorrect": true
+		},
+		{
+			"id": 38,
+			"leftCorrect": false
+		},
+		{
+			"id": 39,
+			"leftCorrect": false
+		},
+		{
+			"id": 40,
+			"leftCorrect": false
+		},
+		{
+			"id": 41,
+			"leftCorrect": false
+		},
+		{
+			"id": 44,
+			"leftCorrect": false
+		},
+		{
+			"id": 45,
+			"leftCorrect": false
+		},
+		{
+			"id": 46,
+			"leftCorrect": false
+		},
+		{
+			"id": 47,
+			"leftCorrect": false
+		},
+		{
+			"id": 48,
+			"leftCorrect": false
+		},
+		{
+			"id": 49,
+			"leftCorrect": false
+		},
+		{
+			"id": 50,
+			"leftCorrect": false
+		},
+		{
+			"id": 51,
+			"leftCorrect": false
+		},
+		{
+			"id": 52,
+			"leftCorrect": false
+		},
+		{
+			"id": 53,
+			"leftCorrect": false
+		}
+	]
+}

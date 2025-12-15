@@ -1,0 +1,216 @@
+<!--<app-on-screen-keyboard
+[inputElement]="focusElement"
+[inputElementInputMode]="focusInputMode"
+[inputElementMaxLength]="focusElementMaxLength"
+(blurElement)="onBlurElement()"
+(submitForm)="onSubmitForm()"
+></app-on-screen-keyboard>-->
+<div class="user-crm-form">
+	@if (formGroup) {
+		<form enctype="multipart/form-data"
+			  [formGroup]="formGroup"
+			  (ngSubmit)="onSubmitForm()"
+		>
+			<div class="">
+				<div class="form-content mx-auto">
+					@if ((userCrmService.error$ | async) && isFormSubmitted) {
+						<div
+							class="alert alert-danger" [innerHTML]="(userCrmService.error$ | async)">
+						</div>
+					}
+					@if (this.gameService.signalGameConfig()?.quizConfigCrm?.isFirstNameEnabled) {
+						<div class="form-group">
+							<label for="firstName"
+								   [for]="'firstName' + uid">{{ 'user.first-name' | nativeTranslate }}*</label>
+							<input id="firstName" [id]="'firstName' + uid"
+								   type="text"
+								   inputmode="none"
+								   formControlName="firstName"
+								   placeholder="" class="form-control"
+								   minlength="2"
+								   [maxlength]="maxLengthFirstName"
+								   autocomplete="off"
+								   [ngClass]="{ 'is-invalid': isFormSubmitted && f.firstName.errors }"
+								   (input)="onChangeFormInput()"
+								   (focusin)="onFocusIn($event, 'text', 20)"
+							/>
+							<!--{{f.firstName.errors | json}}-->
+							@if (isFormSubmitted && f.firstName.errors) {
+								<div class="invalid-feedback">
+									@if (f.firstName.errors.required || f.firstName.errors.minlength) {
+										{{ 'warning.is-required' | nativeTranslate }}
+									}
+								</div>
+							}
+						</div>
+					}
+					@if (this.gameService.signalGameConfig()?.quizConfigCrm?.isLastNameEnabled) {
+						<div class="form-group">
+							<label for="lastName"
+								   [for]="'lastName' + uid">{{ 'user.last-name' | nativeTranslate }}*</label>
+							<input id="lastName" [id]="'lastName' + uid"
+								   type="text"
+								   inputmode="none"
+								   formControlName="lastName"
+								   placeholder="" class="form-control"
+								   minlength="2"
+								   [maxlength]="maxLengthLastName"
+								   autocomplete="off"
+								   [ngClass]="{ 'is-invalid': isFormSubmitted && f.lastName.errors }"
+								   (input)="onChangeFormInput()"
+								   (focusin)="onFocusIn($event, 'text', 20)"
+							/>
+							<!--{{f.lastName.errors | json}}-->
+							@if (isFormSubmitted && f.lastName.errors) {
+								<div class="invalid-feedback">
+									@if (f.lastName.errors.required || f.lastName.errors.minlength) {
+										{{ 'warning.is-required' | nativeTranslate }}
+									}
+								</div>
+							}
+						</div>
+					}
+					@if (this.gameService.signalGameConfig()?.quizConfigCrm?.isBirthdateEnabled) {
+						<div class="form-group">
+							<label for="birthdate"
+								   [for]="'birthdate' + uid">{{ 'user.birthdate' | nativeTranslate }}*</label>
+							<input id="birthdate" [id]="'birthdate' + uid"
+								   type="date"
+								   inputmode="none"
+								   formControlName="birthdate"
+								   placeholder="" class="form-control"
+								   autocomplete="off"
+								   [ngClass]="{ 'is-invalid': isFormSubmitted && f.birthdate.errors }"
+								   (input)="onChangeFormInput()"
+								   (focusin)="onFocusIn($event, 'text', 20)"
+							/>
+							<!--{{f.birthdate.errors | json}}-->
+							@if (isFormSubmitted && f.birthdate.errors) {
+								<div class="invalid-feedback">
+									@if (f.birthdate.errors.required) {
+										{{ 'warning.is-required' | nativeTranslate }}
+									}
+								</div>
+							}
+						</div>
+					}
+					@if (this.gameService.signalGameConfig()?.quizConfigCrm?.isOrganisationEnabled) {
+						<div class="form-group">
+							<label for="organisation"
+								   [for]="'organisation' + uid">{{ 'user.organisation-company' | nativeTranslate }}
+								*</label>
+							<input id="organisation" [id]="'organisation' + uid"
+								   type="text"
+								   inputmode="none"
+								   formControlName="organisation"
+								   placeholder="" class="form-control"
+								   minlength="2"
+								   [maxlength]="maxLengthOrganisation"
+								   autocomplete="off"
+								   [ngClass]="{ 'is-invalid': isFormSubmitted && f.organisation.errors }"
+								   (input)="onChangeFormInput()"
+								   (focusin)="onFocusIn($event, 'text', 20)"
+							/>
+							<!--{{f.organisation.errors | json}}-->
+							@if (isFormSubmitted && f.organisation.errors) {
+								<div class="invalid-feedback">
+									@if (f.organisation.errors.required || f.organisation.errors.minlength) {
+										{{ 'warning.is-required' | nativeTranslate }}
+									}
+								</div>
+							}
+						</div>
+					}
+					@if (this.gameService.signalGameConfig()?.quizConfigCrm?.isEmailEnabled) {
+						<div class="form-group">
+							<label for="email"
+								   [for]="'email' + uid">{{ 'user.email' | nativeTranslate }}*</label>
+							<input id="email" [id]="'email' + uid"
+								   type="email"
+								   inputmode="none"
+								   formControlName="email"
+								   placeholder="" class="form-control"
+								   minlength="2"
+								   [maxlength]="maxLengthEmail"
+								   autocomplete="off"
+								   [ngClass]="{ 'is-invalid': isFormSubmitted && f.email.errors }"
+								   (input)="onChangeFormInput()"
+								   (focusin)="onFocusIn($event, 'text', 20)"
+							/>
+							<!--{{f.email.errors | json}}-->
+							@if (isFormSubmitted && f.email.errors) {
+								<div class="invalid-feedback">
+									@if (f.email.errors.required || f.email.errors.minlength) {
+										{{ 'warning.is-required' | nativeTranslate }}
+									}
+								</div>
+							}
+						</div>
+					}
+					@if (this.gameService.signalGameConfig()?.quizConfigCrm?.isMessageEnabled) {
+						<div class="form-group">
+							<label for="message"
+								   [for]="'message' + uid">{{ 'user.message' | nativeTranslate }}</label>
+							<textarea id="message" [id]="'message' + uid"
+									  formControlName="message"
+									  [maxlength]="maxLengthMessage"
+									  placeholder=""
+									  class="form-control"
+									  [ngClass]="{ 'is-invalid': isFormSubmitted && f.message.errors }"
+									  (input)="onChangeFormInput()"
+									  (focusin)="onFocusIn($event, 'text', 400)"
+							></textarea>
+							
+							@if (isFormSubmitted && f.message.errors) {
+								<div class="invalid-feedback">
+									@if (f.message.errors.required) {
+										<div>{{ 'warning.is-required' | nativeTranslate }}</div>
+									}
+								</div>
+							}
+						</div>
+					}
+					@if (this.gameService.signalGameConfig()?.quizConfigCrm?.isFirstNameEnabled ||
+					this.gameService.signalGameConfig()?.quizConfigCrm?.isLastNameEnabled ||
+					this.gameService.signalGameConfig()?.quizConfigCrm?.isBirthdateEnabled ||
+					this.gameService.signalGameConfig()?.quizConfigCrm?.isOrganisationEnabled ||
+					this.gameService.signalGameConfig()?.quizConfigCrm?.isEmailEnabled) {
+						<div class="text-end mt-3">* {{ 'warning.is-required' | nativeTranslate }}</div>
+					}
+				</div>
+			</div>
+			<div class="empty-line"></div>
+			<div class="button-container">
+				<app-base-button
+					[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnWidth]="'100%'"
+					[btnContentWidth]="'100%'"
+					[btnContentPadding]="'15px 10px'"
+					[btnDisabled]="(userCrmService.isLoading$ | async) || false"
+					(clickButton)="onClickCancel()"
+				>@if (userCrmService.isLoading$ | async) {
+					<span class="spinner-border spinner-border-sm me-1"></span>
+				}
+					{{ 'cancel' | nativeTranslate }}
+				</app-base-button>
+				
+				<div class="empty-line"></div>
+				
+				<app-base-button
+					[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+					[btnType]="'submit'"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnWidth]="'100%'"
+					[btnContentWidth]="'100%'"
+					[btnContentPadding]="'15px 10px'"
+					[btnDisabled]="(userCrmService.isLoading$ | async) || false"
+				>@if (userCrmService.isLoading$ | async) {
+					<span class="spinner-border spinner-border-sm me-1"></span>
+				}
+					{{ 'continue' | nativeTranslate }}
+				</app-base-button>
+			</div>
+		</form>
+	}
+</div>

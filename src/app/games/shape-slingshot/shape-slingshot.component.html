@@ -1,0 +1,76 @@
+<div #shapeSlingshotGame class="shape-slingshot-game">
+	@if (isDebug) {
+		<canvas #canvas></canvas>
+	}
+	<div #game class="game">
+		<div #board class="board">
+			
+			@for (rect of targetRects; track rect; let i = $index) {
+				<div class="target"
+					 [ngStyle]="{
+					left: rect.x + 'px',
+					top: rect.y + 'px',
+					width: rect.width + 'px',
+					height: rect.height + 'px',
+					zIndex: rect.zIndex,
+					transform: 'rotate(' + MathAngleUtil.radiansToDegrees(rect.angle) + 'deg)'
+				}"
+				>
+					<div class="content">
+						<!--<div>{{i}} Target</div>-->
+						{{ rect.text }}
+						{{ rect.textKey ? (rect.textKey! | nativeTranslate : null: LocaleEnum['de-DE']) : '' }}
+						@if (isDebug) {
+							<div class="debug-gui">
+								id:{{ rect.id }}<br>
+								x:{{ Math.round(rect.x) }} y:{{ Math.round(rect.y) }}<br>
+								width:{{ Math.round(rect.width) }} height:{{ Math.round(rect.height) }}<br>
+								angle:{{ rect.angle }}<br>
+								initialAngle:{{ rect.initialAngle }}<br>
+								angleDegrees:{{ rect.angleDegrees }}
+							</div>
+						}
+						<!--<span style="position: absolute; bottom: 0;	left: 10px; color: #f00">TARGET</span>-->
+					</div>
+				</div>
+			} @for (rect of rects; track rect; let i = $index) {
+			<div class="play-card"
+				 [ngStyle]="rect.style"
+				 [ngClass]="{
+					'not-at-target': rect.targetState === CardTargetStateEnum.notAtTarget,
+					'valid-target': rect.targetState === CardTargetStateEnum.validTarget,
+					'invalid-target': rect.targetState === CardTargetStateEnum.invalidTarget
+				}"
+			>
+				<div class="content">
+					<!--<div>{{i}} Lorem ipsum</div>-->
+					{{ rect.text }}
+					{{ rect.textKey ? (rect.textKey! | nativeTranslate : null: LocaleEnum['de-DE']) : '' }}
+					@if (isDebug) {
+						<div class="debug-gui">
+							id:{{ rect.id }} targetIds:{{ rect.targetIds }}<br>
+							targetState:{{ rect.targetState }}<br>
+							targetId:{{ rect.targetId }}<br>
+							x:{{ Math.round(rect.x) }} y:{{ Math.round(rect.y) }}<br>
+							width:{{ Math.round(rect.width) }} height:{{ Math.round(rect.height) }}<br>
+							angle:{{ rect.angle }}<br>
+							initialAngle:{{ rect.initialAngle }}<br>
+							angleDegrees:{{ rect.angleDegrees }}<br>
+							hasMoved:{{ rect.hasMoved }}<br>
+							touchPos1Identifier:{{ rect.touchPositions.length > 0 ? rect.touchPositions[0].identifier : '' }}
+							<br>
+							touchPos1X:{{ rect.touchPositions.length > 0 ? rect.touchPositions[0].pos.x : -1 }}<br>
+							touchPos1Y:{{ rect.touchPositions.length > 0 ? rect.touchPositions[0].pos.y : -1 }}<br>
+							touchPos2Identifier:{{ rect.touchPositions.length > 1 ? rect.touchPositions[1].identifier : '' }}
+							<br>
+							touchPos2X:{{ rect.touchPositions.length > 1 ? rect.touchPositions[1].pos.x : -1 }}<br>
+							touchPos2Y:{{ rect.touchPositions.length > 1 ? rect.touchPositions[1].pos.y : -1 }}
+						</div>
+					}
+				</div>
+			</div>
+		}
+		
+		</div>
+	</div>
+</div>

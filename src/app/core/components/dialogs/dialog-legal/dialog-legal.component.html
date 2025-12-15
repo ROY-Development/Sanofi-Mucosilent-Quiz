@@ -1,0 +1,53 @@
+<div class="dialog-container dialog-multiplier-solved">
+	<div class="dialog scrollbar"
+		 [style.background-color]="globalGameService.signalGameConfig()?.dialogColorBg"
+		 [style.color]="globalGameService.signalGameConfig()?.fontColorDialog"
+		 [style.border-radius.px]="globalGameService.signalGameConfig()?.dialogRadius"
+		 [style.border-width.px]="globalGameService.signalGameConfig()?.dialogBorder"
+		 [style.border-color]="globalGameService.signalGameConfig()?.dialogBorderColor"
+	>
+		<div class="btn-close-container">
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'76px'"
+				[btnHeight]="'76px'"
+				[btnContentWidth]="'100%'"
+				[btnContentHeight]="'100%'"
+				[btnContentPadding]="'0'"
+				(clickButton)="onClickClose(false)"
+			
+			><span [style.mask-image]="signalBtnCloseImageUrl()"
+				   [style.background-color]="globalGameService.signalGameConfig()?.fontColorIconButton"
+				   [style.border-radius.px]="globalGameService.signalGameConfig()?.iconButtonRadius"
+				   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
+			></span></app-base-button>
+		</div>
+		
+		<div class="dialog-header">
+			<div class="dialog-title mx-auto my-auto">
+				<div class="title">{{ signalTitle() }}</div>
+			</div>
+			<!--<button type="button" class="btn" aria-label="Close"
+			(click)="onClickClose(false)"
+			>
+			<fa-icon [icon]="['fas', 'times']"></fa-icon>
+		  </button>-->
+		</div>
+		<div class="dialog-body font-secondary" [innerHTML]="signalContent() | nlToBr">
+		</div>
+		<div class="dialog-footer justify-content-evenly">
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'100%'"
+				[btnContentPadding]="'15px 10px'"
+				[btnContentFontSize]="'56px'"
+				(clickButton)="onClickClose(true)"
+			>{{ 'close' | nativeTranslate }}
+			</app-base-button>
+		</div>
+	</div>
+</div>
+
+

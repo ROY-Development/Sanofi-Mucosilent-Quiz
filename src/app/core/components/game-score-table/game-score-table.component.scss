@@ -1,0 +1,242 @@
+@use "../../../../assets/scss/variables" as variables;
+
+.game-score-table-container {
+	// padding: 5px 40px 20px 15px; // set off 2025-11-11
+	margin-top: 40px;
+
+	.grid {
+		display: grid;
+		grid-template-columns: 15% 48% 17% 20%;
+		grid-template-rows: auto;
+
+		grid-template-areas: "col1 col2 col3 col4";
+	}
+
+	.game-score-table {
+		background-color: rgba(255, 255, 255, 0.09);
+		display: grid;
+		grid-template-columns: 15% 55% 15% 15%;
+		grid-template-rows: auto;
+		grid-template-areas:
+				"header header header header"
+				"main main main main"
+				"footer footer footer footer";
+		font-size: 0.9em;
+		overflow: hidden;
+
+		border-style: solid;
+		border-width: 0;
+		border-radius: 0;
+
+		.t-row {
+			.t-col {
+				padding: 5px 5px;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				align-items: center;
+
+				&:last-child {
+					padding-right: 16px;
+					justify-content: flex-end;
+				}
+			}
+
+			.col1 {
+				grid-area: col1;
+			}
+
+			.col2 {
+				grid-area: col2;
+			}
+
+			.col3 {
+				grid-area: col3;
+				white-space: nowrap;
+			}
+
+			.col4 {
+				grid-area: col4;
+			}
+		}
+
+		.header {
+			grid-area: header;
+			font-weight: bold;
+
+			.t-col {
+				padding: 0 5px;
+			}
+		}
+
+		.main {
+			grid-area: main;
+			height: 870px; // 1160px; // 1090px;
+			overflow: auto;
+
+			.t-row {
+				&:nth-child(odd) {
+					--table-row-odd-bg: #ffffff1a; // Fallback
+					background-color: var(--table-row-odd-bg, #ffffff1a);
+				}
+			}
+		}
+
+		/*.footer {
+			grid-area: footer;
+			position: relative;
+
+			.t-row {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+
+				background-color: #5E5E5E;
+			}
+		}*/
+	}
+
+	.user-score-container {
+
+		background-color: #5E5E5E;
+
+		border-style: solid;
+		border-width: 0;
+		border-radius: 0;
+
+		overflow: hidden;
+
+		margin-top: 70px;
+
+		.t-col {
+			padding: 5px 5px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-items: center;
+
+			&:last-child {
+				padding-right: 16px;
+				justify-content: flex-end;
+			}
+		}
+
+		.col1 {
+			grid-area: col1;
+		}
+
+		.col2 {
+			grid-area: col2;
+		}
+
+		.col3 {
+			grid-area: col3;
+			white-space: nowrap;
+		}
+
+		.col4 {
+			grid-area: col4;
+		}
+	}
+
+	.rank {
+		/*color: #fff;*/
+		display: inline-block;
+		text-align: center;
+		width: 2.5em;
+		//border-radius: 1.13em;
+
+		border-style: solid;
+		border-width: 0;
+		border-radius: 0;
+
+		background-size: 100% 100%;
+		background-attachment: fixed;
+
+		background-image: linear-gradient(329deg,
+			rgba(113, 175, 165, .25) 3%,
+			rgba(0, 137, 126, 0.5) 58%,
+			rgba(113, 175, 165, .25) 68%,
+			rgba(0, 145, 126, 0.1) 98%
+		);
+
+		animation: rankScroll 2s infinite linear;
+
+		@keyframes rankScroll {
+			0% {
+				background-position-y: 0;
+			}
+			100% {
+				background-position-y: 65px;
+			}
+		}
+	}
+
+	.nickname {
+		max-width: 12.5em;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.correct-rate {
+		margin-left: -40px;
+	}
+
+	.score {
+		display: flex;
+		justify-content: flex-end;
+
+		.score-image {
+			width: 60px;
+			height: 60px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+	}
+
+	.loader {
+		height: 9px;
+		width: 60px;
+		--loader-color: #000; // Fallback
+		--c: no-repeat linear-gradient(var(--loader-color) 0%, var(--loader-color) 100%);
+		background: var(--c), var(--c), var(--c), var(--c);
+		background-size: 26% 3px;
+		animation: l3 1s infinite;
+	}
+
+	@keyframes l3 {
+		0%,
+		10% {
+			background-position: calc(0 * 100% / 3) 100%, calc(1 * 100% / 3) 100%, calc(2 * 100% / 3) 100%, calc(3 * 100% / 3) 100%
+		}
+		17.5% {
+			background-position: calc(0 * 100% / 3) 0, calc(1 * 100% / 3) 100%, calc(2 * 100% / 3) 100%, calc(3 * 100% / 3) 100%
+		}
+		25% {
+			background-position: calc(0 * 100% / 3) 0, calc(1 * 100% / 3) 0, calc(2 * 100% / 3) 100%, calc(3 * 100% / 3) 100%
+		}
+		32.5% {
+			background-position: calc(0 * 100% / 3) 0, calc(1 * 100% / 3) 0, calc(2 * 100% / 3) 0, calc(3 * 100% / 3) 100%
+		}
+		40%,
+		60% {
+			background-position: calc(0 * 100% / 3) 0, calc(1 * 100% / 3) 0, calc(2 * 100% / 3) 0, calc(3 * 100% / 3) 0
+		}
+		67.5% {
+			background-position: calc(0 * 100% / 3) 100%, calc(1 * 100% / 3) 0, calc(2 * 100% / 3) 0, calc(3 * 100% / 3) 0
+		}
+		75% {
+			background-position: calc(0 * 100% / 3) 100%, calc(1 * 100% / 3) 100%, calc(2 * 100% / 3) 0, calc(3 * 100% / 3) 0
+		}
+		82.5% {
+			background-position: calc(0 * 100% / 3) 100%, calc(1 * 100% / 3) 100%, calc(2 * 100% / 3) 100%, calc(3 * 100% / 3) 0
+		}
+		90%,
+		100% {
+			background-position: calc(0 * 100% / 3) 100%, calc(1 * 100% / 3) 100%, calc(2 * 100% / 3) 100%, calc(3 * 100% / 3) 100%
+		}
+	}
+}

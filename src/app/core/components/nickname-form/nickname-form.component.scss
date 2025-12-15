@@ -1,0 +1,49 @@
+.nickname-form {
+	.form-content {
+		.form-group {
+			height: 174px;
+
+			&.submitted {
+				font-size: 82px;
+
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.form-control {
+				margin-right: 2rem;
+			}
+		}
+	}
+}
+
+.input-wrapper {
+	display: flex;
+
+	.form-control {
+		font-size: 48px;
+		border-radius: 0;
+
+		flex: 1;
+		border: none;
+		padding: 0.5rem;
+	}
+
+	.btn-ok {
+		display: flex;
+	}
+}
+
+.invalid-feedback {
+	color: #ffbcc2;
+}
+
+.button-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+}

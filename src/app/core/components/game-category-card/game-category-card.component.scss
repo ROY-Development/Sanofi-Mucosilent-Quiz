@@ -1,0 +1,65 @@
+@use "../../../../assets/scss/variables" as variables;
+
+.topic {
+	.category-name {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		pointer-events: none;
+	}
+
+	margin: 0 30px;
+
+	&.has-transition {
+		transition: opacity 300ms, scale variables.$transition-touch-down-time ease-out;
+
+		&:not(.selected):not(.not-selected) {
+			animation-name: pulse;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+
+			animation-direction: alternate;
+
+			&.nr2 {
+				animation-direction: alternate-reverse;
+			}
+		}
+	}
+
+	&.selected {
+		pointer-events: none;
+		//	scale: 1.075;
+
+		&.has-transition {
+			transition: opacity 2000ms, scale 2000ms ease-out;
+		}
+	}
+
+	&.not-selected {
+		pointer-events: none;
+		scale: 0.8;
+		opacity: 0.25;
+
+		&.has-transition {
+			transition: opacity 2000ms, scale 2000ms ease-out;
+		}
+	}
+
+	&:not(.has-transition) {
+		animation: none;
+		transition: none;
+	}
+
+	@keyframes pulse {
+		0% {
+			scale: 1;
+		}
+
+		100% {
+			scale: 0.95;
+		}
+	}
+}

@@ -1,0 +1,486 @@
+@use "../../../assets/scss/variables" as variables;
+
+.game {
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	// prevent zooming page
+	touch-action: none;
+	pointer-events: none;
+
+	// border: 2px solid #fff;
+	.header {
+		width: 100%;
+		padding: 60px 50px;
+		/*border-bottom: 1px #fff solid;*/
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
+
+		.progress {
+			width: 350px;
+		}
+	}
+
+	.correct-or-not {
+		padding: 30px 40px 0 40px; /* 30px 130px 0 130px; */
+		text-align: center;
+		font-size: 0.9em;
+
+		opacity: 0;
+		transition: opacity 300ms;
+
+		&.visible {
+			opacity: 0.9;
+		}
+
+		.question-counter {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 35px;
+
+			.question-count {
+				border: 3px #fff solid;
+				border-radius: 50%;
+				width: 35px;
+				height: 35px;
+				// overflow: hidden;
+
+				&.currently {
+					border: 6px #fff solid;
+				}
+
+				.played {
+					position: relative;
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+					animation: appear 2s ease;
+					animation-iteration-count: 1;
+
+					.played-icon {
+						width: 100%;
+						height: 100%;
+						background-color: #fff;
+
+						mask-position: center;
+						mask-repeat: no-repeat;
+						mask-image: none;
+						mask-size: 60%;
+					}
+
+					&.correct, &.not-correct {
+						/*.image {
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+						}*/
+					}
+
+					&.correct {
+						background-color: #258f50db;
+						mask-size: 72%;
+
+						/*.image {
+							width: 72%;
+							height: auto;
+						}*/
+					}
+
+					&.not-correct {
+						background-color: #ba2727d1;
+
+						.image {
+							width: 60%;
+							height: auto;
+						}
+					}
+
+					@keyframes appear {
+						0% {
+							scale: 2;
+							opacity: 0;
+							border: 3px #fff solid;
+						}
+						100% {
+							scale: 1;
+							opacity: 1;
+							border: 0 #fff solid;
+						}
+					}
+				}
+			}
+
+			.between-line {
+				background-color: #fff;
+				height: 3px;
+				width: 15px;
+			}
+		}
+	}
+
+	.board {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		pointer-events: auto;
+
+		// animation of swipe rotation
+		// perspective: 800px;
+
+		.current-question-card {
+			position: absolute;
+			background-color: rgba(0, 0, 0, 0.5);
+			pointer-events: none;
+			/*color: variables.$app-main-color;*/
+			font-size: 0.9em;
+
+			padding: 55px;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-items: center;
+			justify-content: center;
+
+			// animation of swipe rotation
+			transition: transform 100ms;
+			transform-style: preserve-3d;
+
+			scale: 0;
+
+			will-change: left, top, scale;
+
+			border-style: solid;
+			border-radius: 0;
+			border-width: 0;
+
+			&.scale-transition {
+				transition: transform 100ms, scale 350ms;
+			}
+
+			&.show {
+				scale: 1;
+			}
+		}
+	}
+
+	.timer-container {
+		position: absolute;
+		left: 0;
+		top: 913px;
+		width: 100%;
+
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 200ms;
+
+		&.visible {
+			opacity: 1;
+		}
+
+		.timer-border {
+			position: relative;
+			width: 820px;
+			height: 40px;
+			margin: 0 auto;
+			// background-color: #979797;
+			background-color: #2b2b2b;
+
+			border-style: solid;
+			border-radius: 0;
+			border-width: 0;
+
+			overflow: hidden;
+
+			&.timer-border-ranks {
+				background-color: transparent;
+				top: -40px;
+
+				overflow: visible;
+			}
+
+			.timer-bar {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 40px;
+				// background-color: #fff;
+
+				will-change: width, background-color;
+
+				background-color: #fff4;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+
+			.time-ranks {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 40px;
+				line-height: 1;
+
+				.time-rank {
+					position: relative;
+					display: inline-block;
+					margin-left: 205px;
+
+					&.disabled {
+						.line {
+							opacity: 0;
+						}
+
+						.star-image {
+							opacity: 0;
+							scale: 2;
+						}
+					}
+
+					.line {
+						width: 1px;
+						height: 40px;
+						background-color: #fff;
+						transition: opacity 0.3s ease-in-out;
+					}
+
+					.star-image {
+						position: absolute;
+						top: 58px;
+						left: -20px;
+						font-size: 1em;
+						display: inline-block;
+
+						// background-image: url('../../../assets/images/svg/star.svg');
+						mask-repeat: no-repeat;
+						mask-size: cover;
+						mask-position: top;
+						background-color: #fff;
+
+						width: 40px;
+						height: 40px;
+						transform-origin: center;
+
+						transition: opacity 300ms ease-in-out, scale 300ms ease-in-out;
+
+						animation: spin 10s linear infinite;
+					}
+				}
+			}
+		}
+	}
+
+	.swipe-left-right {
+		position: absolute;
+		left: 0;
+		/*top: 1295px;*/
+		bottom: 320px;
+		width: 100%;
+		text-align: center;
+
+		opacity: 0;
+		transition: opacity 300ms;
+
+		&.visible {
+			opacity: 1;
+		}
+
+		.swipe-left-right-img {
+			width: auto;
+			height: auto;
+			min-width: 100px;
+			max-width: 448px;
+		}
+	}
+
+	.button-container {
+		position: absolute;
+		left: 0;
+		bottom: 100px;
+		width: 100%;
+		padding: 0 60px;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: flex-start;
+		pointer-events: none;
+
+		opacity: 0;
+		transition: opacity 300ms;
+
+		&.visible {
+			opacity: 1;
+		}
+
+		.rectangle {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: center;
+			align-items: center;
+
+			pointer-events: none;
+
+			&.image-container {
+				flex-direction: column;
+				justify-content: flex-start;
+				height: 300px;
+			}
+
+			.text {
+				width: 300px;
+				// margin-top: 16px;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+
+		.circle {
+			border-radius: 50%;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: center;
+			align-items: center;
+
+			pointer-events: none;
+
+			height: 100%;
+		}
+
+		.image {
+			position: relative;
+
+			&.defined {
+				img {
+					max-width: 130px;
+					max-height: 130px;
+				}
+			}
+
+			img {
+				width: 100%;
+				max-width: 200px;
+				max-height: 200px;
+				height: auto !important;
+			}
+		}
+
+		/*.btn-select {
+			color: #fff;
+			font-size: 0.9em;
+			margin: 0 60px;
+			width: 380px;
+			pointer-events: auto;
+			min-width: 380px;
+
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: center;
+
+			transition: scale variables.$transition-touch-down-time ease-out;
+
+			padding: 8px 25px;
+			border-style: solid;
+
+			background-color: #fff4;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+
+			&.btn-circle {
+				width: 350px;
+				height: 350px;
+				border-radius: 50% !important;
+			}
+
+			.rectangle, .circle {
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+
+				&.no-image {
+					padding: 8px 25px;
+				}
+
+				.image {
+					position: relative;
+					width: 100%;
+					height: 100%;
+
+					&.defined {
+						width: 46%;
+						height: 46%;
+					}
+
+					img {
+						height: auto !important;
+					}
+
+					.correct {
+						margin-top: 16px;
+					}
+				}
+			}
+
+			.circle {
+				border-radius: 50% !important;
+				flex-direction: column;
+			}
+
+			&.btn-correct {
+				.rectangle, .circle {
+
+				}
+			}
+
+			&.btn-incorrect {
+				.rectangle, .circle {
+
+				}
+			}
+
+			// enable hover effect only for desktop
+			@media (hover: hover) and (pointer: fine) {
+				&:hover {
+					opacity: 0.7;
+				}
+			}
+
+			&.touch-down {
+				scale: 0.95;
+			}
+		}*/
+	}
+}

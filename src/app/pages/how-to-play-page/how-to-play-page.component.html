@@ -1,0 +1,62 @@
+<div class="content">
+	<div class="content-container">
+		<div class="btn-close-container">
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'76px'"
+				[btnHeight]="'76px'"
+				[btnContentWidth]="'100%'"
+				[btnContentHeight]="'100%'"
+				[btnContentPadding]="'0'"
+				(clickButton)="onClickClose()"
+			
+			><span [style.mask-image]="signalBtnCloseImageUrl()"
+				   [style.background-color]="gameService.signalGameConfig()?.fontColorIconButton"
+				   [style.border-radius.px]="gameService.signalGameConfig()?.iconButtonRadius"
+				   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
+			></span></app-base-button>
+		</div>
+		
+		<div class="empty-line"></div>
+		@if (signalContentText()) {
+			<div [innerHTML]="signalContentText()"></div>
+		} @else {
+			<h5 class="mb-5">{{ 'are-you-ready-title' | nativeTranslate }}</h5>
+			<div class="" style="font-size: 0.95em;">
+				<p style="margin-bottom: 1.25em;">{{ 'are-you-ready-description-1' | nativeTranslate }}</p>
+				<p>{{ 'are-you-ready-description-2' | nativeTranslate }}</p>
+			</div>
+			<h5 class="mb-5">{{ 'how-to-play-title' | nativeTranslate }}</h5>
+			<div class="" style="font-size: 0.95em;">
+				<p>{{ 'how-to-play-description-1' | nativeTranslate }}</p>
+				<p>{{ 'how-to-play-description-2' | nativeTranslate }}</p>
+				<p>{{ 'how-to-play-description-3' | nativeTranslate }}</p>
+				<!--<p class="text-center">
+					<img [src]="imageUrlHowToPlay" alt="Swipe left or right" style="width: 900px; height: auto;">
+				</p>-->
+				<p>{{ 'how-to-play-description-4' | nativeTranslate }}</p>
+				<p style="margin-bottom: 150px;">{{ 'how-to-play-description-5' | nativeTranslate }}</p>
+			</div>
+		}
+		<div class="button-container">
+			<!--<button type="button" class="btn btn-primary btn-close-icon" aria-label="Close"
+					(click)="onClickClose()"
+			>
+				<div class="close-img"><img [ngSrc]="'assets/images/svg/close01-white.svg'" alt="" fill></div>
+			</button>-->
+			
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'400px'"
+				[btnContentPadding]="'30px 10px'"
+				(clickButton)="onClickClose()"
+			>{{ 'close' | nativeTranslate }}
+			</app-base-button>
+		</div>
+	</div>
+	<div class="logo">
+		<app-game-title></app-game-title>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+@use "../../../../assets/scss/variables" as variables;
+
+.game-title {
+	color: variables.$roy-green;
+}
+
+.logo-container {
+	position: relative;
+
+	opacity: 0;
+	transition: opacity 300ms;
+
+	&.visible {
+		opacity: 1;
+	}
+
+	.btn-logo {
+		.logo {
+			margin: 0;
+			padding: 0;
+		}
+
+		&:hover {
+			//opacity: 0.7;
+		}
+	}
+
+	.image-container {
+		max-width: 460px;
+		max-height: 380px;
+		width: 100%;
+		height: auto;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+}

@@ -1,0 +1,104 @@
+@use "../../assets/scss/variables" as variables;
+
+.content {
+	padding: 4% 6% 0 6%;
+
+	// prevent zooming page
+	touch-action: none;
+
+	.content-container {
+		/*padding-right: 13%;*/
+	}
+
+	.logo {
+		margin-top: auto;
+		padding-bottom: 60px;
+		text-align: center;
+
+		&.disabled {
+			pointer-events: none;
+		}
+	}
+}
+
+.empty-line {
+	height: 40px;
+}
+
+@keyframes fade {
+	60% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rise {
+	0% {
+		scale: 0.7;
+	}
+	50% {
+		scale: 1.5;
+	}
+	100% {
+		scale: 0.7;
+	}
+}
+
+.explain-row {
+	.number {
+		background-color: rgba(255, 255, 255, 0.1);
+		/*border: 0.1vw #333 solid;*/
+		border-radius: 50%;
+		/*min-width: 4.3vw;*/
+		min-width: 1.7em;
+		/*height: 4.3vw;*/
+		height: 1.7em;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		/*font-size: 2.5vw;*/
+		font-size: 1.875em;
+		line-height: 1;
+		/*margin-right: 1vw;*/
+		margin-right: 0.4em;
+	}
+
+	.title {
+		/*font-size: 2.5vw;*/
+		font-size: 1.875em;
+		/*margin-right: 1vw;*/
+		margin-right: 0.4em;
+		white-space: nowrap;
+	}
+
+	.line-h {
+		/*border: 0.04vw #ddd solid;*/
+		border: 0.04em #ddd solid;
+		/*width: 4.3vw;*/
+		width: 3.25em;
+	}
+
+	.line-v {
+		/*border: 0.04vw #ddd solid;*/
+		border: 0.04em #ddd solid;
+		/*height: 4.3vw;*/
+		height: 3.25em;
+		/*margin-right: 2vw;*/
+		margin-right: 1.5em;
+	}
+
+	/*height: 8vw;*/
+	height: 6em;
+	display: flex;
+	align-items: center;
+}

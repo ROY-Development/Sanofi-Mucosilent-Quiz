@@ -1,0 +1,44 @@
+{
+	"categoryKey": "category-22",
+	"questionColor": "#ffffffff",
+	"backgroundColors": [
+		"#31ff0088",
+		"#ff0000ff"
+	],
+	"backgroundAnimationImageUrls": [
+		"uploads/quiz-game/categories/category-22/images/bg-ani/lolly01.png",
+		"uploads/quiz-game/categories/category-22/images/bg-ani/cup01.png"
+	],
+	"answers": [
+		{
+			"key": "quiz-category-22-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-22-answer2",
+			"imageUrl": null
+		}
+	],
+	"questions": [
+		{
+			"id": 19,
+			"leftCorrect": false
+		},
+		{
+			"id": 20,
+			"leftCorrect": true
+		},
+		{
+			"id": 22,
+			"leftCorrect": true
+		},
+		{
+			"id": 24,
+			"leftCorrect": false
+		},
+		{
+			"id": 28,
+			"leftCorrect": true
+		}
+	]
+}

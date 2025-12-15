@@ -1,0 +1,100 @@
+@if (gameService.signalCurrentMultiplierGame() <= 1) {
+	<app-pachinko
+		#gameComponent
+		[borderColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.borderColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[fontColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.fontColor : AppConfig.quizGameDefaultMinigameFontColor"
+		[fontColorTgt]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.fontColorTgt : AppConfig.quizGameDefaultMinigameFontColor"
+		[colorBg1]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.colorBg1 : AppConfig.quizGameDefaultMinigameBackgroundColor1"
+		[colorBg2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.colorBg2 : AppConfig.quizGameDefaultMinigameBackgroundColor2"
+		[buttonColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.buttonColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.ballColor : AppConfig.quizGameDefaultMinigameBallColor"
+		[ballHoldColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.ballHoldColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballHoldColor2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.ballHoldColor2 : AppConfig.quizGameDefaultMinigameMainColor"
+		[tgtOutColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.tgtOutColor : AppConfig.quizGameDefaultMinigameOutlineColor"
+		[tgtBgColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.tgtBgColor : AppConfig.quizGameDefaultMinigameTargetBackgroundColor"
+		[tgtBgActColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.tgtBgActColor : AppConfig.quizGameDefaultMinigameBallColor"
+		[nailColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPachinko.nailColor : AppConfig.quizGameDefaultMinigameMainColor"
+		(startBall)="onStartBall()"
+		(finishBall)="onFinishBall($event)"
+		(finishGame)="onFinishGame($event)"
+	></app-pachinko>
+}
+@if (gameService.signalCurrentMultiplierGame() === 2) {
+	<app-roulette
+		#gameComponent
+		[borderColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.borderColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[fontColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.fontColor : AppConfig.quizGameDefaultMinigameFontColor"
+		[fontColorTgt]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.fontColorTgt : AppConfig.quizGameDefaultMinigameFontColor"
+		[colorBg1]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.colorBg1 : AppConfig.quizGameDefaultMinigameBackgroundColor1"
+		[colorBg2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.colorBg2 : AppConfig.quizGameDefaultMinigameBackgroundColor2"
+		[buttonColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.buttonColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.ballColor : AppConfig.quizGameDefaultMinigameBallColor"
+		[ballHoldGumColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.ballHoldGumColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballHoldShotColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.ballHoldShotColor : AppConfig.quizGameDefaultMinigameBallHolderShotColor"
+		[tgtBgColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.tgtBgColor : AppConfig.quizGameDefaultMinigameMainColorA02"
+		[tgtBgColor2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.tgtBgColor2 : AppConfig.quizGameDefaultMinigameMainColorA03"
+		[tgtOutColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.tgtOutColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[tgtBgRollColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.tgtBgRollColor : AppConfig.quizGameDefaultMinigameMainColorA06"
+		[tgtBgLockColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgRoulette.tgtBgLockColor : AppConfig.quizGameDefaultMinigameMainColorA08"
+		(startBall)="onStartBall()"
+		(finishBall)="onFinishBall($event)"
+		(finishGame)="onFinishGame($event)"
+	></app-roulette>
+}
+@if (gameService.signalCurrentMultiplierGame() === 3) {
+	<app-point-shooter
+		#gameComponent
+		[borderColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.borderColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[fontColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.fontColor : AppConfig.quizGameDefaultMinigameFontColor"
+		[fontColorTgt]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.fontColorTgt : AppConfig.quizGameDefaultMinigameFontColor"
+		[colorBg1]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.colorBg1 : AppConfig.quizGameDefaultMinigameBackgroundColor1"
+		[colorBg2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.colorBg2 : AppConfig.quizGameDefaultMinigameBackgroundColor2"
+		[buttonColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.buttonColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.ballColor : AppConfig.quizGameDefaultMinigameBallColor"
+		[ballHoldColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.ballHoldColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballHoldColor2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.ballHoldColor2 : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballHoldGumColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.ballHoldGumColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[ballHoldShotColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.ballHoldShotColor : AppConfig.quizGameDefaultMinigameBallHolderShotColor"
+		[tgtOutColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.tgtOutColor : AppConfig.quizGameDefaultMinigameTargetBackgroundColor2"
+		[tgtBgColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.tgtBgColor : AppConfig.quizGameDefaultMinigameTargetBackgroundColor2"
+		[tgtBgHoleColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.tgtBgHoleColor : AppConfig.quizGameDefaultMinigameTargetHoleBackgroundColor"
+		[obstArrowColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.obstArrowColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[obstOutColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.obstOutColor : AppConfig.quizGameDefaultMinigameMainColor"
+		[obstBgColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.obstBgColor : AppConfig.quizGameDefaultMinigameObstacleBackgroundColor"
+		[obstBgActiveColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenMgPointShooter.obstBgActiveColor : AppConfig.quizGameDefaultMinigameBallLightColor"
+		(startBall)="onStartBall()"
+		(finishBall)="onFinishBall($event)"
+		(finishGame)="onFinishGame($event)"
+	></app-point-shooter>
+}
+
+<app-ani-split-screen-title
+	#aniSplitScreenTitleComponent
+	[backgroundColor]="signalSplitScreenColorBg()"
+	[backgroundImageUrl]="signalSplitScreenBackgroundImage()"
+	[splitScreenAnimationType]="signalSplitScreenAnimationType()"
+>
+	<ng-template>
+		<h1 class="split-screen-title"
+			appAutoFitFont
+			[heightPx]="390"
+			[maxFontSize]="52 * 2.5"
+			[minFontSize]="30 * 2.5"
+			[innerHTML]="'bonus-chance' | nativeTranslate  : null : null: true"
+		></h1>
+	</ng-template>
+</app-ani-split-screen-title>
+
+@if (isShowingSolvedDialog()) {
+	<div class="dialog-animation-container"
+		 animate.enter="dialog-enter"
+		 animate.leave="dialog-leave">
+		<app-dialog-multiplier-solved
+			[quizNumber]="gameService.signalQuizNumber()"
+			[score]="totalBallScore"
+			[wasLastGame]="wasLastGame"
+			[finishBallScores]="finishBallScores"
+			(cancelDialog)="exit()"
+		></app-dialog-multiplier-solved>
+	</div>
+}

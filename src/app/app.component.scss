@@ -1,0 +1,110 @@
+.background-container {
+	position: fixed;
+	background-image: none; // url('../assets/images/ROY_Deepsea_Light.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
+	width: 100%;
+	height: 100%;
+
+	// prevent zooming page
+	touch-action: none;
+	pointer-events: none;
+}
+
+.page-container {
+	position: fixed;
+	/*left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);*/
+	/*overflow: hidden;*/
+
+	left: 50%;
+	top: 0;
+	transform: translate(-50%, 0);
+
+	// prevent zooming page
+	touch-action: none;
+
+	.element-to-scale {
+		width: 1080px;
+		height: 1920px;
+		transform-origin: 0 0;
+		/*overflow: hidden; this is not working with game background*/
+
+		// prevent zooming page
+		touch-action: none;
+	}
+}
+
+.game-header {
+	position: relative;
+	overflow: hidden;
+	height: 0;
+	transition: height 300ms;
+	z-index: 10;
+
+	&.game-header-enabled {
+		height: 100px;
+	}
+}
+
+.main-content {
+	position: relative;
+	z-index: 10;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	//aspect-ratio: 16/9;
+	height: 100%;
+	transition: height 300ms;
+
+	// prevent zooming page
+	touch-action: none;
+
+	&.game-header-enabled {
+		height: calc(100% - 100px);
+	}
+
+	.main {
+		flex-basis: 100%;
+		transition: flex-basis 300ms, width 3000ms;
+
+		overflow: hidden auto;
+
+		// view transitions support
+		view-transition-name: main-content;
+
+		// fallback for browser without view transitions API
+		@supports not (view-transition-name: main-content) {
+			view-transition-name: none;
+		}
+	}
+
+	.warn-params {
+		padding: 100px;
+		text-align: center;
+	}
+}
+
+.btn-exit {
+	position: absolute;
+	top: 60px;
+	right: 50px;
+	z-index: 11;
+	width: 83px;
+	height: 83px;
+	background-color: #00000077;
+	border-radius: 50%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+
+	.img-container {
+		position: relative;
+		width: 55px;
+		height: 55px;
+	}
+}

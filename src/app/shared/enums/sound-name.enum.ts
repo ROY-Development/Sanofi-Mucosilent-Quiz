@@ -1,0 +1,25 @@
+export enum SoundNameEnum
+{
+	click = 'click',
+	modalFadeIn = 'modalFadeIn',
+	modalFadeOut = 'modalFadeOut',
+	buttonSelected = 'buttonSelected',
+	cardFadeIn = 'cardFadeIn',
+	cardFadeOut = 'cardFadeOut',
+	answerRight = 'answerRight',
+	answerWrong = 'answerWrong',
+	multiplierFinish = 'multiplierFinish',
+	categoryFlash = 'categoryFlash',
+	scoreArrive = 'scoreArrive',
+	endGame = 'endGame',
+	
+	introMusic = 'introMusic',
+	chooseTopicMusic01 = 'chooseTopicMusic01',
+	mainMusic01 = 'mainMusic01',
+	mainMusic02 = 'mainMusic02',
+	mainMusic03 = 'mainMusic03',
+	endGameMusic = 'endGameMusic',
+	gameMultiplierMusic01 = 'gameMultiplierMusic01',
+	gameMultiplierMusic02 = 'gameMultiplierMusic02',
+	gameMultiplierMusic03 = 'gameMultiplierMusic03',
+}

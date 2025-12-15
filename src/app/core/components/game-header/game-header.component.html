@@ -1,0 +1,73 @@
+<div class="game-header"
+	 [style.background-color]="gameService.signalGameConfig()?.gameHeaderColorBg ?? AppConfig.quizGameDefaultGameHeaderColorBg"
+>
+	<div class="start">
+		<!--<button type="button" class="btn btn-primary btn-end" (click)="onClickEndGame()">End Game</button>-->
+	</div>
+	<div class="middle">
+		<!--<div class="runtime" *ngIf="userGameService.signalIsGameRunning()">
+			<span class="clock-image"></span>
+			{{ appLoopService.signalRuntime()  | date:'mm:ss' }}
+		</div>-->
+		<!--<div class="tokens" *ngIf="userGameService.signalTokens()">
+			{{userGameService.signalTokens()}} Drops left
+		</div>-->
+	</div>
+	<div class="end">
+		<!--<div class="gs-number">{{userGameService.signalGameScore().gsNumber}}</div>-->
+		<!--<div
+			class="nickname">{{ userGameService.signalGameScore().gsNumber.length === 0 ? '--GUEST--' : userGameService.signalGameScore().nickname }}
+		</div>-->
+		
+		<app-button-sound-on-off
+			#buttonSoundOnOffComponent
+			[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+			[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+			[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+			[borderRadiusPx]="gameService.signalGameConfig()?.headerBtnIcon!.radius"
+			[borderWidthPx]="gameService.signalGameConfig()?.headerBtnIcon!.border"
+			[borderColor]="gameService.signalGameConfig()?.headerBtnIcon!.borderColor"
+			[disabled]="false"
+			[top]="'12px'"
+			[bottom]="'auto'"
+			[right]="'auto'"
+			[left]="'35px'"
+			(click)="soundService.playSound(SoundNameEnum.click, true);"
+		></app-button-sound-on-off>
+		
+		<app-button-fullscreen
+			#buttonFullscreenComponent
+			[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+			[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+			[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+			[borderRadiusPx]="gameService.signalGameConfig()?.headerBtnIcon!.radius"
+			[borderWidthPx]="gameService.signalGameConfig()?.headerBtnIcon!.border"
+			[borderColor]="gameService.signalGameConfig()?.headerBtnIcon!.borderColor"
+			[disabled]="false"
+			[top]="'12px'"
+			[bottom]="'auto'"
+			[right]="'auto'"
+			[left]="'130px'"
+			(click)="soundService.playSound(SoundNameEnum.click, true);"
+		></app-button-fullscreen>
+		
+		<div class="score"
+			 [style.color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerContainerScore!.fontColor : undefined"
+			 [style.background-color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerContainerScore!.colorBg : undefined"
+			 [style.border-radius.px]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerContainerScore!.radius : undefined"
+			 [style.border-width.px]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerContainerScore!.border : undefined"
+			 [style.border-color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.headerContainerScore!.borderColor : undefined"
+		>
+			<div class="coin-image"
+				 #coinImage
+				 [style.background-image]="frontImageUrl"
+			></div>
+			<!--<img ngSrc="assets/images/coin01.png" alt="Coins" width="108" height="108"
+				 class="no-select"
+				 style="width: 42px; height: auto; margin-right: 15px;"
+				 draggable="false" ondragstart="return false;"
+			>-->
+			<span #score></span><!--{{ userGameService.signalGameScore().score }}--></div>
+	</div>
+</div>
+

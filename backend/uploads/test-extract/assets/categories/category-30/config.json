@@ -1,0 +1,54 @@
+{
+    "categoryKey": "category-30",
+    "questionColor": "#5200ffff",
+    "backgroundColors": [
+        "#4aff00ff",
+        "#53843fff",
+        "#843f3fff",
+        "#53843fff",
+        "#53843f88",
+        "#ffee0088"
+    ],
+    "backgroundAnimationImageUrls": [
+        "assets\/categories\/category-30\/images\/bg-ani\/mushroom-button01-up.png",
+        "assets\/categories\/category-30\/images\/bg-ani\/mushroom-button-press.png"
+    ],
+    "answers": [
+        {
+            "key": "quiz-category-30-answer1",
+            "imageUrl": null
+        },
+        {
+            "key": "quiz-category-30-answer2",
+            "imageUrl": null
+        }
+    ],
+    "questions": [
+        {
+            "id": 55,
+            "leftCorrect": false
+        },
+        {
+            "id": 56,
+            "leftCorrect": false
+        },
+        {
+            "id": 57,
+            "leftCorrect": true
+        },
+        {
+            "id": 58,
+            "leftCorrect": true
+        },
+        {
+            "id": 59,
+            "leftCorrect": false
+        }
+    ],
+    "backgroundAnimationType": 0,
+    "hasOverridingValues": false,
+    "splitScreenAnimationType": 2,
+    "splitScreenColorBg": "#00ffe7ff",
+    "imageSplitScreenBg": "split-screen-bg",
+    "backgroundColorsDuration": 47
+}

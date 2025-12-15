@@ -1,0 +1,198 @@
+<div class="content">
+	<div class="content-container">
+		@if (AppModule.initError) {
+			<div class="error-container">
+				<img ngSrc="assets/images/icons/error01.png" alt="" height="573" width="573">
+				{{ AppModule.initError }}
+			</div>
+		}
+		<!--<div class="alpha-version">
+		ALPHA VERSION // CONTENT PRELIMINARY
+	  </div>-->
+		<div class="empty-line"></div>
+		<!--{{environment}}-->
+		<!--<h5 class="mb-5">
+		{{ 'hello-user' | nativeTranslate : {name: initService.signalAppQueryParams().userFirstName} }}
+	  </h5>-->
+		
+		<!--@if (signalGameLogoImageUrl()) {
+			<img [src]="signalGameLogoImageUrl()" height="378" width="642"
+				 alt="ROY 50/50"
+				 class="game-logo-image"
+				 draggable="false" ondragstart="return false;"
+			>
+		}-->
+		
+		<div class="game-logo">
+			@if (initService.qz || gameService.signalGameConfig()?.isFtpReady) {
+				@if (!!gameService.signalGameTitleImage()) {
+					<div [style.text-align]="gameService.signalGameConfig()!.titleAlignment"
+						 class="game-logo-image-container"
+						[class]="gameService.signalGameConfig()!.titleAni > 0 ? 'animation' + gameService.signalGameConfig()!.titleAni : ''"
+					>
+						<img [src]="gameService.signalGameTitleImage()" height="auto" width="auto"
+							 [alt]="'quiz-name' | nativeTranslate"
+							 class="game-logo-image"
+							 fetchpriority="high"
+						>
+					</div>
+				} @else {
+					<div class="name-qz special-font"
+						 appAutoFitFont
+						 [heightPx]="390"
+						 [maxFontSize]="gameService.signalGameConfig()!.titleFontSize"
+						 [minFontSize]="30"
+						 [innerHTML]="'quiz-name' | nativeTranslate | safeHtml"
+						 [style.color]="gameService.signalGameConfig()!.fontColorTitle"
+						 [style.text-align]="gameService.signalGameConfig()!.titleAlignment"
+						 [style.line-height]="gameService.signalGameConfig()!.titleLineHeight"
+					></div>
+				}
+			} @else {
+				<div class="name1 special-font">ROY</div>
+				<div class="name2 special-font">50/50</div>
+				<div class="name3">SPEED QUIZ</div>
+			}
+		</div>
+	</div>
+	<div class="button-container">
+		@if (fileLoadService.signalIsLoading()) {
+			{{ 'loading' | nativeTranslate }}
+			<div class="progress-bar">
+				<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
+			</div>
+		} @else {
+			<div class="button-start-container"
+				 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
+			>
+				<app-button-start
+					[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnContentWidth]="'400px'"
+					[btnContentHeight]="'400px'"
+					[btnRadius]="'50%'"
+					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
+					(clickButton)="onClickStart()"
+				><span class="start"
+					   [style.mask-image]="signalBtnPlayImageUrl()"
+					   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+				>
+					<!--@if (signalBtnPlayImageUrl() !== 'none') {
+						<img [src]="signalBtnPlayImageUrl()" alt="Start" width="386" height="385">
+					}-->
+				</span>
+				</app-button-start>
+			</div>
+			
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'670px'"
+				[btnContentPadding]="'30px 10px'"
+				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
+				(clickButton)="onClickHowToPLay()"
+			>{{ 'how-to-play' | nativeTranslate }}
+			</app-base-button>
+			
+			@if (!initService.isScormPackage &&
+			(!gameService.signalGameConfig() || gameService.signalGameConfig()?.includesHighscore)) {
+				<div class="row-space"></div>
+				
+				<app-base-button
+					[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnContentWidth]="'670px'"
+					[btnContentPadding]="'30px 10px'"
+					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
+					(clickButton)="onClickHighScore()"
+				>{{ 'high-score' | nativeTranslate }}
+				</app-base-button>
+			}
+		}
+	</div>
+	
+	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
+		<app-game-title></app-game-title>
+	</div>
+	
+	<div class="legal-links">
+		@if (gameService.signalGameConfig()?.typeImprint) {
+			<button type="button" class="btn btn-link btn-legal"
+					[style.color]="gameService.signalGameConfig()?.fontColorLink"
+					(click)="onClickLegalText('imprint')"
+			>{{ 'imprint' | nativeTranslate }}
+			</button>
+		}
+		@if (gameService.signalGameConfig()?.typePrivacyPolicy) {
+			<button type="button" class="btn btn-link btn-legal"
+					[style.color]="gameService.signalGameConfig()?.fontColorLink"
+					(click)="onClickLegalText('privacy-policy')"
+			>{{ 'privacy-policy' | nativeTranslate }}
+			</button>
+		}
+	</div>
+	
+	<app-button-sound-on-off
+		#buttonSoundOnOffComponent
+		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+		[borderRadiusPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.radius"
+		[borderWidthPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.border"
+		[borderColor]="gameService.signalGameConfig()?.screenTitleBtnIcon!.borderColor"
+		[disabled]="false"
+		[right]="document.fullscreenEnabled ? '115px' : '20px'"
+		(click)="soundService.playSound(SoundNameEnum.click, true);"
+	></app-button-sound-on-off>
+	
+	<app-button-fullscreen
+		#buttonFullscreenComponent
+		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+		[borderRadiusPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.radius"
+		[borderWidthPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.border"
+		[borderColor]="gameService.signalGameConfig()?.screenTitleBtnIcon!.borderColor"
+		[disabled]="false"
+		(click)="soundService.playSound(SoundNameEnum.click, true);"
+	></app-button-fullscreen>
+	<!--@if (!signalClickedStart()) {
+		<app-button-sound-on-off
+			#buttonSoundOnOffComponent
+			[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+			[color]="gameService.signalGameConfig()?.fontColorButton ?? '#fff'"
+			[backgroundColor]="gameService.signalGameConfig()?.colorButtonBg ?? '#ffffff4d'"
+			[disabled]="false"
+			[top]="'12px'"
+			[bottom]="'auto'"
+			[right]="'auto'"
+			[left]="'22px'"
+			(click)="soundService.playSound(SoundNameEnum.click, true);"
+		></app-button-sound-on-off>
+		
+		<app-button-fullscreen
+			#buttonFullscreenComponent
+			[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+			[color]="gameService.signalGameConfig()?.fontColorButton ?? '#fff'"
+			[backgroundColor]="gameService.signalGameConfig()?.colorButtonBg ?? '#ffffff4d'"
+			[disabled]="false"
+			[top]="'12px'"
+			[bottom]="'auto'"
+			[right]="'auto'"
+			[left]="'117px'"
+			(click)="soundService.playSound(SoundNameEnum.click, true);"
+		></app-button-fullscreen>
+	}-->
+</div>
+
+@if (legalTextDialogType()) {
+	<div class="dialog-animation-container"
+		 animate.enter="dialog-enter"
+		 animate.leave="dialog-leave"
+	>
+		<app-dialog-legal
+			[type]="legalTextDialogType()!"
+			(cancelDialog)="onClickCloseLegal($event)"
+		></app-dialog-legal>
+	</div>
+}

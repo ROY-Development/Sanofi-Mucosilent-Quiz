@@ -1,0 +1,47 @@
+<div #gameBackground
+	 class="game-background"
+	 [style.bottom.px]="signalBottom()"
+	 [style.background-image]="backgroundGradientService.signalBackgroundImageUrl()"
+	 [style.animation-duration.s]="backgroundGradientService.signalBackgroundColorsDuration()"
+>
+	<!--@if (!signalIsIPhoneSafari()) {
+		<div class="klecks-container">
+			<div class="klecks"></div>
+		</div>
+		<div class="klecks2-container">
+			<div class="klecks"></div>
+		</div>
+	}-->
+	<!--<div class="shape"></div>-->
+	<div class="image1"
+		 [style.background-image]="backgroundImageService.signalUrl1()"
+		 [class.enabled]="backgroundImageService.signalState() === 1"
+	></div>
+	<div class="image2"
+		 [style.background-image]="backgroundImageService.signalUrl2()"
+		 [class.enabled]="backgroundImageService.signalState() === 2"
+	></div>
+	
+	<div
+		class="background-shape"
+		[class.enabled]="backgroundShapeService.signalShape()"
+		[style.top]="backgroundShapeService.signalShape()?.top"
+		[style.bottom]="backgroundShapeService.signalShape()?.bottom"
+		[style.left]="backgroundShapeService.signalShape()?.left"
+		[style.right]="backgroundShapeService.signalShape()?.right"
+		[style.background]="backgroundShapeService.signalShape()?.backgroundCSS"
+	></div>
+	
+	@for (url of backgroundAnimationService.signalImageUrls(); let i = $index; track url.nr) {
+		<div #animImage class="anim-image"
+			 [attr.data-index]="i"
+			 [attr.data-running]="false"
+			 [style.background-image]="url.url"
+		></div>
+	}
+	<!--<ng-container *ngFor="let image of backgroundAnimationService.signalImageUrls(); let i = index">
+		<div class="anim-image2" [attr.data-index]="i"
+			 [style.background-image]="image"
+		></div>
+	</ng-container>-->
+</div>

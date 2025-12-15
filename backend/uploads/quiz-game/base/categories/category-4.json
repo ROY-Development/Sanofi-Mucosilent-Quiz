@@ -1,0 +1,80 @@
+{
+	"categoryKey": "category-4",
+	"questionColor": "#fff",
+	"backgroundColors": [
+		"#53843f88",
+		"#0008",
+		"#DD000088",
+		"#FFCC0088"
+	],
+	"backgroundImageUrl": null,
+	"backgroundAnimationImageUrls": [],
+	"answers": [
+		{
+			"key": "quiz-category-4-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-4-answer2",
+			"imageUrl": null
+		}
+	],
+	"questions": [
+		{
+			"id": 1,
+			"leftCorrect": false
+		},
+		{
+			"id": 2,
+			"leftCorrect": false
+		},
+		{
+			"id": 3,
+			"leftCorrect": true
+		},
+		{
+			"id": 4,
+			"leftCorrect": true
+		},
+		{
+			"id": 5,
+			"leftCorrect": false
+		},
+		{
+			"id": 6,
+			"leftCorrect": true
+		},
+		{
+			"id": 7,
+			"leftCorrect": false
+		},
+		{
+			"id": 8,
+			"leftCorrect": true
+		},
+		{
+			"id": 9,
+			"leftCorrect": false
+		},
+		{
+			"id": 10,
+			"leftCorrect": true
+		},
+		{
+			"id": 11,
+			"leftCorrect": false
+		},
+		{
+			"id": 12,
+			"leftCorrect": true
+		},
+		{
+			"id": 13,
+			"leftCorrect": false
+		},
+		{
+			"id": 14,
+			"leftCorrect": true
+		}
+	]
+}

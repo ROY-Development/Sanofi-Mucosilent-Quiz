@@ -1,0 +1,222 @@
+<div class="game-topic-page" #board>
+	<div class="scroll-page"
+		 [style.left.px]="signalScrollPageX()"
+		 [style.top.px]="signalScrollPageY()"
+		 [style.scale]="signalPageZoom()"
+		 [style.opacity]="signalPageOpacity()"
+	
+	>
+		<!--<div class="left-way" [class.visible]="signalIntroLinesLeftVisible()">
+			<app-gfx-spline [type]="'cubic'" [color]="'#6c6cff'" [width]="260" [height]="450" [strokeWidth]="20"
+							[startX]="0" [startY]="0" [control1X]="0" [control1Y]="67" [control2X]="100"
+							[control2Y]="25" [hasControls]="false"></app-gfx-spline>
+		</div>
+		
+		<div class="right-way" [class.visible]="signalIntroLinesRightVisible()">
+			<app-gfx-spline [type]="'cubic'" [color]="'#6c6cff'" [width]="260" [height]="450" [strokeWidth]="20"
+							[startX]="0" [startY]="0" [control1X]="0" [control1Y]="67" [control2X]="100"
+							[control2Y]="25" [hasControls]="false"></app-gfx-spline>
+		</div>-->
+		
+		<div class="y-shape"
+			 [style.left.px]="540"
+			 [style.top.px]="1100"
+		>
+			<div class="line line-left"
+				 [class.centered]="signaLineStartLeftCentered()"
+				 [class.visible]="signaLineStartLeftVisible()"
+				 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor">
+				<!--a--></div>
+			<div class="line line-right" [class.visible]="signaLineStartRightVisible()"
+				 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor">
+				<!--b--></div>
+			<div class="line line-bottom"
+				 [class.visible]="signaLineStartBottomVisible()"
+				 [class.line-bottom-for-start-point]="signalIsStartPointEnabled() && !signaLineStartBottom2Visible()"
+				 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"></div>
+			
+			<div class="line line-before"
+				 [class.line-before-right]="signaIsLineBeforeRight()"
+				 [class.line-before-centered]="signaIsLineBeforeCentered()"
+				 [class.visible]="signaIsLineBeforeVisible()"
+				 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"></div>
+			
+			@if (signalPathGiftScore() > 0) {
+				<div class="score-gift" #scoreGift
+					 [appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+					 [timeout]="10"
+				>
+					<button type="button" class="btn btn-gift"
+							[class.closed]="!signalIsGiftOpen()"
+							[style.mask-image]="signalIsGiftOpen() ? signalBtnGiftOpenImageUrl() : signalBtnGiftClosedImageUrl()"
+							(click)="onClickOpenGift()"
+					>&nbsp;
+					</button>
+					<!--<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 1024 1024">
+						<path [attr.fill]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"
+							  d="M486.236 31.2054C529.701 28.4529 571.203 56.2007 591.548 93.6796C607.046 122.231 610.188 151.403 601.034 182.546C606.701 184.123 612.12 185.496 617.838 186.878C670.317 157.526 740.939 157.211 777.852 211.625C784.787 221.848 787.545 231.463 790.674 243.175C808.805 250.216 826.895 257.049 845.18 263.687L896.244 282.189C904.527 285.21 932.935 295.018 938.591 299.551C940.223 305.105 935.183 388.486 933.821 399.06C926.79 403.901 916.507 406.663 908.491 410.057C907.726 425.574 908.089 442.861 908.091 458.567L908.101 538.277L908.099 729.804C908.1 763.816 908.433 798.356 908.031 832.315C902.625 834.612 896.536 837.118 891.039 839.134C847.792 854.992 804.467 870.763 761.206 886.58L601.617 945.674L529.19 972.387C516.749 977.03 502.481 982.892 489.719 986.224C485.552 987.311 475.501 982.33 471.158 980.391C353.172 929.357 233.12 880.964 114.569 831.016C113.918 815.596 114.135 799.249 114.112 783.742L113.993 710.619L112.896 535.869L112.417 458.624C112.229 445.31 112.208 431.274 111.501 418.016C104.46 415.294 92.0274 411.398 88.4356 404.355C87.8549 403.217 87.018 400.422 87.0564 399.282C87.271 392.898 86.3409 378.763 86.4237 373.314C86.567 363.884 81.512 303.544 83.318 297.643C87.2241 294.052 110.537 287.658 116.899 285.773L157.905 273.782C188.497 265.017 219.663 255.59 250.368 247.579C240.1 231.157 235.048 218.747 235.213 199.253C235.666 145.6 282.597 116.213 332.535 117.583C368.61 118.571 397.777 132.786 423.173 158.133C429.886 164.833 435.741 172.214 442.251 179.091C434.56 156.355 426.567 141.818 424.39 116.715C420.334 69.9446 436.295 36.0541 486.236 31.2054ZM489.929 564.456L489.692 844.536L489.685 926.747C489.687 930.989 489.149 965.922 490.33 967.758L490.954 967.493C497.97 964.348 505.675 961.694 512.931 959.063C544.068 947.771 575.335 936.954 606.278 925.12C618.501 920.446 631.112 916.673 643.219 911.63C645.067 870.358 646.058 828.562 647.346 787.238L652.292 623.031L654.421 549.531L655.47 520.624C655.627 515.816 656.018 509.458 655.712 504.755L655.166 504.504C627.432 515.685 594.884 526.502 566.353 536.726L516.956 554.39C508.175 557.6 498.692 561.535 489.929 564.456ZM755.112 871.214C765.499 867.024 776.727 863.275 787.294 859.356L848.658 836.552C857.234 833.409 865.716 830.277 874.244 827.009C882.029 824.026 890.279 820.562 898.353 818.661C898.174 806.515 898.91 793.986 898.93 781.701L898.545 655.486L898.551 537.06C898.574 525.966 899.831 417.664 898.053 413.697L897.923 413.577L824.968 439.753C807.697 445.833 783.825 453.671 767.086 460.839C765.929 477.898 765.618 494.491 765.082 511.569L762.952 578.598L757.086 758.736L754.652 839.281C754.506 845.186 753.585 865.753 754.533 870.593L755.112 871.214ZM480.665 963.158C481.645 951.899 481.021 931.608 481.016 919.581L481.066 837.916L481.09 570.415C441.602 552.878 400.873 536.947 360.812 520.693C355.182 518.408 349.236 516.05 343.503 514.099C343.31 536.913 343.767 558.777 343.933 581.517L345.904 764.257L346.585 855.156L346.957 887.692C347.001 893.419 346.784 902.753 347.32 908.231C362.146 913.594 475.989 963.87 480.665 963.158ZM242.08 860.625C243.178 806.092 243.127 750.934 243.343 696.373L244.07 602.984L244.893 503.988C245.021 494.861 244.363 482.519 244.777 474.067C209.541 458.348 173.692 444.383 138.314 429.032C135.465 427.796 131.613 426.145 128.93 424.62L130.483 693.559L130.923 782.657C131.008 790.837 130.431 811.292 131.376 818.594L208.145 850.143C212.965 852.155 237.97 863.201 241.597 863.879C242.318 862.618 242.129 862.104 242.08 860.625ZM270.838 370.18C270.035 398.797 270.636 428.558 270.494 457.342L269.994 653.183L269.845 778.25C269.624 810.409 268.773 843.756 269.858 875.881C284.486 882.566 302.283 890.012 317.321 895.948L319.022 896.472C320.228 894.77 319.91 849.302 319.91 842.309L319.578 742.873L319.2 483.934C319.152 468.864 319.084 453.516 318.875 438.46C318.638 421.394 317.912 405.282 318.944 388.086C337.937 379.535 362.639 370.629 382.247 363.36L458.435 335.31C468.763 331.608 478.836 328.187 489.25 324.741C494.325 323.061 502.953 320.451 507.445 318.255C505.585 315.958 502.333 312.205 500.808 309.894C491.015 311.409 480.881 312.289 471.566 307.882C469.265 306.794 465.119 303.424 463.396 303.006C414.469 318.828 366.054 335.967 317.754 353.596L286.639 364.741C281.837 366.413 275.374 368.381 270.838 370.18ZM683.636 392.409C684.226 408.328 683.323 425.417 682.98 441.415L680.78 528.987L673.034 805.596C672.473 830.429 671.389 855.353 670.311 880.168C670.145 883.976 669.903 887.746 669.922 891.563C669.649 895.443 669.495 898.623 669.487 902.507C676.327 899.856 683.278 897.976 690.113 895.51C702.229 891.139 715.087 886.562 726.948 881.572L733.156 521.121L735.247 427.468C735.633 409.942 736.337 393.935 736.043 376.169C719.694 369.551 702.978 361.371 686.225 355.83C684.717 355.331 682.871 355.481 681.306 355.694C663.562 357.733 646.495 358.422 628.669 356.91C626.836 356.755 620.134 355.966 618.965 356.278C621.271 357.867 623.74 358.572 626.069 360.176C631.966 364.238 638.522 366.863 644.717 370.478C657.481 377.926 671.208 384.442 683.636 392.409ZM489.202 468.869C488.993 497.913 489.294 525.759 490.054 554.75L616.2 508.932C630.117 503.97 646.942 497.286 660.562 492.811C661.416 483.508 664.513 410.165 662.492 407.56C644.268 414.999 623.9 421.142 605.147 427.612L536.71 451.942C523.649 456.446 501.77 463.567 489.202 468.869ZM754.552 372.184C754.67 382.076 751.081 453.916 752.568 455.921L753.125 455.998C783.819 443.885 815.954 433.205 847.007 421.908C872.929 412.479 899.211 402.614 925.458 394.264C926.116 386.116 929.679 311.823 928.624 309.253L928.365 309.068C906.236 316.536 885.181 324.611 863.32 332.665L799.231 355.9C785.308 360.974 768.408 367.707 754.552 372.184ZM108.079 299.519C121.579 307.196 140.272 313.73 154.781 319.869C185.115 332.705 217.473 344.198 247.453 357.526C248.787 358.313 250.296 359.381 251.748 358.951C256.594 357.515 261.764 355.409 266.453 353.586L294.964 342.577C327.614 330.074 360.927 317.558 393.92 306.083C355.445 304.958 308.056 297.519 276.425 274.564C268.04 268.479 262.607 262.904 255.549 255.545C243.617 259.538 230.193 262.963 217.983 266.531L150.706 286.304C141.481 288.989 115.7 295.876 108.079 299.519ZM105.386 396.053C141.348 412.232 178.701 427.458 215.031 442.926C219.681 444.906 247.475 456.581 250.416 457.052C251.359 456.236 250.982 456.757 251.136 455.122C252.245 427.519 252.205 403.595 252.263 376.043C206.399 355.604 158.957 338.267 112.351 319.589C108.481 318.037 104.497 316.454 100.567 315.077C102.076 336.581 102.765 358.127 103.919 379.651C104.213 385.13 104.573 390.623 105.386 396.053ZM343.524 498.635C373.451 510.751 403.259 524.04 433.147 536.38C448.899 542.883 465.028 550.664 480.968 556.649C481.411 540.84 481.152 525.057 481.094 509.25C481.046 495.771 481.284 482.124 481 468.655C444.571 453.469 407.946 438.511 371.708 422.955C363.349 419.367 349.534 414.794 342.633 411.386C342.357 438.181 341.861 471.85 343.524 498.635ZM345.612 398.634C377.264 414.055 404.588 425.492 436.666 439.413C453.074 446.679 468.998 453.399 485.81 459.678C501.456 454.591 515.671 448.815 530.95 443.611C531.718 432.947 532.082 429.411 529.511 418.921C516.152 425.157 502.761 430.889 487.651 428.867C484.732 428.477 482.041 428.159 479.949 425.91C478.498 421.576 485.755 417.036 489.045 414.988C513.098 400.016 528.165 371.549 519.922 343.355C519.156 340.745 516.265 330.18 513.596 329.976C477.976 342.157 442.421 357.78 407.5 371.846C391.983 378.097 376.217 384.209 361.044 391.206C357.059 393.044 349.111 396.431 345.612 398.634ZM495.645 250.313C490.702 237.992 483.831 227.12 478.935 215.248C466.266 184.535 452.278 118.292 492.014 102.471C526.735 90.9176 565.694 116.91 576.816 150.181C584.77 173.972 578.488 194.447 571.778 217.376C582.535 199.628 589.921 185.615 593.216 164.887C601.724 111.357 564.385 57.1334 511.849 44.7923C504.349 43.0304 496.908 41.8812 489.337 42.2117C451.252 45.0454 432.342 70.343 435.284 108.146C438.111 144.483 455.02 178.727 471.537 210.493C479.628 225.738 485.154 236.815 495.645 250.313ZM402.256 293.68C376.341 290.043 347.986 286.188 324.783 273.35C301.095 260.244 276.469 241.519 275.012 212.25C276.34 175.22 315.459 165.783 346.066 166.288C390.5 167.021 422.762 195.219 450.625 226.516C457.892 234.54 466.152 244.898 473.477 252.504C451.748 209.122 415.474 151.435 367.024 135.356C353.364 130.822 336.921 128.078 322.544 129.674C297.369 132.671 276.514 138.545 260.058 159.167C234.02 191.797 248.468 239.235 279.649 262.829C309.355 285.306 349.18 292.838 385.75 293.828C390.367 293.933 397.814 294.105 402.256 293.68ZM563.754 321.856C557.785 318.909 552.239 316.029 546.383 312.862C551.404 317.543 556.3 320.551 562.355 323.802C618.157 355.153 701.238 355.89 751.047 312.975C781.311 286.899 789.748 240.354 761.595 209.332C739.287 184.751 705.078 174.727 672.728 179.912C641.729 184.599 621.295 196.673 598.385 216.67C606.376 212.573 613.793 208.551 622.105 205.055C645.099 195.338 671.6 193.449 694.886 203.335C729.225 217.915 741.074 254.465 726.033 287.764C702.057 340.844 639.728 346.218 589.999 331.984C580.948 329.393 572.312 325.602 563.754 321.856ZM503.535 417.768C514.397 414.07 520.525 410.511 530.012 404.548C537.198 400.032 541.148 416.198 542.119 421.393C542.6 424.836 542.834 428.131 543.105 431.593C559.121 414.108 573.423 396.452 572.726 371.017C572.158 360.775 567.814 345.554 559.871 338.768C554.237 333.954 546.231 328.813 540.118 324.653C533.778 320.338 519.237 307.521 512.551 306.706C516.296 312.384 521.192 318.506 524.415 324.316C542.167 356.322 532.624 396.093 503.535 417.768ZM467.145 262.446C465.154 260.527 462.902 257.878 460.495 256.529C452.069 251.807 376.663 220.016 371.525 219.976C371.407 219.975 371.289 219.987 371.171 219.992C358.795 224.517 346.523 228.587 333.842 232.153C331.402 232.839 328.926 233.569 326.572 234.502C357.818 247.336 388.774 261.448 420.761 272.348C423.904 273.419 427.719 274.736 430.892 275.522C439.808 278.117 447.879 280.165 456.93 282.263C459.133 273.114 460.712 269.46 467.145 262.446ZM567.915 288.209C576.79 291.252 589.949 296.25 598.603 300.002C619.353 308.748 644.639 317.732 666.021 324.886C672.515 322.406 678.24 320.163 684.413 316.958C708.251 304.58 724.442 277.36 720.513 250.297C720.183 248.022 719.566 243.642 718.017 241.991L717.204 242.011C704.804 246.258 690.936 250.228 678.33 254.095L609.94 275.033C596.319 279.181 581.164 283.421 567.915 288.209ZM480.986 180.791C486.434 203.458 493.912 224.673 506.553 244.482C515.797 243.188 523.916 244.131 532.29 248.492C534.237 249.509 534.507 250.054 536.397 250.018C538.968 247.612 541.545 243.311 543.657 240.296C556.251 222.316 563.685 205.926 568.352 184.412C554.053 179.722 539.808 174.894 525.772 169.469C523.175 168.465 520.614 167.312 517.948 166.501C506.497 171.492 492.818 176.306 480.986 180.791ZM555.295 435.119C572.44 428.707 590.089 422.878 607.38 416.651C617.305 413.075 645.119 403.835 652.907 399.519C631.319 386.41 606.405 375.472 584.024 363.318C583.838 396.63 576.769 410.72 555.295 435.119ZM508.274 255.674C495.641 257.421 480.896 262.503 472.92 273.111C460.216 290.009 476.076 300.182 492.422 299.311C504.156 297.745 519.608 293.59 526.907 283.695C540.045 265.885 527.12 253.566 508.274 255.674ZM443.775 236.727C439.488 231.722 417.1 205.645 411.662 206.483L389.566 214.297C398.247 217.292 419.195 225.538 427.65 229.641C432.969 231.849 438.571 234.246 443.775 236.727ZM404.851 282.149C407.748 282.433 411.545 282.49 414.52 282.619L409.576 280.671C375.764 267.593 344.093 254.866 311.131 239.634L301.173 243.083C308.308 248.649 314.452 253.412 322.362 258.041C345.437 271.544 378.122 281.939 404.851 282.149ZM576.763 245.865C573.288 249.804 569.334 254.666 565.828 258.701C560.895 264.379 550.324 274.978 546.831 281.25C553.243 279.782 562.326 277.039 568.617 274.918C616.55 261.186 665.583 244.345 713.505 231.578C708.38 225.787 693.767 213.503 685.559 214.129C674.073 216.146 653.887 223.091 641.973 226.567L596.008 240.223C590.418 241.903 581.925 244.032 576.763 245.865ZM598.696 192.16C597.029 196.224 595.575 199.332 593.6 203.26L597.766 200.212L605.553 194.889L598.696 192.16ZM818.501 338.92L884.275 314.751C894.594 310.927 909.883 305.902 919.468 301.553L837.135 270.739C823.26 265.601 804.448 259.675 791.639 253.743C785.834 297.081 768.38 320.096 729.981 340.361C725.217 342.875 719.935 345.129 715.279 347.684C726.839 353.901 739.728 357.991 751.463 363.553L795.814 347.211C802.292 344.837 812.429 341.557 818.501 338.92ZM544.448 297.911C564.579 310.619 581.016 319.175 604.531 324.317C606.978 324.852 614.505 326.544 616.818 326.46C609.634 322.982 549.432 298.201 544.448 297.911ZM568.778 174.387C567.577 153.889 564.231 142.261 548.266 127.49C537.636 117.656 519.879 109.694 505.162 110.552L504.642 110.587C498.76 112.032 493.696 113.474 489.282 118.009C475.942 131.717 477.059 153.857 479.248 171.261C489.158 167.448 510.413 158.288 520.716 157.686C522.835 157.563 536.145 162.662 539.321 163.741C549.165 167.357 559.025 170.542 568.778 174.387ZM337.799 178.2C305 181.031 269.822 197.228 295.352 234.54C307.634 229.631 325.12 224.555 338.127 220.292L383.94 205.206C389.474 203.366 398.92 200.689 403.926 198.705C386.814 185.891 359.321 175.821 337.799 178.2Z"/>
+					</svg>-->
+					@if (signalIsGiftOpen()) {
+						<div class="score" [appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+							 [timeout]="10"
+						>{{ signalPathGiftScore().toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+						</div>
+					}
+				</div>
+			}
+		</div>
+		<!--<div class="right-way">
+			<app-gfx-spline
+				[type]="'cubic'"
+				[color]="'#9f6cbc'"
+				[width]="340"
+				[height]="515"
+				[strokeWidth]="20"
+				[startX]="100"
+				[startY]="0"
+				[endX]="5"
+				[control1X]="88"
+				[control1Y]="66"
+				[control2X]="41"
+				[control2Y]="21"
+				[hasControls]="false"
+			></app-gfx-spline>
+		</div>-->
+		
+		
+		<div class="start-point"
+			 [class.visible]="signalIsStartPointEnabled()"
+			 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"
+			 [style.left.px]="signalOffsetOldCategoriesX() + 500"
+			 [style.top.px]="signalOffsetOldCategoriesY() + (signalIsStartPointEnabled() ? 1480:1580)"
+		></div>
+		
+		<div class="topics" [class.selected]="gameService.currentTopic">
+			@if (signalTopic1() && signalCategoryLeftVisible()) {
+				<div #categoryCard1>
+					<app-game-category-card
+						[nr]="1"
+						[topic]="signalTopic1()!"
+						[hasTransition]="true"
+						[selected]="gameService.currentTopic === signalTopic1()!"
+						[notSelected]="gameService.currentTopic !== null && gameService.currentTopic !== signalTopic1()!"
+						[btnPointerEventsNone]="!!gameService.currentTopic"
+						(clickTopic)="onClickTopic(signalTopic1()!)"
+					></app-game-category-card>
+				</div>
+			}
+			
+			@if (signalTopic2() && signalCategoryRightVisible()) {
+				<div #categoryCard2>
+					<app-game-category-card
+						[nr]="2"
+						[topic]="signalTopic2()!"
+						[hasTransition]="true"
+						[selected]="gameService.currentTopic === signalTopic2()!"
+						[notSelected]="gameService.currentTopic !== null && gameService.currentTopic !== signalTopic2()!"
+						[btnPointerEventsNone]="!!gameService.currentTopic"
+						(clickTopic)="onClickTopic(signalTopic2()!)"
+					></app-game-category-card>
+				</div>
+			}
+		</div>
+		
+		
+		@if (signalState() >= 1) {
+			<div class="y-shape"
+				 [style.left.px]="signalOffsetOldCategoriesX() + 540"
+				 [style.top.px]="signalOffsetOldCategoriesY() + 1100"
+			>
+				<div class="line line-left"
+					 [class.centered]="signaLineStartLeft2Centered()"
+					 [class.visible]="signaLineStartLeft2Visible()"
+					 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"></div>
+				<div class="line line-right" [class.visible]="signaLineStartRight2Visible()"
+					 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"></div>
+				<div class="line line-bottom"
+					 [class.visible]="signaLineStartBottom2Visible()"
+					 [class.line-bottom-for-start-point]="signalIsStartPointEnabled()"
+					 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"></div>
+				
+				<div class="line line-before"
+					 [class.line-before-right]="signaIsLineBefore2Right()"
+					 [class.line-before-centered]="signaIsLineBefore2Centered()"
+					 [class.visible]="signaIsLineBefore2Visible()"
+					 [style.background-color]="gameService.signalGameConfig()?.colorCategoryPath ?? pathColor"></div>
+			</div>
+			
+			
+			<div class="topics topics-old"
+				 [style.left.px]="signalOffsetOldCategoriesX()"
+				 [style.top.px]="signalOffsetOldCategoriesY() + 655"
+			>
+				@if (signalOldTopic1()) {
+					<app-game-category-card
+						[nr]="1"
+						[topic]="signalOldTopic1()!"
+						[hasTransition]="false"
+						[selected]="signalOldLeftSide()"
+						[notSelected]="!signalOldLeftSide()"
+						[btnPointerEventsNone]="true"
+					></app-game-category-card>
+				}
+				@if (signalOldTopic2()) {
+					<app-game-category-card
+						[nr]="2"
+						[topic]="signalOldTopic2()!"
+						[hasTransition]="false"
+						[selected]="!signalOldLeftSide()"
+						[notSelected]="signalOldLeftSide()"
+						[btnPointerEventsNone]="true"
+					></app-game-category-card>
+				}
+			</div>
+		}
+	</div>
+	
+	@if (signalIsChooseTextEnabled()) {
+		<div class="round" animate.enter="fade-in-800ms">{{
+				'round-of-total' | nativeTranslate : {
+					round: gameService.signalQuizNumber(),
+					total: signalMaxQuizRoundCount()
+				}
+			}}
+		</div>
+		<div class="title" animate.enter="fade-in-800ms">{{ 'choose-a-topic' | nativeTranslate }}</div>
+	}
+</div>
+@if (areTestButtonsEnabled) {
+	<div class="test-buttons">
+		<button type="button" class="btn btn-secondary btn-test" (click)="clickTest()">test</button>
+		<button type="button" class="btn btn-secondary btn-test" (click)="showGiftPackage(100)">Bonus score</button>
+		<button type="button" class="btn btn-secondary btn-test" (mousedown)="buttonXPlusDown = true;"
+				(mouseup)="buttonXPlusDown = false"
+				(mouseleave)="buttonXPlusDown = false">X+
+		</button>
+		<button type="button" class="btn btn-secondary btn-test" (mousedown)="buttonXMinusDown = true;"
+				(mouseup)="buttonXMinusDown = false"
+				(mouseleave)="buttonXMinusDown = false">X-
+		</button>
+		<button type="button" class="btn btn-secondary btn-test" (mousedown)="buttonYPlusDown = true;"
+				(mouseup)="buttonYPlusDown = false"
+				(mouseleave)="buttonYPlusDown = false">y+
+		</button>
+		<button type="button" class="btn btn-secondary btn-test" (mousedown)="buttonYMinusDown = true;"
+				(mouseup)="buttonYMinusDown = false"
+				(mouseleave)="buttonYMinusDown = false">y-
+		</button>
+		<br>
+		<button type="button" class="btn btn-secondary btn-test" (mousedown)="setScrollPageZoom('left')"
+				(mouseup)="buttonYMinusDown = false"
+				(mouseleave)="buttonYMinusDown = false">Zoom Left
+		</button>
+		<button type="button" class="btn btn-secondary btn-test" (mousedown)="setScrollPageZoom('right')"
+				(mouseup)="buttonYMinusDown = false"
+				(mouseleave)="buttonYMinusDown = false">Zoom Right
+		</button>
+		<button type="button" class="btn btn-secondary btn-test" (mousedown)="setScrollPageZoom('center')"
+				(mouseup)="buttonYMinusDown = false"
+				(mouseleave)="buttonYMinusDown = false">Zoom Center
+		</button>
+	</div>
+}

@@ -1,0 +1,10 @@
+{
+	"quiz-name": "Flor",
+	"imprint-text": "",
+	"privacy-policy-text": "",
+	"crm-title": "",
+	"crm-content": "",
+	"collect-information-text": "",
+	"how-to-play-text": "<h5>Bist du bereit?</h5><div><br></div><div>Nimm die Herausforderung an und teste dein Wissen über das {{quizName}} Universum!<br></div><div><br></div><div>Verdiene deine ersten Punkte in diesem Spiel und bereite dich auf dein einzigartiges {{quizName}} Erlebnis vor.<br></div><div><br></div><h5>Wie spielt man?</h5><div><br></div><div>In diesem Spiel siehst du verschiedene Aussagen, eine nach der anderen.<br></div><div>Für jede Aussage musst du entscheiden, welche der beiden Lösungen stimmt.<br></div><div><br></div><div>Wische die Aussage nach RECHTS oder LINKS, in die Richtung der richtigen Antwort.<br></div><div><br></div><div>Wenn du das Spiel schließt, wirst du in der nächsten Sitzung dort weitermachen, wo du aufgehört hast.<br></div><div><br></div><div>Nachdem du alle Aussagen sortiert hast, ist das Spiel vorbei und du kannst nicht noch einmal spielen.<br></div><div><br></div><div><br></div>",
+	"end-game-text": "<h5>Gut gemacht!</h5><div><br></div><div>Du hast das {{quizName}} abgeschlossen!<br></div><div><br></div><div>Sieh dir deinen aktuellen Punktestand in der Highscore-Tabelle an und versuche dort an die Spitze zu kommen!</div>"
+}

@@ -1,0 +1,96 @@
+.game-coins {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	/*background-color: #5A6E7Faa;*/
+
+	//pointer-events: none;
+	touch-action: none;
+
+	.coin {
+		position: absolute;
+		z-index: 10;
+
+		left: -24px;
+		top: -24px;
+	}
+
+	.coin-inner {
+		position: relative;
+		//		background: #FFDE00;
+		width: 48px;
+		height: 48px;
+		//		border-radius: 50%;
+
+		transform-style: preserve-3d;
+
+		&.is-rotating-flying-ani {
+			animation: spin 3s linear infinite;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate3d(0, 1, 0, 0deg);
+			}
+			100% {
+				transform: rotate3d(0.1, 1, 0.1, 360deg);
+			}
+		}
+
+		&:before {
+			content: '';
+			//			background-color: #FF9900;
+			position: absolute;
+			//			border-radius: 50%;
+			height: 48px;
+			width: 48px;
+			transform: translateZ(-6px);
+		}
+
+		&:after {
+			//			background-color: #FF9900;
+			content: '';
+			left: 43%;
+			position: absolute;
+			height: 48px;
+			width: 6px;
+			z-index: -10;
+			transform: rotateY(-90deg);
+			transform-origin: 100% 50%;
+		}
+
+		.tails {
+			//	background-color: #FF9900;
+			position: absolute;
+			//			border-radius: 50%;
+			content: '';
+			height: 48px;
+			width: 48px;
+			transform: translateZ(0px);
+			//	border: 1px solid #FF9900;
+
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: top;
+			// background-image: url("../../../../assets/images/coin01.png");
+		}
+
+		.heads {
+			//	background-color: #FFDE00;
+			position: absolute;
+			//			border-radius: 50%;
+			content: '';
+			height: 48px;
+			width: 48px;
+			transform: translateZ(-6px);
+			//	border: 1px solid #FF9900;
+
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: top;
+			// background-image: url("../../../../assets/images/coin01.png");
+		}
+	}
+}

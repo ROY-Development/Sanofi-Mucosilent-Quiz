@@ -1,0 +1,35 @@
+<button #btn
+		class="btn pushable"
+		[type]="btnType"
+		[style.width]="btnWidth"
+		[style.height]="btnHeight"
+		[style.border-radius]="btnRadius ? btnRadius : (configBtn ? configBtn.radius + 'px' : undefined)"
+		[style.pointer-events]="btnPointerEventsNone ? 'none' : 'auto'"
+		[disabled]="btnDisabled"
+		[appDownClass]="btnPointerEventsNone ? undefined : btnTouchDownClass"
+		(click)="clickButton.emit()"
+		(touchend)="onTouchEnd($event)"
+		(touchcancel)="onTouchEnd($event)"
+>
+	@if ((configBtn?.glowDuration ?? 0) > 0) {
+		<span class="border-ring"
+			  [style.box-shadow]="signalBoxShadow()"
+			  [style.border-radius]="btnRadius ? btnRadius : (configBtn ? configBtn.radius + 'px' : undefined)"
+			  [style.animation-duration.s]="configBtn ? configBtn.glowDuration : AppConfig.quizGameDefaultButtonGlowDuration"
+		></span>
+	}
+	<span class="front"
+		  [style.width]="btnContentWidth"
+		  [style.height]="btnContentHeight"
+		  [style.padding]="btnContentPadding"
+		  [style.font-size]="btnContentFontSize"
+		  [style.color]="configBtn?.fontColor"
+		  [style.background-color]="configBtn?.colorBg"
+		  [style.border-radius]="btnRadius ? btnRadius : (configBtn ? configBtn.radius + 'px' : undefined)"
+		  [style.border-width.px]="configBtn?.border"
+		  [style.border-color]="configBtn?.borderColor"
+		  [style.background-image]="backgroundImageUrl"
+	>
+		<ng-content></ng-content>
+	</span>
+</button>

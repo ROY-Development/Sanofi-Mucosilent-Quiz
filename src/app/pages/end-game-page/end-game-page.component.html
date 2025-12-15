@@ -1,0 +1,214 @@
+<!--<button type="button" style="position: fixed; z-index: 1000" (click)="onClickTestConfetti()">confetti</button>-->
+<app-confetti #confetti
+			  [left]="'300px'" [top]="'0'"
+			  [width]="'180px'" [height]="'460px'" [scale]="1"
+			  [color1]="'#1786a8'"
+			  [color2]="'#a6254c'"
+			  [color3]="'#a710f2'"
+></app-confetti>
+
+<div class="content" [hidden]="isShowingQuestionsResultDialog()">
+	<div class="content-container">
+		
+		<div class="header-container">
+			@if (signalContentText()) {
+				@if (signalTitleText()) {
+					<div class="title-row">
+						<div class="star-image"
+							 [style.mask-image]="signalStarImageUrl()"
+							 [style.background-color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.fontColorMain : undefined"
+						></div>
+						<div class="title" [innerHTML]="signalTitleText()"></div>
+						<div class="star-image"
+							 [style.mask-image]="signalStarImageUrl()"
+							 [style.background-color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.fontColorMain : undefined"
+						></div>
+					</div>
+					
+					<div [innerHTML]="signalContentText()" style="margin-bottom: 100px;"></div>
+				} @else {
+					<div [innerHTML]="signalContentText()" style="margin-bottom: 100px;"></div>
+				}
+			} @else {
+				<div class="title-row">
+					<div class="star-image"
+						 [style.mask-image]="signalStarImageUrl()"
+						 [style.background-color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.fontColorMain : undefined"
+					></div>
+					<div class="title mb-5">{{ 'well-done-user' | nativeTranslate }}</div>
+					<div class="star-image"
+						 [style.mask-image]="signalStarImageUrl()"
+						 [style.background-color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.fontColorMain : undefined"
+					></div>
+				</div>
+				<!--<h5 class="mb-5">{{ 'well-done-user' | nativeTranslate : {name: initService.signalAppQueryParams().userFirstName} }}-->
+					<!--<h5 class="mb-5">{{ 'well-done-user' | nativeTranslate }}</h5>-->
+				<p>{{ 'end-game-1' | nativeTranslate }}</p>
+				<p class="">
+					{{
+						'end-game-2' | nativeTranslate : {
+							current: swipeYesNoService.currentQuestionNr,
+							max: swipeYesNoService.maxQuestionCount
+						}
+					}}
+				</p>
+			}
+		</div>
+		
+		<div class="progress-container" [class.visible]="signalIsShowingCompleted()">
+			@if (initService.isScormPackage) {
+				<div class="scorm-result-container">
+					{{ 'number-of-questions' | nativeTranslate }}: {{ gameService.gameQuestionResultList.length }}<br>
+					{{ 'of-which-answered-correctly' | nativeTranslate }}
+					: {{ gameService.getTotalValidGameQuestions() }}
+					<br>
+					{{ 'in-percent' | nativeTranslate }}
+					: {{ gameService.getCorrectGameQuestionsPercentage() | number:'1.1-1' }}%<br>
+					{{ 'min-percent' | nativeTranslate  | number:'1.1-1' }}
+					: {{ gameService.signalGameConfig()?.scormQuestionFinishPercentage  | number:'1.1-1' }}%
+					<br>
+					{{
+						(gameService.isScormFinished() ? 'scorm-finished' : 'scorm-not-finished') | nativeTranslate
+					}}
+				</div>
+			} @else {
+				<div class="text-center">
+					{{ 'correct-rate' | nativeTranslate : {rate: gameService.getCorrectGameQuestionsPercentage() | number:'1.1-1'} }}
+				</div>
+			}
+			<!--<div class="mb-4">
+				{{ 'end-game-3' | nativeTranslate }}
+			</div>-->
+			<!--<div class="progress">{{ swipeYesNoService.currentQuestionNr }}/ {{ swipeYesNoService.maxQuestionCount }}-->
+			<div class="score">
+				<div class="coin-image"
+					 #coinImage
+					 [style.background-image]="frontImageUrl"
+				></div>
+				<span #score class="score-text"></span><!--{{ userGameService.signalGameScore().score }}-->
+			</div>
+			
+			<!--@if (gameService.signalHasEnteredHighscore()) {
+			
+			} @else {-->
+			<div class="nickname-form" animate.enter="fade-in-800ms">
+				<app-nickname-form
+					#nicknameForm
+					[existingNicknames]="gameScoreService.signalExistingNicknames()"
+					[gameScores]="gameScoreService.signalGameScores()"
+					[currentNickname]="userGameService.signalGameScore().nickname"
+					[hasEnteredNickname]="gameService.signalHasEnteredHighscore()"
+					[editValue]="nicknameFormModel"
+					(submitForm)="onSubmitForm($event)"
+					(cancelForm)="onCancelForm($event)"
+				></app-nickname-form>
+			</div>
+			<div class="empty-line"></div>
+			<!--}-->
+		</div>
+		
+		<div class="button-container" animate.enter="fade-in-800ms">
+			
+			
+			@if (!initService.isScormPackage &&
+			(!gameService.signalGameConfig() || gameService.signalGameConfig()?.includesHighscore)) {
+				<app-base-button
+					[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnContentWidth]="'670px'"
+					[btnContentPadding]="'30px 10px'"
+					(clickButton)="onClickHighScore()"
+				>{{ 'show-highscore-list' | nativeTranslate }}
+				</app-base-button>
+				<div class="empty-line"></div>
+			}
+			
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'670px'"
+				[btnContentPadding]="'30px 10px'"
+				(clickButton)="onClickShowQuestionsResult()"
+			>{{ 'show-my-review' | nativeTranslate }}
+			</app-base-button>
+			
+			<div class="empty-line"></div>
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'670px'"
+				[btnContentPadding]="'30px 10px'"
+				(clickButton)="onClickEndGame()"
+			>{{ 'end-game' | nativeTranslate }}
+			</app-base-button>
+			
+			<!--<div class="empty-line"></div>
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'670px'"
+				[btnContentPadding]="'30px 10px'"
+				(clickButton)="onClickStartNewGame()"
+			>{{ 'new-game' | nativeTranslate }}
+			</app-base-button>-->
+		</div>
+	</div>
+	<!--<div class="logo">
+		<app-game-title></app-game-title>
+	</div>-->
+</div>
+
+<app-button-sound-on-off
+	#buttonSoundOnOffComponent
+	[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+	[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+	[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+	[borderRadiusPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.radius"
+	[borderWidthPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.border"
+	[borderColor]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.borderColor"
+	[disabled]="false"
+	[right]="document.fullscreenEnabled ? '115px' : '20px'"
+	(click)="soundService.playSound(SoundNameEnum.click, true);"
+></app-button-sound-on-off>
+
+<app-button-fullscreen
+	#buttonFullscreenComponent
+	[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+	[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+	[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+	[borderRadiusPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.radius"
+	[borderWidthPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.border"
+	[borderColor]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.borderColor"
+	[disabled]="false"
+	(click)="soundService.playSound(SoundNameEnum.click, true);"
+></app-button-fullscreen>
+
+@if (isShowingConfirmCancelDialog()) {
+	<div class="dialog-animation-container"
+		 animate.enter="dialog-enter"
+		 animate.leave="dialog-leave">
+		<app-dialog-confirm
+			[titleKey]="'end-game'"
+			[contentKey]="'modal-dialog.discard-high-score'"
+			[isJsonContent]="false"
+			[hasSafetyCheck]="false"
+			(cancelDialog)="onClickNoHighscoreSaving($event)"
+		></app-dialog-confirm>
+	</div>
+}
+
+@if (isShowingQuestionsResultDialog()) {
+	<div class="dialog-animation-container"
+		 animate.enter="dialog-enter"
+		 animate.leave="dialog-leave">
+		<app-dialog-questions-result
+			[runtime]="0"
+			[questionResultList]="gameService.gameQuestionResultList"
+			(cancelDialog)="onClickCloseQuestionsResult()"
+		></app-dialog-questions-result>
+	</div>
+}
+
+@if ((gameScoreBackendService.isLoading$ | async)) {
+	<app-loading-block></app-loading-block>
+}

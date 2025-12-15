@@ -1,0 +1,15 @@
+<div class="toast-container">
+	@for (toast of toastService.signalToastMessages(); track toast.message; ) {
+		<button type="button" class="btn toast-message"
+				[class.toast-message-info]="toast.type === ToastTypeEnum.info"
+				[class.toast-message-success]="toast.type === ToastTypeEnum.success"
+				[class.toast-message-warning]="toast.type === ToastTypeEnum.warning"
+				[class.toast-message-error]="toast.type === ToastTypeEnum.error"
+				[style.top.px]="toast.top"
+				[style.right.px]="toast.right"
+				[style.font-size.px]="fontSize"
+				(click)="onClickToast(toast)"
+		>{{ toast.message }}
+		</button>
+	}
+</div>

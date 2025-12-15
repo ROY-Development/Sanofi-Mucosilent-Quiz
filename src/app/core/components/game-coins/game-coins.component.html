@@ -1,0 +1,22 @@
+<div class="game-coins">
+	@for (coinList of gameCoinsService.coinLists; track coinList; let i = $index) {
+		@for (coin of coinList; track coin; let j = $index) {
+			<!--<div #coin class="coin"
+			[style.left.px]="coin.x"
+			[style.top.px]="coin.y"
+			>-->
+			<div #coin class="coin" [attr.data-list-index]="i" [attr.data-index]="j">
+				<div class="coin-inner"
+					 [class.is-rotating-flying-ani]="gameCoinsService.signalIsRotatingFlyingAni()"
+				>
+					<div class="tails"
+						 [style.background-image]="gameCoinsService.backImageUrl"
+					></div>
+					<div class="heads"
+						 [style.background-image]="gameCoinsService.frontImageUrl"
+					></div>
+				</div>
+			</div>
+		}
+	}
+</div>

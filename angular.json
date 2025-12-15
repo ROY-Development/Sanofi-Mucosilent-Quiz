@@ -1,0 +1,108 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "sanofi-mucosilent-quiz": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+				"src/favicon.ico",
+				"src/assets",
+				"src/.htaccess",
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+				"./node_modules/bootstrap/scss/bootstrap.scss",
+              "src/styles.scss"
+            ],
+			  "scripts": [
+				  "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+			  ],
+			  "stylePreprocessorOptions": {
+				  "sass": {
+					  "silenceDeprecations": [
+						  "color-functions",
+						  "global-builtin",
+						  "import"
+					  ]
+				  }
+			  }
+		  },
+          "configurations": {
+            "production": {
+              "budgets": [
+				  {
+					  "type": "initial",
+					  "maximumWarning": "2mb",
+					  "maximumError": "5mb"
+				  },
+				  {
+					  "type": "anyComponentStyle",
+					  "maximumWarning": "11kb",
+					  "maximumError": "12kb"
+				  }
+              ],
+				"fileReplacements": [
+					{
+						"replace": "src/environments/environment.ts",
+						"with": "src/environments/environment.prod.ts"
+					}
+				],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "sanofi-mucosilent-quiz:build:production"
+            },
+            "development": {
+				"proxyConfig": "proxy.conf.js",
+              "buildTarget": "sanofi-mucosilent-quiz:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
+  }
+}

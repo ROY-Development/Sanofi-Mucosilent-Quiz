@@ -1,0 +1,184 @@
+{
+	"categoryKey": "category-1",
+	"questionColor": "#fff",
+	"backgroundColors": [
+		"#53843f88",
+		"#0008",
+		"#DD000088",
+		"#FFCC0088"
+	],
+	"backgroundImageUrl": null,
+	"backgroundAnimationImageUrls": [
+		"assets/images/icons/flying/cup01.png",
+		"assets/images/icons/flying/football01.png",
+		"assets/images/icons/flying/football-tv.png"
+	],
+	"answers": [
+		{
+			"key": "quiz-category-1-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-1-answer2",
+			"imageUrl": null
+		}
+	],
+	"questions": [
+		{
+			"id": 1,
+			"leftCorrect": true
+		},
+		{
+			"id": 2,
+			"leftCorrect": true
+		},
+		{
+			"id": 3,
+			"leftCorrect": true
+		},
+		{
+			"id": 4,
+			"leftCorrect": true
+		},
+		{
+			"id": 5,
+			"leftCorrect": true
+		},
+		{
+			"id": 6,
+			"leftCorrect": true
+		},
+		{
+			"id": 7,
+			"leftCorrect": true
+		},
+		{
+			"id": 8,
+			"leftCorrect": true
+		},
+		{
+			"id": 9,
+			"leftCorrect": true
+		},
+		{
+			"id": 10,
+			"leftCorrect": true
+		},
+		{
+			"id": 11,
+			"leftCorrect": true
+		},
+		{
+			"id": 12,
+			"leftCorrect": true
+		},
+		{
+			"id": 13,
+			"leftCorrect": true
+		},
+		{
+			"id": 14,
+			"leftCorrect": true
+		},
+		{
+			"id": 15,
+			"leftCorrect": true
+		},
+		{
+			"id": 16,
+			"leftCorrect": true
+		},
+		{
+			"id": 17,
+			"leftCorrect": true
+		},
+		{
+			"id": 18,
+			"leftCorrect": true
+		},
+		{
+			"id": 19,
+			"leftCorrect": true
+		},
+		{
+			"id": 20,
+			"leftCorrect": true
+		},
+		{
+			"id": 21,
+			"leftCorrect": true
+		},
+		{
+			"id": 22,
+			"leftCorrect": true
+		},
+		{
+			"id": 23,
+			"leftCorrect": false
+		},
+		{
+			"id": 24,
+			"leftCorrect": false
+		},
+		{
+			"id": 25,
+			"leftCorrect": false
+		},
+		{
+			"id": 26,
+			"leftCorrect": false
+		},
+		{
+			"id": 27,
+			"leftCorrect": false
+		},
+		{
+			"id": 28,
+			"leftCorrect": false
+		},
+		{
+			"id": 29,
+			"leftCorrect": false
+		},
+		{
+			"id": 30,
+			"leftCorrect": false
+		},
+		{
+			"id": 31,
+			"leftCorrect": false
+		},
+		{
+			"id": 32,
+			"leftCorrect": false
+		},
+		{
+			"id": 33,
+			"leftCorrect": false
+		},
+		{
+			"id": 34,
+			"leftCorrect": false
+		},
+		{
+			"id": 35,
+			"leftCorrect": false
+		},
+		{
+			"id": 36,
+			"leftCorrect": false
+		},
+		{
+			"id": 37,
+			"leftCorrect": false
+		},
+		{
+			"id": 38,
+			"leftCorrect": false
+		},
+		{
+			"id": 39,
+			"leftCorrect": false
+		}
+	]
+}

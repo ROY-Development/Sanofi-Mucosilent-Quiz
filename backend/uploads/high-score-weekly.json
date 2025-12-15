@@ -1,0 +1,65 @@
+{
+	"highScore": [
+		{
+			"nickname": "André",
+			"score": 7329,
+			"correctRate": 0.6,
+			"createdAt": "2025-12-11T16:22:32Z"
+		},
+		{
+			"nickname": "André",
+			"score": 7124,
+			"correctRate": 0.667,
+			"createdAt": "2025-12-09T16:44:42Z"
+		},
+		{
+			"nickname": "André",
+			"score": 6589,
+			"correctRate": 0.6,
+			"createdAt": "2025-12-11T16:24:26Z"
+		},
+		{
+			"nickname": "André",
+			"score": 4735,
+			"correctRate": 0.4,
+			"createdAt": "2025-12-11T16:19:43Z"
+		},
+		{
+			"nickname": "André",
+			"score": 0,
+			"correctRate": 0,
+			"createdAt": "2025-12-11T14:40:00Z"
+		},
+		{
+			"nickname": "André",
+			"score": 0,
+			"correctRate": 0,
+			"createdAt": "2025-12-11T14:43:15Z"
+		},
+		{
+			"nickname": "eqwe",
+			"score": 0,
+			"correctRate": 0,
+			"createdAt": "2025-12-11T14:39:10Z"
+		},
+		{
+			"nickname": "sdfsdf",
+			"score": 0,
+			"correctRate": 0,
+			"createdAt": "2025-12-11T15:08:06Z"
+		},
+		{
+			"nickname": "möp",
+			"score": 0,
+			"correctRate": 0,
+			"createdAt": "2025-12-11T14:36:55Z"
+		},
+		{
+			"nickname": "123",
+			"score": 0,
+			"correctRate": 0,
+			"createdAt": "2025-12-11T15:01:08Z"
+		}
+	],
+	"updated": "2025-12-11T16:24:26Z"
+}

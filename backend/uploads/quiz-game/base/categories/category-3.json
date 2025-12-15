@@ -1,0 +1,473 @@
+{
+	"categoryKey": "category-3",
+	"questionColor": "#fff",
+	"backgroundColors": [
+		"#53843f88",
+		"#0008",
+		"#DD000088",
+		"#FFCC0088"
+	],
+	"backgroundImageUrl": null,
+	"backgroundAnimationImageUrls": [
+		"assets/images/icons/flying/magic-wand01.png",
+		"assets/images/icons/flying/mirror01.png",
+		"assets/images/icons/flying/potted-plant01.png",
+		"assets/images/icons/flying/potted-plant02.png"
+	],
+	"answers": [
+		{
+			"key": "quiz-category-3-answer1",
+			"imageUrl": "assets/images/quiz/potted-plant01.png"
+		},
+		{
+			"key": "quiz-category-3-answer2",
+			"imageUrl": "assets/images/quiz/magic-wand01.png"
+		}
+	],
+	"questions": [
+		{
+			"id": 1,
+			"leftCorrect": true
+		},
+		{
+			"id": 2,
+			"leftCorrect": true
+		},
+		{
+			"id": 3,
+			"leftCorrect": true
+		},
+		{
+			"id": 4,
+			"leftCorrect": true
+		},
+		{
+			"id": 5,
+			"leftCorrect": true
+		},
+		{
+			"id": 6,
+			"leftCorrect": true
+		},
+		{
+			"id": 7,
+			"leftCorrect": true
+		},
+		{
+			"id": 8,
+			"leftCorrect": true
+		},
+		{
+			"id": 9,
+			"leftCorrect": true
+		},
+		{
+			"id": 10,
+			"leftCorrect": true
+		},
+		{
+			"id": 11,
+			"leftCorrect": true
+		},
+		{
+			"id": 12,
+			"leftCorrect": true
+		},
+		{
+			"id": 13,
+			"leftCorrect": true
+		},
+		{
+			"id": 14,
+			"leftCorrect": true
+		},
+		{
+			"id": 15,
+			"leftCorrect": true
+		},
+		{
+			"id": 16,
+			"leftCorrect": true
+		},
+		{
+			"id": 17,
+			"leftCorrect": true
+		},
+		{
+			"id": 18,
+			"leftCorrect": true
+		},
+		{
+			"id": 19,
+			"leftCorrect": true
+		},
+		{
+			"id": 20,
+			"leftCorrect": true
+		},
+		{
+			"id": 21,
+			"leftCorrect": true
+		},
+		{
+			"id": 22,
+			"leftCorrect": true
+		},
+		{
+			"id": 23,
+			"leftCorrect": true
+		},
+		{
+			"id": 24,
+			"leftCorrect": true
+		},
+		{
+			"id": 25,
+			"leftCorrect": true
+		},
+		{
+			"id": 26,
+			"leftCorrect": true
+		},
+		{
+			"id": 27,
+			"leftCorrect": true
+		},
+		{
+			"id": 28,
+			"leftCorrect": true
+		},
+		{
+			"id": 29,
+			"leftCorrect": true
+		},
+		{
+			"id": 30,
+			"leftCorrect": true
+		},
+		{
+			"id": 31,
+			"leftCorrect": true
+		},
+		{
+			"id": 32,
+			"leftCorrect": true
+		},
+		{
+			"id": 33,
+			"leftCorrect": true
+		},
+		{
+			"id": 34,
+			"leftCorrect": true
+		},
+		{
+			"id": 35,
+			"leftCorrect": true
+		},
+		{
+			"id": 36,
+			"leftCorrect": true
+		},
+		{
+			"id": 37,
+			"leftCorrect": true
+		},
+		{
+			"id": 38,
+			"leftCorrect": true
+		},
+		{
+			"id": 39,
+			"leftCorrect": true
+		},
+		{
+			"id": 40,
+			"leftCorrect": true
+		},
+		{
+			"id": 41,
+			"leftCorrect": true
+		},
+		{
+			"id": 42,
+			"leftCorrect": true
+		},
+		{
+			"id": 43,
+			"leftCorrect": true
+		},
+		{
+			"id": 44,
+			"leftCorrect": true
+		},
+		{
+			"id": 45,
+			"leftCorrect": true
+		},
+		{
+			"id": 46,
+			"leftCorrect": true
+		},
+		{
+			"id": 47,
+			"leftCorrect": true
+		},
+		{
+			"id": 48,
+			"leftCorrect": true
+		},
+		{
+			"id": 49,
+			"leftCorrect": true
+		},
+		{
+			"id": 50,
+			"leftCorrect": false
+		},
+		{
+			"id": 51,
+			"leftCorrect": false
+		},
+		{
+			"id": 52,
+			"leftCorrect": false
+		},
+		{
+			"id": 53,
+			"leftCorrect": false
+		},
+		{
+			"id": 54,
+			"leftCorrect": false
+		},
+		{
+			"id": 55,
+			"leftCorrect": false
+		},
+		{
+			"id": 56,
+			"leftCorrect": false
+		},
+		{
+			"id": 57,
+			"leftCorrect": false
+		},
+		{
+			"id": 58,
+			"leftCorrect": false
+		},
+		{
+			"id": 59,
+			"leftCorrect": false
+		},
+		{
+			"id": 60,
+			"leftCorrect": false
+		},
+		{
+			"id": 61,
+			"leftCorrect": false
+		},
+		{
+			"id": 62,
+			"leftCorrect": false
+		},
+		{
+			"id": 63,
+			"leftCorrect": false
+		},
+		{
+			"id": 64,
+			"leftCorrect": false
+		},
+		{
+			"id": 65,
+			"leftCorrect": false
+		},
+		{
+			"id": 66,
+			"leftCorrect": false
+		},
+		{
+			"id": 67,
+			"leftCorrect": false
+		},
+		{
+			"id": 68,
+			"leftCorrect": false
+		},
+		{
+			"id": 69,
+			"leftCorrect": false
+		},
+		{
+			"id": 70,
+			"leftCorrect": false
+		},
+		{
+			"id": 71,
+			"leftCorrect": false
+		},
+		{
+			"id": 72,
+			"leftCorrect": false
+		},
+		{
+			"id": 73,
+			"leftCorrect": false
+		},
+		{
+			"id": 74,
+			"leftCorrect": false
+		},
+		{
+			"id": 75,
+			"leftCorrect": false
+		},
+		{
+			"id": 76,
+			"leftCorrect": false
+		},
+		{
+			"id": 77,
+			"leftCorrect": false
+		},
+		{
+			"id": 78,
+			"leftCorrect": false
+		},
+		{
+			"id": 79,
+			"leftCorrect": false
+		},
+		{
+			"id": 80,
+			"leftCorrect": false
+		},
+		{
+			"id": 81,
+			"leftCorrect": false
+		},
+		{
+			"id": 82,
+			"leftCorrect": false
+		},
+		{
+			"id": 83,
+			"leftCorrect": false
+		},
+		{
+			"id": 84,
+			"leftCorrect": false
+		},
+		{
+			"id": 85,
+			"leftCorrect": false
+		},
+		{
+			"id": 86,
+			"leftCorrect": false
+		},
+		{
+			"id": 87,
+			"leftCorrect": false
+		},
+		{
+			"id": 88,
+			"leftCorrect": false
+		},
+		{
+			"id": 89,
+			"leftCorrect": false
+		},
+		{
+			"id": 90,
+			"leftCorrect": false
+		},
+		{
+			"id": 91,
+			"leftCorrect": false
+		},
+		{
+			"id": 92,
+			"leftCorrect": false
+		},
+		{
+			"id": 93,
+			"leftCorrect": false
+		},
+		{
+			"id": 94,
+			"leftCorrect": false
+		},
+		{
+			"id": 95,
+			"leftCorrect": false
+		},
+		{
+			"id": 96,
+			"leftCorrect": false
+		},
+		{
+			"id": 97,
+			"leftCorrect": false
+		},
+		{
+			"id": 98,
+			"leftCorrect": false
+		},
+		{
+			"id": 99,
+			"leftCorrect": false
+		},
+		{
+			"id": 100,
+			"leftCorrect": false
+		},
+		{
+			"id": 101,
+			"leftCorrect": false
+		},
+		{
+			"id": 102,
+			"leftCorrect": false
+		},
+		{
+			"id": 103,
+			"leftCorrect": false
+		},
+		{
+			"id": 104,
+			"leftCorrect": false
+		},
+		{
+			"id": 105,
+			"leftCorrect": false
+		},
+		{
+			"id": 106,
+			"leftCorrect": false
+		},
+		{
+			"id": 107,
+			"leftCorrect": false
+		},
+		{
+			"id": 108,
+			"leftCorrect": false
+		},
+		{
+			"id": 109,
+			"leftCorrect": false
+		},
+		{
+			"id": 110,
+			"leftCorrect": false
+		},
+		{
+			"id": 111,
+			"leftCorrect": false
+		}
+	]
+}

@@ -1,0 +1,113 @@
+@use "../../../../assets/scss/variables" as variables;
+
+.game-header {
+	width: 100%;
+	height: 100%;
+	padding: 0 0.75em;
+	background-color: rgb(255 255 255 / 30%);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+
+	.start, .middle, .end {
+		line-height: 1;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+		width: 100%;
+	}
+
+	.start {
+		justify-content: flex-start;
+	}
+
+	.middle {
+		justify-content: center;
+	}
+
+	.end {
+		justify-content: flex-end;
+	}
+
+	.btn-primary {
+		/*font-size: 1.2vw;*/
+		font-size: 0.9em;
+		/*border-radius: 1.2vw;*/
+		border-radius: 1.25em;
+		/*min-width: 10vw;*/
+		min-width: 8.35em;
+		/*padding: 0 1vw;*/
+		padding: 0 0.85em;
+		/*height: 2.3vw;*/
+		height: 1.925em;
+	}
+
+	.runtime, .tokens, .gs-name, .nickname, .score {
+		display: flex;
+		font-size: 50px;
+		// border-radius: 35px;
+		min-width: 300px;
+		//color: variables.$app-main-dark-color;
+		// background-color: #fff;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		margin-left: 0.75em;
+		padding: 10px 20px;
+
+		/*color: #fff;*/
+		background-color: #00000036;
+	}
+
+	.runtime {
+		margin-left: 0;
+
+		.clock-image {
+			background-color: variables.$app-main-dark-color;
+			-webkit-mask-image: url('../../../../assets/images/svg/clock.svg');
+			mask-image: url('../../../../assets/images/svg/clock.svg');
+			mask-repeat: no-repeat;
+			/*mask-size: 1.6vw;*/
+			mask-size: 1.35em;
+			/*-webkit-mask-size: 1.6vw;*/
+			-webkit-mask-size: 1.35em;
+			/*margin-right: 0.2vw;*/
+			margin-right: 0.15em;
+			display: inline-block;
+			/*width: 1.5vw;*/
+			width: 1.3em;
+			/*height: 1.5vw;*/
+			height: 1.3em;
+		}
+	}
+
+	.tokens {
+	}
+
+	.score {
+		justify-content: space-between;
+		padding: 10px 20px 14px 20px;
+		line-height: 1;
+
+		border-style: solid;
+		border-width: 0;
+		border-radius: 0;
+
+		.coin-image {
+			width: 42px;
+			height: 42px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			margin-top: 4px;
+		}
+	}
+
+	.btn-end {
+
+	}
+}

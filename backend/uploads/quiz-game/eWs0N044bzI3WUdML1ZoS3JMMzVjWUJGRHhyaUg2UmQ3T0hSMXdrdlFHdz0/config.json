@@ -1,0 +1,429 @@
+{
+	"categories": [
+		30,
+		29
+	],
+	"backgroundColors": [
+		"#ff000088",
+		"#ffb40088",
+		"#ffd40088",
+		"#72843f88",
+		"#1b7b2e88",
+		"#2e909288",
+		"#4c4e8f88",
+		"#693f8488"
+	],
+	"mainFont": "fonts/englebert-v21-latin-regular.woff2",
+	"fontColorMain": "#62ceceff",
+	"fontColorTitle": "#ffffffff",
+	"backgroundAnimationImageUrls": [
+		"images/bg-ani/one-ui-button-background.png",
+		"images/bg-ani/viele-palmen-hintergrund-mit-blauem-himmel.png",
+		"images/bg-ani/viele-palmen-hintergrund-mit-blauem-himmel.png",
+		"images/bg-ani/viele-palmen-hintergrund-mit-blauem-himmel.png",
+		"images/bg-ani/viele-palmen-hintergrund-mit-blauem-himmel.png",
+		"images/bg-ani/viele-palmen-hintergrund-mit-blauem-himmel.png"
+	],
+	"fontColorButton": "#ffe0b3ff",
+	"colorButtonBg": "#52ab9bff",
+	"imageScoreAni": "score-ani",
+	"isRotatingFlyingAni": true,
+	"colorCategoryPath": "#52000f8a",
+	"maxQuizRoundCount": 2,
+	"maxQuizQuestionCount": 13,
+	"imageCompanyLogo": "company-logo",
+	"titleAlignment": "center",
+	"titleLineHeight": 0.8,
+	"titleFontSize": 173,
+	"urlCompany": "fffffffff",
+	"typeImprint": "text",
+	"urlImprint": "https://www.yahoo.de",
+	"typePrivacyPolicy": "text",
+	"urlPrivacyPolicy": "https://www.web.de",
+	"companyPath": "uploads/company/TVR5NDFrQndoOGM0cGdkWVdhRzJXeTFocDhsK0EzaktwWVFMVmJsaEx0MD0/",
+	"quizGamePath": "uploads/quiz-game/eWs0N044bzI3WUdML1ZoS3JMMzVjWUJGRHhyaUg2UmQ3T0hSMXdrdlFHdz0/",
+	"soundDefinitions": {
+		"miniGamePachinko": "no-sound",
+		"miniGameRoulette": "no-sound",
+		"miniGamePointShooter": "no-sound"
+	},
+	"scormQuestionFinishPercentage": 85,
+	"totalQuestions": 7,
+	"includesHighscore": true,
+	"fontColorLink": "#e1d2ffff",
+	"buttonBorder": 10,
+	"buttonBorderColor": "#df8960ff",
+	"dialogColorBg": "#9cac9aff",
+	"fontColorDialog": "#001e0bff",
+	"dialogBorder": 10,
+	"dialogBorderColor": "#cd0beeff",
+	"fontColorIconButton": "#1dbd35ff",
+	"colorIconButtonBg": "#000000ff",
+	"iconButtonBorder": 4,
+	"iconButtonBorderColor": "#00ffc7ff",
+	"miniGameColorBackground1": "#470d0db6",
+	"miniGameColorBackground2": "#000000ff",
+	"miniGameColorFont": "#fffa00ff",
+	"miniGameColorMain": "#00eaffff",
+	"miniGameColorOutline": "#f9d77c8a",
+	"miniGameColorBall": "#c73d3dff",
+	"imageGameTitle": "game-title",
+	"imageSplitScreenBg": "split-screen-bg",
+	"splitScreenColorBg": "#815353ff",
+	"backgroundColorsDuration": 100,
+	"imageBg": "main-bg",
+	"startBtn": {
+		"fontColor": "#ffffffff",
+		"colorBg": "#df8960ff",
+		"border": 10,
+		"borderColor": "#ffffffff",
+		"glowColor": "#1c0404ff",
+		"glowRadius": 30,
+		"glowDuration": 1,
+		"pulseScale": 0.79,
+		"pulseDuration": 2
+	},
+	"buttonRadius": 100,
+	"screenTitleBtnIcon": {
+		"fontColor": "#0053faff",
+		"colorBg": "#142d1dff",
+		"border": 0,
+		"borderColor": "#9ea2c3ff",
+		"radius": 0
+	},
+	"headerBtnIcon": {
+		"fontColor": "#ffffffff",
+		"colorBg": "#000e00e7",
+		"border": 0,
+		"borderColor": "#ffffffff",
+		"radius": 0
+	},
+	"screenHighscoreBtnIcon": {
+		"fontColor": "#ff00e8ff",
+		"colorBg": "#faff00e7",
+		"border": 10,
+		"borderColor": "#170000ff",
+		"radius": 32
+	},
+	"screenEndGameBtnIcon": {
+		"fontColor": "#f300ddff",
+		"colorBg": "#001cffff",
+		"border": 4,
+		"borderColor": "#00ff59ff",
+		"radius": 0
+	},
+	"crm": {
+		"isEnabled": true,
+		"isFirstNameEnabled": true,
+		"isLastNameEnabled": false,
+		"isBirthdateEnabled": false,
+		"isOrganisationEnabled": false,
+		"isEmailEnabled": false,
+		"isMessageEnabled": false
+	},
+	"screenTitleBtnDefault": {
+		"fontColor": "#ffffffff",
+		"colorBg": "#1000ffff",
+		"border": 5,
+		"borderColor": "#00ff00ff",
+		"radius": 25
+	},
+	"screenHighscore": {
+		"titleFontColor": "#08ff00ff",
+		"titleAlignment": "left",
+		"curFilterFontColor": "#005046ff",
+		"fCTitleHead": "#00ffcaff",
+		"tableFontColor": "#ff0000ff",
+		"tableColorBg": "#6f2828cc",
+		"tableColorBgRowOdd": "#872b5fcc",
+		"tableRadius": 34,
+		"tableBorder": 10,
+		"tableBorderColor": "#00e9ffff",
+		"fontColorRank": "#ffffffff",
+		"rankColorBackground1": "#ff0000ff",
+		"rankColorBackground2": "#ff0000ff",
+		"rankColorBackground3": "#ff0000ff",
+		"rankColorBackground4": "#a82525ff",
+		"rankAniDuration": 1,
+		"rankRadius": 35,
+		"rankBorder": 5,
+		"rankBorderColor": "#e61c1cff",
+		"btnFilter": {
+			"fontColor": "#ed1515ff",
+			"colorBg": "#0016ffff",
+			"border": 4,
+			"borderColor": "#f50909ff",
+			"radius": 12
+		},
+		"btnClose": {
+			"fontColor": "#ff0000ff",
+			"colorBg": "#00000042",
+			"border": 9,
+			"borderColor": "#ffffff",
+			"radius": 74
+		},
+		"btnIcon": {
+			"fontColor": "#ff0000ff",
+			"colorBg": "#591c1cff",
+			"border": 5,
+			"borderColor": "#000000ff",
+			"radius": 0
+		},
+		"userRow": {
+			"fontColor": "#ffffffff",
+			"colorBg": "#0d2257ff",
+			"radius": 83,
+			"border": 6,
+			"borderColor": "#000000",
+			"fontColorRank": "#000000ff",
+			"rankColorBackground1": "#f08383ff",
+			"rankColorBackground2": "#ffffffff",
+			"rankColorBackground3": "#ffffffff",
+			"rankColorBackground4": "#0e00ffff",
+			"rankAniDuration": 10,
+			"rankRadius": 20,
+			"rankBorder": 6,
+			"rankBorderColor": "#000000ff"
+		}
+	},
+	"gameHeaderColorBg": "#b7741c73",
+	"headerContainerScore": {
+		"fontColor": "#ff0000ff",
+		"colorBg": "#00ff7e88",
+		"radius": 50,
+		"border": 4,
+		"borderColor": "#dd2b2bff"
+	},
+	"miniGameSplitScreenAnimationType": 3,
+	"miniGameSplitScreenColorBg": "#f66c6cff",
+	"imageMiniGameSplitScreenBg": "mini-game-split-screen-bg",
+	"dialogRadius": 0,
+	"iconButtonRadius": 0,
+	"backgroundAnimationType": 1,
+	"splitScreenAnimationType": 0,
+	"screenQuiz": {
+		"statusBarColorLine": "#711919ff",
+		"statusBarColorCorrect": "#bfcae4db",
+		"statusBarColorWrong": "#27ba61d1",
+		"questionColor": "#ffffff",
+		"dialogResultTitleColor": "#00ff92ff",
+		"dialogResultStarColor": "#524ec2ff",
+		"dialogResultScoreColor": "#deef06ff",
+		"fontColorFeedback": "#00ff20ff",
+		"questionCard": {
+			"fontColor": "#1fe13bff",
+			"colorBg": "#b11717ff",
+			"radius": 44,
+			"border": 5,
+			"borderColor": "#ef3d3dff"
+		},
+		"questionCardGold": {
+			"fontColor": "#1cc0d7ff",
+			"colorBg": "#FEDB37",
+			"isFontBold": false,
+			"radius": 0,
+			"border": 0,
+			"borderColor": "#000000",
+			"colorBg2": "#FDB931",
+			"colorBg3": "#9f7928",
+			"colorBg4": "#8A6E2F",
+			"colorBg5": "#5d4a1f"
+		},
+		"timeBar": {
+			"fontColor": "#fefffeff",
+			"colorBg": "#7e5555ff",
+			"radius": 98,
+			"border": 10,
+			"borderColor": "#d80707ff",
+			"colorBg2": "#55d04cff",
+			"colorBg3": "#d38405ff",
+			"colorBg4": "#995b43ff",
+			"colorBg5": "#1d33e9ff"
+		},
+		"btnAnswer": {
+			"fontColor": "#565389ff",
+			"colorBg": "#ff0000ff",
+			"border": 10,
+			"borderColor": "#ffffffff",
+			"radius": 100
+		},
+		"btnFeedback": {
+			"fontColor": "#ffee00ff",
+			"colorBg": "#134f2bff",
+			"border": 6,
+			"borderColor": "#913737ff",
+			"radius": 47
+		},
+		"dialogWrong": {
+			"fontColor": "#000000ff",
+			"colorBg": "#5eb940ff",
+			"radius": 10,
+			"border": 10,
+			"borderColor": "#ff0064ff"
+		},
+		"btnDialogWrong": {
+			"fontColor": "#ff0000ff",
+			"colorBg": "#000000ff",
+			"border": 10,
+			"borderColor": "#40ff00ff",
+			"radius": 100
+		},
+		"dialogResult": {
+			"fontColor": "#ff7b7bff",
+			"colorBg": "#39123e88",
+			"radius": 87,
+			"border": 9,
+			"borderColor": "#6668d6ff"
+		},
+		"btnDialogResult": {
+			"fontColor": "#14eb0eff",
+			"colorBg": "#000000ff",
+			"border": 9,
+			"borderColor": "#01ffd4ff",
+			"radius": 36
+		},
+		"imageSwipe": "swipe",
+		"imageGreat": "great"
+	},
+	"screenMinigames": {
+		"dialogResult": {
+			"fontColor": "#7aff0cff",
+			"colorBg": "#31439688",
+			"radius": 92,
+			"border": 4,
+			"borderColor": "#5555e8ff",
+			"titleColor": "#a1895eff",
+			"scoreColor": "#ff85fdff"
+		},
+		"btnDialogResult": {
+			"fontColor": "#ed0505ff",
+			"colorBg": "#4266baff",
+			"border": 4,
+			"borderColor": "#3459deff",
+			"radius": 65
+		}
+	},
+	"screenEndGame": {
+		"dialogReview": {
+			"fontColor": "#49ce6eff",
+			"colorBg": "#56565688",
+			"radius": 0,
+			"border": 0,
+			"borderColor": "#000000",
+			"titleColor": "#dc8d8dff",
+			"starColor": "#e3ff17ff",
+			"roundLabelColor": "#99a6ffff",
+			"catLabelColor": "#ffffff",
+			"cardCorrectOptNotSelectedColor": "#f9c611ff",
+			"cardCorrectFeedbackColor": "#f1ff57ff",
+			"cardCorrectResultColor": "#f5ff80ff",
+			"cardCorrectIconCorrectColor": "#0bff00ff",
+			"cardCorrectIconWrongColor": "#0b7800ff",
+			"cardWrongOptNotSelectedColor": "#d015b4ff",
+			"cardWrongFeedbackColor": "#ff7900ff",
+			"cardWrongResultColor": "#d90000ff",
+			"cardWrongIconCorrectColor": "#f90808ff",
+			"cardWrongIconWrongColor": "#9f0000ff"
+		},
+		"btnDialogReview": {
+			"fontColor": "#37b0bdff",
+			"colorBg": "#f1c600df",
+			"border": 6,
+			"borderColor": "#371818ff",
+			"radius": 16
+		},
+		"btnDialogReviewCardCorrectFeedback": {
+			"fontColor": "#000000ff",
+			"colorBg": "#00ff64ff",
+			"border": 8,
+			"borderColor": "#ffffffff"
+		},
+		"btnDialogReviewCardWrongFeedback": {
+			"fontColor": "#ffffffff",
+			"colorBg": "#ff0000ff",
+			"border": 10,
+			"borderColor": "#000000ff"
+		},
+		"dialogReviewCardCorrect": {
+			"fontColor": "#00ff1cff",
+			"colorBg": "#53843f88",
+			"radius": 0,
+			"border": 0,
+			"borderColor": "#000000"
+		},
+		"dialogReviewCardCorrectAnswerOptSel": {
+			"fontColor": "#d35252ff",
+			"colorBg": "#80b76a88",
+			"radius": 20,
+			"border": 10,
+			"borderColor": "#bbb5b5ff"
+		},
+		"dialogReviewCardWrong": {
+			"fontColor": "#ff0000ff",
+			"colorBg": "#84433f88",
+			"radius": 0,
+			"border": 0,
+			"borderColor": "#000000"
+		},
+		"dialogReviewCardWrongAnswerOptSel": {
+			"fontColor": "#010101ff",
+			"colorBg": "#55fb1188",
+			"radius": 67,
+			"border": 10,
+			"borderColor": "#ff0808ff"
+		}
+	},
+	"screenMgPachinko": {
+		"borderColor": "#5981f0ff",
+		"fontColor": "#f39595ff",
+		"fontColorTgt": "#ffcfcfff",
+		"colorBg1": "#00000080",
+		"colorBg2": "#5a1616ff",
+		"buttonColor": "#00ff89ff",
+		"ballColor": "#e9864eff",
+		"ballHoldColor": "#401855ff",
+		"ballHoldColor2": "#BB59F0",
+		"tgtOutColor": "#BB59F099",
+		"tgtBgColor": "#48026eff",
+		"tgtBgActColor": "#ec6a1e",
+		"nailColor": "#00fdffff"
+	},
+	"screenMgRoulette": {
+		"borderColor": "#ff0000ff",
+		"fontColor": "#cc5252ff",
+		"fontColorTgt": "#e42727ff",
+		"colorBg1": "#00000080",
+		"colorBg2": "#000000ff",
+		"buttonColor": "#e2ff00ff",
+		"ballColor": "#d8b953ff",
+		"ballHoldGumColor": "#ff0000ff",
+		"ballHoldShotColor": "#7f4d99ff",
+		"tgtBgColor": "#bb59f0ab",
+		"tgtBgColor2": "#bd1616ff",
+		"tgtOutColor": "#c8ff41ff",
+		"tgtBgRollColor": "#00ff0f99",
+		"tgtBgLockColor": "#00ffbecc"
+	},
+	"screenMgPointShooter": {
+		"borderColor": "#f0ef59ff",
+		"fontColor": "#efdc1cff",
+		"fontColorTgt": "#4ee322ff",
+		"colorBg1": "#494949ff",
+		"colorBg2": "#000000ff",
+		"buttonColor": "#59f070ff",
+		"ballColor": "#568145ff",
+		"ballHoldColor": "#4d4d4dff",
+		"ballHoldColor2": "#ff0000ff",
+		"ballHoldGumColor": "#00fff7ff",
+		"ballHoldShotColor": "#215f19ff",
+		"tgtOutColor": "#ffc687ff",
+		"tgtBgColor": "#8e55acff",
+		"tgtBgHoleColor": "#bebebe00",
+		"obstArrowColor": "#ffffffff",
+		"obstOutColor": "#BB59F0",
+		"obstBgColor": "#bd43434d",
+		"obstBgActiveColor": "#ff5e00ff"
+	},
+	"titleAni": 1,
+	"hasSubtitle": true
+}

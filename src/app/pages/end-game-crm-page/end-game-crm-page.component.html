@@ -1,0 +1,107 @@
+<div class="content"
+	 [class.no-overflow]="signalIsNoScreenOverflow()"
+>
+	<div class="content-container">
+		<div class="empty-line"></div>
+		<h5 class="mb-5">{{ 'crm-title' | nativeTranslate }}</h5>
+		<p class="">
+			{{
+				'crm-content' | nativeTranslate : {
+					current: swipeYesNoService.currentQuestionNr,
+					max: swipeYesNoService.maxQuestionCount
+				}
+			}}
+		</p>
+		<div class="enter-high-score-container">
+			@if (gameService.signalGameConfig()?.quizConfigCrm?.typeCollectInformation) {
+				<div class="button-container" animate.enter="fade-in-800ms">
+					<app-base-button
+						[configBtn]="gameService.signalGameConfig()?.defaultBtn ?? null"
+						[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+						[btnContentWidth]="'670px'"
+						[btnContentPadding]="'30px 10px'"
+						
+						(clickButton)="onClickLegalText('crm-info')"
+					>{{ 'what-this-data-is-for' | nativeTranslate }}
+					</app-base-button>
+				</div>
+			}
+			
+			<div class="user-crm" animate.enter="fade-in-800ms">
+				<app-user-crm-form
+					#userCrmForm
+					[editValue]="null"
+					(submitForm)="onSubmitForm($event)"
+					(cancelForm)="onCancelForm($event)"
+				></app-user-crm-form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="legal-links">
+		@if (gameService.signalGameConfig()?.typeImprint) {
+			<button type="button" class="btn btn-link btn-legal"
+					[style.color]="gameService.signalGameConfig()?.fontColorLink"
+					(click)="onClickLegalText('imprint')"
+			>{{ 'imprint' | nativeTranslate }}
+			</button>
+		}
+		@if (gameService.signalGameConfig()?.typePrivacyPolicy) {
+			<button type="button" class="btn btn-link btn-legal"
+					[style.color]="gameService.signalGameConfig()?.fontColorLink"
+					(click)="onClickLegalText('privacy-policy')"
+			>{{ 'privacy-policy' | nativeTranslate }}
+			</button>
+		}
+	</div>
+	
+	<app-button-sound-on-off
+		#buttonSoundOnOffComponent
+		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+		[borderRadiusPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.radius"
+		[borderWidthPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.border"
+		[borderColor]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.borderColor"
+		[disabled]="false"
+		[right]="document.fullscreenEnabled ? '115px' : '20px'"
+		(click)="soundService.playSound(SoundNameEnum.click, true);"
+	></app-button-sound-on-off>
+	
+	<app-button-fullscreen
+		#buttonFullscreenComponent
+		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenEndGameBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+		[borderRadiusPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.radius"
+		[borderWidthPx]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.border"
+		[borderColor]="gameService.signalGameConfig()?.screenEndGameBtnIcon!.borderColor"
+		[disabled]="false"
+		(click)="soundService.playSound(SoundNameEnum.click, true);"
+	></app-button-fullscreen>
+</div>
+
+@if (legalTextDialogType()) {
+	<div class="dialog-animation-container"
+		 animate.enter="dialog-enter"
+		 animate.leave="dialog-leave">
+		<app-dialog-legal
+			[type]="legalTextDialogType()!"
+			(cancelDialog)="onClickCloseLegal($event)"
+		></app-dialog-legal>
+	</div>
+}
+
+@if (isShowingConfirmCancelDialog()) {
+	<div class="dialog-animation-container"
+		 animate.enter="dialog-enter"
+		 animate.leave="dialog-leave">
+		<app-dialog-confirm
+			[titleKey]="'cancel'"
+			[contentKey]="'modal-dialog.discard-high-score'"
+			[isJsonContent]="false"
+			[hasSafetyCheck]="false"
+			(cancelDialog)="onClickNoHighscoreSaving($event)"
+		></app-dialog-confirm>
+	</div>
+}

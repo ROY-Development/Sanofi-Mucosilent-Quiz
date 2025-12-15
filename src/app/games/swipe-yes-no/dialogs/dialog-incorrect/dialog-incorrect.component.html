@@ -1,0 +1,33 @@
+@if (currentQuestion) {
+	<div class="dialog-container dialog-incorrect"
+		 [class.visible]="gameState === GameStateEnum.incorrect || gameState === GameStateEnum.showAnswer"
+	>
+		<div class="dialog"
+			 [class.shake]="signalShakeDialog()"
+			 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogWrong.fontColor : undefined"
+			 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogWrong.colorBg : undefined"
+			 [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogWrong.radius : undefined"
+			 [style.border-width.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogWrong.border : undefined"
+			 [style.border-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogWrong.borderColor : undefined"
+		>
+			<div class="text-center">
+				@if (gameState === GameStateEnum.incorrect) {
+					{{ 'sorry' | nativeTranslate }}
+					<div class="">{{ 'wrong-decision' | nativeTranslate }}</div>
+				}
+			</div>
+			<div class="text"
+				 [innerHTML]="(currentQuestion.textFeedbackKey ?? '') | nativeTranslate : null:null : false"
+			></div>
+			
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.btnDialogWrong : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'400px'"
+				[btnContentPadding]="'40px 10px'"
+				(clickButton)="cancelDialog.emit()"
+			>{{ 'close' | nativeTranslate }}
+			</app-base-button>
+		</div>
+	</div>
+}

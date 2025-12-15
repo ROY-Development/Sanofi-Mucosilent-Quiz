@@ -1,0 +1,216 @@
+.on-screen-keyboard {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 20000;
+	// display: none;
+	bottom: -50%;
+	transition: bottom 150ms ease-out;
+
+	&.visible {
+		// display: block;
+		bottom: 0;
+		padding: 0.5vw 0.3vw;
+	}
+
+	.os-keyboard {
+		display: block;
+		color: #000;
+		background-color: #ececec;
+		width: 60vw;
+		margin: 0 auto;
+		border-radius: 0.5vw;
+		padding: 0;
+
+		&.numeric {
+			width: 16vw;
+		}
+
+		.close {
+			display: block;
+			position: absolute;
+			top: -1.6vw; //top: -1vw;
+			right: 0; // -1vw;
+			width: 2vw;
+			height: 2vw;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-image: url('../../../../assets/images/svg/clear-47.svg');
+			// background-image: url('../../../../assets/images/svg/multiply_circle.svg');
+			background-size: contain;
+			background-color: #ececec;
+			border-radius: 15%; // 50%;
+			z-index: 1;
+			cursor: pointer;
+
+			&:focus {
+				outline: none;
+			}
+
+			&:active {
+				box-shadow: 0 0 0px -1px rgba(0, 0, 0, 0.3);
+			}
+
+			&:hover {
+				background-color: #f9f9f9;
+			}
+		}
+
+		.os-row {
+			display: flex;
+
+			&:not(:last-child) {
+				margin-bottom: 0.3vw;
+			}
+
+			.os-empty-key {
+				flex-grow: 1;
+				padding: 0.4vw 0;
+				visibility: hidden;
+
+				&:not(:last-child) {
+					margin-right: 0.3vw;
+				}
+			}
+
+			.os-key-container {
+				position: relative;
+				flex-grow: 1;
+
+				&:not(:last-child) {
+					margin-right: 0.3vw;
+				}
+
+				.os-key, .os-special-key {
+					align-items: center;
+					background-color: #fff;
+					border: none;
+					border-radius: 0.3vw;
+					border-bottom: 0.05vw solid #b5b5b5;
+					box-shadow: 0 0 0.2vw -0.1vw rgba(0, 0, 0, 0.3);
+					box-sizing: border-box;
+					cursor: pointer;
+					display: flex;
+					justify-content: center;
+					padding: 0.4vw 0;
+					width: 100%;
+
+					&:focus {
+						outline: none;
+					}
+
+					&:active {
+						background-color: #f9f9f9 !important;
+						box-shadow: 0 0 0px -1px rgba(0, 0, 0, 0.3);
+					}
+
+					&:hover {
+						background-color: #f9f9f9;
+					}
+
+					&.lock::after {
+						position: absolute;
+						display: block;
+						content: "";
+						height: 0.65vw;
+						width: 0.65vw;
+						background: #f3f3f3;
+						border-radius: 50%;
+						border: 0.1vw #d7d7d7 solid;
+						right: 0.5vw;
+						bottom: 0.5vw;
+					}
+
+					&.lock-enabled::after {
+						position: absolute;
+						display: block;
+						content: "";
+						height: 0.65vw;
+						width: 0.65vw;
+						background: #ac0000;
+						border-radius: 50%;
+						border: 0.1vw #9a2a2a solid;
+						right: 0.5vw;
+						bottom: 0.5vw;
+						box-shadow: 0 0 1.3vw 0.1vw #ff0000;
+					}
+
+					.os-key-value {
+						pointer-events: none;
+						touch-action: none;
+						background-repeat: no-repeat;
+						background-position: center;
+						width: 100%;
+						position: absolute;
+
+						&.os-enter {
+							background-image: url('../../../../assets/images/svg/enter-12.svg');
+							background-size: 1.3vw;
+							min-width: 2vw;
+						}
+
+						&.os-backspace {
+							background-image: url('../../../../assets/images/svg/keyboard-backspace-1.svg');
+							background-size: 1.3vw;
+							min-width: 2vw;
+						}
+
+						&.os-tab {
+							background-image: url('../../../../assets/images/svg/tab-10.svg');
+							background-size: 1vw;
+							min-width: 2vw;
+							position: relative;
+							left: -1.8vw;
+						}
+
+						&.os-shift-lock {
+							background-image: url('../../../../assets/images/svg/shift-4.svg');
+							background-size: 1.1vw;
+							min-width: 2vw;
+							position: relative;
+							left: -1.9vw;
+							transform: rotate(180deg);
+						}
+
+						&.os-shift-left, &.os-shift-right {
+							background-image: url('../../../../assets/images/svg/shift-4.svg');
+							background-size: 1.1vw;
+							min-width: 2vw;
+							position: relative;
+							left: -2vw;
+
+							&.os-shift-right {
+								left: 1.7vw;
+							}
+						}
+					}
+				}
+
+				.os-special-key-row {
+					position: absolute;
+					display: flex;
+					background-color: #ececec;
+					border-radius: 0.5vw;
+					padding: 0.5vw 0.3vw;
+					top: -4vw;
+					left: -0.4vw;
+					z-index: 1;
+
+					.os-special-key {
+						padding: 0.6vw 1.6vw;
+						background-color: #2A2B3E;
+						color: #fff;
+
+						&:not(:last-child) {
+							margin-right: 0.3vw;
+						}
+
+						&:hover {
+							background-color: #3c3c48;
+						}
+					}
+				}
+			}
+		}
+	}
+}

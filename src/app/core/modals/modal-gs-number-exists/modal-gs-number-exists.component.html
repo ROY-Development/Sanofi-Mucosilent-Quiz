@@ -1,0 +1,20 @@
+<app-modal-background></app-modal-background>
+
+<div class="modal-header">
+	<span class="modal-title mx-auto my-auto">
+		Gas Safe Number already exists
+	</span>
+	<!--<button type="button" class="btn" aria-label="Close"
+			(click)="onClickClose(false)"
+	>
+		<fa-icon [icon]="['fas', 'times']"></fa-icon>
+	</button>-->
+</div>
+<div class="modal-body font-secondary">
+	There are already scores for this Gas Safe Number, you can play again and
+	your highest score will be saved. Press continue to proceed.
+</div>
+<div class="modal-footer justify-content-evenly">
+	<button type="button" class="btn btn-secondary" (click)="onClickClose(false)">Cancel</button>
+	<button type="button" class="btn btn-primary" (click)="onClickClose(true)">Continue</button>
+</div>

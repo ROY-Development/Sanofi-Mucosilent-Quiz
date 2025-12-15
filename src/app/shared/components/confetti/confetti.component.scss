@@ -1,0 +1,9 @@
+.confetti {
+	position: absolute;
+	pointer-events: none;
+	user-select: none;
+
+	button {
+		pointer-events: all;
+	}
+}

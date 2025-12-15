@@ -1,0 +1,53 @@
+$roy-red: #a71014;
+$roy-orange: #da5118;
+$roy-yellow: #f7b225;
+
+$roy-green: #7f3a22;
+$roy-green-secondary-1: #317075;
+$roy-green-secondary-1-trans: #613623;
+$roy-green-secondary-2: #b36442;
+$roy-green-secondary-3: #ab5836;
+$app-main-color-primary-1-trans: rgba(169, 169, 169, 0.38);
+$app-main-color-primary-2-trans: #e5e5e578;
+
+$app-main-color-primary-1: rgb(154, 139, 113);
+$app-main-color-primary-1-secondary: rgb(217, 212, 200);
+$app-main-color-primary-2: rgb(101, 139, 190);
+$app-main-color-primary-2-secondary: rgb(185, 207, 237);
+$app-main-signal: #ef9300; /*rgb(255, 133, 0);*/
+
+$app-main-color: #fff;
+$app-main-light-color: #ebebeb;
+$app-main-background-color: #000; // #003643;// #fcfcfc;
+$app-main-dark-color: #212121;
+$app-second-color: #c2c2c2;
+$app-dark-pink: #7c1939;
+$app-blue: #004875;
+$app-red: #B80C09; // #9B2915;
+$app-red-transparent: rgba(124, 25, 57, 0.9);
+$app-dark-grey: #939393;
+$app-main-border-radius: 1.2vw;
+
+$app-alert: #ff6363;
+
+$transition-hover-time: 250ms;
+$transition-touch-down-time: 250ms;
+
+$header-max-width: 1536px;
+$content-max-width: 1024px;
+$content-min-height-sm: 108px;
+$content-min-height: 37px;
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px
+) !default;
+// scss-docs-end grid-breakpoints
+
+$breakpoint-tablet: 767.5px;
+$breakpoint-mobile: 575px;

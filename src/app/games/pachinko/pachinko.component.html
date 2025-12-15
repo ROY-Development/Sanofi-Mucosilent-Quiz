@@ -1,0 +1,36 @@
+<div #pachinkoGame class="pachinko-game" [ngClass]="{show: signalIsReady()}">
+	<div #background class="background"
+		 [style.background]="`linear-gradient(${colorBg1}, ${colorBg2})`"
+	></div>
+	<canvas #canvas></canvas>
+	@if (releaseButton) {
+		<div class="button-container"
+			 [style.top.px]="releaseButton.y + this.signalTopOffsetY()"
+			 [style.color]="fontColor"
+		>
+			<span class="text">{{ 'pachinko-press' | nativeTranslate }}</span>
+			<button type="button" class="btn"
+					[style.width.px]="releaseButton.width"
+					[style.height.px]="releaseButton.height"
+					[style.border-color]="buttonColor"
+					(mousedown)="onMouseDown($event)"
+					(mousemove)="onMouseMove($event)"
+					(mouseup)="onMouseUp($event)"
+					(mouseleave)="onButtonMouseLeave()"
+					(touchstart)="onTouchStart($event)"
+					(touchend)="onTouchEnd($event)"
+					(touchcancel)="onTouchCancel($event)"
+					(touchmove)="onTouchMove($event)"
+			>
+        <span class="pressed"
+			  [style.width.px]="releaseButton.pressFactor * 240"
+			  [style.height.px]="releaseButton.pressFactor * 240"
+		></span>
+				<span class="loader2">
+					<span class="anim" [style.background-color]="buttonColor"></span>
+					<span class="anim" [style.background-color]="buttonColor"></span>
+				</span>
+			</button>
+		</div>
+	}
+</div>

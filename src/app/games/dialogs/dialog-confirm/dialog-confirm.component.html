@@ -1,0 +1,58 @@
+<div class="dialog-container dialog-multiplier-solved">
+	<div class="dialog"
+		 [style.background-color]="globalGameService.signalGameConfig()?.dialogColorBg"
+		 [style.color]="globalGameService.signalGameConfig()?.fontColorDialog"
+		 [style.border-radius.px]="globalGameService.signalGameConfig()?.dialogRadius"
+		 [style.border-width.px]="globalGameService.signalGameConfig()?.dialogBorder"
+		 [style.border-color]="globalGameService.signalGameConfig()?.dialogBorderColor"
+	>
+		<div class="dialog-header">
+			<div class="dialog-title mx-auto my-auto">
+				<div class="title" [innerHTML]="titleKey ? (titleKey | nativeTranslate) : title"></div>
+			</div>
+			<!--<button type="button" class="btn" aria-label="Close"
+			(click)="onClickClose(false)"
+			>
+			<fa-icon [icon]="['fas', 'times']"></fa-icon>
+		  </button>-->
+		</div>
+		<div class="dialog-body font-secondary">
+			@if (isJsonContent) {
+				<div>{{ content | json }}</div>
+			} @else {
+				<div [innerHTML]="(contentKey ? (contentKey | nativeTranslate) : content)"></div>
+			}
+		</div>
+		<div class="dialog-footer justify-content-evenly">
+			@if (hasSafetyCheck) {
+				<input type="checkbox"
+					   id="safetyCheck"
+					   [checked]="isSafetyChecked"
+					   (change)="isSafetyChecked = !isSafetyChecked;"
+				>&nbsp;<label for="safetyCheck" class="me-auto user-select-none">{{ 'safety-check' }}</label>
+			}
+			
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'100%'"
+				[btnContentPadding]="'15px 10px'"
+				[btnContentFontSize]="'56px'"
+				(clickButton)="onClickClose(true)"
+			>{{ 'yes' | nativeTranslate }}
+			</app-base-button>
+			
+			<div class="empty-line"></div>
+			
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig()?.defaultBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'100%'"
+				[btnContentPadding]="'15px 10px'"
+				[btnContentFontSize]="'56px'"
+				(clickButton)="onClickClose(false)"
+			>{{ 'no' | nativeTranslate }}
+			</app-base-button>
+		</div>
+	</div>
+</div>

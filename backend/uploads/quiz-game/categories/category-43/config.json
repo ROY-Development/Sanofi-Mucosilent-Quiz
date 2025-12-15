@@ -1,0 +1,24 @@
+{
+	"hasOverridingValues": true,
+	"questionColor": "#ffffffff",
+	"backgroundColorsDuration": 20,
+	"backgroundColors": [
+		"#7cb39488"
+	],
+	"splitScreenAnimationType": 0,
+	"splitScreenColorBg": "#d4d4d442",
+	"backgroundAnimationType": 0,
+	"backgroundAnimationImageUrls": [],
+	"categoryKey": "category-43",
+	"answers": [
+		{
+			"key": "quiz-category-43-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-43-answer2",
+			"imageUrl": null
+		}
+	],
+	"imageSplitScreenBg": null
+}

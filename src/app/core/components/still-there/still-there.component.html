@@ -1,0 +1,28 @@
+@if (stillThereService.signalTimerSeconds() <= initService.appConfig.stillThereLastSeconds) {
+	<div class="still-there" (click)="onTouchBlockShape()">
+		<div class="timer">
+			<span class="seconds">{{ stillThereService.signalTimerSeconds() }}</span>
+		</div>
+	</div>
+	<ng-template #screenPart let-screenPartSide="screenPartSide">
+		<div class="text-container" [ngClass]="'text-' + screenPartSide">
+			{{ 'still-there-question' | nativeTranslate }}<br>
+			<!--Berühren Sie den Bildschirm.-->
+			<!--<button type="button" class="btn btn-secondary btn-still-there" (click)="onClickBtn($event,true)">
+			Ja,	weiterspielen!
+		  </button>-->
+		</div>
+	</ng-template>
+	<!--<app-screen-part [screenPartSide]="ScreenPartSideEnum.top"
+	[template]="screenPart"
+	[context]="{screenPartSide: ScreenPartSideEnum.top}"
+	[zIndex]="3001"
+	></app-screen-part>-->
+	<app-screen-part [screenPartSide]="ScreenPartSideEnum.bottom"
+					 [template]="screenPart"
+					 [context]="{screenPartSide: ScreenPartSideEnum.bottom}"
+					 [zIndex]="3001"
+	></app-screen-part>
+} @if (isDebug) {
+	<div class="debug-gui" [innerHTML]="stillThereService.signalTimerSeconds()"></div>
+}

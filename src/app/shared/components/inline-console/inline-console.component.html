@@ -1,0 +1,31 @@
+@if (signalMessageList().length > 0) {
+	<div class="inline-console-container" #inlineConsoleContainer>
+		<div class="title">Inline console</div>
+		
+		<div #inlineConsole class="inline-console">
+			@for (item of signalMessageList(); track item) {
+				<div class="message"
+					 [class.error]="item.type === 'ERROR'"
+					 [class.log]="item.type === 'LOG'"
+					 [class.debug]="item.type === 'DEBUG'"
+					 [class.warn]="item.type === 'WARN'"
+					 [class.info]="item.type === 'INFO'"
+					 [class.hidden]="item.type === 'HIDDEN'"
+				>
+					<!--{{ item | json }}-->
+					<span class="type">{{ item.type }}</span>
+					{{ item.time }} {{ item.id }} {{ item.message }}
+					@for (args of item.argsList; track args) {
+						<div>
+							--    {{ args }}
+						</div>
+					}
+					<!--{{ item.argsList }}-->
+				</div>
+			}
+		</div>
+		<div class="text-end">
+			<button type="button" (click)="onClickClearConsole()">clear</button>
+		</div>
+	</div>
+}

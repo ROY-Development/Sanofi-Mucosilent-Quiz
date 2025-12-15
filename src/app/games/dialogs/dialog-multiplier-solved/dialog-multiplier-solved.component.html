@@ -1,0 +1,142 @@
+<div class="dialog-container dialog-multiplier-solved">
+	<div class="dialog"
+		 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResult.fontColor : undefined"
+		 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResult.colorBg : undefined"
+		 [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResult.radius : undefined"
+		 [style.border-width.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResult.border : undefined"
+		 [style.border-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResult.borderColor : undefined"
+	>
+		<div class="dialog-header">
+      <span class="dialog-title">
+        <div class="title"
+			 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResultTitleColor : undefined"
+			 [style.border-bottom-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResult.fontColor : undefined"
+		>
+          {{ 'bonus-chance' | nativeTranslate }}<!-- {{ quizNumber }}-->
+        </div>
+      </span>
+			<!--<button type="button" class="btn" aria-label="Close"
+			(click)="onClickClose(false)"
+			>
+			<fa-icon [icon]="['fas', 'times']"></fa-icon>
+		  </button>-->
+		</div>
+		<div class="dialog-body font-secondary">
+			<!--<div class="solved">
+			<div></div>
+		  </div>-->
+			<div class="finish-ball-scores">
+				<!--<div *ngFor="let score of finishBallScores" class="factor">
+				{{ 'factor' | nativeTranslate }} {{ score.factor }} x
+				{{ score.scoreBefore }}
+				=
+				{{ score.scoreAfter }} {{ score.scoreAfter | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}
+			  </div>-->
+				
+				<table class="table">
+					<tr>
+						<th class="text-center">{{ 'ball' | nativeTranslate }}</th>
+						<!--<th class="text-start col-bg">{{ 'score' | nativeTranslate }}</th>-->
+						<th class="text-end"
+							style="padding-left: 20px;">
+							{{'bonus' | nativeTranslate}}
+							<!--{{ (AppConfig.areMultiplierGames ? 'factor' : 'additional') | nativeTranslate }}-->
+						</th>
+						
+						<!--<th class="text-end col-bg">{{ 'total' | nativeTranslate }}</th>-->
+						<!--<th>Combo</th>
+						<th class="col-bg">Zeit</th>-->
+						<!--<th class="text-end">Gesamt</th>-->
+					</tr>
+					@for (score of finishBallScores; track score; let i = $index) {
+						<tr>
+							<td class="text-center"
+								[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+								[timeout]="i * 350 - 350"
+								[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResultScoreColor : undefined"
+							>{{ (i + 1).toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+							</td>
+							<!--<td class="text-start col-bg"
+								[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+								[timeout]="i * 350 - 250"
+							>
+								{{ score.scoreBefore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+							</td>-->
+							<td class="text-end" style="padding-left: 20px;"
+								[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+								[timeout]="i * 350 - 250"
+								[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResultScoreColor : undefined"
+							>
+								{{ score.factor.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+							</td>
+							<!--<td>
+							<ng-container *ngIf="value.comboScore > 0">
+							  +{{ score.comboScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+							</ng-container>
+						  </td>
+						  <td class="col-bg">
+							<ng-container *ngIf="value.remainingTimeScore > 0">
+							  +{{ score.remainingTimeScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+							</ng-container>
+						  </td>-->
+							<!--<td class="text-end col-bg"
+								[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+								[timeout]="i * 350"
+								[startCallback]="onScoreArrive"
+							>{{ score.scoreAfter.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+							</td>--> <!--{{ value.totalScore | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}-->
+						</tr>
+						<!--<tr>
+						<td>Time-Bonus:</td>
+						<td class="text-end">+ {{ score.comboScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }} {{ value.comboScore | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}</td>
+					  </tr>-->
+					}
+				</table>
+			</div>
+			<!--<div class="result">
+			<div>{{ 'result' | nativeTranslate }} {{ score.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }} {{ score | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}</div>
+			</div>-->
+			<div class="total">
+				<div>{{ 'in-total' | nativeTranslate }}:</div>
+				@if (finishBallScores.length > 0) {
+					<div
+						[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+						[timeout]="finishBallScores.length * 350"
+						[startCallback]="onScoreArrive"
+						[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.dialogResultScoreColor : undefined"
+					>{{ score.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+						<!--{{ totalScore | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}-->
+					</div>
+				}
+			</div>
+			<!--<div class="bonus">
+			<h3 class="text-center">BONUS</h3>
+			<table class="table">
+			  <tr>
+				<td>Time:</td>
+				<td class="text-end">{{runtime * 1000 | date:'mm:ss'}}</td>
+			  </tr>
+			  <tr>
+				<td>Time-Bonus:</td>
+				<td class="text-end">+ {{timeBonusTokens.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }} {{timeBonusTokens | textPlural : 'Token': 'Tokens'}}</td>
+			  </tr>
+			</table>
+			</div>
+			<div class="result">
+			  <div>Result:</div>
+			  <div>{{totalPoints.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }} {{totalPoints | textPlural : 'Token': 'Tokens'}}</div>
+			</div>-->
+		</div>
+		<div class="dialog-footer justify-content-center">
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenMinigames.btnDialogResult : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'100%'"
+				[btnContentPadding]="'15px 10px'"
+				[btnContentFontSize]="'56px'"
+				(clickButton)="onClickClose(true)"
+			>{{ (wasLastGame ? 'end-game' : 'continue-to-next-quiz') | nativeTranslate }}
+			</app-base-button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div #board class="board">
+	<!--<div>Score: {{ score }}</div>-->
+	<div #betLine class="bet-line">
+		<div #betPoint class="bet-point"
+			 [style.left.px]="signalBetPosX()"
+		></div>
+	</div>
+	
+	<!--<div>Factor: {{signalBetFactor()}}</div>-->
+	<!--<div>Bet score: {{ signalBetScore() }}</div>-->
+	
+	<div class="btn-container">
+		<button type="button" class="btn btn-minus"
+				[disabled]="signalBetScore() <= 0"
+				(click)="onClickChangeBet(false)">-
+		</button>
+		<button type="button" class="btn btn-plus"
+				[disabled]="signalBetScore() >= score"
+				(click)="onClickChangeBet(true)">+
+		</button>
+	</div>
+</div>

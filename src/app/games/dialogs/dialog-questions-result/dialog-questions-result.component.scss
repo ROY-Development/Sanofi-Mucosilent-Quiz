@@ -1,0 +1,321 @@
+@use "../../../../assets/scss/variables" as variables;
+
+.dialog-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	pointer-events: auto;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.3);
+
+	// prevent zooming page
+	touch-action: none;
+
+	will-change: scale;
+
+	.dialog {
+		position: relative;
+		width: 90%;
+		// min-height: 79%;
+		background-color: rgba(0, 0, 0, 0.6);
+		// padding: 15px;
+		padding: 70px 15px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
+
+		max-height: 1920px;
+
+		&.shake {
+			animation: shake 0.5s;
+			animation-iteration-count: infinite;
+		}
+
+		.text {
+			font-size: 0.9em;
+			padding: 5% 0 7% 0;
+		}
+
+		.dialog-header {
+			width: 100%;
+
+			.dialog-title {
+				font-weight: 700;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+				padding: 20px 100px 0 100px;
+
+				.title {
+					position: relative;
+					// color: #d7d7d7;
+					font-size: 1.5em;
+					text-align: center;
+					border-bottom: 2px solid #fff;
+					padding: 25px 80px;
+				}
+
+				.star-image {
+					//position: absolute;
+					font-size: 1em;
+					display: inline-block;
+
+					// background-image: url('../../../../assets/images/svg/star.svg');
+					/*background-repeat: no-repeat;
+					background-size: cover;
+					background-position: top;*/
+					background-color: #fff; /*transparent;*/
+
+					mask-image: none;
+					mask-repeat: no-repeat;
+					mask-size: contain;
+					mask-position: center;
+
+					width: 80px;
+					height: 80px;
+					transform-origin: center;
+					animation: spin 10s linear infinite;
+
+					/*top: 48px;
+
+					&:first-child {
+						left: 70px;
+					}*/
+
+					&:last-child {
+						animation-direction: reverse;
+					}
+				}
+
+				.game-time {
+					font-size: 20px;
+					font-weight: 500;
+					display: block;
+					text-align: center;
+				}
+			}
+		}
+
+		.dialog-body {
+			overflow-wrap: break-word;
+			font-size: 24px;
+			// color: #000;
+			padding: 50px 50px;
+			width: 100%;
+			overflow-y: auto;
+
+			.bonus {
+				// padding: 10px 0;
+				margin-bottom: 20px;
+				font-size: 56px;
+				// color: #d7d7d7;
+
+				.round-number {
+					text-align: center;
+					margin-bottom: 3rem;
+				}
+
+				.category-name {
+					text-align: center;
+					//	background-color: #ffffff1a;
+					margin-bottom: 3rem;
+				}
+
+				.question-container {
+					border: 3px solid #ffffff1a;
+					margin-bottom: 5rem;
+
+					.question {
+						text-align: center;
+						//		background-color: #ffffff0a;
+						margin-bottom: 1rem;
+						padding: 80px 40px 40px 40px;
+						font-size: 48px;
+					}
+
+					.answers {
+						display: flex;
+						flex-direction: row;
+						flex-wrap: nowrap;
+						justify-content: space-between;
+						align-items: flex-start;
+						margin-bottom: 1rem;
+
+						.answer-container {
+							min-width: 40%;
+							padding: 0 30px;
+							width: 50%;
+
+							.selected-container {
+								width: 100%;
+								height: 100px;
+								display: flex;
+								flex-direction: row;
+								flex-wrap: nowrap;
+								justify-content: center;
+								align-items: flex-start;
+
+								.right-one-image {
+									width: 70px;
+									height: 70px;
+									/*background-repeat: no-repeat;
+									background-size: cover;
+									background-position: center;*/
+									mask-image: none;
+									mask-repeat: no-repeat;
+									mask-size: contain;
+									mask-position: center;
+									background-color: #fff;
+								}
+							}
+
+							.answer {
+								width: 100%;
+								//	background-color: #ffffff1a;
+								text-align: center;
+
+								font-size: 42px;
+								padding: 15px 30px;
+
+								border-style: solid;
+								border-width: 0;
+								border-radius: 0;
+
+								&.selected {
+									background-color: rgba(255, 255, 255, 0.1);
+								}
+							}
+						}
+					}
+
+					.feedback-btn-container {
+						text-align: center;
+
+						.show-feedback-img {
+							width: 100%;
+							height: 100%;
+
+							mask-repeat: no-repeat;
+							mask-size: contain;
+							mask-position: center;
+							background-color: #fff;
+
+							border-style: solid;
+							border-width: 0;
+							border-radius: 50%;
+							pointer-events: none;
+						}
+					}
+
+					.feedback-container {
+						text-align: center;
+						padding: 20px 0;
+
+						.feedback {
+							font-size: 42px;
+							padding: 50px 50px 30px 50px;
+						}
+					}
+
+					.result-container {
+						text-align: center;
+						padding: 40px 0 70px 0;
+
+						.correct {
+							color: #258f50;
+						}
+
+						.incorrectly {
+							color: #ba2727;
+						}
+
+						.not-answered {
+							color: #d7d7d7;
+						}
+					}
+				}
+			}
+
+			/*.result, .total {
+				color: #fff;
+				background-color: #ffffff1a;
+			}
+
+			.result {
+				//background-color: #fff;
+				//border-radius: 3.5em;
+				padding: 10px 20px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				//font-weight: 700;
+				font-size: 56px;
+			}
+
+			.total {
+				//background-color: #fff;
+				//border-radius: 3.5em;
+				padding: 10px 20px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-weight: 700;
+				font-size: 56px;
+				margin-bottom: 20px;
+			}*/
+
+			/*.btn-primary {
+				padding: 15px 10px;
+				border-radius: 0;
+				width: 100%;
+				font-size: 56px;
+
+				margin-top: -20px;
+				margin-bottom: 90px;
+
+				&:hover {
+					background-color: inherit;
+				}
+			}*/
+		}
+
+		.dialog-footer {
+			padding: 30px 40px;
+			width: 100%;
+		}
+	}
+}
+
+.pre-timeout-ani01 {
+	opacity: 0;
+}
+
+.timeout-ani01 {
+	will-change: scale, opacity;
+	animation: appear 1s ease-in-out;
+}
+
+@keyframes appear {
+	from {
+		scale: 1.6;
+		opacity: 0;
+	}
+	to {
+		scale: 1;
+		opacity: 1;
+	}
+}

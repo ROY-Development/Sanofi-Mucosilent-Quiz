@@ -1,0 +1,18 @@
+{
+	"categoryKey": "category-18",
+	"questionColor": "#ffffffff",
+	"backgroundColors": [
+		"#53843f88"
+	],
+	"backgroundAnimationImageUrls": [],
+	"answers": [
+		{
+			"key": "quiz-category-18-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-18-answer2",
+			"imageUrl": null
+		}
+	]
+}

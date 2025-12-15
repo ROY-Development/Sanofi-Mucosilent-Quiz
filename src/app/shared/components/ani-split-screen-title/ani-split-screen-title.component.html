@@ -1,0 +1,29 @@
+<div class="split-screen-container">
+	<div #splitHalfFirst
+		 class="split-half first"
+		 [class.open]="signalIsOpen()"
+		 [class.has-transition]="signalHasTransition()"
+		 [class]="signalSplitScreenAnimationClass()"
+		 [style.background-color]="backgroundColor"
+		 [style.background-image]="backgroundImageUrl"
+	>
+		<ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+	</div>
+	<div class="split-half second"
+		 [class.open]="signalIsOpen()"
+		 [class.has-transition]="signalHasTransition()"
+		 [class]="signalSplitScreenAnimationClass()"
+		 [style.background-color]="backgroundColor"
+		 [style.background-image]="backgroundImageUrl"
+	>
+		<ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+	</div>
+</div>
+@if (isDebug) {
+	<button type="button"
+			class="btn btn-primary"
+			style="position: absolute; bottom: 10px; left: 10px; z-index:1"
+			(click)="toggle()">Test
+	</button>
+}
+

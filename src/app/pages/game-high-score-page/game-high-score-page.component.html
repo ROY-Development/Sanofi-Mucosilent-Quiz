@@ -1,0 +1,108 @@
+<div class="content">
+	<div class="content-container">
+		<div class="empty-line"></div>
+		<h5 class="title"
+			[style.color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.titleFontColor : undefined"
+			[style.text-align]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.titleAlignment : undefined"
+		>{{ 'high-score' | nativeTranslate }}</h5>
+		<div class="timespan-container"
+			 [style.text-align]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.titleAlignment : undefined">
+			@for (timespan of timespanList; track timespan.url; let i = $index) {
+				<app-base-button
+					[configBtn]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.btnFilter : null"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnContentWidth]="'120px'"
+					[btnContentHeight]="'120px'"
+					[btnContentPadding]="(15 - (gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.btnFilter.border * 0.5 : 0)) + 'px'"
+					[btnContentFontSize]="'1em'"
+					(clickButton)="onClickTimespan(timespan.url)"
+				><!--{{ timespan.localizationKey | nativeTranslate }}-->
+					<span class="img-icon"
+						  [style.background-color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.btnFilter.fontColor : null"
+						  [style.border-radius.px]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.btnFilter.radius : null"
+						  [style.mask-image]="timespan.image"
+					></span>
+				</app-base-button>
+				@if (i < timespanList.length - 1) {
+					<div class="empty-col"></div>
+				}
+			}
+		</div>
+		<div class="current-timespan"
+			 [style.color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.curFilterFontColor : undefined"
+			 [style.text-align]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.titleAlignment : undefined"
+		>{{ 'highscore.' + currentTimespan | nativeTranslate }}
+		</div>
+		<app-game-score-table
+			[isLoading]="!!(gameScoreBackendService.isLoading$ | async)"
+			[colorFont]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.tableFontColor : AppConfig.quizGameDefaultFontColorMain"
+			[colorFontHeader]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.fCTitleHead : AppConfig.quizGameDefaultFontColorMain"
+			[colorBackground]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.tableColorBg : AppConfig.quizGameDefaultTableBackgroundColor"
+			[colorBackgroundRowOdd]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.tableColorBgRowOdd : AppConfig.quizGameDefaultTableBackgroundRowOddColor"
+			[borderRadius]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.tableRadius : AppConfig.quizGameDefaultTableRadiusPx"
+			[border]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.tableBorder : AppConfig.quizGameDefaultTableBorderPx"
+			[borderColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.tableBorderColor : AppConfig.quizGameDefaultTableBorderColor"
+			[fontColorRank]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.fontColorRank : AppConfig.quizGameDefaultTableRankFontColor"
+			[rankColorBackground1]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankColorBackground1 : AppConfig.quizGameDefaultTableRankBackgroundColor1"
+			[rankColorBackground2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankColorBackground2 : AppConfig.quizGameDefaultTableRankBackgroundColor2"
+			[rankColorBackground3]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankColorBackground3 : AppConfig.quizGameDefaultTableRankBackgroundColor3"
+			[rankColorBackground4]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankColorBackground4 : AppConfig.quizGameDefaultTableRankBackgroundColor4"
+			[rankAniDuration]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankAniDuration : AppConfig.quizGameDefaultTableRankAniDuration"
+			[rankBorderRadius]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankRadius : AppConfig.quizGameDefaultTableRankRadiusPx"
+			[rankBorder]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankBorder : AppConfig.quizGameDefaultTableRankBorderPx"
+			[rankBorderColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.rankBorderColor : AppConfig.quizGameDefaultTableRankBorderColor"
+			
+			[userRowColorFont]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRow.fontColor : AppConfig.quizGameDefaultFontColorMain"
+			[userRowColorBackground]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRow.colorBg : AppConfig.quizGameDefaultTableBackgroundColor"
+			[userRowBorderRadius]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRow.radius : AppConfig.quizGameDefaultTableRadiusPx"
+			[userRowBorder]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRow.border : AppConfig.quizGameDefaultTableBorderPx"
+			[userRowBorderColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRow.borderColor : AppConfig.quizGameDefaultTableBorderColor"
+			
+			[userRankColorFont]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowFontColorRank : AppConfig.quizGameDefaultTableRankFontColor"
+			[userRankColorBackground1]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankColorBackground1 : AppConfig.quizGameDefaultTableRankBackgroundColor1"
+			[userRankColorBackground2]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankColorBackground2 : AppConfig.quizGameDefaultTableRankBackgroundColor2"
+			[userRankColorBackground3]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankColorBackground3 : AppConfig.quizGameDefaultTableRankBackgroundColor3"
+			[userRankColorBackground4]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankColorBackground4 : AppConfig.quizGameDefaultTableRankBackgroundColor4"
+			[userRankAniDuration]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankAniDuration : AppConfig.quizGameDefaultTableRankAniDuration"
+			[userRankBorderRadius]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankRadius : AppConfig.quizGameDefaultTableRankRadiusPx"
+			[userRankBorder]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankBorder : AppConfig.quizGameDefaultTableRankBorderPx"
+			[userRankBorderColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.userRowRankBorderColor : AppConfig.quizGameDefaultTableRankBorderColor"
+		></app-game-score-table>
+		
+		<div class="button-container">
+			<app-base-button
+				[configBtn]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore!.btnClose : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'400px'"
+				[btnContentPadding]="'30px 10px'"
+				(clickButton)="onClickClose()"
+			>{{ 'close' | nativeTranslate }}
+			</app-base-button>
+		</div>
+	</div>
+	
+	<app-button-sound-on-off
+		#buttonSoundOnOffComponent
+		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore.btnIcon.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore.btnIcon.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+		[borderRadiusPx]="gameService.signalGameConfig()?.screenHighscore!.btnIcon.radius"
+		[borderWidthPx]="gameService.signalGameConfig()?.screenHighscore!.btnIcon.border"
+		[borderColor]="gameService.signalGameConfig()?.screenHighscore!.btnIcon.borderColor"
+		[disabled]="false"
+		[right]="document.fullscreenEnabled ? '115px' : '20px'"
+		(click)="soundService.playSound(SoundNameEnum.click, true);"
+	></app-button-sound-on-off>
+	
+	<app-button-fullscreen
+		#buttonFullscreenComponent
+		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
+		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore.btnIcon.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
+		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenHighscore.btnIcon.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
+		[borderRadiusPx]="gameService.signalGameConfig()?.screenHighscore!.btnIcon.radius"
+		[borderWidthPx]="gameService.signalGameConfig()?.screenHighscore!.btnIcon.border"
+		[borderColor]="gameService.signalGameConfig()?.screenHighscore!.btnIcon.borderColor"
+		[disabled]="false"
+		(click)="soundService.playSound(SoundNameEnum.click, true);"
+	></app-button-fullscreen>
+</div>

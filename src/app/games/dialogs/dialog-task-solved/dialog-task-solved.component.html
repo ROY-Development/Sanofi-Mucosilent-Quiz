@@ -1,0 +1,209 @@
+<div class="dialog-container dialog-task-solved">
+	<div class="dialog scrollbar"
+		 [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResult.fontColor : undefined"
+		 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResult.colorBg : undefined"
+		 [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResult.radius : undefined"
+		 [style.border-width.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResult.border : undefined"
+		 [style.border-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResult.borderColor : undefined"
+	>
+		<div class="dialog-header">
+			<div class="dialog-title">
+				<div class="star-image"
+					 [style.mask-image]="signalStarImageUrl()"
+					 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultStarColor : undefined"
+				></div>
+				<div class="title" [style.border-bottom-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultStarColor : undefined">
+					<div
+						[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultTitleColor : undefined"
+					>{{ (roundScore > 0 ? 'great' : 'too-bad') | nativeTranslate }}</div>
+					<!--<div class="game-time">{{ runtime * 1000 | date:'mm:ss' }}</div>-->
+				</div>
+				<div class="star-image"
+					 [style.mask-image]="signalStarImageUrl()"
+					 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultStarColor : undefined"
+				></div>
+			</div>
+			<!--<button type="button" class="btn" aria-label="Close"
+			(click)="onClickClose(false)"
+			>
+			<fa-icon [icon]="['fas', 'times']"></fa-icon>
+		  </button>-->
+		</div>
+		<div class="dialog-body font-secondary">
+			<div class="bonus">
+				@if (showAllQuizQuestions) {
+					<table class="table">
+						<tr>
+							<th class="text-start">{{ 'question' | nativeTranslate }}</th>
+							<th class="text-start col-bg" style="padding-left: 20px;">{{ 'score' | nativeTranslate }}
+							</th>
+							<th class="text-end">{{ 'total' | nativeTranslate }}</th>
+						</tr>
+						@for (value of topicQuestionResultList; track value; let i = $index) {
+							<tr>
+								<td class="text-start"
+									[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+									[timeout]="i * 350 - 350"
+								>{{ (i + 1).toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+									<span
+										style="display: block; font-size: 3rem; color: inherit; background-color: inherit;"
+									>{{ value.questionLocalisationKey | nativeTranslate }}</span>
+									<span class="question-answer"
+										  [class.correct]="value.isSelectedLeft && value.isSelectedCorrect"
+										  [class.not-correct]="value.isSelectedLeft && !value.isSelectedCorrect"
+									>
+										{{ value.answerLeftLocalisationKey | nativeTranslate }}
+										
+										@if (value.isSelectedLeft) {
+											@if (value.isSelectedCorrect) {
+												<span [style.mask-image]="signalBtnCorrectImageUrl()"
+													  class="correct"></span>
+											} @else {
+												<span [style.mask-image]="signalBtnNotCorrectImageUrl()"
+													  class="not-correct"></span>
+											}
+										}
+										</span>
+									<span class="question-answer"
+										  [class.correct]="!value.isSelectedLeft && value.isSelectedLeft !== null && value.isSelectedCorrect"
+										  [class.not-correct]="!value.isSelectedLeft && value.isSelectedLeft !== null && !value.isSelectedCorrect"
+									>
+										{{ value.answerRightLocalisationKey | nativeTranslate }}
+										
+										@if (!value.isSelectedLeft && value.isSelectedLeft !== null) {
+											@if (value.isSelectedCorrect) {
+												<span [style.mask-image]="signalBtnCorrectImageUrl()"
+													  class="correct"></span>
+											} @else {
+												<span [style.mask-image]="signalBtnNotCorrectImageUrl()"
+													  class="not-correct"></span>
+											}
+										}
+										</span>
+								</td>
+								<td class="text-start col-bg" style="padding-left: 20px;"
+									[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+									[timeout]="i * 350 - 250"
+								>
+									{{ value.score.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+									@if (value.comboScore > 0) {
+										<span class="col-add d-block"
+											  [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultScoreColor : undefined"
+										>+ {{ 'combo' | nativeTranslate }} {{ value.comboScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}</span>
+									}
+									@if (value.remainingTimeScore > 0) {
+										<span class="col-add d-block"
+											  [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultScoreColor : undefined"
+										>+ {{ 'time' | nativeTranslate }} {{ value.remainingTimeScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+                </span>
+									}
+								</td>
+								<td class="text-end"
+									[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+									[timeout]="i * 350"
+									[startCallback]="onScoreArrive"
+								>{{ value.totalScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+								</td>
+							</tr>
+						}
+					</table>
+				} @else {
+					<table class="table">
+						<tr>
+							<th class="text-center">{{ 'question' | nativeTranslate }}</th>
+							<th class="text-start col-bg" style="padding-left: 20px;">{{ 'score' | nativeTranslate }}
+							</th>
+							<!--<th>{{'combo' | nativeTranslate}}</th>
+							<th class="col-bg">{{'time' | nativeTranslate}}</th>-->
+							<th class="text-end">{{ 'total' | nativeTranslate }}</th>
+						</tr>
+						@for (value of topicQuestionResultList; track value; let i = $index) {
+							<tr [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultScoreColor : undefined">
+								<td class="text-center"
+									[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+									[timeout]="i * 350 - 350"
+								>{{ (i + 1).toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+								</td>
+								<td class="text-start col-bg" style="padding-left: 20px;"
+									[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+									[timeout]="i * 350 - 250"
+								>
+									{{ value.score.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+									@if (value.comboScore > 0) {
+										<span class="col-add"
+											  [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultScoreColor : undefined"
+										>+ {{ 'combo' | nativeTranslate }} {{ value.comboScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}</span>
+									}
+									@if (value.remainingTimeScore > 0) {
+										<span class="col-add"
+											  [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultScoreColor : undefined"
+										>+ {{ 'time' | nativeTranslate }} {{ value.remainingTimeScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+                </span>
+									}
+								</td>
+								<!--<td>
+								<ng-container *ngIf="value.comboScore > 0">+{{ value.comboScore }}</ng-container>
+							  </td>
+							  <td class="col-bg">
+								<ng-container *ngIf="value.remainingTimeScore > 0">+{{ value.remainingTimeScore }}
+								</ng-container>
+							  </td>-->
+								<td class="text-end"
+									[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+									[timeout]="i * 350"
+									[startCallback]="onScoreArrive"
+								>{{ value.totalScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+									<!--{{ value.totalScore | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}-->
+								</td>
+							</tr>
+							<!--<tr>
+							<td>Time-Bonus:</td>
+							<td class="text-end">+ {{value.comboScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }} {{ value.comboScore | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}</td>
+						  </tr>-->
+						}
+					
+					</table>
+				}
+			</div>
+			<div class="result">
+				<div>{{ 'round-result' | nativeTranslate }}:</div>
+				@if (topicQuestionResultList.length > 0) {
+					<div
+						[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+						[timeout]="topicQuestionResultList.length * 350"
+						[startCallback]="onScoreArrive"
+						[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.dialogResultScoreColor : undefined"
+					>{{ roundScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+						<!--{{ roundScore | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}-->
+					</div>
+				}
+			</div>
+			<!--<div class="total">
+				<div>{{ 'in-total' | nativeTranslate }}:</div>
+				@if (topicQuestionResultList.length > 0) {
+					<div
+						[appTimeoutClass]="'timeout-ani01'" [fromClass]="'pre-timeout-ani01'"
+						[timeout]="topicQuestionResultList.length * 800 + 800"
+					>{{ totalScore.toLocaleString(nativeTranslateService.currentLocale ?? 'en-US') }}
+					
+					</div>
+				}
+			</div>-->
+			<!--{{ totalScore | textPlural : ('coin' | nativeTranslate): ('coins' | nativeTranslate) }}-->
+		</div>
+		<div class="dialog-footer justify-content-center">
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.btnDialogResult : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnWidth]="'100%'"
+				[btnContentPadding]="'15px 10px'"
+				[btnContentFontSize]="'56px'"
+				(clickButton)="onClickClose(true)"
+			>@if (totalScore > 0) {
+				{{ (wasLastGame ? 'end-game' : 'continue') | nativeTranslate }}
+			} @else {
+				{{ (wasLastGame ? 'end-game' : 'continue') | nativeTranslate }}
+			}</app-base-button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,64 @@
+@use "../../../../../assets/scss/variables" as variables;
+
+.dialog-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	pointer-events: auto;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.3);
+
+
+	// prevent zooming page
+	// touch-action: none;
+
+	will-change: scale;
+
+	.dialog {
+		position: relative;
+		width: 90%;
+		// min-height: 79%;
+		background-color: rgba(0, 0, 0, 0.8);
+		padding: 45px 65px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
+
+		overflow-y: auto;
+
+		.dialog-header, .dialog-body, .dialog-footer {
+			width: 100%;
+		}
+
+		.dialog-title {
+			font-weight: 700;
+
+			.title {
+				position: relative;
+				//color: #d7d7d7;
+				font-size: 1.5em;
+			}
+		}
+
+		.dialog-body {
+			overflow-wrap: break-word;
+			font-size: 36px;
+			//color: #d7d7d7;
+		}
+
+		.dialog-footer {
+			padding: 30px 40px;
+		}
+	}
+}

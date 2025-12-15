@@ -1,0 +1,27 @@
+.form-control {
+	font-size: 48px;
+	border-radius: 0;
+}
+
+.invalid-feedback {
+	color: #ffbcc2;
+}
+
+.button-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+
+	.btn {
+		background-color: #d4d4d442;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		margin-bottom: 20px;
+
+		&.btn-secondary {
+			color: #ffffff5c;
+		}
+	}
+}

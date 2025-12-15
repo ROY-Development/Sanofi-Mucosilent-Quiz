@@ -1,0 +1,127 @@
+.split-screen-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	overflow: hidden;
+	pointer-events: none;
+
+	.split-half {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		transform: translateX(0);
+
+		background-color: #d4d4d442;
+		background-image: none;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+
+		&.has-transition {
+			transition: transform 1500ms ease-in-out;
+		}
+
+		&.diagonalLeftToRight {
+			&.first {
+				&.has-transition {
+					clip-path: polygon(0% 0%, 100% 100%, 100% 100%, 100% 0);
+				}
+
+				&.open {
+					//transform: translate(200%, 200%);
+					transform: translate(200%, -200%);
+				}
+			}
+
+			&.second {
+				&.has-transition {
+					clip-path: polygon(0 0, 100% 100%, 100% 100%, 0% 100%);
+				}
+
+				&.open {
+					//transform: translate(-200%, -200%);
+					transform: translate(-200%, 200%);
+				}
+			}
+		}
+
+		&.diagonalRightToLeft {
+			&.first {
+				&.has-transition {
+					clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 100% 0);
+				}
+
+				&.open {
+					//transform: translate(200%, -200%);
+					transform: translate(-200%, -200%);
+				}
+			}
+
+			&.second {
+				&.has-transition {
+					clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0% 100%);
+				}
+
+				&.open {
+					//transform: translate(-200%, 200%);
+					transform: translate(200%, 200%);
+				}
+			}
+		}
+
+		&.horizontal {
+			&.first {
+				&.has-transition {
+					clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0);
+				}
+
+				&.open {
+					transform: translate(-200%, 0);
+				}
+			}
+
+			&.second {
+				&.has-transition {
+					clip-path: polygon(50% 0, 100% 0%, 100% 100%, 50% 100%);
+				}
+
+				&.open {
+					transform: translate(200%, 0);
+				}
+			}
+		}
+
+		&.vertical {
+			&.first {
+				&.has-transition {
+					clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+				}
+
+				&.open {
+					transform: translate(0, -200%);
+				}
+			}
+
+			&.second {
+				&.has-transition {
+					clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+				}
+
+				&.open {
+					transform: translate(0, 200%);
+				}
+			}
+		}
+	}
+}

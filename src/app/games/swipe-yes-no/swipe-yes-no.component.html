@@ -1,0 +1,303 @@
+<div #game class="game">
+	@if (currentQuestion) {
+		@if (gameState === GameStateEnum.correct || swipeYesNoService.signalIsEditorShowingCorrectScreen()) {
+			<div style="animation-duration: 300ms"
+				 animate.enter="fade-in-800ms"
+				 animate.leave="fade-out-800ms"
+			>
+				<app-dialog-correct
+					#dialogCorrectComponent
+					[gameState]="gameState"
+					[currentQuestion]="currentQuestion"
+					[correctComboCount]="correctComboCount"
+					(clickShowAnswer)="onClickShowAnswerDialog()"
+				></app-dialog-correct>
+			</div>
+		}
+		@if ((gameState === GameStateEnum.incorrect || gameState === GameStateEnum.showAnswer) &&
+		!swipeYesNoService.signalIsEditorShowingCorrectScreen()) {
+			<div class="dialog-animation-container"
+				 animate.enter="dialog-enter"
+				 (animationend)="onAnimationDialogEnd($event)"
+			>
+				<app-dialog-incorrect
+					#dialogIncorrectComponent
+					[gameState]="gameState"
+					[currentQuestion]="currentQuestion"
+					(cancelDialog)="onClickIncorrectDialogOk()"
+				></app-dialog-incorrect>
+			</div>
+		}
+	}
+	<div class="correct-or-not"
+		 [class.visible]="gameState !== GameStateEnum.init &&
+		 			gameState !== GameStateEnum.incorrect &&
+		 			 gameState !== GameStateEnum.showAnswer &&
+					!swipeYesNoService.signalIsEditorShowingCorrectScreen()"
+	>
+		<div class="question-counter">
+			@for (question of swipeYesNoService.questionList; track question.id; let i = $index) {
+				<div class="question-count"
+					 [class.currently]="globalGameService.topicQuestionResultList.length === i"
+					 [style.border-color]="swipeYesNoService.signaStatusBarColorLine()"
+				>
+					@if (globalGameService.topicQuestionResultList.length > i) {
+						@if (globalGameService.topicQuestionResultList[i].score > 0 && signalBtnCorrectImageUrl()) {
+							<div class="played correct"
+								 [style.background-color]="swipeYesNoService.signaStatusBarColorCorrect()"
+							>
+								<div class="played-icon"
+									 [style.mask-image]="`url('${signalBtnCorrectImageUrl()}`"
+									 [style.background-color]="swipeYesNoService.signaStatusBarColorLine()"
+								></div>
+								<!--<img [src]="signalBtnCorrectImageUrl()" alt="correct" class="image">-->
+							</div>
+						} @else if (signalBtnNotCorrectImageUrl()) {
+							<div class="played not-correct"
+								 [style.background-color]="swipeYesNoService.signaStatusBarColorWrong()"
+							>
+								<div class="played-icon"
+									 [style.mask-image]="`url('${signalBtnNotCorrectImageUrl()}`"
+									 [style.background-color]="swipeYesNoService.signaStatusBarColorLine()"
+								></div>
+								<!--<img [src]="signalBtnNotCorrectImageUrl()" alt="Not correct" class="image">-->
+							</div>
+						}
+					}
+				</div>
+				@if (i < swipeYesNoService.questionList.length - 1) {
+					<div class="between-line"
+						 [style.background-color]="swipeYesNoService.signaStatusBarColorLine()"
+					></div>
+				}
+			}
+		</div>
+		
+		<p [style.color]="swipeYesNoService.signalQuestionColor()">{{ swipeYesNoService.signalQuestionText() }}</p>
+	</div>
+	<div #board class="board" [style.pointer-events]="gameState === GameStateEnum.correct ? 'none' : 'auto'">
+		@if (currentQuestion && !swipeYesNoService.signalIsEditorShowingCorrectScreen()) {
+			@if (swipeYesNoService.signalIsEditorCallGoldenCard() || globalGameService.currentQuestionIndex === globalGameService.goldenQuestionIndex) {
+				<div #currentQuestionCard class="current-question-card container-golden"
+					 [class.scale-transition]="currentQuestion.scale === 1"
+					 [style.left.px]="currentQuestion.x"
+					 [style.top.px]="currentQuestion.y"
+					 [style.width.px]="currentQuestion.width"
+					 [style.min-height.px]="currentQuestion.height"
+					 [style.scale]="currentQuestion.scale"
+					 [style.transform]="'translateX('+ MathAngleUtil.radiansToDegrees(currentQuestion.swipeAngleX) + 'px)'"
+					 
+					 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCardGold.colorBg : undefined"
+					 [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCardGold.radius : undefined"
+					 [style.border-width.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCardGold.border : undefined"
+					 [style.border-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCardGold.borderColor : undefined"
+					 
+					 [style.background-image]="swipeYesNoService.signalGoldenCardImage()"
+				> <!-- transform: 'rotateY('+ MathAngleUtil.radiansToDegrees(currentQuestion.swipeAngleX) + 'deg)' -->
+					<span class="text-golden"
+						  [class.base-game]="!globalGameService.signalGameConfig()"
+						  [style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCardGold.fontColor : undefined"
+						  [style.font-weight]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCardGold.isFontBold ? 'bold' : 'normal' : undefined"
+						  [innerHTML]="currentQuestion.textKey ? (currentQuestion.textKey | nativeTranslate :
+				null:null : false) : ''"
+					></span>
+					@if (isDebug) {
+						<br>id: {{ currentQuestion.questionConfig.id }}
+						<br>answerConfigs: {{ currentQuestion.questionConfig.answerConfigs  | json }}
+					}
+				</div>
+			} @else {
+				<div #currentQuestionCard class="current-question-card"
+					 [class.scale-transition]="currentQuestion.scale === 1"
+					 [style.left.px]="currentQuestion.x"
+					 [style.top.px]="currentQuestion.y"
+					 [style.width.px]="currentQuestion.width"
+					 [style.min-height.px]="currentQuestion.height"
+					 [style.scale]="currentQuestion.scale"
+					 [style.transform]="'translateX('+ MathAngleUtil.radiansToDegrees(currentQuestion.swipeAngleX) + 'px)'"
+					 
+					 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCard.colorBg : undefined"
+					 [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCard.radius : undefined"
+					 [style.border-width.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCard.border : undefined"
+					 [style.border-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCard.borderColor : undefined"
+				> <!-- transform: 'rotateY('+ MathAngleUtil.radiansToDegrees(currentQuestion.swipeAngleX) + 'deg)' -->
+					<span
+						[style.color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.questionCard.fontColor : undefined"
+						[innerHTML]="currentQuestion.textKey ? (currentQuestion.textKey | nativeTranslate :
+				null:null : false) : ''"
+					></span>
+					@if (isDebug) {
+						<br>id: {{ currentQuestion.questionConfig.id }}
+						<br>answerConfigs: {{ currentQuestion.questionConfig.answerConfigs  | json }}
+					}
+				</div>
+			}
+		}
+	</div>
+	<!--{{swipeYesNoService.signalAnswerTimerMSec()}}<br>{{swipeYesNoService.signalAnswerTimerFactor()}}-->
+	<!--{{swipeYesNoService.signalIsAnswerTimerRunning()}}-->
+	<div class="timer-container"
+		 [class.visible]="swipeYesNoService.signalIsAnswerTimerRunning() && !swipeYesNoService.signalIsEditorShowingCorrectScreen()"
+		 [style.top.px]="signalAnswerTimerPosY()"
+	>
+		<div class="timer-border"
+			 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.colorBg : undefined"
+			 [style.border-radius.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.radius : undefined"
+			 [style.border-width.px]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.border : undefined"
+			 [style.border-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.borderColor : undefined"
+		>
+			<div class="timer-bar"
+				 [style.width.%]="swipeYesNoService.signalAnswerTimerFactor() * 100"
+				 [style.background-color]="swipeYesNoService.signalTimeBarColor()"
+			></div>
+		</div>
+		<div class="timer-border timer-border-ranks">
+			<div class="time-ranks">
+				<div class="time-rank"
+					 [class.disabled]="swipeYesNoService.signalRemainingTimeRank() < 1 && swipeYesNoService.signalIsAnswerTimerRunning()">
+					<div class="line"
+						 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.fontColor : undefined"
+					></div>
+					<div class="star-image"
+						 [style.mask-image]="signalStarImageUrl()"
+						 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.fontColor : undefined"
+					></div>
+				</div>
+				<div class="time-rank"
+					 [class.disabled]="swipeYesNoService.signalRemainingTimeRank() < 2 && swipeYesNoService.signalIsAnswerTimerRunning()">
+					<div class="line"
+						 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.fontColor : undefined"
+					></div>
+					<div class="star-image"
+						 [style.mask-image]="signalStarImageUrl()"
+						 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.fontColor : undefined"
+					></div>
+				</div>
+				<div class="time-rank"
+					 [class.disabled]="swipeYesNoService.signalRemainingTimeRank() < 3 && swipeYesNoService.signalIsAnswerTimerRunning()">
+					<div class="line"
+						 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.fontColor : undefined"
+					></div>
+					<div class="star-image"
+						 [style.mask-image]="signalStarImageUrl()"
+						 [style.background-color]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.timeBar.fontColor : undefined"
+					></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="swipe-left-right"
+		 [class.visible]="swipeYesNoService.signalIsShowingSwipeImage() && !swipeYesNoService.signalIsEditorShowingCorrectScreen()">
+		<img [src]="signalSwipeLeftRightImageUrl()" alt="Swipe left or right" width="448" height="161"
+			 class="swipe-left-right-img">
+	</div>
+	@if (currentQuestion) {
+		<div class="button-container"
+			 [class.visible]="gameState !== GameStateEnum.init &&
+							gameState !== GameStateEnum.incorrect &&
+							gameState !== GameStateEnum.showAnswer &&
+							gameState !== GameStateEnum.finish && !swipeYesNoService.signalIsEditorShowingCorrectScreen()"
+		>
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.btnAnswer : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="!signalLeftAnswerKey() || signalLeftAnswerKey() && signalLeftAnswerImageUrl() ? '340px' : '380px'"
+				[btnContentHeight]="!signalLeftAnswerKey() ? '340px' : 'auto'"
+				[btnContentPadding]="'8px 25px'"
+				[btnRadius]="!signalLeftAnswerKey() ? '50%' : null"
+				(clickButton)="onClickSelectAnswer(true)"
+			>
+				@if (signalLeftAnswerKey()) {
+					<div #btnLeft class="rectangle"
+						 [class.image-container]="signalLeftAnswerImageUrl()"
+					>
+						@if (signalLeftAnswerImageUrl()) {
+							<div class="image">
+								<img [src]="signalLeftAnswerImageUrl()" alt="Not correct" class="answer1">
+							</div>
+						}
+						<div class="text"
+							 appAutoFitFont
+							 [heightPx]="180"
+							 [maxFontSize]="48"
+							 [minFontSize]="30"
+							 [innerHTML]="signalLeftAnswerKey()!  | nativeTranslate  : null : null: true"
+						></div>
+					</div>
+				} @else {
+					<div #btnLeft class="circle">
+						<div class="image defined">
+							<img [src]="signalBtnNotCorrectImageUrl()" alt="Not correct" class="not-correct">
+						</div>
+						{{ 'not-correct' | nativeTranslate }}
+					</div>
+				}
+			</app-base-button>
+			
+			<app-base-button
+				[configBtn]="globalGameService.signalGameConfig() ? globalGameService.signalGameConfig()!.screenQuiz.btnAnswer : null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="!signalRightAnswerKey() || signalRightAnswerKey() && signalRightAnswerImageUrl() ? '340px' : '380px'"
+				[btnContentHeight]="!signalRightAnswerKey() ? '340px' : 'auto'"
+				[btnContentPadding]="'8px 25px'"
+				[btnRadius]="!signalRightAnswerKey() ? '50%' : null"
+				(clickButton)="onClickSelectAnswer(false)"
+			>
+				@if (signalRightAnswerKey()) {
+					<div #btnRight class="rectangle"
+						 [class.image-container]="signalRightAnswerImageUrl()"
+					>
+						@if (signalRightAnswerImageUrl()) {
+							<div class="image">
+								<img [src]="signalRightAnswerImageUrl()" alt="correct" class="answer1">
+							</div>
+						}
+						<div class="text"
+							 appAutoFitFont
+							 [heightPx]="180"
+							 [maxFontSize]="48"
+							 [minFontSize]="30"
+							 [innerHTML]="signalRightAnswerKey()!  | nativeTranslate  : null : null: true"
+						></div>
+					</div>
+				} @else {
+					<div #btnRight class="circle">
+						<div class="image defined">
+							<img [src]="signalBtnCorrectImageUrl()" alt="correct" class="correct">
+						</div>
+						{{ 'correct' | nativeTranslate }}
+					</div>
+				}
+			</app-base-button>
+			
+			<!--<button #btnLeft type="button"
+					class="btn btn-select btn-correct"
+					(click)="onClickSelectAnswer(true)"
+					appDownClass="touch-down"
+					[class.btn-circle]="currentQuestion.questionConfig.answerConfigs.length < 1 &&
+					swipeYesNoService.answerList.length < 1"
+					[style.color]="globalGameService.signalGameConfig()?.fontColorButton"
+					[style.background-color]="globalGameService.signalGameConfig()?.colorButtonBg"
+					[style.border-radius.px]="globalGameService.signalGameConfig()?.buttonRadius"
+					[style.border-width.px]="globalGameService.signalGameConfig()?.buttonBorder"
+					[style.border-color]="globalGameService.signalGameConfig()?.buttonBorderColor"
+					[style.background-image]="initService.signalBtnBackgroundImageUrl()"
+			>
+			</button>-->
+			<!--<button #btnRight type="button"
+					class="btn btn-select btn-incorrect"
+					(click)="onClickSelectAnswer(false)"
+					appDownClass="touch-down"
+					[class.btn-circle]="currentQuestion.questionConfig.answerConfigs.length < 2 &&
+					swipeYesNoService.answerList.length < 2"
+					[style.color]="globalGameService.signalGameConfig()?.fontColorButton"
+					[style.background-color]="globalGameService.signalGameConfig()?.colorButtonBg"
+					[style.border-radius.px]="globalGameService.signalGameConfig()?.buttonRadius"
+					[style.border-width.px]="globalGameService.signalGameConfig()?.buttonBorder"
+					[style.border-color]="globalGameService.signalGameConfig()?.buttonBorderColor"
+					[style.background-image]="initService.signalBtnBackgroundImageUrl()"
+			>
+			</button>-->
+		</div>
+	}
+</div>

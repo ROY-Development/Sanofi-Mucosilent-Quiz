@@ -1,0 +1,39 @@
+{
+	"highScore": [
+		{
+			"nickname": "testi",
+			"score": 1200,
+			"createdAt": "2025-07-07 15:57:08"
+		},
+		{
+			"nickname": "ffff",
+			"score": 7259,
+			"createdAt": "2025-07-08 17:40:25"
+		},
+		{
+			"nickname": "topiiii345",
+			"score": 7154,
+			"createdAt": "2025-07-14 08:49:22"
+		},
+		{
+			"nickname": "flopu",
+			"score": 8402,
+			"createdAt": "2025-07-14T07:04:48Z"
+		},
+		{
+			"nickname": "tzuiop",
+			"score": 10784,
+			"createdAt": "2025-07-14T07:29:47Z"
+		},
+		{
+			"nickname": "600 Credits",
+			"score": 600,
+			"createdAt": "2025-07-14T07:33:04Z"
+		},
+		{
+			"nickname": "Popout",
+			"score": 800,
+			"createdAt": "2025-07-14T09:06:49Z"
+		}
+	]
+}

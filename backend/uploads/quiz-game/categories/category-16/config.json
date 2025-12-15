@@ -1,0 +1,21 @@
+{
+	"categoryKey": "category-16",
+	"questionColor": "#ffffffff",
+	"backgroundColors": [
+		"#53843f88",
+		"#53843f88"
+	],
+	"backgroundAnimationImageUrls": [
+		"uploads/quiz-game/categories/category-16/images/bg-ani/icecream01.png"
+	],
+	"answers": [
+		{
+			"key": "quiz-category-16-answer1",
+			"imageUrl": null
+		},
+		{
+			"key": "quiz-category-16-answer2",
+			"imageUrl": null
+		}
+	]
+}

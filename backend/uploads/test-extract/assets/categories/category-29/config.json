@@ -1,0 +1,29 @@
+{
+    "categoryKey": "category-29",
+    "questionColor": "#ffffffff",
+    "backgroundColors": [
+        "#cb03e288"
+    ],
+    "backgroundAnimationImageUrls": [],
+    "answers": [
+        {
+            "key": "quiz-category-29-answer1",
+            "imageUrl": null
+        },
+        {
+            "key": "quiz-category-29-answer2",
+            "imageUrl": null
+        }
+    ],
+    "questions": [
+        {
+            "id": 42,
+            "leftCorrect": false,
+            "showAlwaysFeedback": true
+        },
+        {
+            "id": 43,
+            "leftCorrect": true
+        }
+    ]
+}

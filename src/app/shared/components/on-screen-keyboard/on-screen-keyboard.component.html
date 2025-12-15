@@ -1,0 +1,50 @@
+<div class="on-screen-keyboard"
+	 [ngClass]="{visible: !!inputElement}"
+>
+	<!--{{currentPushedKey}} {{runTime}} {{currentSpecialCharacterKey}}-->
+	<div class="os-keyboard"
+		 [ngClass]="{numeric: lastInputElementInputMode === 'numeric' || lastInputElementInputMode === 'numericClean'}"
+	>
+		<div class="close"></div>
+		<div class="os-rows">
+			<ng-container *ngFor="let row of layoutArray()">
+				<div class="os-row">
+					<ng-container *ngFor="let keyModel of row">
+						<ng-container *ngIf="keyModel.key !== '' else emptyKey">
+							<div class="os-key-container">
+								<button type="button" class="os-key" [attr.data-key]="keyModel.key"
+										(mouseup)="onClickKey($event, keyModel.key)"
+										(touchend)="onClickKey($event, keyModel.key)"
+										[ngClass]="{selected: currentPushedKey === keyModel.key,
+											'lock': keyModel.key === '{lock}',
+											'lock-enabled': keyModel.key === '{lock}' && isShiftEnabled && !isOneTimeShift
+										}"
+								>&nbsp;<span [innerHTML]="keyModel.displayKey" class="os-key-value"
+											 [class]="keyClass[keyModel.key] ?? ''"></span></button>
+								<div class="os-special-key-row"
+									 *ngIf="specialCharacters && currentSpecialCharacterKey === keyModel.key"
+								>
+									<ng-container *ngFor="let specialKey of specialCharacters.keys">
+										<ng-container *ngIf="specialKey !== '' else emptyKey">
+											<button type="button" class="os-special-key" [attr.data-key]="specialKey"
+													(mouseup)="onClickSpecialKey($event, specialKey)"
+													(touchend)="onClickSpecialKey($event, specialKey)"
+											>&nbsp;<span [innerHTML]="specialKey" class="os-key-value"
+														 [class]="keyClass[specialKey] ?? ''"></span></button>
+										</ng-container>
+										<ng-template #emptyKey>
+											<div class="os-empty-special-key">&nbsp;</div>
+										</ng-template>
+									</ng-container>
+								</div>
+							</div>
+						</ng-container>
+						<ng-template #emptyKey>
+							<div class="os-empty-key">&nbsp;</div>
+						</ng-template>
+					</ng-container>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</div>
