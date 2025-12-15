@@ -1,18 +1,18 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import {ImageLoadService} from '../../core/services/image-load.service';
-import {SoundService} from '../../core/services/sound.service';
-import {SoundNameEnum} from '../../shared/enums/sound-name.enum';
 import {InitService} from '../../core/services/init.service';
-import {AppRoutesEnum} from '../../app-routes.enum';
 import {GameQuestionsService} from '../../core/services/game-questions.service';
+import {SoundService} from '../../core/services/sound.service';
+import {ImageLoadService} from '../../core/services/image-load.service';
+import {SoundNameEnum} from '../../shared/enums/sound-name.enum';
+import {AppRoutesEnum} from '../../app-routes.enum';
 
 @Component({
-	selector: 'app-question-page',
+	selector: 'app-question-result-page',
 	standalone: false,
-	templateUrl: './question-page.component.html',
-	styleUrl: './question-page.component.scss'
+	templateUrl: './question-result-page.component.html',
+	styleUrl: './question-result-page.component.scss'
 })
-export class QuestionPageComponent implements OnInit
+export class QuestionResultPageComponent implements OnInit
 {
 	protected initService = inject(InitService);
 	protected gameQuestionsService = inject(GameQuestionsService);
@@ -53,11 +53,17 @@ export class QuestionPageComponent implements OnInit
 		}
 	}
 	
-	protected onClickAnswer(index: number): void
+	protected onClickNextQuestion()
 	{
 		this.soundService.playSound(SoundNameEnum.click, true);
-		this.gameQuestionsService.selectAnswer(index);
-		
-		this.initService.navigateToRoute(AppRoutesEnum.questionResult).then();
+		if (this.gameQuestionsService.questionIndex < this.gameQuestionsService.questions.length - 1)
+		{
+			this.gameQuestionsService.setNextQuestion();
+			this.initService.navigateToRoute(AppRoutesEnum.question).then();
+		}
+		else
+		{
+			this.initService.navigateToRoute(AppRoutesEnum.questionEnd).then();
+		}
 	}
 }

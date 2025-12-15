@@ -9,12 +9,20 @@ import {GamePageComponent} from './pages/game-page/game-page.component';
 import {GameTopicPageComponent} from './pages/game-topic-page/game-topic-page.component';
 import {EndGamePageComponent} from './pages/end-game-page/end-game-page.component';
 import {QuestionPageComponent} from './pages/question-page/question-page.component';
+import {QuestionResultPageComponent} from './pages/question-result-page/question-result-page.component';
+import {QuestionEndPageComponent} from './pages/question-end-page/question-end-page.component';
 
 const routes: Routes = [
 	{path: AppRoutesEnum.base, component: BasePageComponent, data: {animation: 'BasePage'}},
 	{path: AppRoutesEnum.idle, component: IdlePageComponent, data: {animation: 'StartPage'}},
 	{path: AppRoutesEnum.howToPlay, component: HowToPlayPageComponent, data: {animation: 'HowToPlayPage'}},
 	{path: AppRoutesEnum.question, component: QuestionPageComponent, data: {animation: 'QuestionPage'}},
+	{
+		path: AppRoutesEnum.questionResult,
+		component: QuestionResultPageComponent,
+		data: {animation: 'QuestionResultPage'}
+	},
+	{path: AppRoutesEnum.questionEnd, component: QuestionEndPageComponent, data: {animation: 'QuestionEndPage'}},
 	{path: AppRoutesEnum.game, component: GamePageComponent, data: {animation: 'GamePage'}},
 	{path: AppRoutesEnum.gameTopic, component: GameTopicPageComponent, data: {animation: 'GameTopicPage'}},
 	{path: AppRoutesEnum.endGame, component: EndGamePageComponent, data: {animation: 'EndGamePage'}},

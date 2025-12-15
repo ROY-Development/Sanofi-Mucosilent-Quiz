@@ -14,7 +14,8 @@ export enum AppRoutesEnum
 	gameCountdown = 'game-countdown',
 	game = 'game',
 	question = 'question',
-	gameResult = 'game-result',
+	questionResult = 'question-result',
+	questionEnd = 'question-end',
 	gameTopic = 'game-topic',
 	endGameCrm = 'end-game-c', // end game for CRM
 	endGame = 'end-game'

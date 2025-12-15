@@ -89,14 +89,12 @@ export class ViewTransitionService
 			return 'fade-long';
 		}
 		else if (
-			fromRoute && toRoute && this.isGameHighScoreGroup(fromRoute) && this.isGameHighScoreGroup(toRoute) ||
-			(fromRoute === AppRoutesEnum.game && toRoute === AppRoutesEnum.gameResult)
+			(fromRoute === AppRoutesEnum.game && toRoute === AppRoutesEnum.questionResult)
 		)
 		{
 			return 'fade';
 		}
 		else if (
-			(toRoute && this.isGameHighScoreGroup(toRoute)) ||
 			(fromRoute === AppRoutesEnum.base && toRoute === AppRoutesEnum.howToPlay)
 		)
 		{
@@ -104,18 +102,12 @@ export class ViewTransitionService
 		}
 		else if (
 			(fromRoute === AppRoutesEnum.base && toRoute === AppRoutesEnum.howToPlay) ||
-			(fromRoute === AppRoutesEnum.howToPlay && toRoute === AppRoutesEnum.base) ||
-			(fromRoute && this.isGameHighScoreGroup(fromRoute))
+			(fromRoute === AppRoutesEnum.howToPlay && toRoute === AppRoutesEnum.base)
 		)
 		{
 			return 'slide-right';
 		}
 		
 		return 'fade';
-	}
-	
-	private isGameHighScoreGroup(state: string): boolean
-	{
-		return state.startsWith(AppRoutesEnum.highScore);
 	}
 }

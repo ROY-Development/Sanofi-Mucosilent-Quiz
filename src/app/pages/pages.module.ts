@@ -22,6 +22,8 @@ import {ButtonStartComponent} from '../core/components/buttons/button-start/butt
 import {ConfettiComponent} from '../shared/components/confetti/confetti.component';
 import {QuestionPageComponent} from './question-page/question-page.component';
 import {DialogResultComponent} from './question-page/dialogs/dialog-result/dialog-result.component';
+import {QuestionResultPageComponent} from './question-result-page/question-result-page.component';
+import {QuestionEndPageComponent} from './question-end-page/question-end-page.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +35,9 @@ import {DialogResultComponent} from './question-page/dialogs/dialog-result/dialo
 		EndGamePageComponent,
 		GameTopicPageComponent,
 		QuestionPageComponent,
-		DialogResultComponent
+		DialogResultComponent,
+		QuestionResultPageComponent,
+		QuestionEndPageComponent
 	],
 	imports: [
 		CommonModule,

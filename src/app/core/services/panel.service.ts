@@ -19,8 +19,9 @@ export class PanelService
 			AppRoutesEnum.startGame,
 			AppRoutesEnum.gameCountdown,
 			AppRoutesEnum.gameTopic,
-			AppRoutesEnum.game,
-			AppRoutesEnum.gameResult
+			AppRoutesEnum.game
+			//	AppRoutesEnum.question,
+			//	AppRoutesEnum.questionResult
 		].map((value) => {
 			return '/' + value;
 		});

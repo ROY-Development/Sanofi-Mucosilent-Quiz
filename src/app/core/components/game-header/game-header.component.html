@@ -1,6 +1,4 @@
-<div class="game-header"
-	 [style.background-color]="gameService.signalGameConfig()?.gameHeaderColorBg ?? AppConfig.quizGameDefaultGameHeaderColorBg"
->
+<div class="game-header">
 	<div class="start">
 		<!--<button type="button" class="btn btn-primary btn-end" (click)="onClickEndGame()">End Game</button>-->
 	</div>
@@ -62,11 +60,6 @@
 				 #coinImage
 				 [style.background-image]="frontImageUrl"
 			></div>
-			<!--<img ngSrc="assets/images/coin01.png" alt="Coins" width="108" height="108"
-				 class="no-select"
-				 style="width: 42px; height: auto; margin-right: 15px;"
-				 draggable="false" ondragstart="return false;"
-			>-->
 			<span #score></span><!--{{ userGameService.signalGameScore().score }}--></div>
 	</div>
 </div>

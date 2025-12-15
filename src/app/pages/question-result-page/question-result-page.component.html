@@ -14,7 +14,7 @@
 </div>
 
 <div class="content">
-	<div class="question-counter">Frage {{ gameQuestionsService.questionIndex + 1 }} / {{ gameQuestionsService.maxQuestionNr }}</div>
+	<!--<div class="question-counter">Frage {{ questionIndex + 1 }} / {{ maxQuestionNr }}</div>
 	<div class="question">{{ gameQuestionsService.currentQuestion.question }}</div>
 	<div class="answer-buttons">
 		<app-base-button
@@ -49,7 +49,27 @@
 		>
 			<div class="answer">{{ gameQuestionsService.currentQuestion.answer3 }}</div>
 		</app-base-button>
-	</div>
+	</div>-->
+	@if (gameQuestionsService.selectedAnswerIndex === gameQuestionsService.currentQuestion.rightAnswerIndex) {
+		RICHTIG
+	} @else {
+		FALSCH
+	}
+	
+	<app-base-button
+		[configBtn]="null"
+		[btnWidth]="'100%'"
+		[btnContentWidth]="'100%'"
+		[btnContentPadding]="'15px 10px'"
+		[btnDisabled]="false"
+		(clickButton)="onClickNextQuestion()"
+	>
+		@if (gameQuestionsService.questionIndex < gameQuestionsService.questions.length - 1) {
+			Zur nächsten Frage
+		} @else {
+			Quiz beenden
+		}
+	</app-base-button>
 </div>
 
 @if (isShowingConfirmCancelDialog()) {

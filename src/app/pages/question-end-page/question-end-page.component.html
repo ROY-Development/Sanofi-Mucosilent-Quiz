@@ -1,0 +1,43 @@
+<div class="header">
+	<app-base-button
+		[configBtn]="null"
+		[btnContentWidth]="'120px'"
+		[btnContentHeight]="'120px'"
+		[btnContentPadding]="'0 0'"
+		[btnRadius]="'50%'"
+		[btnDisabled]="false"
+		(clickButton)="onClickExit()"
+	><span [style.mask-image]="signalBtnCloseImageUrl()"
+		   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
+	></span>
+	</app-base-button>
+</div>
+
+<div class="content">
+	
+	
+	<div>[QUIZ BEENDET]</div>
+	<div>{{gameQuestionsService.validAnswerCount}} von {{gameQuestionsService.maxQuestionNr}} Antworten richtig</div>
+	<div>[Dank + Glückwunsch-Text]</div>
+	
+	
+	<div>Lorem ipsum dolor sit amet, consetetur
+	sadipscing elitr, sed diam nonumy eirmod
+	tempor invidunt ut labore et dolore
+		magna aliquyam erat, sed diam voluptua</div>
+	
+	
+	
+	
+	<app-base-button
+		[configBtn]="null"
+		[btnWidth]="'100%'"
+		[btnContentWidth]="'100%'"
+		[btnContentPadding]="'15px 10px'"
+		[btnDisabled]="false"
+		(clickButton)="onClickExit()"
+	>
+		<span>Beenden</span>
+	</app-base-button>
+	
+</div>
