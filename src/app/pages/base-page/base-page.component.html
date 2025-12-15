@@ -107,7 +107,11 @@
 		}
 	</div>
 	
-	<div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
+	<div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px; width: 100%; flex-direction: column;">
+		<button type="button" class="btn " (click)="onClickExplosion()">EXP</button>
+		<app-ani-explosion #aniExplosion></app-ani-explosion>
+		
+		
 		<app-scratch-free
 		
 		></app-scratch-free>

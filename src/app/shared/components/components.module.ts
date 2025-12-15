@@ -6,6 +6,7 @@ import {InlineConsoleComponent} from './inline-console/inline-console.component'
 import {OnScreenKeyboardComponent} from './on-screen-keyboard/on-screen-keyboard.component';
 import {LoadingBlockComponent} from './loading-block/loading-block.component';
 import {ScratchFreeComponent} from './scratch-free/scratch-free.component';
+import {AniExplosionComponent} from './ani-explosion/ani-explosion.component';
 
 @NgModule({
 	declarations: [
@@ -14,7 +15,8 @@ import {ScratchFreeComponent} from './scratch-free/scratch-free.component';
 		InlineConsoleComponent,
 		LoadingBlockComponent,
 		OnScreenKeyboardComponent,
-		ScratchFreeComponent
+		ScratchFreeComponent,
+		AniExplosionComponent
 	],
 	exports: [
 		ButtonFullscreenComponent,
@@ -22,7 +24,8 @@ import {ScratchFreeComponent} from './scratch-free/scratch-free.component';
 		InlineConsoleComponent,
 		LoadingBlockComponent,
 		OnScreenKeyboardComponent,
-		ScratchFreeComponent
+		ScratchFreeComponent,
+		AniExplosionComponent
 	],
 	imports: [
 		CommonModule

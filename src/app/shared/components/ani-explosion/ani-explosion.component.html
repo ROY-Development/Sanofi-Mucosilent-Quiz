@@ -1,0 +1,11 @@
+@for (particle of particles; track particle; let i = $index) {
+	<span
+		class="particle"
+		[style.top.px]="y + particle.y"
+		[style.left.px]="x + particle.x"
+		[style.background-color]="particle.color"
+		[style.width.px]="particle.r * 2"
+		[style.height.px]="particle.r * 2"
+		[style.opacity]="particle.opacity"
+	></span>
+}

@@ -25,6 +25,7 @@ import {ImageLoadService} from '../../core/services/image-load.service';
 import {ButtonSoundOnOffComponent} from '../../shared/components/button-sound-on-off/button-sound-on-off.component';
 import {ViewTransitionService} from '../../core/services/view-transition.service';
 import {AppConfig} from '../../app.config';
+import {AniExplosionComponent} from '../../shared/components/ani-explosion/ani-explosion.component';
 
 @UntilDestroy()
 @Component({
@@ -47,12 +48,19 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 	@ViewChild("buttonSoundOnOffComponent") buttonSoundOnOffComponent!: ButtonSoundOnOffComponent;
 	@ViewChild("buttonFullscreenComponent") buttonFullscreenComponent!: ButtonFullscreenComponent;
 	
+	@ViewChild("aniExplosion") aniExplosion!: AniExplosionComponent;
+	
 	// noinspection CssUnknownProperty
 	@HostBinding('style.--button-start-scale-to')
 	protected get scaleTo(): string
 	{
 		const scaleTo: number = this.gameService.signalGameConfig()?.startBtn?.pulseScale ?? 0.95;
 		return scaleTo.toString();
+	}
+	
+	protected onClickExplosion(): void
+	{
+		this.aniExplosion.callExplosion();
 	}
 	
 	protected readonly signalClickedStart = signal<boolean>(false);
