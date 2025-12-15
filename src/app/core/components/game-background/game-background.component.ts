@@ -5,11 +5,9 @@ import {
 	ElementRef,
 	inject,
 	Input,
-	OnChanges,
 	OnInit,
 	QueryList,
 	signal,
-	SimpleChanges,
 	ViewChild,
 	ViewChildren
 } from '@angular/core';
@@ -28,7 +26,7 @@ import {UtilTimeout} from '../../../shared/utils/util-timeout';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: false
 })
-export class GameBackgroundComponent implements OnInit, OnChanges
+export class GameBackgroundComponent implements OnInit
 {
 	protected backgroundShapeService = inject(BackgroundShapeService);
 	protected backgroundImageService = inject(BackgroundImageService);
@@ -62,7 +60,7 @@ export class GameBackgroundComponent implements OnInit, OnChanges
 		this.signalIsIPhoneSafari.set(UtilBrowser.isIPhoneSafari());
 	}
 	
-	public ngOnChanges(changes: SimpleChanges): void
+	/*public ngOnChanges(changes: SimpleChanges): void
 	{
 		if (
 			this.gameBackgroundRef &&
@@ -74,5 +72,5 @@ export class GameBackgroundComponent implements OnInit, OnChanges
 			
 			this.signalBottom.set(bottom);
 		}
-	}
+	}*/
 }

@@ -501,7 +501,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{key: SoundNameEnum.answerWrong, oUrl: 'answer-wrong.mp3'},
 			{key: SoundNameEnum.categoryFlash, oUrl: 'category-flash.mp3'},
 			{key: SoundNameEnum.scoreArrive, oUrl: 'score-arrive.mp3'},
-			{key: SoundNameEnum.endGame, oUrl: 'end-game.mp3'},
+			{key: SoundNameEnum.endGame, oUrl: 'end-game.mp3'}
 		];
 		
 		if (hasMiniGamePachinko || hasMiniGameRoulette || hasMiniGamePointShooter)
@@ -958,7 +958,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 		else // base game bg image
 		{
-			this.signalBackgroundImage.set("url('../assets/images/ROY_Deepsea_Light.jpg')");
+	//		this.signalBackgroundImage.set("url('../assets/images/ROY_Deepsea_Light.jpg')");
 		}
 	}
 	
