@@ -1,5 +1,28 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectorRef,
+	Component,
+	ElementRef,
+	EventEmitter,
+	inject,
+	Input,
+	OnChanges,
+	OnDestroy,
+	Output,
+	SimpleChanges,
+	ViewChild
+} from '@angular/core';
 import {Point2DInterface} from '../../../games/interfaces/point-2D.interface';
+import {UtilTimeout} from '../../utils/util-timeout';
+import {AppLoopService} from '../../../core/services/app-loop.service';
+import {AniExplosionComponent} from '../ani-explosion/ani-explosion.component';
+
+type ScratchDirection = {
+	dx: number;              // delta x (px)
+	dy: number;              // delta y (px)
+	angleDeg: number;        // 0° = rechts, 90° = unten (Canvas-Koordinaten)
+	speedPxPerSec: number;   // px/s
+};
 
 @Component({
 	selector: 'app-scratch-free',
@@ -7,18 +30,27 @@ import {Point2DInterface} from '../../../games/interfaces/point-2D.interface';
 	templateUrl: './scratch-free.component.html',
 	styleUrl: './scratch-free.component.scss'
 })
-export class ScratchFreeComponent implements AfterViewInit, OnDestroy
+export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 {
 	private changeDetectorRef = inject(ChangeDetectorRef);
 	
 	@ViewChild('canvas') public canvas?: ElementRef<HTMLCanvasElement>;
+	@ViewChild("aniExplosion") aniExplosion!: AniExplosionComponent;
+	
+	@Input({required: false}) public widthPx: number = 300;
+	@Input({required: false}) public heightPx: number = 200;
+	@Input({required: false}) public scratchRadius: number = 20;
+	@Input({required: false}) public scratchFreeBg: HTMLImageElement | null = null;
+	
+	@Output() public readonly scratch = new EventEmitter<number>();
+	@Output() public readonly scratchFinished = new EventEmitter<void>();
+	@Output() public readonly scratchDirection = new EventEmitter<ScratchDirection>();
 	
 	private ctx?: CanvasRenderingContext2D;
 	
 	protected freePercent: number = 0;
 	protected isFlyAway: boolean = false;
-	
-	isDrawing = false;
+	protected isDrawing: boolean = false;
 	
 	/* prepare events - important for removing all event listeners */
 	private mouseDown = this.onMouseDown.bind(this);
@@ -38,24 +70,73 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 	//@ViewChild('scratchFreeText') protected scratchFreeText!: ElementRef<HTMLElement>;
 	//@ViewChild('scratchFreeText2') protected scratchFreeText2!: ElementRef<HTMLElement>;
 	
+	private static readonly CHECK_TIMEOUT_MS: number = 20;
+	private checkTimeout: number = 0;
+	private mousePos: Point2DInterface | null = null;
+	
+	// Richtungsermittlung (letzte Position + geglättete Delta-Werte)
+	private lastPointerPos: Point2DInterface | null = null;
+	private lastPointerTsMs: number | null = null;
+	private smoothDx: number = 0;
+	private smoothDy: number = 0;
+	private lastScratchDirection: ScratchDirection | null = null;
+	
+	private readonly appLoopService: AppLoopService = new AppLoopService(this.loop.bind(this));
+	
+	constructor()
+	{
+		this.appLoopService.stop();
+		this.appLoopService.setRuntime(0);
+		this.appLoopService.init('SwipeYesNoComponent');
+	}
+	
 	public ngAfterViewInit(): void
 	{
 		if (this.canvas)
 		{
-			this.ctx = this.canvas.nativeElement.getContext("2d") as CanvasRenderingContext2D;
+			const canvas: HTMLCanvasElement | undefined = this.canvas?.nativeElement;
+			canvas.width = this.widthPx;
+			canvas.height = this.heightPx;
 			
-			this.ctx.fillStyle = 'gray';
-			this.ctx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+			this.ctx = this.canvas.nativeElement.getContext('2d', {willReadFrequently: true}) as CanvasRenderingContext2D;
+			
+			if (this.scratchFreeBg)
+			{
+				this.ctx.clearRect(0, 0, this.widthPx, this.heightPx);
+				this.ctx.drawImage(this.scratchFreeBg, 0, 0, this.widthPx, this.heightPx);
+			}
+			else
+			{
+				this.ctx.fillStyle = 'gray';
+				this.ctx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+			}
 			
 			// composite mode for scratching out
 			this.ctx.globalCompositeOperation = 'destination-out';
 			
 			this.addEventListeners();
+			this.appLoopService.start();
+		}
+	}
+	
+	public ngOnChanges(changes: SimpleChanges): void
+	{
+		if (this.ctx && 'scratchFreeBg' in changes && this.scratchFreeBg)
+		{
+			UtilTimeout.setTimeout(() => {
+				this.ctx!.globalCompositeOperation = 'color';
+				
+				this.ctx!.drawImage(this.scratchFreeBg!, 0, 0, this.widthPx, this.heightPx);
+				
+				this.ctx!.globalCompositeOperation = 'destination-out';
+			}, 10);
+			
 		}
 	}
 	
 	public ngOnDestroy(): void
 	{
+		this.appLoopService.stop();
 		this.removeEventListeners();
 	}
 	
@@ -110,19 +191,12 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 		
 		this.isDrawing = true;
 		
-		const mousePos = this.getMousePos(event, 0);
-		console.log(mousePos);
-		
-		/*	let touchPosObj = this.getTouchPosModel(0);
-			
-			if (touchPosObj)
-			{
-				touchPosObj.pos = mousePos;
-			}
-			else
-			{
-				touchPosObj = new TouchPosModel(0, mousePos);
-			}*/
+		// Richtungsmessung neu starten
+		this.lastPointerPos = null;
+		this.lastPointerTsMs = null;
+		this.smoothDx = 0;
+		this.smoothDy = 0;
+		this.lastScratchDirection = null;
 	}
 	
 	private onMouseMove(event: MouseEvent): void
@@ -135,6 +209,10 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 	private onMouseUp(event: MouseEvent): void
 	{
 		this.isDrawing = false;
+		
+		// optional: Messung beenden
+		this.lastPointerPos = null;
+		this.lastPointerTsMs = null;
 		
 		event.stopImmediatePropagation();
 	}
@@ -149,6 +227,13 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 		}
 		
 		this.isDrawing = true;
+		
+		// Richtungsmessung neu starten
+		this.lastPointerPos = null;
+		this.lastPointerTsMs = null;
+		this.smoothDx = 0;
+		this.smoothDy = 0;
+		this.lastScratchDirection = null;
 	}
 	
 	private onTouchMove(event: TouchEvent): void
@@ -163,6 +248,9 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 		event.stopImmediatePropagation();
 		
 		this.isDrawing = false;
+		
+		this.lastPointerPos = null;
+		this.lastPointerTsMs = null;
 	}
 	
 	private onTouchCancel(event: TouchEvent): void
@@ -170,37 +258,43 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 		event.stopImmediatePropagation();
 		
 		this.isDrawing = false;
+		
+		this.lastPointerPos = null;
+		this.lastPointerTsMs = null;
 	}
 	
+	// Best version also for iPad 2025-12-16
 	private getMousePos(event: MouseEvent | TouchEvent, identifier: number): Point2DInterface | null
 	{
 		const rect = this.canvas!.nativeElement.getBoundingClientRect();
-		let clientX = null;
-		let clientY = null;
 		
-		if (event instanceof MouseEvent)
+		let clientX: number | null = null;
+		let clientY: number | null = null;
+		
+		// Robust: Touch über Feature-Detection statt instanceof
+		if ('changedTouches' in event)
+		{
+			const touches = Array.from(event.changedTouches);
+			const t = touches.find(tt => tt.identifier === identifier) ?? touches[0];
+			
+			if (t)
+			{
+				clientX = t.clientX;
+				clientY = t.clientY;
+			}
+		}
+		else
 		{
 			clientX = event.clientX;
 			clientY = event.clientY;
 		}
-		else if (event instanceof TouchEvent)
-		{
-			const changedTouchesArray = Array.from(event.changedTouches);
-			for (const touch of changedTouchesArray)
-			{
-				if (touch.identifier === identifier)
-				{
-					clientX = touch.clientX;
-					clientY = touch.clientY;
-				}
-			}
-		}
 		
-		if (clientX && clientY)
+		// Wichtig: 0 ist gültig → nicht mit "if (clientX && clientY)" prüfen!
+		if (clientX !== null && clientY !== null)
 		{
 			return {
-				x: -this.diffBoardX + (clientX - rect.x) * this.canvas!.nativeElement.width / rect.width,
-				y: -this.diffBoardY + (clientY - rect.y) * this.canvas!.nativeElement.height / rect.height
+				x: -this.diffBoardX + (clientX - rect.left) * this.canvas!.nativeElement.width / rect.width,
+				y: -this.diffBoardY + (clientY - rect.top) * this.canvas!.nativeElement.height / rect.height
 			};
 		}
 		
@@ -232,29 +326,83 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 		//const x = (event.clientX || event.touches[0].clientX) - rect.left;
 		//const y = (event.clientY || event.touches[0].clientY) - rect.top;
 		
-		const mousePos = this.getMousePos(event, 0);
+		this.mousePos = this.getMousePos(event, 0);
 		
-		if (!mousePos)
+		if (!this.mousePos)
 		{
 			return;
 		}
 		
+		// -------- calculate direction --------
+		const nowTsMs: number = typeof event?.timeStamp === 'number' ? event.timeStamp : performance.now();
+		
+		if (this.lastPointerPos && this.lastPointerTsMs != null)
+		{
+			const rawDx = this.mousePos.x - this.lastPointerPos.x;
+			const rawDy = this.mousePos.y - this.lastPointerPos.y;
+			
+			const dtMs = Math.max(1, nowTsMs - this.lastPointerTsMs);
+			const dtSec = dtMs / 1000;
+			
+			// leichtes Smoothing gegen Zittern
+			const alpha = 0.35; // 0..1 (höher = weniger Glättung, schneller)
+			this.smoothDx = this.smoothDx + (rawDx - this.smoothDx) * alpha;
+			this.smoothDy = this.smoothDy + (rawDy - this.smoothDy) * alpha;
+			
+			const dist = Math.hypot(this.smoothDx, this.smoothDy);
+			if (dist > 0.1)
+			{
+				const angleRad = Math.atan2(this.smoothDy, this.smoothDx);
+				const angleDeg = (angleRad * 180) / Math.PI;
+				
+				const dir: ScratchDirection = {
+					dx: this.smoothDx,
+					dy: this.smoothDy,
+					angleDeg,
+					speedPxPerSec: dist / dtSec
+				};
+				
+				this.lastScratchDirection = dir;
+				this.scratchDirection.emit(dir);
+			}
+		}
+		
+		this.lastPointerPos = {x: this.mousePos.x, y: this.mousePos.y};
+		this.lastPointerTsMs = nowTsMs;
+		// -------- END calculate direction --------
+		
 		this.ctx.fillStyle = '#fff5';
 		this.ctx.beginPath();
-		this.ctx.arc(mousePos.x, mousePos.y, 20, 0, Math.PI * 2);
+		this.ctx.arc(this.mousePos.x, this.mousePos.y, this.scratchRadius, 0, Math.PI * 2);
 		this.ctx.fill();
 		
-		const imageData = this.ctx.getImageData(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+		this.changeDetectorRef.detectChanges();
+		
+		if (this.checkTimeout <= 0)
+		{
+			this.checkTimeout = ScratchFreeComponent.CHECK_TIMEOUT_MS;
+		}
+	}
+	
+	private updateScratchFactor(): void
+	{
+		const imageData = this.ctx!.getImageData(0, 0, this.widthPx, this.heightPx);
 		const data = imageData.data;
 		const totalPixels = data.length / 4;
 		let transparent = 0;
 		for (let i = 3; i < data.length; i += 4)
 		{
-			if (data[i] === 255) transparent++;
+			if (data[i] === 255)
+			{
+				transparent++;
+			}
 		}
-		const percent = 100 - (transparent / totalPixels) * 100;
+		const factor = 1 - transparent / totalPixels;
+		const percent = factor * 100;
 		
 		this.freePercent = Math.round(percent * 10) / 10;
+		
+		this.scratch.emit(factor);
 		
 		if (percent > 80)
 		{
@@ -263,8 +411,43 @@ export class ScratchFreeComponent implements AfterViewInit, OnDestroy
 			//this.canvas.nativeElement.classList.add('canvas-fly-away');
 			
 			this.isFlyAway = true;
+			this.scratchFinished.emit();
 		}
 		
 		this.changeDetectorRef.detectChanges();
+	}
+	
+	private loop(delta: number): void
+	{
+		if (this.checkTimeout > 0)
+		{
+			this.checkTimeout -= delta;
+			if (this.checkTimeout <= 0)
+			{
+				this.checkTimeout = 0;
+				
+				this.updateScratchFactor();
+				
+				if (!this.isFlyAway && this.mousePos && this.canvas)
+				{
+					const x: number = this.canvas.nativeElement.offsetLeft + this.mousePos.x;
+					const y: number = this.canvas.nativeElement.offsetTop + this.mousePos.y;
+					const collision: boolean = this.mousePos.x >= 0 &&
+						this.mousePos.x <= this.widthPx &&
+						this.mousePos.y >= 0 &&
+						this.mousePos.y <= this.heightPx;
+					
+					if (collision)
+					{
+						this.aniExplosion.callExplosion(
+							x, y, 2,
+							this.lastScratchDirection?.angleDeg,
+							60,
+							4
+						);
+					}
+				}
+			}
+		}
 	}
 }

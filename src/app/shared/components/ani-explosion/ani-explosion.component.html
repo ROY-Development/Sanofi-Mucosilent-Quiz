@@ -1,8 +1,8 @@
-@for (particle of particles; track particle; let i = $index) {
+@for (particle of particles; track particle) {
 	<span
 		class="particle"
-		[style.top.px]="y + particle.y"
-		[style.left.px]="x + particle.x"
+		[style.top.px]="particle.y"
+		[style.left.px]="particle.x"
 		[style.background-color]="particle.color"
 		[style.width.px]="particle.r * 2"
 		[style.height.px]="particle.r * 2"

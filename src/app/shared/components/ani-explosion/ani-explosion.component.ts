@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, Input, OnDestroy} from '@angular/core';
 import {AppLoopService} from '../../../core/services/app-loop.service';
 
 class Particle
@@ -29,16 +29,20 @@ export class AniExplosionComponent implements OnDestroy
 {
 	private changeDetectorRef = inject(ChangeDetectorRef);
 	
-	protected x: number = 500;
-	protected y: number = 1500;
-	private width: number = 100;
-	private height: number = 100;
+	@Input({required: false}) public width: number = 100;
+	@Input({required: false}) public height: number = 100;
+	@Input({required: false}) public colorPalette = [
+		'#24122AFF',
+		'#4E242AFF',
+		'#FCB260FF',
+		'#FDEE98FF'
+		/*'#f00',
+		'#932d2d',
+		'#7c0202',*/
+	];
 	
 	private config = {
-		particleNumber: 150,
-		maxParticleSize: 10,
 		maxSpeed: 40,
-		colorVariation: 50,
 		opacity: 1,
 		
 		// Gravity in px/s^2 (higher = falls faster)
@@ -48,21 +52,7 @@ export class AniExplosionComponent implements OnDestroy
 		drag: 0.0
 	};
 	
-	private colorPalette = {
-		matter: [
-			'#24122AFF',
-			'#4E242AFF',
-			'#FCB260FF',
-			'#FDEE98FF'
-			/*'#f00',
-			'#932d2d',
-			'#7c0202',*/
-		]
-	};
-	
 	protected particles: Array<Particle> = [];
-	private centerX: number = this.width / 2;
-	private centerY: number = this.height / 2;
 	
 	private readonly appLoopService: AppLoopService = new AppLoopService(this.loop.bind(this));
 	
@@ -78,9 +68,16 @@ export class AniExplosionComponent implements OnDestroy
 		this.appLoopService.stop();
 	}
 	
-	public callExplosion(): void
+	public callExplosion(
+		x: number = 0,
+		y: number = 0,
+		count: number = 10,
+		angleDeg?: number,
+		spreadDeg: number = 90,
+		maxParticleSize: number = 10
+	): void
 	{
-		this.initParticles(this.config.particleNumber, this.centerX, this.centerY);
+		this.initParticles(x, y, count, angleDeg, spreadDeg, maxParticleSize);
 		
 		this.appLoopService.start();
 	}
@@ -118,25 +115,42 @@ export class AniExplosionComponent implements OnDestroy
 		}
 	}
 	
-	private initParticles(numParticles: number, x: number, y: number)
+	private initParticles(
+		x: number,
+		y: number,
+		count: number,
+		angleDeg?: number,
+		spreadDeg: number = 90,
+		maxParticleSize: number = 10
+	): void
 	{
-		for (let i = 0; i < numParticles; i++)
+		for (let i = 0; i < count; i++)
 		{
-			const x = Math.round(Math.random() * this.width);
-			const y = Math.round(Math.random() * this.height);
-			const r = Math.ceil(Math.random() * this.config.maxParticleSize);
-			const c: string = this.colorPalette.matter[Math.floor(Math.random() * this.colorPalette.matter.length)];
-			
-			const s = Math.pow(Math.ceil(Math.random() * this.config.maxSpeed), .7);
-			const d = Math.round(Math.random() * 360);
+			const s: number = Math.pow(Math.ceil(Math.random() * this.config.maxSpeed), .7);
+			//const d: number = Math.round(Math.random() * 360);
+			const d: number =
+				typeof angleDeg === 'number'
+					? (angleDeg - spreadDeg / 2) + Math.random() * spreadDeg
+					: Math.random() * 360;
 			
 			// Calculate initial speed from direction+speed once
-			const angleRad = (d * Math.PI) / 180;
-			const speedPxPerSec = s * 60; // retains the “old feeling” (px/frame@60fps -> px/s)
-			const vx = Math.cos(angleRad) * speedPxPerSec;
-			const vy = Math.sin(angleRad) * speedPxPerSec;
+			const angleRad: number = (d * Math.PI) / 180;
+			const speedPxPerSec: number = s * 60; // retains the “old feeling” (px/frame@60fps -> px/s)
+			const vx: number = Math.cos(angleRad) * speedPxPerSec;
+			const vy: number = Math.sin(angleRad) * speedPxPerSec;
 			
-			this.particles.push(new Particle(x, y, r, c, s, d, 1, vx, vy));
+			const particle = new Particle(
+				x, //Math.round(Math.random() * this.width) + x,
+				y, //Math.round(Math.random() * this.height) + y,
+				Math.ceil(Math.random() * maxParticleSize),
+				this.colorPalette[Math.floor(Math.random() * this.colorPalette.length)],
+				s,
+				d,
+				1,
+				vx, vy
+			);
+			
+			this.particles.push(particle);
 		}
 	}
 	

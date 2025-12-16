@@ -63,26 +63,6 @@
 				<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
 			</div>
 		} @else {
-			<!--	<div class="button-start-container"
-					 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
-				>
-					<app-button-start
-						[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
-						[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-						[btnContentWidth]="'400px'"
-						[btnContentHeight]="'400px'"
-						[btnRadius]="'50%'"
-						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
-						(clickButton)="onClickStart()"
-					><span class="start"
-						   [style.mask-image]="signalBtnPlayImageUrl()"
-						   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
-					>
-					
-					</span>
-					</app-button-start>
-				</div> -->
-			
 			<app-base-button
 				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
 				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
@@ -106,17 +86,6 @@
 			</app-base-button>
 		}
 	</div>
-	
-	<div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px; width: 100%; flex-direction: column;">
-		<button type="button" class="btn " (click)="onClickExplosion()">EXP</button>
-		<app-ani-explosion #aniExplosion></app-ani-explosion>
-		
-		
-		<app-scratch-free
-		
-		></app-scratch-free>
-	</div>
-	
 	<!--	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
 			<app-game-title></app-game-title>
 		</div>-->
