@@ -402,7 +402,18 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 		
 		this.freePercent = Math.round(percent * 10) / 10;
 		
-		this.scratch.emit(factor);
+		if (!this.isFlyAway && this.mousePos)
+		{
+			const collision: boolean = this.mousePos.x >= 0 &&
+				this.mousePos.x <= this.widthPx &&
+				this.mousePos.y >= 0 &&
+				this.mousePos.y <= this.heightPx;
+			
+			if (collision)
+			{
+				this.scratch.emit(factor);
+			}
+		}
 		
 		if (percent > 80)
 		{

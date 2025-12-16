@@ -466,16 +466,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		
 		const baseSoundPath: string = 'assets/sounds/';
 		const swipeYesNoPath: string = 'assets/games/swipe-yes-no/';
-		const ballGamePath: string = 'assets/games/ball-game/';
-		const pachinkoPath: string = 'assets/games/pachinko/';
-		const roulettePath: string = 'assets/games/roulette/';
-		const pointShooterPath: string = 'assets/games/point-shooter/';
-		const hasMiniGamePachinko: boolean = !this.gameService.signalGameConfig() ||
-			(this.gameService.signalGameConfig()?.activeMiniGames.includes(1) ?? false);
-		const hasMiniGameRoulette: boolean = !this.gameService.signalGameConfig() ||
-			(this.gameService.signalGameConfig()?.activeMiniGames.includes(2) ?? false);
-		const hasMiniGamePointShooter: boolean = !this.gameService.signalGameConfig()
-			|| (this.gameService.signalGameConfig()?.activeMiniGames.includes(3) ?? false);
 		
 		/*
 		key = Sound definition key
@@ -496,78 +486,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{key: SoundNameEnum.buttonSelected, oUrl: 'button-selected.mp3'}, // Spiritual Weapon.mp3
 			{key: SoundNameEnum.cardFadeIn, oUrl: 'card-fade-in.mp3'},
 			{key: SoundNameEnum.cardFadeOut, oUrl: 'card-fade-out.mp3'},
+			{key: SoundNameEnum.scratch01, oUrl: 'scratch01.mp3'},
+			{key: SoundNameEnum.scratch02, oUrl: 'scratch02.mp3'},
 			{key: SoundNameEnum.answerRight, oUrl: 'answer-right.mp3'},
 			{key: SoundNameEnum.answerWrong, oUrl: 'answer-wrong.mp3'},
 			{key: SoundNameEnum.categoryFlash, oUrl: 'category-flash.mp3'},
 			{key: SoundNameEnum.scoreArrive, oUrl: 'score-arrive.mp3'},
 			{key: SoundNameEnum.endGame, oUrl: 'end-game.mp3'}
 		];
-		
-		if (hasMiniGamePachinko || hasMiniGameRoulette || hasMiniGamePointShooter)
-		{
-			soundBase.push(
-				{key: 'dropIn', path: ballGamePath + 'sounds/', oUrl: `drop-in.mp3`},
-				{key: 'bowDraw', path: ballGamePath + 'sounds/', oUrl: `bow-draw.mp3`}
-			);
-			
-			for (let i = 1; i <= 4; i++)
-			{
-				soundBase.push({
-					key: 'ballCollision' + i,
-					path: ballGamePath + 'sounds/',
-					oUrl: `ball-collision${(i < 10 ? '0' : '') + i}.mp3`
-				});
-			}
-			for (let i = 1; i <= 5; i++)
-			{
-				soundBase.push({
-					key: `coinTarget${(i < 10 ? '0' : '') + i}`,
-					path: ballGamePath + 'sounds/',
-					oUrl: `coin-target${(i < 10 ? '0' : '') + i}.mp3`
-				});
-			}
-		}
-		
-		// minigame pachinko
-		if (hasMiniGamePachinko)
-		{
-			soundBase.push(
-				{key: "miniGamePachinko", sG: SoundNameEnum.gameMultiplierMusic01, oUrl: 'music-pachinko.mp3'}, // 8BitVol2 - Dust Loop.mp3
-				{key: 'pachinkoStart', path: pachinkoPath + 'sounds/', oUrl: 'start.mp3'}
-			);
-			for (let i = 1; i <= 4; i++)
-			{
-				soundBase.push({
-					key: 'pachinkoNail' + i,
-					path: pachinkoPath + 'sounds/',
-					oUrl: 'nail' + (i < 10 ? '0' : '') + i + '.mp3'
-				});
-			}
-		}
-		
-		// minigame roulette
-		if (hasMiniGameRoulette)
-		{
-			soundBase.push(
-				{key: "miniGameRoulette", sG: SoundNameEnum.gameMultiplierMusic02, oUrl: 'music-roulette.mp3'}, // 8BitVol2 - Gas Loop.mp3
-				{key: 'rouletteStart', path: roulettePath + 'sounds/', oUrl: 'start.mp3'},
-				{key: 'rouletteStep', path: roulettePath + 'sounds/', oUrl: 'step.mp3'},
-				{key: 'rouletteLogin', path: roulettePath + 'sounds/', oUrl: 'login.mp3'},
-				{key: 'rouletteLock', path: roulettePath + 'sounds/', oUrl: 'lock.mp3'},
-				{key: 'rouletteRolling01', path: roulettePath + 'sounds/', oUrl: 'rolling01.mp3'},
-				{key: 'rouletteRolling02', path: roulettePath + 'sounds/', oUrl: 'rolling02.mp3'},
-				{key: 'rouletteRolling03', path: roulettePath + 'sounds/', oUrl: 'rolling03.mp3'}
-			);
-		}
-		
-		// minigame point shooter
-		if (hasMiniGamePointShooter)
-		{
-			soundBase.push(
-				{key: "miniGamePointShooter", sG: SoundNameEnum.gameMultiplierMusic03, oUrl: 'music-point-shooter.mp3'}, // 8BitVol2 - Fun Loop.mp3
-				{key: 'pointShooterStart', path: pointShooterPath + 'sounds/', oUrl: 'start.mp3'}
-			);
-		}
 		
 		for (const value of soundBase)
 		{

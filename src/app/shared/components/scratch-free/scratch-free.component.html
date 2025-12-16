@@ -1,4 +1,15 @@
 <canvas #canvas
-	[class.canvas-fly-away]="isFlyAway"
+		[class.canvas-fly-away]="isFlyAway"
 ></canvas>
-<span style="position: absolute;">{{freePercent}}</span>
+<!--<span style="position: absolute;">{{ freePercent }}</span>-->
+
+<app-ani-explosion
+	#aniExplosion
+	[width]="scratchRadius * 2"
+	[height]="scratchRadius * 2"
+	[colorPalette]="[
+		'#e1e1e1',
+		'#686868',
+		'#3a3a3a',
+	]"
+></app-ani-explosion>

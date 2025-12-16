@@ -6,6 +6,8 @@ export enum SoundNameEnum
 	buttonSelected = 'buttonSelected',
 	cardFadeIn = 'cardFadeIn',
 	cardFadeOut = 'cardFadeOut',
+	scratch01 = 'scratch01',
+	scratch02 = 'scratch02',
 	answerRight = 'answerRight',
 	answerWrong = 'answerWrong',
 	multiplierFinish = 'multiplierFinish',
