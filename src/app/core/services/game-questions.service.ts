@@ -1,35 +1,61 @@
 import {Injectable} from '@angular/core';
+import {GameQuestionModel} from '../../shared/models/game-question.model';
+import {GameQuestionAnswerModel} from '../../shared/models/game-question-answer.model';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class GameQuestionsService
 {
-	public questions: Array<any> = [
-		{
-			question: 'Was ist ein Komponenten-Test?',
-			answer1: 'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.',
-			answer2: 'Wat wer bist du denn?',
-			answer3: 'Tropfendes Schweinefleisch',
-			rightAnswerIndex: 0
-		},
-		{
-			question: 'Was ist ein Komponenten-Test? 2',
-			answer1: 'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.',
-			answer2: 'Wat wer bist du denn?',
-			answer3: 'Tropfendes Schweinefleisch',
-			rightAnswerIndex: 0
-		},
-		{
-			question: 'Was ist ein Komponenten-Test? 3',
-			answer1: 'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.',
-			answer2: 'Wat wer bist du denn?',
-			answer3: 'Tropfendes Schweinefleisch',
-			rightAnswerIndex: 0
-		}
+	public questions: Array<GameQuestionModel> = [
+		new GameQuestionModel(
+			'Was ist ein Komponenten-Test?',
+			[
+				new GameQuestionAnswerModel(
+					'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.'
+				),
+				new GameQuestionAnswerModel(
+					'Bausteine in einem System'
+				),
+				new GameQuestionAnswerModel(
+					'Vieltrockenheitsangelegenheiten'
+				)
+			],
+			0
+		),
+		new GameQuestionModel(
+			'Was ist ein Komponenten-Test? 2',
+			[
+				new GameQuestionAnswerModel(
+					'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.'
+				),
+				new GameQuestionAnswerModel(
+					'Bausteine in einem System'
+				),
+				new GameQuestionAnswerModel(
+					'Vieltrockenheitsangelegenheiten'
+				)
+			],
+			0
+		),
+		new GameQuestionModel(
+			'Was ist ein Komponenten-Test? 3',
+			[
+				new GameQuestionAnswerModel(
+					'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.'
+				),
+				new GameQuestionAnswerModel(
+					'Bausteine in einem System'
+				),
+				new GameQuestionAnswerModel(
+					'Vieltrockenheitsangelegenheiten'
+				)
+			],
+			0
+		),
 	];
 	
-	public currentQuestion: any = this.questions[0];
+	public currentQuestion: GameQuestionModel = this.questions[0];
 	public selectedAnswerIndex: number = -1;
 	
 	public maxQuestionNr: number = 3;
@@ -39,6 +65,14 @@ export class GameQuestionsService
 	{
 		this.currentQuestion = this.questions[0];
 		this.validAnswerCount = 0;
+		
+		for (const question of this.questions)
+		{
+			for (const answer of question.answers)
+			{
+				answer.init();
+			}
+		}
 	}
 	
 	public get questionIndex(): number

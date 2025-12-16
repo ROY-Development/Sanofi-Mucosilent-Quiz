@@ -14,41 +14,53 @@
 </div>
 
 <div class="content">
-	<div class="question-counter">Frage {{ gameQuestionsService.questionIndex + 1 }} / {{ gameQuestionsService.maxQuestionNr }}</div>
+	<div class="question-counter">Frage {{ gameQuestionsService.questionIndex + 1 }}
+		/ {{ gameQuestionsService.maxQuestionNr }}
+	</div>
 	<div class="question">{{ gameQuestionsService.currentQuestion.question }}</div>
-	<div class="answer-buttons">
-		<app-base-button
-			[configBtn]="null"
-			[btnWidth]="'100%'"
-			[btnContentWidth]="'100%'"
-			[btnContentPadding]="'15px 10px'"
-			[btnDisabled]="false"
-			(clickButton)="onClickAnswer(0)"
-		>
-			<div class="answer">{{ gameQuestionsService.currentQuestion.answer1 }}</div>
-		</app-base-button>
-		
-		<app-base-button
-			[configBtn]="null"
-			[btnWidth]="'100%'"
-			[btnContentWidth]="'100%'"
-			[btnContentPadding]="'15px 10px'"
-			[btnDisabled]="false"
-			(clickButton)="onClickAnswer(1)"
-		>
-			<div class="answer">{{ gameQuestionsService.currentQuestion.answer2 }}</div>
-		</app-base-button>
-		
-		<app-base-button
-			[configBtn]="null"
-			[btnWidth]="'100%'"
-			[btnContentWidth]="'100%'"
-			[btnContentPadding]="'15px 10px'"
-			[btnDisabled]="false"
-			(clickButton)="onClickAnswer(2)"
-		>
-			<div class="answer">{{ gameQuestionsService.currentQuestion.answer3 }}</div>
-		</app-base-button>
+	<div class="answers">
+		@for (value of gameQuestionsService.currentQuestion.answers; track value; let i = $index) {
+			<div class="answer-row">
+				<div class="scratch-container">
+					<div class="scratch-bg"
+						[style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor"
+					>
+						@if (i === 0)
+						{
+							<img [src]="scratchMonster1.src" alt="">
+						}
+						@else if (i === 1)
+						{
+							<img [src]="scratchMonster2.src" alt="">
+						}
+						@else if (i === 2)
+						{
+							<img [src]="scratchMonster1.src" alt="">
+						}
+					</div>
+					
+					<app-scratch-free
+						[widthPx]="360"
+						[heightPx]="360"
+						[scratchRadius]="30"
+						[scratchFreeBg]="scratchFreeBg"
+						(scratch)="onScratch(i, $event)"
+						(scratchFinished)="onScratchFinished(i)"
+					></app-scratch-free>
+				</div>
+				<!--<app-base-button
+					[configBtn]="null"
+					[btnWidth]="'100%'"
+					[btnContentWidth]="'100%'"
+					[btnContentHeight]="'100%'"
+					[btnContentPadding]="'15px 10px'"
+					[btnDisabled]="false"
+					(clickButton)="onClickAnswer(i)"
+				>-->
+				<div class="answer">{{ value.answer }}</div>
+				<!--</app-base-button>-->
+			</div>
+		}
 	</div>
 </div>
 

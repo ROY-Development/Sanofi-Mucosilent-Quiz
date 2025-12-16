@@ -550,6 +550,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'iconReviewWrong', url: 'assets/images/svg/icon-review-wrong.svg'},
 			{name: 'arrowsDown', url: 'assets/images/svg/arrows-down.svg'},
 			{name: 'scratchFreeBg', url: 'assets/images/scratch-free-bg.jpg'},
+			{name: 'prBillyPhotoRoom', url: 'assets/images/product/billy-v3-1-photo-room.png'},
+			{name: 'prLiliPushingPhotoRoom', url: 'assets/images/product/lili-pushing-v2-photo-room.png'},
 			
 			{name: 'highscoreAllTime', url: 'assets/images/svg/highscore-all-time.svg'},
 			{name: 'highscoreMonthly', url: 'assets/images/svg/highscore-monthly.svg'},
