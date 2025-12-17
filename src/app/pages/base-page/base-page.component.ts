@@ -72,27 +72,6 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 	
 	constructor()
 	{
-		//this.mushroomButtonInputService.initButtons(2);
-		
-		/*effect(() => {
-			if (!this.fileLoadService.signalIsLoading())
-			{
-				let image: HTMLImageElement | null;
-				
-				image = this.imageLoadService.getImage('roy5050LogoImage');
-				if (this.signalGameLogoImageUrl() && image)
-				{
-					this.signalGameLogoImageUrl.set(image.src); // set(`url('${image.src}')`);
-				}
-				
-				image = this.imageLoadService.getImage('btnPlayImage');
-				if (this.signalBtnPlayImageUrl() === 'none' && image)
-				{
-					this.signalBtnPlayImageUrl.set(`url('${image.src}')`);
-				}
-			}
-		});*/
-		
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (
 				id === 'btnPlayImage' ||
@@ -168,33 +147,9 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		
 		this.gameService.init();
 		
-		/*if (this.swipeYesNoService.currentQuestionNr === this.swipeYesNoService.maxQuestionCount)
-		{
-			this.initService.navigateToRoute(AppRoutesEnum.endGame).then();
-		}
-		else*/
-		
-		//UtilTimeout.setTimeout(() => {
 		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 1500);
 		
-		//	UtilTimeout.setTimeout(() => {
 		this.initService.navigateToRoute(AppRoutesEnum.question).then();
-		//}, 1500);
-		//}, 500);
-		
-		/*this.appBackendConfigService.update(this.mushroomButtonInputService.buttons)
-			.pipe(untilDestroyed(this))
-			.subscribe(
-				{
-					next: (isDone: boolean) => {
-						if (isDone)
-						{
-							this.initService.navigateToRoute(AppRoutesEnum.game).then();
-						}
-					},
-					error: this.onError.bind(this)
-				}
-			);*/
 	}
 	
 	protected onClickHowToPLay(): void

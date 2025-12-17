@@ -52,7 +52,7 @@
 				<!--<div class="name1 special-font">ROY</div>
 				<div class="name2 special-font">50/50</div>-->
 				<div class="name1 text-center">TITEL</div>
-				<div style="margin-bottom: 30%;"></div>
+				<!--<div style="margin-bottom: 30%;"></div>-->
 			}
 		</div>
 	</div>
@@ -63,26 +63,29 @@
 				<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
 			</div>
 		} @else {
-			
-			<app-button-start
-				[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
-				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-				[btnContentWidth]="'400px'"
-				[btnContentHeight]="'400px'"
-				[btnRadius]="'50%'"
-				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
-				(clickButton)="onClickStart()"
-			><span class="start"
-				   [style.mask-image]="signalBtnPlayImageUrl()"
-				   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+			<div class="button-start-container"
+				 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
 			>
+				<app-button-start
+					[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnContentWidth]="'400px'"
+					[btnContentHeight]="'400px'"
+					[btnRadius]="'50%'"
+					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
+					(clickButton)="onClickStart()"
+				><span class="start"
+					   [style.mask-image]="signalBtnPlayImageUrl()"
+					   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+				>
 					<!--@if (signalBtnPlayImageUrl() !== 'none') {
 						<img [src]="signalBtnPlayImageUrl()" alt="Start" width="386" height="385">
 					}-->
 				</span>
-			</app-button-start>
+				</app-button-start>
+			</div>
 			
-			<app-base-button
+			<!--<app-base-button
 				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
 				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
 				[btnContentWidth]="'670px'"
@@ -90,9 +93,9 @@
 				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
 				(clickButton)="onClickStart()"
 			>{{ 'start' | nativeTranslate }}
-			</app-base-button>
+			</app-base-button>-->
 			
-			<div style="margin-bottom: 30px;"></div>
+			<!--<div style="margin-bottom: 30px;"></div>-->
 			
 			<!--<app-base-button
 				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
