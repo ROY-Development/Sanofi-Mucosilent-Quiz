@@ -72,7 +72,8 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 		this.isShowingConfirmCancelDialog.set(true);
 		// this.soundService.playSound('modalFadeIn', true);
 		
-		this.gameQuestionsService.init();
-		this.initService.navigateToRoute(AppRoutesEnum.base).then();
+		this.initService.navigateToRoute(AppRoutesEnum.base).then(() => {
+			this.gameQuestionsService.init();
+		});
 	}
 }

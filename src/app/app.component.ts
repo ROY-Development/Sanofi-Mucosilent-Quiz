@@ -205,7 +205,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 	
 	public ngOnInit(): void
 	{
-		this.initLocalization().then(() => {
+		/*this.initLocalization().then(() => {
 			if (this.gameService.signalGameConfig())
 			{
 				const quizName: string = this.nativeTranslateService.instant('quiz-name');
@@ -216,7 +216,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{
 				//	this.titleService.setTitle('ROY 50/50 Speed Quiz');
 			}
-		});
+		});*/
 		
 		this.onResize();
 		
@@ -485,8 +485,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{key: SoundNameEnum.modalFadeIn, oUrl: 'modal-fade-in.mp3'},
 			{key: SoundNameEnum.modalFadeOut, oUrl: 'modal-fade-out.mp3'},
 			{key: SoundNameEnum.buttonSelected, oUrl: 'button-selected.mp3'}, // Spiritual Weapon.mp3
-			{key: SoundNameEnum.cardFadeIn, oUrl: 'card-fade-in.mp3'},
-			{key: SoundNameEnum.cardFadeOut, oUrl: 'card-fade-out.mp3'},
+			//{key: SoundNameEnum.cardFadeIn, oUrl: 'card-fade-in.mp3'},
+			//{key: SoundNameEnum.cardFadeOut, oUrl: 'card-fade-out.mp3'},
 			{key: SoundNameEnum.scratch01, oUrl: 'scratch01.mp3'},
 			{key: SoundNameEnum.scratch02, oUrl: 'scratch02.mp3'},
 			{key: SoundNameEnum.answerRight, oUrl: 'answer-right.mp3'},
@@ -543,14 +543,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'btnSoundOff', url: 'assets/images/icons/btn-sound-off.png'},
 			{name: 'btnFullscreenOn', url: 'assets/images/icons/btn-fullscreen-on.png'},
 			{name: 'btnFullscreenOff', url: 'assets/images/icons/btn-fullscreen-off.png'},
-			{name: 'giftClosedImage', url: 'assets/images/icons/gift-closed.png'},
-			{name: 'giftOpenImage', url: 'assets/images/icons/gift-open.png'},
+			//{name: 'giftClosedImage', url: 'assets/images/icons/gift-closed.png'},
+			//{name: 'giftOpenImage', url: 'assets/images/icons/gift-open.png'},
 			{name: 'btnPlayImage', url: 'assets/images/btn-play.png'},
 			{name: 'starImage', url: 'assets/images/svg/star.svg'},
 			{name: 'iconReviewCorrect', url: 'assets/images/svg/icon-review-correct.svg'},
 			{name: 'iconReviewWrong', url: 'assets/images/svg/icon-review-wrong.svg'},
 			{name: 'arrowsDown', url: 'assets/images/svg/arrows-down.svg'},
-			{name: 'scratchFreeBg', url: 'assets/images/scratch-free-bg.jpg'},
 			{name: 'scratchFreeBg', url: 'assets/images/scratch-free-bg.jpg'},
 			
 			{name: 'prBillyPhotoRoom', url: 'assets/images/product/billy-v3-1-photo-room.png'},
@@ -683,12 +682,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			}
 			else
 			{
-				loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
+	//			loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
 			}
 		}
 		else
 		{
-			loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
+	//		loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
 		}
 	}
 	

@@ -60,6 +60,7 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 			if (
 				id === 'btnClose' ||
 				id === 'scratchFreeBg' ||
+				//id === 'scratchFree01' ||
 				id === 'prBillyPhotoRoom' ||
 				id === 'prLiliPushingPhotoRoom' ||
 				id === 'prCouple' ||
@@ -143,7 +144,7 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 		
 		// call explosion
 		this.changeDetectorRef.detectChanges();
-		this.aniExplosion?.callExplosion(360 * 0.5, 360 * 0.5, 200);
+		this.aniExplosion?.callExplosion(360 * 0.5, 360 * 0.35, 200);
 		
 		UtilTimeout.setTimeout(() => {
 			this.initService.navigateToRoute(AppRoutesEnum.questionResult).then();
