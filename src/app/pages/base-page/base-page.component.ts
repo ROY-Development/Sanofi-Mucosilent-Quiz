@@ -25,6 +25,7 @@ import {ImageLoadService} from '../../core/services/image-load.service';
 import {ButtonSoundOnOffComponent} from '../../shared/components/button-sound-on-off/button-sound-on-off.component';
 import {ViewTransitionService} from '../../core/services/view-transition.service';
 import {AppConfig} from '../../app.config';
+import {StopTypeEnum} from '../../games/enums/stop-type.enum';
 
 @UntilDestroy()
 @Component({
@@ -93,15 +94,19 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 				// start background music only if the user didn't click the start-button yet
 				if (!this.signalClickedStart())
 				{
-					this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
+	//				this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
 				}
 			}, 100);
 		});
 		
+		// set this off if the result music differs from question music
+		this.soundService.fadeOutSound(SoundNameEnum.mainMusic01, 500, StopTypeEnum.stop);
+		this.soundService.fadeOutSound(SoundNameEnum.mainMusic02, 500, StopTypeEnum.stop);
+		this.soundService.fadeOutSound(SoundNameEnum.mainMusic03, 500, StopTypeEnum.stop);
 		this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
 			() => {
 				this.backgroundSoundTimeoutSubscription = null;
-				this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
+	//			this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
 			}, 500);
 	}
 	

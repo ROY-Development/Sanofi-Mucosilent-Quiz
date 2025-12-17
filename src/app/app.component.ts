@@ -42,6 +42,7 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {ScormService} from './core/services/scorm.service';
 import {BackgroundAnimationTypeEnum} from './shared/enums/background-animation-type.enum';
 import {SwipeYesNoService} from './games/swipe-yes-no/services/swipe-yes-no.service';
+import {StopTypeEnum} from './games/enums/stop-type.enum';
 
 @UntilDestroy()
 @Component({
@@ -186,7 +187,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 //				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic02, 500, StopTypeEnum.stop);
 //				this.soundService.fadeOutSound(SoundNameEnum.gameMultiplierMusic03, 500, StopTypeEnum.stop);
 				//		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 500, StopTypeEnum.stop); // turned off - important for menu switch
-				// this.soundService.fadeOutSound(SoundNameEnum.endGameMusic, 500, StopTypeEnum.stop);
+				this.soundService.fadeOutSound(SoundNameEnum.endGameMusic, 500, StopTypeEnum.stop);
 			}
 			else if (event instanceof NavigationEnd) // Navigation is starting...
 			{
