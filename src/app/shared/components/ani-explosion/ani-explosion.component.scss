@@ -2,4 +2,13 @@
 	position: absolute;
 	border-radius: 50%;
 	pointer-events: none;
+	touch-action: none;
+	/*background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;*/
+
+	&.pattern1 {
+		//clip-path: circle(50% at 50% 50%);
+		clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+	}
 }

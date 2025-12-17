@@ -40,6 +40,9 @@ export class AniExplosionComponent implements OnDestroy
 		'#932d2d',
 		'#7c0202',*/
 	];
+	@Input({required: false}) public patternType: number = 0;
+	/// @Input({required: false}) public scratchFree01ImageUrl: string = 'none';
+	// protected readonly signalScratchFree01ImageUrl = signal<string>('none');
 	
 	private config = {
 		maxSpeed: 40,
@@ -62,6 +65,14 @@ export class AniExplosionComponent implements OnDestroy
 		this.appLoopService.setRuntime(0);
 		this.appLoopService.init('AniExplosionComponent');
 	}
+	
+	/*public ngOnChanges(changes: SimpleChanges): void
+	{
+		if ('scratchFree01ImageUrl' in changes)
+		{
+			this.signalScratchFree01ImageUrl.set(this.scratchFree01ImageUrl);
+		}
+	}*/
 	
 	public ngOnDestroy(): void
 	{
