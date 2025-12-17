@@ -583,6 +583,11 @@ button:focus {
 	position: fixed;
 	top: 0;
 	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	pointer-events: none;
+	touch-action: none;
 	/* Hier definierst du, wie die ALTE Seite verschwindet */
 	/*animation: fade-out 1350ms ease-in-out;*/
 }
@@ -592,7 +597,11 @@ button:focus {
 	position: fixed;
 	top: 0;
 	left: 0;
-
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	pointer-events: none;
+	touch-action: none;
 	/* Hier definierst du, wie die NEUE Seite erscheint */
 	/*animation: fade-in 1350ms ease-in-out;*/
 }

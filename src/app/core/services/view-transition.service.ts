@@ -9,6 +9,8 @@ export class ViewTransitionService
 	public isEnabled: boolean = false;
 	private currentTransition: ViewTransition | null = null;
 	
+	private touchElementTouchStart = this.onTouchElementTouchStart.bind(this);
+	
 	public async startTransition(
 		fromRoute: string,
 		toRoute: string,
@@ -37,6 +39,8 @@ export class ViewTransitionService
 		
 		document.documentElement.setAttribute('data-transition', animationType);
 		
+		this.addEventListeners();
+		
 		// Start view transition
 		this.currentTransition = document.startViewTransition(async () => {
 			// Here the DOM is changing (Navigation)
@@ -47,11 +51,15 @@ export class ViewTransitionService
 			this.currentTransition = null;
 			document.documentElement.removeAttribute('data-transition');
 			
+			this.removeEventListeners();
+			
 			if (onTransitionFinished)
 			{
 				onTransitionFinished();
 			}
 		}).catch((err: any) => {
+			this.removeEventListeners();
+			
 			if (err)
 			{
 				//
@@ -109,5 +117,50 @@ export class ViewTransitionService
 		}
 		
 		return 'fade';
+	}
+	
+	private addEventListeners(): void
+	{
+		/*if (!this.canvas)
+		{
+			return;
+		}*/
+		
+		// mouse events
+		/*this.canvas.nativeElement.addEventListener('mousedown', this.mouseDown);
+		this.canvas.nativeElement.addEventListener('mouseup', this.mouseUp);
+		this.canvas.nativeElement.addEventListener('mousemove', this.mouseMove);*/
+		
+		// touch events
+		document.addEventListener('touchstart', this.touchElementTouchStart, {passive: false});
+		/*this.canvas.nativeElement.addEventListener('touchstart', this.touchStart);
+		this.canvas.nativeElement.addEventListener('touchmove', this.touchMove);
+		this.canvas.nativeElement.addEventListener('touchend', this.touchEnd);
+		this.canvas.nativeElement.addEventListener('touchcancel', this.touchCancel);*/
+	}
+	
+	private removeEventListeners(): void
+	{
+		/*if (!this.canvas)
+		{
+			return;
+		}*/
+		
+		// mouse events
+		/*this.canvas.nativeElement.removeEventListener('mousedown', this.mouseDown);
+		this.canvas.nativeElement.removeEventListener('mouseup', this.mouseUp);
+		this.canvas.nativeElement.removeEventListener('mousemove', this.mouseMove);*/
+		
+		// touch events
+		document.removeEventListener('touchstart', this.touchElementTouchStart);
+		/*this.canvas.nativeElement.removeEventListener('touchstart', this.touchStart);
+		this.canvas.nativeElement.removeEventListener('touchmove', this.touchMove);
+		this.canvas.nativeElement.removeEventListener('touchend', this.touchEnd);
+		this.canvas.nativeElement.removeEventListener('touchcancel', this.touchCancel);*/
+	}
+	
+	private onTouchElementTouchStart(event: TouchEvent): void
+	{
+		event.preventDefault();
 	}
 }
