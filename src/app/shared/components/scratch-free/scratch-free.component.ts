@@ -90,7 +90,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	{
 		this.appLoopService.stop();
 		this.appLoopService.setRuntime(0);
-		this.appLoopService.init('SwipeYesNoComponent');
+		this.appLoopService.init('ScratchFreeComponent');
 	}
 	
 	public ngAfterViewInit(): void

@@ -9,13 +9,14 @@ canvas {
 	/*position: absolute;
 	top: 0;
 	left: 0;*/
-	/*transition: opacity 1.5s, scale 1.5s, filter 1.5s;*/
 
 	border-radius: 50px;
 	border: 3px solid #000;
 }
 
 .canvas-fly-away {
+	transition: opacity 1.5s, scale 1.5s, filter 1.5s;
+
 	opacity: 0;
 	scale: 1.2;
 	filter: blur(10px);
