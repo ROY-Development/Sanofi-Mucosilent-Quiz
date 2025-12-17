@@ -580,12 +580,19 @@ button:focus {
 
 /* Das ALTE Bild (vorherige Seite) */
 ::view-transition-old(main-content) {
+	position: fixed;
+	top: 0;
+	left: 0;
 	/* Hier definierst du, wie die ALTE Seite verschwindet */
 	/*animation: fade-out 1350ms ease-in-out;*/
 }
 
 /* Das NEUE Bild (nächste Seite) */
 ::view-transition-new(main-content) {
+	position: fixed;
+	top: 0;
+	left: 0;
+
 	/* Hier definierst du, wie die NEUE Seite erscheint */
 	/*animation: fade-in 1350ms ease-in-out;*/
 }
