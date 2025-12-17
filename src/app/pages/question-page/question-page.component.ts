@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, OnDestroy, OnInit, signal} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, inject, OnDestroy, OnInit, signal, ViewChild} from '@angular/core';
 import {ImageLoadService} from '../../core/services/image-load.service';
 import {SoundService} from '../../core/services/sound.service';
 import {SoundNameEnum} from '../../shared/enums/sound-name.enum';
@@ -7,6 +7,7 @@ import {AppRoutesEnum} from '../../app-routes.enum';
 import {GameQuestionsService} from '../../core/services/game-questions.service';
 import {Subscription} from 'rxjs';
 import {UtilTimeout} from '../../shared/utils/util-timeout';
+import {AniExplosionComponent} from '../../shared/components/ani-explosion/ani-explosion.component';
 
 @Component({
 	selector: 'app-question-page',
@@ -16,6 +17,10 @@ import {UtilTimeout} from '../../shared/utils/util-timeout';
 })
 export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 {
+	private changeDetectorRef = inject(ChangeDetectorRef);
+	
+	@ViewChild("aniExplosion") aniExplosion?: AniExplosionComponent;
+	
 	protected initService = inject(InitService);
 	protected gameQuestionsService = inject(GameQuestionsService);
 	protected soundService = inject(SoundService);
@@ -28,6 +33,14 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	protected scratchFreeBg: HTMLImageElement = new Image();
 	protected scratchMonster1: HTMLImageElement = new Image();
 	protected scratchMonster2: HTMLImageElement = new Image();
+	protected scratchMonster3: HTMLImageElement = new Image();
+	
+	protected imgCorrect: HTMLImageElement = new Image();
+	protected imgWrong: HTMLImageElement = new Image();
+	protected readonly signalCorrectImageUrl = signal<string>('none');
+	protected readonly signalWrongImageUrl = signal<string>('none');
+	
+	protected readonly signalScratchFinished = signal<boolean>(false);
 	
 	private backgroundSoundTimeoutSubscription: Subscription | null = null;
 	private addImageSubscription: Subscription | null = null;
@@ -48,7 +61,10 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 				id === 'btnClose' ||
 				id === 'scratchFreeBg' ||
 				id === 'prBillyPhotoRoom' ||
-				id === 'prLiliPushingPhotoRoom'
+				id === 'prLiliPushingPhotoRoom' ||
+				id === 'prCouple' ||
+				id === 'imgCorrect' ||
+				id === 'imgWrong'
 			)
 			{
 				this.getImages();
@@ -110,21 +126,37 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 			this.soundService.playSound(SoundNameEnum.scratch02, true);
 		}
 		
-		this.gameQuestionsService.currentQuestion.answers[answerIndex].scratchFactor = scratchFactor;
+		this.gameQuestionsService.currentQuestion.answers[answerIndex].scratchFactor = scratchFactor / 0.9;
 	}
 	
 	protected onScratchFinished(answerIndex: number): void
 	{
-		// TODO
+		this.signalScratchFinished.set(true);
+		
+		this.gameQuestionsService.currentQuestion.answers[answerIndex].scratchFactor = 1;
+		
+		const soundName = this.gameQuestionsService.currentQuestion.rightAnswerIndex === answerIndex ?
+			SoundNameEnum.answerRight : SoundNameEnum.answerWrong;
+		this.soundService.playSound(soundName, true);
+		
+		this.gameQuestionsService.selectAnswer(answerIndex);
+		
+		// call explosion
+		this.changeDetectorRef.detectChanges();
+		this.aniExplosion?.callExplosion(360 * 0.5, 360 * 0.5, 200);
+		
+		UtilTimeout.setTimeout(() => {
+			this.initService.navigateToRoute(AppRoutesEnum.questionResult).then();
+		}, 2000);
 	}
 	
-	protected onClickAnswer(index: number): void
+	/*protected onClickAnswer(index: number): void
 	{
 		this.soundService.playSound(SoundNameEnum.click, true);
 		this.gameQuestionsService.selectAnswer(index);
 		
 		this.initService.navigateToRoute(AppRoutesEnum.questionResult).then();
-	}
+	}*/
 	
 	private getImages(): void
 	{
@@ -150,6 +182,26 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 		if (image)
 		{
 			this.scratchMonster2 = image;
+		}
+		
+		image = this.imageLoadService.getImage('prCouple');
+		if (image)
+		{
+			this.scratchMonster3 = image;
+		}
+		
+		image = this.imageLoadService.getImage('imgCorrect');
+		if (image)
+		{
+			this.imgCorrect = image;
+			this.signalCorrectImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('imgWrong');
+		if (image)
+		{
+			this.imgWrong = image;
+			this.signalWrongImageUrl.set(`url('${image.src}')`);
 		}
 	}
 }

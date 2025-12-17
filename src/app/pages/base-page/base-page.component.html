@@ -63,6 +63,25 @@
 				<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
 			</div>
 		} @else {
+			
+			<app-button-start
+				[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
+				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[btnContentWidth]="'400px'"
+				[btnContentHeight]="'400px'"
+				[btnRadius]="'50%'"
+				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
+				(clickButton)="onClickStart()"
+			><span class="start"
+				   [style.mask-image]="signalBtnPlayImageUrl()"
+				   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+			>
+					<!--@if (signalBtnPlayImageUrl() !== 'none') {
+						<img [src]="signalBtnPlayImageUrl()" alt="Start" width="386" height="385">
+					}-->
+				</span>
+			</app-button-start>
+			
 			<app-base-button
 				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
 				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
@@ -75,7 +94,7 @@
 			
 			<div style="margin-bottom: 30px;"></div>
 			
-			<app-base-button
+			<!--<app-base-button
 				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
 				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
 				[btnContentWidth]="'670px'"
@@ -83,7 +102,7 @@
 				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
 				(clickButton)="onClickHowToPLay()"
 			>{{ 'how-to-play' | nativeTranslate }}
-			</app-base-button>
+			</app-base-button>-->
 		}
 	</div>
 	<!--	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
@@ -130,35 +149,9 @@
 		[disabled]="false"
 		(click)="soundService.playSound(SoundNameEnum.click, true);"
 	></app-button-fullscreen>
-	<!--@if (!signalClickedStart()) {
-		<app-button-sound-on-off
-			#buttonSoundOnOffComponent
-			[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
-			[color]="gameService.signalGameConfig()?.fontColorButton ?? '#fff'"
-			[backgroundColor]="gameService.signalGameConfig()?.colorButtonBg ?? '#ffffff4d'"
-			[disabled]="false"
-			[top]="'12px'"
-			[bottom]="'auto'"
-			[right]="'auto'"
-			[left]="'22px'"
-			(click)="soundService.playSound(SoundNameEnum.click, true);"
-		></app-button-sound-on-off>
-		
-		<app-button-fullscreen
-			#buttonFullscreenComponent
-			[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
-			[color]="gameService.signalGameConfig()?.fontColorButton ?? '#fff'"
-			[backgroundColor]="gameService.signalGameConfig()?.colorButtonBg ?? '#ffffff4d'"
-			[disabled]="false"
-			[top]="'12px'"
-			[bottom]="'auto'"
-			[right]="'auto'"
-			[left]="'117px'"
-			(click)="soundService.playSound(SoundNameEnum.click, true);"
-		></app-button-fullscreen>
-	}-->
-</div>
 
+</div>
+<!--
 @if (legalTextDialogType()) {
 	<div class="dialog-animation-container"
 		 animate.enter="dialog-enter"
@@ -169,4 +162,4 @@
 			(cancelDialog)="onClickCloseLegal($event)"
 		></app-dialog-legal>
 	</div>
-}
+}-->

@@ -1,6 +1,8 @@
 .content {
 	height: 100%;
 	padding-top: 17%;
+
+	overflow: hidden;
 }
 
 .header {
@@ -49,6 +51,10 @@
 	width: 100%;
 	height: 70%;
 
+	&.scratch-finished {
+		pointer-events: none;
+	}
+
 	.answer-row {
 		width: 100%;
 		height: 40%;
@@ -59,24 +65,99 @@
 		align-items: center;
 
 		.scratch-container {
+			position: relative;
 			width: 360px;
 			height: 360px;
 
 			flex: 0 0 360px; /* nicht wachsen, nicht schrumpfen, Basis 360 */
 
-			border: 3px #000 solid;
-			overflow: hidden;
+			.scratch-border {
+				width: 100%;
+				height: 100%;
 
-			border-radius: 50px;
-
-			.scratch-bg {
-				position: absolute;
-				width: 360px;
-				z-index: -1;
-
-				img {
+				.scratch-bg {
+					position: absolute;
 					width: 100%;
-					height: auto;
+					height: 100%;
+					z-index: -1;
+
+					display: flex;
+					flex-direction: row;
+					flex-wrap: nowrap;
+					justify-content: center;
+					align-items: center;
+					overflow: hidden;
+
+					&.enabled {
+						overflow: visible;
+					}
+
+					img {
+						height: 100%;
+						width: auto;
+
+						scale: 0;
+					}
+				}
+			}
+
+			.scratch-result {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				height: 100%;
+
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+
+			//	opacity: 0;
+			//	scale: 2;
+
+				pointer-events: none;
+
+			//	transition: opacity 1300ms ease-in-out, scale 1300ms ease-in-out;
+
+			/*&.enabled {
+					opacity: 1;
+					scale: 1;
+				}*/
+
+				.img-result {
+					width: 65%;
+					height: 65%;
+
+					mask-image: none;
+					mask-repeat: no-repeat;
+					mask-size: contain;
+					mask-position: center;
+					background-color: #fff;
+
+					&.img-correct {
+						background-color: #0b8000;
+					}
+
+					&.img-wrong {
+						background-color: #d50000;
+					}
+				}
+
+				&.result-enter {
+					animation: resultFadeIn 1500ms ease-out forwards;
+				}
+
+				@keyframes resultFadeIn {
+					from {
+						opacity: 0;
+						scale: 2;
+					}
+					to {
+						opacity: 1;
+						scale: 1;
+					}
 				}
 			}
 		}

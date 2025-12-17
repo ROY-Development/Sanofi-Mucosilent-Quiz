@@ -22,28 +22,34 @@
 </div>
 
 <div class="content">
-	<div>[QUIZ BEENDET]</div>
-	<div>{{ gameQuestionsService.validAnswerCount }} von {{ gameQuestionsService.maxQuestionNr }} Antworten richtig
+	
+	<div class="content-container">
+		
+		<h4>Vielen Dank fürs Mitmachen!</h4>
+		
+		<div>{{ gameQuestionsService.validAnswerCount }} von {{ gameQuestionsService.maxQuestionNr }} Antworten richtig
+		</div>
+		
+		
+		<div>
+			<br>
+			Du hast gesehen, wie wichtig moderne und gut verträgliche Optionen in der
+			Hustenberatung sind. Mit Mucosilent® hast du eine wirksame Lösung gegen trockenen
+			Reizhusten an der Hand, geeignet für Kinder ab 2 Jahren, Erwachsene und Senioren.
+			<br><br>
+			Schön, dass du dabei warst - komm gut durch die Hustenzeit!
+		</div>
+		<br><br>
+		
+		<app-base-button
+			[configBtn]="null"
+			[btnWidth]="'100%'"
+			[btnContentWidth]="'100%'"
+			[btnContentPadding]="'15px 10px'"
+			[btnDisabled]="false"
+			(clickButton)="onClickExit()"
+		>
+			<span>Beenden</span>
+		</app-base-button>
 	</div>
-	<div>[Dank + Glückwunsch-Text]</div>
-	
-	
-	<div>Lorem ipsum dolor sit amet, consetetur
-		sadipscing elitr, sed diam nonumy eirmod
-		tempor invidunt ut labore et dolore
-		magna aliquyam erat, sed diam voluptua
-	</div>
-	
-	
-	<app-base-button
-		[configBtn]="null"
-		[btnWidth]="'100%'"
-		[btnContentWidth]="'100%'"
-		[btnContentPadding]="'15px 10px'"
-		[btnDisabled]="false"
-		(clickButton)="onClickExit()"
-	>
-		<span>Beenden</span>
-	</app-base-button>
-
 </div>

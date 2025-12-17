@@ -9,49 +9,49 @@ export class GameQuestionsService
 {
 	public questions: Array<GameQuestionModel> = [
 		new GameQuestionModel(
-			'Was ist ein Komponenten-Test?',
+			'Welchen Wirkstoff enthält Mucosilent ® gegen Reizhusten?',
 			[
 				new GameQuestionAnswerModel(
-					'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.'
+					'Levodropropizin'
 				),
 				new GameQuestionAnswerModel(
-					'Bausteine in einem System'
+					'Codein'
 				),
 				new GameQuestionAnswerModel(
-					'Vieltrockenheitsangelegenheiten'
+					'Eukalyptus'
 				)
 			],
 			0
 		),
 		new GameQuestionModel(
-			'Was ist ein Komponenten-Test? 2',
+			'Für wen ist Mucosilent® geeignet?',
 			[
 				new GameQuestionAnswerModel(
-					'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.'
+					'Nur für Erwachsene'
 				),
 				new GameQuestionAnswerModel(
-					'Bausteine in einem System'
+					'Kinder ab 2 Jahren, Erwachsene & Senioren'
 				),
 				new GameQuestionAnswerModel(
-					'Vieltrockenheitsangelegenheiten'
+					'Kinder bis 5 Jahre'
 				)
 			],
-			0
+			1
 		),
 		new GameQuestionModel(
-			'Was ist ein Komponenten-Test? 3',
+			'Wo setzt die Wirkung von Mucosilent® an?',
 			[
 				new GameQuestionAnswerModel(
-					'Eine Softwaretestmethode, die einzelne, isolierte Bausteine einer Anwendung überprüft.'
+					'Im Gehirn'
 				),
 				new GameQuestionAnswerModel(
-					'Bausteine in einem System'
+					'Peripher – also außerhalb des Gehirns'
 				),
 				new GameQuestionAnswerModel(
-					'Vieltrockenheitsangelegenheiten'
+					'Im Magen-Darm-Trakt'
 				)
 			],
-			0
+			1
 		),
 	];
 	

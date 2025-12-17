@@ -32,11 +32,15 @@ type ScratchDirection = {
 })
 export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 {
+	private static readonly CHECK_TIMEOUT_MS: number = 20;
+	private static readonly SCRATCH_FINISH_FACTOR: number = 0.8;
+	
 	private changeDetectorRef = inject(ChangeDetectorRef);
 	
 	@ViewChild('canvas') public canvas?: ElementRef<HTMLCanvasElement>;
 	@ViewChild("aniExplosion") aniExplosion!: AniExplosionComponent;
 	
+	@Input({required: false}) public enabled: boolean = true;
 	@Input({required: false}) public widthPx: number = 300;
 	@Input({required: false}) public heightPx: number = 200;
 	@Input({required: false}) public scratchRadius: number = 20;
@@ -70,7 +74,6 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	//@ViewChild('scratchFreeText') protected scratchFreeText!: ElementRef<HTMLElement>;
 	//@ViewChild('scratchFreeText2') protected scratchFreeText2!: ElementRef<HTMLElement>;
 	
-	private static readonly CHECK_TIMEOUT_MS: number = 20;
 	private checkTimeout: number = 0;
 	private mousePos: Point2DInterface | null = null;
 	
@@ -317,7 +320,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	
 	private draw(event: any): void
 	{
-		if (!this.isDrawing || !this.ctx || !this.canvas)
+		if (!this.enabled || !this.isDrawing || !this.ctx || !this.canvas)
 		{
 			return;
 		}
@@ -415,7 +418,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 			}
 		}
 		
-		if (percent > 80)
+		if (factor > ScratchFreeComponent.SCRATCH_FINISH_FACTOR)
 		{
 			//ctx.fillStyle = '#fff';
 			//ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -437,6 +440,11 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 			{
 				this.checkTimeout = 0;
 				
+				if (!this.enabled)
+				{
+					return;
+				}
+				
 				this.updateScratchFactor();
 				
 				if (!this.isFlyAway && this.mousePos && this.canvas)
@@ -454,7 +462,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 							x, y, 2,
 							this.lastScratchDirection?.angleDeg,
 							60,
-							4
+							10
 						);
 					}
 				}

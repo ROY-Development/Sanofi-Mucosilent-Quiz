@@ -18,36 +18,59 @@
 		/ {{ gameQuestionsService.maxQuestionNr }}
 	</div>
 	<div class="question">{{ gameQuestionsService.currentQuestion.question }}</div>
-	<div class="answers">
+	<div class="answers"
+		[class.scratch-finished]="signalScratchFinished()"
+	>
 		@for (value of gameQuestionsService.currentQuestion.answers; track value; let i = $index) {
 			<div class="answer-row">
 				<div class="scratch-container">
-					<div class="scratch-bg"
-						[style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor"
-					>
-						@if (i === 0)
-						{
-							<img [src]="scratchMonster1.src" alt="">
-						}
-						@else if (i === 1)
-						{
-							<img [src]="scratchMonster2.src" alt="">
-						}
-						@else if (i === 2)
-						{
-							<img [src]="scratchMonster1.src" alt="">
-						}
+					<div class="scratch-border">
+						<div class="scratch-bg"
+							 [class.enabled]="gameQuestionsService.currentQuestion.answers[i].scratchFactor >= 1"
+						>
+							@if (gameQuestionsService.questionIndex === 0) {
+								<img [src]="scratchMonster1.src" alt=""
+									 [style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor">
+							} @else if (gameQuestionsService.questionIndex === 1) {
+								<img [src]="scratchMonster2.src" alt=""
+									 [style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor">
+							} @else if (gameQuestionsService.questionIndex === 2) {
+								<img [src]="scratchMonster3.src" alt=""
+									 [style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor">
+							}
+						</div>
+						
+						<app-scratch-free
+							[enabled]="!signalScratchFinished()"
+							[widthPx]="360"
+							[heightPx]="360"
+							[scratchRadius]="30"
+							[scratchFreeBg]="scratchFreeBg"
+							(scratch)="onScratch(i, $event)"
+							(scratchFinished)="onScratchFinished(i)"
+						></app-scratch-free>
 					</div>
-					
-					<app-scratch-free
-						[widthPx]="360"
-						[heightPx]="360"
-						[scratchRadius]="30"
-						[scratchFreeBg]="scratchFreeBg"
-						(scratch)="onScratch(i, $event)"
-						(scratchFinished)="onScratchFinished(i)"
-					></app-scratch-free>
+					@if (gameQuestionsService.currentQuestion.answers[i].scratchFactor >= 1) {
+						<div class="scratch-result"
+							 animate.enter="result-enter"
+						> <!-- [class.enabled]="gameQuestionsService.currentQuestion.answers[i].scratchFactor >= 1" -->
+							<div class="img-result"
+								 [class.img-correct]="gameQuestionsService.currentQuestion.rightAnswerIndex === i"
+								 [class.img-wrong]="gameQuestionsService.currentQuestion.rightAnswerIndex !== i"
+								 [style.mask-image]="gameQuestionsService.currentQuestion.rightAnswerIndex === i  ? signalCorrectImageUrl() : signalWrongImageUrl()"
+							></div>
+							<!--	@if (gameQuestionsService.currentQuestion.rightAnswerIndex === i) {
+									<img [src]="imgCorrect.src" alt="correct" class="img-correct">
+								} @else {
+									<img [src]="imgWrong.src" alt="wrong" class="img-wrong">
+								}-->
+						</div>
+						
+						<app-ani-explosion #aniExplosion></app-ani-explosion>
+					}
 				</div>
+				
+				
 				<!--<app-base-button
 					[configBtn]="null"
 					[btnWidth]="'100%'"

@@ -214,7 +214,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			}
 			else
 			{
-				this.titleService.setTitle('ROY 50/50 Speed Quiz');
+				//	this.titleService.setTitle('ROY 50/50 Speed Quiz');
 			}
 		});
 		
@@ -330,6 +330,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 							() => {
 								UtilTimeout.setTimeout(
 									() => {
+										this.soundService.toggleIsMuted();
 										this.changeDetectorRef.detectChanges();
 									}, 100
 								);
@@ -550,12 +551,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'iconReviewWrong', url: 'assets/images/svg/icon-review-wrong.svg'},
 			{name: 'arrowsDown', url: 'assets/images/svg/arrows-down.svg'},
 			{name: 'scratchFreeBg', url: 'assets/images/scratch-free-bg.jpg'},
+			{name: 'scratchFreeBg', url: 'assets/images/scratch-free-bg.jpg'},
+			
 			{name: 'prBillyPhotoRoom', url: 'assets/images/product/billy-v3-1-photo-room.png'},
 			{name: 'prLiliPushingPhotoRoom', url: 'assets/images/product/lili-pushing-v2-photo-room.png'},
+			{name: 'prCouple', url: 'assets/images/product/couple.png'},
 			
-			{name: 'highscoreAllTime', url: 'assets/images/svg/highscore-all-time.svg'},
-			{name: 'highscoreMonthly', url: 'assets/images/svg/highscore-monthly.svg'},
-			{name: 'highscoreWeekly', url: 'assets/images/svg/highscore-weekly.svg'}
+			{name: 'imgCorrect', url: 'assets/images/svg/btn-correct.svg'},
+			{name: 'imgWrong', url: 'assets/images/svg/btn-incorrect.svg'}
 			// {name: 'howToPlay01', url: 'assets/images/how-to-play.png'}
 		);
 		

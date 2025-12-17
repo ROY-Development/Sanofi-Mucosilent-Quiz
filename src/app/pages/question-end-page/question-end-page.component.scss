@@ -22,3 +22,18 @@
 		background-color: #fff;
 	}
 }
+
+.content {
+	height: 100%;
+	padding: 4% 6%;
+
+	.content-container {
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: stretch;
+	}
+}
