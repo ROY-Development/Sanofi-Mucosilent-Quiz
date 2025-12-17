@@ -58,8 +58,9 @@ export class QuestionResultPageComponent implements OnInit
 		this.soundService.playSound(SoundNameEnum.click, true);
 		if (this.gameQuestionsService.questionIndex < this.gameQuestionsService.questions.length - 1)
 		{
-			this.gameQuestionsService.setNextQuestion();
-			this.initService.navigateToRoute(AppRoutesEnum.question).then();
+			this.initService.navigateToRoute(AppRoutesEnum.question).then(() => {
+				this.gameQuestionsService.setNextQuestion();
+			});
 		}
 		else
 		{
