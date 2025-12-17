@@ -181,10 +181,10 @@ export class BackgroundAnimationService
 				url === '/' + AppRoutesEnum.idle ||
 				url === '/' + AppRoutesEnum.start ||
 				url.startsWith('/' + AppRoutesEnum.highScore) ||
-				url === '/' + AppRoutesEnum.howToPlay ||
-				url === '/' + AppRoutesEnum.gameTopic ||
+				url === '/' + AppRoutesEnum.howToPlay// ||
+				/*url === '/' + AppRoutesEnum.gameTopic ||
 				url === '/' + AppRoutesEnum.endGameCrm ||
-				url === '/' + AppRoutesEnum.endGame
+				url === '/' + AppRoutesEnum.endGame*/
 			)
 		)
 		{

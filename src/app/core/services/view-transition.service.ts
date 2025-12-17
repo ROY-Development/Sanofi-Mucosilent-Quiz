@@ -88,7 +88,7 @@ export class ViewTransitionService
 		fromRoute = this.removeLeadingSlash(fromRoute);
 		toRoute = this.removeLeadingSlash(toRoute);
 		
-		if (
+		/*if (
 			// (fromRoute === AppRoutesEnum.base && toRoute === AppRoutesEnum.base) ||
 			(fromRoute === AppRoutesEnum.base && toRoute === AppRoutesEnum.gameTopic) ||
 			(fromRoute === AppRoutesEnum.gameTopic && toRoute === AppRoutesEnum.game)
@@ -96,7 +96,8 @@ export class ViewTransitionService
 		{
 			return 'fade-long';
 		}
-		else if (
+		else*/
+		if (
 			(fromRoute === AppRoutesEnum.game && toRoute === AppRoutesEnum.questionResult)
 		)
 		{

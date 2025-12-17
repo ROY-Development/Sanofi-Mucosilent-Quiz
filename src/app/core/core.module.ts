@@ -1,16 +1,13 @@
 import {NgModule} from '@angular/core';
 import {ComponentsModule} from './components/components.module';
-import {ModalsModule} from './modals/modals.module';
 
 @NgModule({
 	declarations: [],
 	exports: [
-		ComponentsModule,
-		ModalsModule
+		ComponentsModule
 	],
 	imports: [
-		ComponentsModule,
-		ModalsModule
+		ComponentsModule
 	]
 })
 export class CoreModule

@@ -18,7 +18,7 @@ export class PanelService
 		this.gameHeaderUrls = [
 			AppRoutesEnum.startGame,
 			AppRoutesEnum.gameCountdown,
-			AppRoutesEnum.gameTopic,
+			//AppRoutesEnum.gameTopic,
 			AppRoutesEnum.game
 			//	AppRoutesEnum.question,
 			//	AppRoutesEnum.questionResult

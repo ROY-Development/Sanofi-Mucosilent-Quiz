@@ -5,10 +5,10 @@ export enum AppRoutesEnum
 	start = 'start',
 	howToPlay = 'how-to-play',
 	highScore = 'high-score',
-	highScoreWeekly = 'high-score-weekly',
-	highScoreMonthly = 'high-score-monthly',
-	logon = 'logon',
-	acceptLegal = 'accept-legal',
+	//highScoreWeekly = 'high-score-weekly',
+	//highScoreMonthly = 'high-score-monthly',
+	//logon = 'logon',
+	//acceptLegal = 'accept-legal',
 	nickname = 'nickname',
 	startGame = 'start-game',
 	gameCountdown = 'game-countdown',
@@ -16,7 +16,7 @@ export enum AppRoutesEnum
 	question = 'question',
 	questionResult = 'question-result',
 	questionEnd = 'question-end',
-	gameTopic = 'game-topic',
-	endGameCrm = 'end-game-c', // end game for CRM
-	endGame = 'end-game'
+	//gameTopic = 'game-topic',
+	//endGameCrm = 'end-game-c', // end game for CRM
+	//endGame = 'end-game'
 }

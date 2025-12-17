@@ -7,12 +7,8 @@ import {RouterLink} from '@angular/router';
 import {CoreModule} from '../core/core.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
-import {GamePageComponent} from './game-page/game-page.component';
 import {GamesModule} from '../games/games.module';
 import {HowToPlayPageComponent} from './how-to-play-page/how-to-play-page.component';
-import {EndGamePageComponent} from './end-game-page/end-game-page.component';
-import {GameTopicPageComponent} from './game-topic-page/game-topic-page.component';
-import {GfxSplineComponent} from '../core/components/gfx-spline/gfx-spline.component';
 import {DialogLegalComponent} from '../core/components/dialogs/dialog-legal/dialog-legal.component';
 import {BaseButtonComponent} from '../core/components/buttons/base-button/base-button.component';
 import {
@@ -28,12 +24,12 @@ import {QuestionEndPageComponent} from './question-end-page/question-end-page.co
 @NgModule({
 	declarations: [
 		BasePageComponent,
-		GamePageComponent,
+		//GamePageComponent,
 		IdlePageComponent,
 		NotFoundComponent,
 		HowToPlayPageComponent,
-		EndGamePageComponent,
-		GameTopicPageComponent,
+		//EndGamePageComponent,
+		//GameTopicPageComponent,
 		QuestionPageComponent,
 		DialogResultComponent,
 		QuestionResultPageComponent,
@@ -47,7 +43,6 @@ import {QuestionEndPageComponent} from './question-end-page/question-end-page.co
 		NgOptimizedImage,
 		GamesModule,
 		SharedModule,
-		GfxSplineComponent,
 		DialogLegalComponent,
 		BaseButtonComponent,
 		AniSplitScreenTitleComponent,

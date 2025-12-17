@@ -1,4 +1,4 @@
-import {inject, LOCALE_ID, NgModule, provideAppInitializer, provideBrowserGlobalErrorListeners} from '@angular/core';
+import {LOCALE_ID, NgModule, provideBrowserGlobalErrorListeners} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -7,14 +7,9 @@ import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
 import {PagesModule} from './pages/pages.module';
 import {CoreModule} from './core/core.module';
-import {firstValueFrom, tap, zip} from 'rxjs';
 import {NgOptimizedImage} from '@angular/common';
 import {GamesModule} from './games/games.module';
-import {InitService} from './core/services/init.service';
 import {AppConfig} from './app.config';
-import {GameService} from './core/services/game.service';
-import {map} from 'rxjs/operators';
-import {GameScoreService} from './core/services/game-score.service';
 
 @NgModule({
 	declarations: [
@@ -31,15 +26,15 @@ import {GameScoreService} from './core/services/game-score.service';
 	],
 	providers: [
 		// AppBackendConfigService,
-		provideAppInitializer(() => {
+		/*provideAppInitializer(() => {
 			const initializerFn = (AppModule.initializeAppFactory)(
 				inject(InitService),
-				inject(GameService),
+				//inject(GameService),
 				//inject(GameScoreBackendService),
 				inject(GameScoreService)
 			);
 			return initializerFn();
-		}),
+		}),*/
 		{provide: LOCALE_ID, useValue: AppConfig.defaultLocale},
 		provideHttpClient(withInterceptorsFromDi()),
 		provideBrowserGlobalErrorListeners()
@@ -50,9 +45,9 @@ export class AppModule
 {
 	public static initError: string | null = null;
 	
-	public static initializeAppFactory(
+	/*public static initializeAppFactory(
 		initService: InitService,
-		gameService: GameService,
+		//gameService: GameService,
 		//gameScoreBackendService: GameScoreBackendService,
 		gameScoreService: GameScoreService
 		//userBackendService: UserBackendService
@@ -64,44 +59,45 @@ export class AppModule
 				await firstValueFrom(
 					zip(
 						//gameScoreBackendService.getHighScore(),
-						gameService.getBaseConfig(),
+						//gameService.getBaseConfig(),
 						//	userBackendService.get(initService.appQueryParams.userId),
 						initService.getBaseConfig()
 					).pipe(
 						map(([
 							     //highScores,
-							     gameConfig,
+							    // gameConfig,
 							     baseConfig
 						     ]) => ({
 							//highScores,
-							gameConfig,
+							//gameConfig,
 							baseConfig
 						})),
 						tap(({
 							     // highScores,
 							     //	userData,
-							     gameConfig,
+							     //gameConfig,
 							     baseConfig
 						     }: {
 							//highScores: Array<GameScoreModel> | null,
-							gameConfig: any,
+							//gameConfig: any,
 							baseConfig: any
 						}) => {
-							/*console.log(
-								highScoreResult,
+							//console.log(
+							//	highScoreResult,
 								//	userData,
-								baseConfig
-							);*/
-							if (gameConfig && baseConfig)
+							//	baseConfig
+							//);
+							if (//gameConfig &&
+								 baseConfig)
 							{
 								//
 							}
 							
 							gameScoreService.setScores([]);
-							/*if (highScores)
-							{
-								gameScoreService.setScores(highScores);
-							}*/
+							//if (highScores)
+							//{
+							//	gameScoreService.setScores(highScores);
+							//}
 						})
 					));
 			}
@@ -112,7 +108,7 @@ export class AppModule
 				// throw error; // <-- don't stop the app with this at initialization
 			}
 		};
-	}
+	}*/
 }
 
 

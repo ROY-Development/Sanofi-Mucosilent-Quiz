@@ -445,7 +445,7 @@ export class GameService extends BaseService
 		
 		//this.soundService.fadeOutSound('gameMultiplierMusic', 400, StopTypeEnum.stop);
 		
-		if (
+		/*if (
 			!this.initService.isScormPackage &&
 			this.signalGameConfig()?.quizConfigCrm?.isEnabled
 		)
@@ -455,7 +455,7 @@ export class GameService extends BaseService
 		else
 		{
 			this.initService.navigateToRoute(AppRoutesEnum.endGame).then();
-		}
+		}*/
 	}
 	
 	public getDistance(point1: Point2DInterface, point2: Point2DInterface): number

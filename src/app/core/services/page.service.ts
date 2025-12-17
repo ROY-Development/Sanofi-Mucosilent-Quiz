@@ -25,8 +25,8 @@ export class PageService
 		this.exitButtonUrls = [
 			AppRoutesEnum.base,
 			AppRoutesEnum.game,
-			AppRoutesEnum.endGameCrm,
-			AppRoutesEnum.endGame
+			//AppRoutesEnum.endGameCrm,
+			//AppRoutesEnum.endGame
 		].map((value) => {
 			return '/' + value;
 		});

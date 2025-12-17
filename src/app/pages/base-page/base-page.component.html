@@ -55,62 +55,64 @@
 				<!--<div style="margin-bottom: 30%;"></div>-->
 			}
 		</div>
-	</div>
-	<div class="button-container">
-		@if (fileLoadService.signalIsLoading()) {
-			{{ 'loading' | nativeTranslate }}
-			<div class="progress-bar">
-				<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
-			</div>
-		} @else {
-			<div class="button-start-container"
-				 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
-			>
-				<app-button-start
-					[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
-					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-					[btnContentWidth]="'400px'"
-					[btnContentHeight]="'400px'"
-					[btnRadius]="'50%'"
-					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
-					(clickButton)="onClickStart()"
-				><span class="start"
-					   [style.mask-image]="signalBtnPlayImageUrl()"
-					   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+		
+		<div class="button-container">
+			@if (fileLoadService.signalIsLoading()) {
+				{{ 'loading' | nativeTranslate }}
+				<div class="progress-bar">
+					<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
+				</div>
+			} @else {
+				<div class="button-start-container"
+					 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
 				>
+					<app-button-start
+						[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
+						[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+						[btnContentWidth]="'400px'"
+						[btnContentHeight]="'400px'"
+						[btnRadius]="'50%'"
+						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
+						(clickButton)="onClickStart()"
+					><span class="start"
+						   [style.mask-image]="signalBtnPlayImageUrl()"
+						   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+					>
 					<!--@if (signalBtnPlayImageUrl() !== 'none') {
 						<img [src]="signalBtnPlayImageUrl()" alt="Start" width="386" height="385">
 					}-->
 				</span>
-				</app-button-start>
-			</div>
-			
-			<!--<app-base-button
-				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
-				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-				[btnContentWidth]="'670px'"
-				[btnContentPadding]="'30px 10px'"
-				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
-				(clickButton)="onClickStart()"
-			>{{ 'start' | nativeTranslate }}
-			</app-base-button>-->
-			
-			<!--<div style="margin-bottom: 30px;"></div>-->
-			
-			<!--<app-base-button
-				[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
-				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-				[btnContentWidth]="'670px'"
-				[btnContentPadding]="'30px 10px'"
-				[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
-				(clickButton)="onClickHowToPLay()"
-			>{{ 'how-to-play' | nativeTranslate }}
-			</app-base-button>-->
-		}
+					</app-button-start>
+				</div>
+				
+				<!--<app-base-button
+					[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
+					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+					[btnContentWidth]="'670px'"
+					[btnContentPadding]="'30px 10px'"
+					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
+					(clickButton)="onClickStart()"
+				>{{ 'start' | nativeTranslate }}
+				</app-base-button>-->
+					
+					<!--<div style="margin-bottom: 30px;"></div>-->
+					
+					<!--<app-base-button
+						[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
+						[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+						[btnContentWidth]="'670px'"
+						[btnContentPadding]="'30px 10px'"
+						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
+						(clickButton)="onClickHowToPLay()"
+					>{{ 'how-to-play' | nativeTranslate }}
+					</app-base-button>-->
+			}
+		</div>
+		<!--	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
+				<app-game-title></app-game-title>
+			</div>-->
 	</div>
-	<!--	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
-			<app-game-title></app-game-title>
-		</div>-->
+	
 	
 	<div class="legal-links">
 		

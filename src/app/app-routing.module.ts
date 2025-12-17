@@ -5,9 +5,6 @@ import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {BasePageComponent} from './pages/base-page/base-page.component';
 import {IdlePageComponent} from './pages/idle-page/idle-page.component';
 import {HowToPlayPageComponent} from './pages/how-to-play-page/how-to-play-page.component';
-import {GamePageComponent} from './pages/game-page/game-page.component';
-import {GameTopicPageComponent} from './pages/game-topic-page/game-topic-page.component';
-import {EndGamePageComponent} from './pages/end-game-page/end-game-page.component';
 import {QuestionPageComponent} from './pages/question-page/question-page.component';
 import {QuestionResultPageComponent} from './pages/question-result-page/question-result-page.component';
 import {QuestionEndPageComponent} from './pages/question-end-page/question-end-page.component';
@@ -23,9 +20,9 @@ const routes: Routes = [
 		data: {animation: 'QuestionResultPage'}
 	},
 	{path: AppRoutesEnum.questionEnd, component: QuestionEndPageComponent, data: {animation: 'QuestionEndPage'}},
-	{path: AppRoutesEnum.game, component: GamePageComponent, data: {animation: 'GamePage'}},
-	{path: AppRoutesEnum.gameTopic, component: GameTopicPageComponent, data: {animation: 'GameTopicPage'}},
-	{path: AppRoutesEnum.endGame, component: EndGamePageComponent, data: {animation: 'EndGamePage'}},
+	//{path: AppRoutesEnum.game, component: GamePageComponent, data: {animation: 'GamePage'}},
+	//{path: AppRoutesEnum.gameTopic, component: GameTopicPageComponent, data: {animation: 'GameTopicPage'}},
+	//{path: AppRoutesEnum.endGame, component: EndGamePageComponent, data: {animation: 'EndGamePage'}},
 	{path: '', pathMatch: 'full', redirectTo: '/'},
 	{path: '**', component: NotFoundComponent, data: {animation: 'NotFoundPage'}}
 ];

@@ -37,7 +37,6 @@ import {BackgroundAnimationService} from './core/services/background-animation.s
 import {BackgroundShapeService} from './core/services/background-shape.service';
 import {GameService} from './core/services/game.service';
 import {FontStyleService} from './core/services/font-style.service';
-import {IframeEventRuleService} from './core/services/iframe-event-rule.service';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {ScormService} from './core/services/scorm.service';
 import {BackgroundAnimationTypeEnum} from './shared/enums/background-animation-type.enum';
@@ -70,7 +69,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 	private nativeTranslateService = inject(NativeTranslateService);
 	// private appBackendConfigService = inject(AppBackendConfigService);
 	protected swipeYesNoService = inject(SwipeYesNoService);
-	private iFrameEventRuleService = inject(IframeEventRuleService);
+	//private iFrameEventRuleService = inject(IframeEventRuleService);
 	private scormService = inject(ScormService);
 	private router = inject(Router);
 	// private contexts = inject(ChildrenOutletContexts);
@@ -231,7 +230,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		this.initGameTitleImage();
 		this.initBackgroundImage();
 		this.initSwipeYesNoGameBaseSettings();
-		this.initIFrameSubscription();
+		//this.initIFrameSubscription();
 	}
 	
 	public ngAfterViewInit(): void
@@ -348,7 +347,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		this.nfcUserHasChangedSubscription.unsubscribe();
 		this.soundService.stopAllBackgroundSounds();
 		
-		this.iFrameEventRuleService.destroy();
+		//this.iFrameEventRuleService.destroy();
 	}
 	
 	@HostListener('window:resize', [])
@@ -477,7 +476,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		 */
 		const soundBase: Array<{ key: string, sG?: string, path?: string, oUrl: string }> = [
 			{key: "mainScreen", sG: SoundNameEnum.introMusic, oUrl: 'music-main-screen.mp3'}, // DnB - Flow Loop.mp3
-			{key: "categorySelection", sG: SoundNameEnum.chooseTopicMusic01, oUrl: 'music-category-selection.mp3'}, // DnB - Heart Strings Loop.mp3
+			//{key: "categorySelection", sG: SoundNameEnum.chooseTopicMusic01, oUrl: 'music-category-selection.mp3'}, // DnB - Heart Strings Loop.mp3
 			{key: "quizGame", sG: SoundNameEnum.mainMusic01, oUrl: 'music-quiz-game.mp3'}, // Comedic - Clumsy Mime Loop.mp3
 			// {key: "quizGame", sG: SoundNameEnum.mainMusic02, oUrl: 'music-quiz-game.mp3'},
 			// {key: "quizGame", sG: SoundNameEnum.mainMusic03, oUrl: 'music-quiz-game.mp3'},
@@ -533,9 +532,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 		
 		loadObjs.push(
-			{name: 'swipeYesNoBtnCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_right.svg'},
-			{name: 'swipeYesNoBtnNotCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_wrong.svg'},
-			{name: 'swipeYesNoBtnQuestionImage', url: swipeYesNoPath + 'images/btn-question.png'},
+		//	{name: 'swipeYesNoBtnCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_right.svg'},
+		//	{name: 'swipeYesNoBtnNotCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_wrong.svg'},
+		//	{name: 'swipeYesNoBtnQuestionImage', url: swipeYesNoPath + 'images/btn-question.png'},
 			//{name: 'swipeYesNoGreatImage', url: swipeYesNoPath + 'images/great.png'}, // replaced by editor value
 			//{name: 'swipeYesNoSwipeLeftRightImage', url: swipeYesNoPath + 'images/swipe-left-right.png'}, // replaced by editor value
 			{name: 'btnBackground', url: 'assets/images/btn-bg01.png'},
@@ -564,7 +563,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		);
 		
 		// set special score animation image
-		if (this.gameService.signalGameConfig())
+		/*if (this.gameService.signalGameConfig())
 		{
 			if (this.gameService.signalGameConfig()!.imageScoreAni)
 			{
@@ -588,14 +587,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 					);
 				}
 			}
-		}
-		else // base game image
+		}*/
+		/*else // base game image
 		{
 			loadObjs.push(
 				{name: 'crabFrontImage', url: 'assets/images/crab01-front.png'},
 				{name: 'crabBackImage', url: 'assets/images/crab01-back.png'}
 			);
-		}
+		}*/
 		
 		this.updateCompanyLogoImage(loadObjs);
 		
@@ -742,9 +741,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		const locale = this.getBrowserLanguage(); // call init
 		
 		let additionalPath: Array<string> = [];
-		if (this.gameService.signalGameConfig()?.isFtpReady)
+		/*if (this.gameService.signalGameConfig()?.isFtpReady)
 		{
-			// if game is ready for ftp, don't add additional path
+			// if game is ready for ftp, don't add a path
 			// because it is concatenated in the ZIP file
 		}
 		else if (this.initService.qz)
@@ -759,7 +758,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		else
 		{
 			additionalPath = ['uploads/quiz-game/base/i18n/{{locale}}.json'];
-		}
+		}*/
 		
 		return this.nativeTranslateService.use(locale, additionalPath);
 	}
@@ -973,7 +972,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 	}
 	
-	private initIFrameSubscription(): void
+	/*private initIFrameSubscription(): void
 	{
 		if (this.gameService.signalGameConfig()?.isFtpReady)
 		{
@@ -985,5 +984,5 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			this.gameHeaderComponent,
 			this.changeDetectorRef
 		);
-	}
+	}*/
 }
