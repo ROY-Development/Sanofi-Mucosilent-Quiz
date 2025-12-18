@@ -57,6 +57,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	protected isDrawing: boolean = false;
 	
 	/* prepare events - important for removing all event listeners */
+	private mouseEnter = this.onMouseEnter.bind(this);
 	private mouseDown = this.onMouseDown.bind(this);
 	private mouseUp = this.onMouseUp.bind(this);
 	private mouseMove = this.onMouseMove.bind(this);
@@ -133,7 +134,6 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 				
 				this.ctx!.globalCompositeOperation = 'destination-out';
 			}, 10);
-			
 		}
 	}
 	
@@ -151,9 +151,11 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 		}
 		
 		// mouse events
+		this.canvas.nativeElement.addEventListener('mouseenter', this.mouseEnter);
 		this.canvas.nativeElement.addEventListener('mousedown', this.mouseDown);
 		this.canvas.nativeElement.addEventListener('mouseup', this.mouseUp);
 		this.canvas.nativeElement.addEventListener('mousemove', this.mouseMove);
+		this.canvas.nativeElement.addEventListener('mouseleave', this.mouseUp);
 		
 		// touch events
 		//this.canvas.nativeElement.addEventListener('touchstart', this.touchElementTouchStart, {passive: false});
@@ -171,9 +173,11 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 		}
 		
 		// mouse events
+		this.canvas.nativeElement.removeEventListener('mouseenter', this.mouseEnter);
 		this.canvas.nativeElement.removeEventListener('mousedown', this.mouseDown);
 		this.canvas.nativeElement.removeEventListener('mouseup', this.mouseUp);
 		this.canvas.nativeElement.removeEventListener('mousemove', this.mouseMove);
+		this.canvas.nativeElement.removeEventListener('mouseleave', this.mouseUp);
 		
 		// touch events
 		//this.canvas.nativeElement.removeEventListener('touchstart', this.touchElementTouchStart);
@@ -187,6 +191,20 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	{
 		event.preventDefault();
 	}*/
+	
+	private onMouseEnter(event: MouseEvent): void
+	{
+		const elementFromPoint = document.elementFromPoint(event.screenX, event.screenY);
+		
+		if (
+			this.canvas?.nativeElement !== elementFromPoint &&
+			this.lastPointerPos === null &&
+			event.buttons === 1
+		)
+		{
+			this.onMouseDown(event);
+		}
+	}
 	
 	private onMouseDown(event: MouseEvent): void
 	{
@@ -242,6 +260,20 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	private onTouchMove(event: TouchEvent): void
 	{
 		event.stopImmediatePropagation();
+		
+		const touches = Array.from(event.changedTouches);
+		const touch: Touch = touches.find(tt => tt.identifier === 0) ?? touches[0];
+		
+		const elementFromPoint = document.elementFromPoint(touch.pageX, touch.pageY);
+		
+		if (this.canvas?.nativeElement !== elementFromPoint)
+		{
+			this.onTouchEnd(event);
+		}
+		else if (this.lastPointerPos === null)
+		{
+			this.onTouchStart(event);
+		}
 		
 		this.draw(event);
 	}
