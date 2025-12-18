@@ -43,18 +43,19 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	protected readonly signalScratchFinished = signal<boolean>(false);
 	
 	private backgroundSoundTimeoutSubscription: Subscription | null = null;
+	private routeTimeoutSubscription: Subscription | null = null;
 	private addImageSubscription: Subscription | null = null;
 	
 	public ngOnInit(): void
 	{
-		const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
+		//const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
 		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 2000);
-		this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
+		/*this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
 			() => {
 				this.backgroundSoundTimeoutSubscription = null;
 				this.soundService.playBackgroundSound(songName);
 			}, 1600// 500
-		);
+		);*/
 		
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (
@@ -84,6 +85,12 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 		{
 			this.backgroundSoundTimeoutSubscription.unsubscribe();
 			this.backgroundSoundTimeoutSubscription = null;
+		}
+		
+		if (this.routeTimeoutSubscription)
+		{
+			this.routeTimeoutSubscription.unsubscribe();
+			this.routeTimeoutSubscription = null;
 		}
 		
 		if (this.addImageSubscription)
@@ -146,7 +153,8 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 		this.changeDetectorRef.detectChanges();
 		this.aniExplosion?.callExplosion(360 * 0.5, 360 * 0.35, 200);
 		
-		UtilTimeout.setTimeout(() => {
+		this.routeTimeoutSubscription = UtilTimeout.setTimeout(() => {
+			this.routeTimeoutSubscription = null;
 			this.initService.navigateToRoute(AppRoutesEnum.questionResult).then();
 		}, 2000);
 	}
