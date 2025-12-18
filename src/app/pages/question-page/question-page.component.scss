@@ -16,6 +16,8 @@
 	justify-content: flex-end;
 	align-items: flex-start;
 
+	pointer-events: none;
+
 	.btn-close-icon {
 		display: inline-block;
 		width: 100%;
@@ -27,6 +29,8 @@
 		mask-size: 100px;
 		mask-position: center;
 		background-color: #fff;
+
+		pointer-events: none;
 	}
 }
 

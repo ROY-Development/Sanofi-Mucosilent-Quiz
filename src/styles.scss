@@ -14,6 +14,14 @@
 	box-sizing: border-box;
 }
 
+html, body {
+	height: 100%;
+	// disables “pull-to-refresh” and the elastic scroll effect on iOS/iPadOS
+	overscroll-behavior-y: none;
+	// additionally prevents content from being moved when swiping
+	overflow: hidden;
+}
+
 body {
 	user-select: none;
 	overflow-x: hidden;
