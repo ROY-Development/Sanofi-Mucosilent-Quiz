@@ -13,7 +13,9 @@
 	</app-base-button>
 </div>
 
-<div class="content">
+<div class="content"
+	 [class]="'question' + (gameQuestionsService.questionIndex + 1)"
+>
 	<!--<div class="question-counter">Frage {{ questionIndex + 1 }} / {{ maxQuestionNr }}</div>
 	<div class="question">{{ gameQuestionsService.currentQuestion.question }}</div>
 	<div class="answer-buttons">

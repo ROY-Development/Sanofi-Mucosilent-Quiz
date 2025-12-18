@@ -532,9 +532,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 		
 		loadObjs.push(
-		//	{name: 'swipeYesNoBtnCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_right.svg'},
-		//	{name: 'swipeYesNoBtnNotCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_wrong.svg'},
-		//	{name: 'swipeYesNoBtnQuestionImage', url: swipeYesNoPath + 'images/btn-question.png'},
+			//	{name: 'swipeYesNoBtnCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_right.svg'},
+			//	{name: 'swipeYesNoBtnNotCorrectImage', url: swipeYesNoPath + 'images/quiz_assets_wrong.svg'},
+			//	{name: 'swipeYesNoBtnQuestionImage', url: swipeYesNoPath + 'images/btn-question.png'},
 			//{name: 'swipeYesNoGreatImage', url: swipeYesNoPath + 'images/great.png'}, // replaced by editor value
 			//{name: 'swipeYesNoSwipeLeftRightImage', url: swipeYesNoPath + 'images/swipe-left-right.png'}, // replaced by editor value
 			{name: 'btnBackground', url: 'assets/images/btn-bg01.png'},
@@ -545,7 +545,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'btnFullscreenOff', url: 'assets/images/icons/btn-fullscreen-off.png'},
 			//{name: 'giftClosedImage', url: 'assets/images/icons/gift-closed.png'},
 			//{name: 'giftOpenImage', url: 'assets/images/icons/gift-open.png'},
-			{name: 'btnPlayImage', url: 'assets/images/btn-play.png'},
+			//{name: 'btnPlayImage', url: 'assets/images/btn-play.png'},
 			{name: 'starImage', url: 'assets/images/svg/star.svg'},
 			{name: 'iconReviewCorrect', url: 'assets/images/svg/icon-review-correct.svg'},
 			{name: 'iconReviewWrong', url: 'assets/images/svg/icon-review-wrong.svg'},
@@ -557,7 +557,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'prCouple', url: 'assets/images/product/couple.png'},
 			
 			{name: 'imgCorrect', url: 'assets/images/svg/btn-correct.svg'},
-			{name: 'imgWrong', url: 'assets/images/svg/btn-incorrect.svg'}
+			{name: 'imgWrong', url: 'assets/images/svg/btn-incorrect.svg'},
+			
+			{name: 'product1', url: 'assets/images/product/Mucosilent_Hustensaft1.png'},
+			{name: 'product2', url: 'assets/images/product/Mucosilent_Hustensaft2.png'},
+			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart@2x.png'},
+			{name: 'btnPlayImage', url: 'assets/images/product/1_ButtonStart@2x.png'},
+			{name: 'billyHead', url: 'assets/images/product/Monster_green_head.png'},
+			{name: 'billyLeft', url: 'assets/images/product/Monster_green_hand_right.png'},
+			{name: 'billyRight', url: 'assets/images/product/Monster_green_hand_left.png'}
+			
 			// {name: 'howToPlay01', url: 'assets/images/how-to-play.png'}
 		);
 		
@@ -682,12 +691,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			}
 			else
 			{
-	//			loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
+				//			loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
 			}
 		}
 		else
 		{
-	//		loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
+			//		loadObjs.push({name: 'companyLogoImage', url: 'assets/images/svg/ROY_white_full_coloured.svg'});
 		}
 	}
 	

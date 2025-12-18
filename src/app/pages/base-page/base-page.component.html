@@ -6,54 +6,16 @@
 				{{ AppModule.initError }}
 			</div>
 		}
-		<!--<div class="alpha-version">
-		ALPHA VERSION // CONTENT PRELIMINARY
-	  </div>-->
-		<div class="empty-line"></div>
-		<!--{{environment}}-->
-		<!--<h5 class="mb-5">
-		{{ 'hello-user' | nativeTranslate : {name: initService.signalAppQueryParams().userFirstName} }}
-	  </h5>-->
-		
-		<!--@if (signalGameLogoImageUrl()) {
-			<img [src]="signalGameLogoImageUrl()" height="378" width="642"
-				 alt="ROY 50/50"
-				 class="game-logo-image"
-				 draggable="false" ondragstart="return false;"
-			>
-		}-->
 		
 		<div class="game-logo">
-			@if (initService.qz || gameService.signalGameConfig()?.isFtpReady) {
-				@if (!!gameService.signalGameTitleImage()) {
-					<div [style.text-align]="gameService.signalGameConfig()!.titleAlignment"
-						 class="game-logo-image-container"
-						 [class]="gameService.signalGameConfig()!.titleAni > 0 ? 'animation' + gameService.signalGameConfig()!.titleAni : ''"
-					>
-						<img [src]="gameService.signalGameTitleImage()" height="auto" width="auto"
-							 [alt]="'quiz-name' | nativeTranslate"
-							 class="game-logo-image"
-							 fetchpriority="high"
-						>
-					</div>
-				} @else {
-					<div class="name-qz special-font"
-						 appAutoFitFont
-						 [heightPx]="390"
-						 [maxFontSize]="gameService.signalGameConfig()!.titleFontSize"
-						 [minFontSize]="30"
-						 [innerHTML]="'quiz-name' | nativeTranslate | safeHtml"
-						 [style.color]="gameService.signalGameConfig()!.fontColorTitle"
-						 [style.text-align]="gameService.signalGameConfig()!.titleAlignment"
-						 [style.line-height]="gameService.signalGameConfig()!.titleLineHeight"
-					></div>
-				}
-			} @else {
-				<!--<div class="name1 special-font">ROY</div>
-				<div class="name2 special-font">50/50</div>-->
-				<div class="name1 text-center">TITEL</div>
-				<!--<div style="margin-bottom: 30%;"></div>-->
-			}
+			<div class="monster">
+				<div class="monster-tile monster-head" [style.background-image]="signalBillyHeadImageUrl()"></div>
+				<div class="monster-tile monster-left" [style.background-image]="signalBillyLeftImageUrl()"></div>
+				<div class="monster-tile monster-right" [style.background-image]="signalBillyRightImageUrl()"></div>
+			</div>
+			<div class="label"
+				 [style.background-image]="signalGameLogoImageUrl()"
+			></div>
 		</div>
 		
 		<div class="button-container">
@@ -66,51 +28,33 @@
 				<div class="button-start-container"
 					 [style.animation-duration.s]="gameService.signalGameConfig()?.startBtn?.pulseDuration"
 				>
-					<app-button-start
-						[configBtn]="gameService.signalGameConfig()?.startBtn ?? null"
-						[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-						[btnContentWidth]="'400px'"
-						[btnContentHeight]="'400px'"
-						[btnRadius]="'50%'"
+					<app-base-button
+						[configBtn]="null"
+						[btnContentWidth]="'1100px'"
+						[btnContentHeight]="'301px'"
 						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
 						(clickButton)="onClickStart()"
 					><span class="start"
-						   [style.mask-image]="signalBtnPlayImageUrl()"
-						   [style.background-color]="gameService.signalGameConfig()?.startBtn?.fontColor"
+						   [style.background-image]="signalBtnPlayImageUrl()"
 					>
-					<!--@if (signalBtnPlayImageUrl() !== 'none') {
-						<img [src]="signalBtnPlayImageUrl()" alt="Start" width="386" height="385">
-					}-->
 				</span>
-					</app-button-start>
+					</app-base-button>
 				</div>
-				
-				<!--<app-base-button
-					[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
-					[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-					[btnContentWidth]="'670px'"
-					[btnContentPadding]="'30px 10px'"
-					[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
-					(clickButton)="onClickStart()"
-				>{{ 'start' | nativeTranslate }}
-				</app-base-button>-->
-					
-					<!--<div style="margin-bottom: 30px;"></div>-->
-					
-					<!--<app-base-button
-						[configBtn]="gameService.signalGameConfig()?.screenTitleBtnDefault ?? null"
-						[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
-						[btnContentWidth]="'670px'"
-						[btnContentPadding]="'30px 10px'"
-						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()"
-						(clickButton)="onClickHowToPLay()"
-					>{{ 'how-to-play' | nativeTranslate }}
-					</app-base-button>-->
 			}
 		</div>
-		<!--	<div class="company-logo" [class.disabled]="(appBackendConfigService.isLoading$ | async) || signalClickedStart()">
-				<app-game-title></app-game-title>
-			</div>-->
+		
+		
+		<div class="product-container">
+			<div class="image-container">
+				<div class="image" [style.background-image]="signalProduct2ImageUrl()"></div>
+			</div>
+			<div class="text-container">
+				Mach mit beim Quiz rund um <strong>Mucosilent®</strong> und entdecke den innovativen Hustenstiller
+				mit dem Wirkstoff Levodropropizin.<br><br> Teste dein Wissen und erfahre, was für ruhige Tage
+				und erholsame Nächte sorgen kann.
+			</div>
+		</div>
+		
 	</div>
 	
 	
@@ -122,11 +66,11 @@
 		>Impressum<!--{{ 'imprint' | nativeTranslate }}-->
 		</button>
 		
-		<button type="button" class="btn btn-link btn-legal"
+		<!--<button type="button" class="btn btn-link btn-legal"
 				[style.color]="gameService.signalGameConfig()?.fontColorLink"
 				(click)="onClickLegalText('privacy-policy')"
-		>Datenschutz<!--{{ 'privacy-policy' | nativeTranslate }}-->
-		</button>
+		>{{ 'privacy-policy' | nativeTranslate }}
+		</button>-->
 	
 	</div>
 	

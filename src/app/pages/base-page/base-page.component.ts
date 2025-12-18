@@ -60,8 +60,13 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 	protected readonly legalTextDialogType =
 		signal<'imprint' | 'privacy-policy' | 'crm-info' | null>(null);
 	
-	// protected readonly signalGameLogoImageUrl = signal<string | null>(null);
+	protected readonly signalProduct1ImageUrl = signal<string>('none');
+	protected readonly signalProduct2ImageUrl = signal<string>('none');
+	protected readonly signalGameLogoImageUrl = signal<string>('none');
 	protected readonly signalBtnPlayImageUrl = signal<string>('none');
+	protected readonly signalBillyHeadImageUrl = signal<string>('none');
+	protected readonly signalBillyLeftImageUrl = signal<string>('none');
+	protected readonly signalBillyRightImageUrl = signal<string>('none');
 	
 	private backgroundSoundTimeoutSubscription: Subscription | null = null;
 	private addImageSubscription: Subscription | null = null;
@@ -75,6 +80,12 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 	{
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (
+				id === 'product1' ||
+				id === 'product2' ||
+				id === 'gameLogo' ||
+				id === 'billyHead' ||
+				id === 'billyLeft' ||
+				id === 'billyRight' ||
 				id === 'btnPlayImage' ||
 				id === 'btnSoundOn' ||
 				id === 'btnSoundOff' ||
@@ -94,7 +105,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 				// start background music only if the user didn't click the start-button yet
 				if (!this.signalClickedStart())
 				{
-	//				this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
+					//				this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
 				}
 			}, 100);
 		});
@@ -106,7 +117,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
 			() => {
 				this.backgroundSoundTimeoutSubscription = null;
-	//			this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
+				//			this.soundService.playBackgroundSound(SoundNameEnum.introMusic);
 			}, 500);
 	}
 	
@@ -239,7 +250,43 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 			this.buttonSoundOnOffComponent.initImages(imageSoundOnUrl.src, imageSoundOffUrl.src);
 		}
 		
-		const image: HTMLImageElement | null = this.imageLoadService.getImage('btnPlayImage');
+		let image: HTMLImageElement | null = this.imageLoadService.getImage('gameLogo');
+		if (image)
+		{
+			this.signalGameLogoImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('product1');
+		if (image)
+		{
+			this.signalProduct1ImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('product2');
+		if (image)
+		{
+			this.signalProduct2ImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('billyHead');
+		if (image)
+		{
+			this.signalBillyHeadImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('billyLeft');
+		if (image)
+		{
+			this.signalBillyLeftImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('billyRight');
+		if (image)
+		{
+			this.signalBillyRightImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('btnPlayImage');
 		if (image)
 		{
 			this.signalBtnPlayImageUrl.set(`url('${image.src}')`);

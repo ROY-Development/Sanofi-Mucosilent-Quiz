@@ -1,6 +1,23 @@
 .content {
 	height: 100%;
 	padding-top: 25%;
+
+	// background-image: url(../../../assets/images/Screens/2_Frage1.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	&.question1 {
+		background-image: url(../../../assets/images/Screens/3_Feedback1.png);
+	}
+
+	&.question2 {
+		background-image: url(../../../assets/images/Screens/5_Feedback2.png);
+	}
+
+	&.question3 {
+		background-image: url(../../../assets/images/Screens/7_Feedback3.png);
+	}
 }
 
 .header {

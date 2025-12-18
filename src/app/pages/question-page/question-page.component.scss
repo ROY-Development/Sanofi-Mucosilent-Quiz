@@ -3,6 +3,26 @@
 	padding-top: 17%;
 
 	overflow: hidden;
+
+//	position: relative;
+//	z-index: -2;
+
+	// background-image: url(../../../assets/images/Screens/2_Frage1.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	&.question1 {
+		background-image: url(../../../assets/images/Screens/2_Frage1.png);
+	}
+
+	&.question2 {
+		background-image: url(../../../assets/images/Screens/4_Frage2.png);
+	}
+
+	&.question3 {
+		background-image: url(../../../assets/images/Screens/6_Frage3.png);
+	}
 }
 
 .header {
@@ -72,18 +92,22 @@
 			position: relative;
 			width: 360px;
 			height: 360px;
+			z-index: 1;
 
 			flex: 0 0 360px; /* nicht wachsen, nicht schrumpfen, Basis 360 */
 
 			.scratch-border {
+			//	position: relative;
 				width: 100%;
 				height: 100%;
+			//	z-index: 1;
 
 				.scratch-bg {
 					position: absolute;
 					width: 100%;
 					height: 100%;
 					z-index: -1;
+				//	pointer-events: none;
 
 					display: flex;
 					flex-direction: row;

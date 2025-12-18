@@ -31,21 +31,13 @@ body {
 
 	margin: 0;
 	padding: 0;
-	font-family: 'Raleway', 'Helvetica Neue', Arial, sans-serif;
+	font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 	color: variables.$app-main-color;
 	background-color: variables.$app-main-background-color;
 	font-size: 3em;
 
 	button {
-		font-family: 'Raleway', 'Helvetica Neue', Arial, sans-serif;
-	}
-
-	&.font-ABeeZee {
-		font-family: 'ABeeZee', Arial, sans-serif;
-
-		button {
-			font-family: 'ABeeZee', Arial, sans-serif;
-		}
+		font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 	}
 
 	.scrollbar {
@@ -281,7 +273,8 @@ button:focus {
 	border-radius: 0;
 	min-width: 5.25em;
 
-	background-color: #d4d4d442;
+	/*background-color: #d4d4d442;*/
+	background-color: transparent;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -385,7 +378,7 @@ button:focus {
 }
 
 .btn-link {
-	color: variables.$app-second-color;
+	color: variables.$app-main-color;
 
 	&:hover {
 		/*color: variables.$app-main-color;
@@ -394,7 +387,7 @@ button:focus {
 	}
 
 	&:focus, &:focus:hover {
-		color: variables.$app-second-color;
+		color: variables.$app-main-color;
 		background-color: #fff;
 	}
 
