@@ -538,11 +538,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			//{name: 'swipeYesNoGreatImage', url: swipeYesNoPath + 'images/great.png'}, // replaced by editor value
 			//{name: 'swipeYesNoSwipeLeftRightImage', url: swipeYesNoPath + 'images/swipe-left-right.png'}, // replaced by editor value
 			{name: 'btnBackground', url: 'assets/images/btn-bg01.png'},
-			{name: 'btnClose', url: 'assets/images/icons/btn-close.png'},
-			{name: 'btnSoundOn', url: 'assets/images/icons/btn-sound-on.png'},
-			{name: 'btnSoundOff', url: 'assets/images/icons/btn-sound-off.png'},
-			{name: 'btnFullscreenOn', url: 'assets/images/icons/btn-fullscreen-on.png'},
-			{name: 'btnFullscreenOff', url: 'assets/images/icons/btn-fullscreen-off.png'},
+			{name: 'btnClose', url: 'assets/images/product/2_Button_Close.png'},
+			{name: 'btnSoundOn', url: 'assets/images/product/BTN_Audio_active.png'},
+			{name: 'btnSoundOff', url: 'assets/images/product/BTN_Audio_muted.png'},
+			{name: 'btnFullscreenOn', url: 'assets/images/product/1_Button_Fullscreen.png'},
+			{name: 'btnFullscreenOff', url: 'assets/images/product/1_Button_Fullscreen.png'},
 			//{name: 'giftClosedImage', url: 'assets/images/icons/gift-closed.png'},
 			//{name: 'giftOpenImage', url: 'assets/images/icons/gift-open.png'},
 			//{name: 'btnPlayImage', url: 'assets/images/btn-play.png'},
@@ -559,6 +559,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'imgCorrect', url: 'assets/images/svg/btn-correct.svg'},
 			{name: 'imgWrong', url: 'assets/images/svg/btn-incorrect.svg'},
 			
+			{name: 'productBg', url: 'assets/images/product/1_BG-A.png'},
 			{name: 'product1', url: 'assets/images/product/Mucosilent_Hustensaft1.png'},
 			{name: 'product2', url: 'assets/images/product/Mucosilent_Hustensaft2.png'},
 			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart@2x.png'},

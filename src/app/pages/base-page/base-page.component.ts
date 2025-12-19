@@ -60,6 +60,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 	protected readonly legalTextDialogType =
 		signal<'imprint' | 'privacy-policy' | 'crm-info' | null>(null);
 	
+	protected readonly signalProductBgImageUrl = signal<string>('none');
 	protected readonly signalProduct1ImageUrl = signal<string>('none');
 	protected readonly signalProduct2ImageUrl = signal<string>('none');
 	protected readonly signalGameLogoImageUrl = signal<string>('none');
@@ -80,6 +81,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 	{
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (
+				id === 'productBg' ||
 				id === 'product1' ||
 				id === 'product2' ||
 				id === 'gameLogo' ||
@@ -254,6 +256,12 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		if (image)
 		{
 			this.signalGameLogoImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('productBg');
+		if (image)
+		{
+			this.signalProductBgImageUrl.set(`url('${image.src}')`);
 		}
 		
 		image = this.imageLoadService.getImage('product1');

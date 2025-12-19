@@ -21,7 +21,7 @@
 
 	overflow: hidden;
 
-	background-image: url(../../../assets/images/Screens/1_Title_B.png);
+	// background-image: url(../../../assets/images/Screens/1_Title_B.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -47,6 +47,7 @@
 
 	.image-container {
 		width: 50%;
+
 		.image {
 			position: absolute;
 			left: 0;
@@ -64,7 +65,7 @@
 
 	.text-container {
 		width: 50%;
-		padding-top	: 9px;
+		padding-top: 9px;
 	}
 }
 

@@ -1,4 +1,6 @@
-<div class="content">
+<div class="content"
+	[style.background-image]="signalProductBgImageUrl()"
+>
 	<div class="content-container">
 		@if (AppModule.initError) {
 			<div class="error-container">
@@ -32,9 +34,10 @@
 						[configBtn]="null"
 						[btnContentWidth]="'1100px'"
 						[btnContentHeight]="'301px'"
+						[btnRadius]="'80px'"
 						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
 						(clickButton)="onClickStart()"
-					><span class="start"
+					><span class="start" style="border-radius: 80px;"
 						   [style.background-image]="signalBtnPlayImageUrl()"
 					>
 				</span>
@@ -74,31 +77,34 @@
 	
 	</div>
 	
+	<app-button-fullscreen
+		#buttonFullscreenComponent
+		[color]="'transparent'"
+		[backgroundColor]="'transparent'"
+		[borderRadiusPx]="50"
+		[borderWidthPx]="0"
+		[borderColor]="'transparent'"
+		[disabled]="false"
+		[left]="document.fullscreenEnabled ? '71px' : '71px'"
+		[right]="'auto'"
+		[bottom]="'50px'"
+		(click)="soundService.playSound(SoundNameEnum.click, true);"
+	></app-button-fullscreen>
+	
 	<app-button-sound-on-off
 		#buttonSoundOnOffComponent
-		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
-		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
-		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
-		[borderRadiusPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.radius"
-		[borderWidthPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.border"
-		[borderColor]="gameService.signalGameConfig()?.screenTitleBtnIcon!.borderColor"
+		[color]="'transparent'"
+		[backgroundColor]="'transparent'"
+		[borderRadiusPx]="50"
+		[borderWidthPx]="0"
+		[borderColor]="'transparent'"
 		[disabled]="false"
-		[right]="document.fullscreenEnabled ? '115px' : '20px'"
+		[left]="document.fullscreenEnabled ? '231px' : '231px'"
+		[right]="'auto'"
+		[bottom]="'50px'"
 		(click)="soundService.playSound(SoundNameEnum.click, true);"
 	></app-button-sound-on-off>
 	
-	<app-button-fullscreen
-		#buttonFullscreenComponent
-		[imageBackgroundUrl]="initService.signalBtnBackgroundImageUrl()"
-		[color]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.fontColor : AppConfig.quizGameDefaultFontColorIconButton"
-		[backgroundColor]="gameService.signalGameConfig() ? gameService.signalGameConfig()!.screenTitleBtnIcon!.colorBg : AppConfig.quizGameDefaultColorIconButtonBg"
-		[borderRadiusPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.radius"
-		[borderWidthPx]="gameService.signalGameConfig()?.screenTitleBtnIcon!.border"
-		[borderColor]="gameService.signalGameConfig()?.screenTitleBtnIcon!.borderColor"
-		[disabled]="false"
-		(click)="soundService.playSound(SoundNameEnum.click, true);"
-	></app-button-fullscreen>
-
 </div>
 <!--
 @if (legalTextDialogType()) {
