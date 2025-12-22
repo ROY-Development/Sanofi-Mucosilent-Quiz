@@ -55,14 +55,14 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	{
 		//this.gameQuestionsService.setNextQuestion();
 		//this.gameQuestionsService.setNextQuestion();
-		//const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
+		const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
 		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 2000);
-		/*this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
+		this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
 			() => {
 				this.backgroundSoundTimeoutSubscription = null;
 				this.soundService.playBackgroundSound(songName);
 			}, 1600// 500
-		);*/
+		);
 		
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (

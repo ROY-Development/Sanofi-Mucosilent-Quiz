@@ -159,16 +159,16 @@
 
 		@keyframes monsterArm1 {
 			0% {
-				transform: translate3d(-250px, 0, 0) rotate3d(0, 0, 1, -6deg);
+				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -6deg);
 			}
 
 			8% {
 
-				transform: translate3d(-250px, 0, 0) rotate3d(0, 0, 1, -6deg);
+				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -6deg);
 			}
 
 			16% {
-				transform: translate3d(-3px, 0, 0) rotate3d(0, 0, 1, -6deg);
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, -6deg);
 			}
 
 			20% {
@@ -180,11 +180,11 @@
 			}
 
 			32% {
-				transform: translate3d(-250px, 0, 0) rotate3d(0, 0, 1, -16deg);
+				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -16deg);
 			}
 
 			40% {
-				transform: translate3d(-250px, 800px, 0) rotate3d(0, 0, 1, -16deg);
+				transform: translate3d(-260px, 800px, 0) rotate3d(0, 0, 1, -16deg);
 			}
 
 			48% {
@@ -196,11 +196,11 @@
 			}
 
 			64% {
-				transform: translate3d(-250px, 800px, 0) rotate3d(0, 0, 1, -16deg);
+				transform: translate3d(-260px, 800px, 0) rotate3d(0, 0, 1, -16deg);
 			}
 
 			72% {
-				transform: translate3d(-250px, 440px, 0) rotate3d(0, 0, 1, -16deg);
+				transform: translate3d(-260px, 440px, 0) rotate3d(0, 0, 1, -16deg);
 			}
 
 			80% {
@@ -212,11 +212,11 @@
 			}
 
 			96% {
-				transform: translate3d(-250px, 440px, 0) rotate3d(0, 0, 1, -16deg);
+				transform: translate3d(-260px, 440px, 0) rotate3d(0, 0, 1, -16deg);
 			}
 
 			100% {
-				transform: translate3d(-250px, 0, 0) rotate3d(0, 0, 1, -16deg);
+				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -16deg);
 			}
 		}
 	}
