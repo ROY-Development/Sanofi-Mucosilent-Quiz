@@ -31,7 +31,7 @@ body {
 
 	margin: 0;
 	padding: 0;
-	font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+	font-family: 'Museo-Sans-500', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 	color: variables.$app-main-color;
 	background-color: variables.$app-main-background-color;
 	font-size: 3em;
@@ -214,7 +214,7 @@ p {
 	}
 
 	// background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
-//	font-family: 'Cinzel', serif;
+	//	font-family: 'Cinzel', serif;
 
 	/* color: transparent !important; */
 	/* -webkit-background-clip: text; */
@@ -286,7 +286,7 @@ button:focus {
 		border-style: solid;
 		border-width: 0;
 
-	//	opacity: 0.7;
+		//	opacity: 0.7;
 	}
 }
 
