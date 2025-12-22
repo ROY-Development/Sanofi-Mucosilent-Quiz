@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  RewriteBase /
+  RewriteBase /mucosilent/
 
   # Redirection to HTTPS:
   RewriteCond %{HTTPS} !on

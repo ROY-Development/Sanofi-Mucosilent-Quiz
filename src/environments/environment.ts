@@ -4,8 +4,7 @@
 
 export const environment = {
 	production: false,
-	localhostBaseUrl: '/',
-	editorUrl: 'http://localhost:4200'
+	localhostBaseUrl: '/'
 };
 
 /*
