@@ -25,19 +25,38 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 	
 	@ViewChild('confetti') public confetti!: ConfettiComponent;
 	
+	protected readonly signalProductBgImageUrl = signal<string>('none');
+	protected readonly signalGameLogoImageUrl = signal<string>('none');
+	protected readonly signalBillyHeadImageUrl = signal<string>('none');
+	protected readonly signalBillyLeftImageUrl = signal<string>('none');
+	protected readonly signalBillyRightImageUrl = signal<string>('none');
+	protected readonly signalProductImageUrl = signal<string>('none');
+	protected readonly signalBtnBgImageUrl = signal<string>('none');
+	
 	protected readonly isShowingConfirmCancelDialog = signal<boolean>(false);
 	
 	protected readonly signalBtnCloseImageUrl = signal<string>('none');
 	
 	private backgroundSoundTimeoutSubscription: Subscription | null = null;
+	private addImageSubscription: Subscription | null = null;
 	
 	public ngOnInit(): void
 	{
-		const image: HTMLImageElement | null = this.imageLoadService.getImage('btnClose');
-		if (image)
-		{
-			this.signalBtnCloseImageUrl.set(`url('${image.src}')`);
-		}
+		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
+			if (
+				id === 'productBg' ||
+				id === 'btnClose' ||
+				id === 'productHeaderBg' ||
+				id === 'billyHead' ||
+				id === 'billyLeft' ||
+				id === 'billyRight' ||
+				id === 'productImage' ||
+				id === 'productBtnBgImage'
+			)
+			{
+				this.getImages();
+			}
+		});
 		
 		const songName: SoundNameEnum = SoundNameEnum.endGameMusic;
 		this.soundService.fadeOutSound(SoundNameEnum.mainMusic01, 2000);
@@ -51,6 +70,8 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 	
 	public ngAfterViewInit(): void
 	{
+		this.getImages();
+		
 		this.confetti.callConfetti();
 		this.soundService.playSound(SoundNameEnum.endGame, true);
 	}
@@ -61,6 +82,12 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 		{
 			this.backgroundSoundTimeoutSubscription.unsubscribe();
 			this.backgroundSoundTimeoutSubscription = null;
+		}
+		
+		if (this.addImageSubscription)
+		{
+			this.addImageSubscription.unsubscribe();
+			this.addImageSubscription = null;
 		}
 	}
 	
@@ -75,5 +102,56 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 		this.initService.navigateToRoute(AppRoutesEnum.base).then(() => {
 			this.gameQuestionsService.init();
 		});
+	}
+	
+	private getImages(): void
+	{
+		let image: HTMLImageElement | null = this.imageLoadService.getImage('btnClose');
+		if (image)
+		{
+			this.signalBtnCloseImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('productBg');
+		if (image)
+		{
+			this.signalProductBgImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('productHeaderBg');
+		if (image)
+		{
+			this.signalGameLogoImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('billyHead');
+		if (image)
+		{
+			this.signalBillyHeadImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('billyLeft');
+		if (image)
+		{
+			this.signalBillyLeftImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('billyRight');
+		if (image)
+		{
+			this.signalBillyRightImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('productImage');
+		if (image)
+		{
+			this.signalProductImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('productBtnBgImage');
+		if (image)
+		{
+			this.signalBtnBgImageUrl.set(`url('${image.src}')`);
+		}
 	}
 }

@@ -1,5 +1,5 @@
 <app-confetti #confetti
-			  [left]="'300px'" [top]="'0'"
+			  [left]="'500px'" [top]="'200px'"
 			  [width]="'180px'" [height]="'460px'" [scale]="1"
 			  [color1]="'#1786a8'"
 			  [color2]="'#a6254c'"
@@ -15,19 +15,36 @@
 		[btnRadius]="'50%'"
 		[btnDisabled]="false"
 		(clickButton)="onClickExit()"
-	><span [style.mask-image]="signalBtnCloseImageUrl()"
+	><span [style.background-image]="signalBtnCloseImageUrl()"
 		   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
 	></span>
 	</app-base-button>
 </div>
 
-<div class="content">
-	
+<div class="content"
+	 [style.background-image]="signalProductBgImageUrl()"
+>
 	<div class="content-container">
 		
-		<h4>Vielen Dank fürs Mitmachen!</h4>
+		<div class="game-logo">
+			<div class="monster">
+				<div class="monster-tile monster-head" [style.background-image]="signalBillyHeadImageUrl()"></div>
+				<div class="monster-tile monster-left" [style.background-image]="signalBillyLeftImageUrl()"></div>
+				<div class="monster-tile monster-right" [style.background-image]="signalBillyRightImageUrl()"></div>
+			</div>
+			<div class="label"
+				 [style.background-image]="signalGameLogoImageUrl()"
+			>Vielen Dank für´s Mitmachen!</div>
+		</div>
 		
-		<div>{{ gameQuestionsService.validAnswerCount }} von {{ gameQuestionsService.maxQuestionNr }} Antworten richtig
+		<div class="text-container">Schön, dass du dabei warst - komm gut durch die Hustenzeit!</div>
+		
+		<div class="product-container">
+			
+				<div class="image" [style.background-image]="signalProductImageUrl()"></div>
+			
+		</div>
+		<!--<div>{{ gameQuestionsService.validAnswerCount }} von {{ gameQuestionsService.maxQuestionNr }} Antworten richtig
 		</div>
 		
 		
@@ -39,17 +56,24 @@
 			<br><br>
 			Schön, dass du dabei warst - komm gut durch die Hustenzeit!
 		</div>
-		<br><br>
+		<br><br>-->
 		
-		<app-base-button
-			[configBtn]="null"
-			[btnWidth]="'100%'"
-			[btnContentWidth]="'100%'"
-			[btnContentPadding]="'15px 10px'"
-			[btnDisabled]="false"
-			(clickButton)="onClickExit()"
-		>
-			<span>Beenden</span>
-		</app-base-button>
+		<div class="button-container">
+			<app-base-button
+				[configBtn]="null"
+				[btnWidth]="'100%'"
+				[btnContentWidth]="'100%'"
+				[btnContentHeight]="'220px'"
+				[btnRadius]="'80px'"
+				[btnDisabled]="false"
+				(clickButton)="onClickExit()"
+			>
+		<span class="btn-bg"
+			  [style.background-image]="signalBtnBgImageUrl()">
+			  Schließen</span>
+			</app-base-button>
+		</div>
 	</div>
 </div>
+
+<app-game-footer></app-game-footer>

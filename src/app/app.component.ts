@@ -558,6 +558,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			
 			{name: 'productBg', url: 'assets/images/product/1_BG-A.png'},
 			{name: 'productBg2', url: 'assets/images/product/2_BG.png'},
+			{name: 'productImage', url: 'assets/images/product/4_Product.png'},
 			{name: 'productFooterBg', url: 'assets/images/product/FooterDisclaimer_BG.png'},
 			{name: 'productTitle', url: 'assets/images/product/1_Title_ProductImage.png'},
 			{name: 'productResultTitleBg', url: 'assets/images/product/4_Title_BG.png'},
@@ -565,6 +566,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'productResultFeedback1', url: 'assets/images/product/3_Feedback1_Product.png'},
 			{name: 'productResultFeedback2', url: 'assets/images/product/3_Feedback2_Product.png'},
 			{name: 'productResultFeedback3', url: 'assets/images/product/3_Feedback3_Product.png'},
+			{name: 'productHeaderBg', url: 'assets/images/product/3_HeaderBg_1.png'},
 			{name: 'product1', url: 'assets/images/product/Mucosilent_Hustensaft1.png'},
 			{name: 'product2', url: 'assets/images/product/Mucosilent_Hustensaft2.png'},
 			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart.png'},
