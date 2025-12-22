@@ -97,11 +97,11 @@
 	<div class="product-container">
 		<div class="image-container">
 			@if (gameQuestionsService.questionIndex === 0) {
-				<div class="image" [style.background-image]="signalTitleFeedback1BgImageUrl()"></div>
+				<div class="image image1" [style.background-image]="signalTitleFeedback1BgImageUrl()"></div>
 			} @else if (gameQuestionsService.questionIndex === 1) {
-				<div class="image" [style.background-image]="signalTitleFeedback2BgImageUrl()"></div>
+				<div class="image image2" [style.background-image]="signalTitleFeedback2BgImageUrl()"></div>
 			} @else if (gameQuestionsService.questionIndex === 2) {
-				<div class="image" [style.background-image]="signalTitleFeedback3BgImageUrl()"></div>
+				<div class="image image3" [style.background-image]="signalTitleFeedback3BgImageUrl()"></div>
 			}
 		</div>
 	</div>
@@ -121,7 +121,7 @@
 		>@if (gameQuestionsService.questionIndex < gameQuestionsService.questions.length - 1) {
 			Nächste Frage
 		} @else {
-			Quiz beenden
+			Beenden
 		}</span>
 		</app-base-button>
 	</div>

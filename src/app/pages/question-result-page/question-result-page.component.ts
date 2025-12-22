@@ -162,13 +162,13 @@ export class QuestionResultPageComponent implements OnInit, AfterViewInit, OnDes
 		image = this.imageLoadService.getImage('productResultFeedback2');
 		if (image)
 		{
-			this.signalTitleFeedback1BgImageUrl.set(`url('${image.src}')`);
+			this.signalTitleFeedback2BgImageUrl.set(`url('${image.src}')`);
 		}
 		
 		image = this.imageLoadService.getImage('productResultFeedback3');
 		if (image)
 		{
-			this.signalTitleFeedback1BgImageUrl.set(`url('${image.src}')`);
+			this.signalTitleFeedback3BgImageUrl.set(`url('${image.src}')`);
 		}
 		
 		image = this.imageLoadService.getImage('productBtnBgImage');
