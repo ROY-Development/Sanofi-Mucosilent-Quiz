@@ -9,19 +9,19 @@ export class GameQuestionsService
 {
 	public questions: Array<GameQuestionModel> = [
 		new GameQuestionModel(
-			'Welchen Wirkstoff enthält Mucosilent ® gegen Reizhusten?',
+			'Wie heißen die Monster von Mucosolvan und Mucosilent?',
 			[
 				new GameQuestionAnswerModel(
-					'Levodropropizin'
+					'Ella und Emil'
 				),
 				new GameQuestionAnswerModel(
-					'Codein'
+					'Lilly und Billy'
 				),
 				new GameQuestionAnswerModel(
-					'Eukalyptus'
+					'Tina und Timo'
 				)
 			],
-			0
+			1
 		),
 		new GameQuestionModel(
 			'Für wen ist Mucosilent® geeignet?',
@@ -30,7 +30,7 @@ export class GameQuestionsService
 					'Nur für Erwachsene'
 				),
 				new GameQuestionAnswerModel(
-					'Kinder ab 2 Jahren, Erwachsene & Senioren'
+					'Für die ganze Familie ab 2 Jahren'
 				),
 				new GameQuestionAnswerModel(
 					'Kinder bis 5 Jahre'
@@ -39,19 +39,19 @@ export class GameQuestionsService
 			1
 		),
 		new GameQuestionModel(
-			'Wo setzt die Wirkung von Mucosilent® an?',
+			'Welchen Geschmack hat Mucosilent?',
 			[
 				new GameQuestionAnswerModel(
-					'Im Gehirn'
+					'Himbeere'
 				),
 				new GameQuestionAnswerModel(
-					'Peripher – also außerhalb des Gehirns'
+					'Waldmeister'
 				),
 				new GameQuestionAnswerModel(
-					'Im Magen-Darm-Trakt'
+					'Schokolade'
 				)
 			],
-			1
+			0
 		),
 	];
 	
