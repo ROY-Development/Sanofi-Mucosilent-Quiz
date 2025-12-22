@@ -54,19 +54,20 @@
 		</app-base-button>
 	</div>-->
 	
-	<div class="title-container">
+	<div class="title-container"
+	
+	>
 		<div class="monster">
 			<div class="monster-tile monster-head" [style.background-image]="signalBillyHeadImageUrl()"></div>
 			<div class="monster-tile monster-left" [style.background-image]="signalBillyLeftImageUrl()"></div>
 			<div class="monster-tile monster-right" [style.background-image]="signalBillyRightImageUrl()"></div>
 		</div>
-		<div class="title"
-			 [style.background-image]="signalTitleBgImageUrl()"
-		><span [innerHTML]="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + gameQuestionsService.currentQuestion.question"></span>
+		
+		<div class="img-bg" [style.background-image]="signalFeedbackTitleBgImageUrl()"></div>
+		
+		<div class="title"><span [innerHTML]="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + gameQuestionsService.currentQuestion.question"></span>
 		</div>
-		<div class="answer"
-			 [style.background-image]="signalTitleAnswerBgImageUrl()"
-		>
+		<div class="answer">
 			<span [innerHTML]="gameQuestionsService.currentQuestion.answers[
 				gameQuestionsService.currentQuestion.rightAnswerIndex
 			].answer"></span>

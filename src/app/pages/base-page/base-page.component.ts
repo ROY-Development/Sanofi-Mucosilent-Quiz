@@ -64,6 +64,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 	protected readonly signalProductTitleImageUrl = signal<string>('none');
 	protected readonly signalGameLogoImageUrl = signal<string>('none');
 	protected readonly signalBtnPlayImageUrl = signal<string>('none');
+	protected readonly signalBtnBgImageUrl = signal<string>('none');
 	protected readonly signalBillyHeadImageUrl = signal<string>('none');
 	protected readonly signalBillyLeftImageUrl = signal<string>('none');
 	protected readonly signalBillyRightImageUrl = signal<string>('none');
@@ -87,6 +88,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 				id === 'billyLeft' ||
 				id === 'billyRight' ||
 				id === 'btnPlayImage' ||
+				id === 'productBtnStartBgImage' ||
 				id === 'btnSoundOn' ||
 				id === 'btnSoundOff' ||
 				id === 'btnFullscreenOn' ||
@@ -290,6 +292,12 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		if (image)
 		{
 			this.signalBtnPlayImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('productBtnStartBgImage');
+		if (image)
+		{
+			this.signalBtnBgImageUrl.set(`url('${image.src}')`);
 		}
 	}
 }

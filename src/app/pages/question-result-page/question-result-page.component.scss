@@ -3,6 +3,8 @@
 .content {
 	height: 100%;
 	padding: 360px 5% 0 5%;
+	//position: relative;
+	//z-index: -1;
 
 	// background-image: url(../../../assets/images/Screens/2_Frage1.png);
 	background-repeat: no-repeat;
@@ -50,7 +52,15 @@
 }
 
 .title-container {
+	position: relative;
 	height: 560px;
+
+	background-image: none;
+	background-repeat: no-repeat;
+
+	background-size: cover;
+	background-position: 19px -69px;
+	z-index: 0;
 
 	.monster {
 		position: relative;
@@ -69,6 +79,7 @@
 			left: 130px;
 			width: 180px;
 			height: 162px;
+			z-index: -1;
 			animation: moveY 4600ms ease-in-out infinite alternate;
 		}
 
@@ -78,7 +89,7 @@
 			top: 124px;
 			width: 75px;
 			height: 68px;
-			z-index: 2;
+			z-index: 1;
 			animation: moveX 2500ms ease-in-out infinite alternate;
 		}
 
@@ -88,7 +99,7 @@
 			top: 120px;
 			width: 76px;
 			height: 69px;
-			z-index: 2;
+			z-index: 1;
 			animation: moveX 1600ms ease-in-out infinite alternate-reverse;
 		}
 
@@ -131,6 +142,20 @@
 				transform: translate3d(-10px, 200px, 0) rotate3d(0, 0, 1, -3deg);
 			}
 		}
+	}
+
+	.img-bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-image: none;
+		background-repeat: no-repeat;
+
+		background-size: cover;
+		background-position: 19px -69px;
+		z-index: 0;
 	}
 
 	.title {

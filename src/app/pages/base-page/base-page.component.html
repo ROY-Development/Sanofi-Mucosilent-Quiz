@@ -15,14 +15,17 @@
 				<div class="monster-tile monster-left" [style.background-image]="signalBillyLeftImageUrl()"></div>
 				<div class="monster-tile monster-right" [style.background-image]="signalBillyRightImageUrl()"></div>
 			</div>
-			<div class="label"
-				 [style.background-image]="signalGameLogoImageUrl()"
-			></div>
+			@if (!fileLoadService.signalIsLoading()) {
+				<div class="label"
+					 [style.background-image]="signalGameLogoImageUrl()"
+				>Quiz
+				</div>
+			}
 		</div>
 		
 		<div class="button-container">
 			@if (fileLoadService.signalIsLoading()) {
-				{{ 'loading' | nativeTranslate }}
+				Laden...<!--{{ 'loading' | nativeTranslate }}-->
 				<div class="progress-bar">
 					<div class="progress" [style.width.%]="initService.signalLoadPercentage()"></div>
 				</div>
@@ -38,9 +41,8 @@
 						[btnDisabled]="(appBackendConfigService.isLoading$ | async) || false"
 						(clickButton)="onClickStart()"
 					><span class="start"
-						   [style.background-image]="signalBtnPlayImageUrl()"
-					>
-				</span>
+						   [style.background-image]="signalBtnBgImageUrl()"
+					>Spielen!</span>
 					</app-base-button>
 				</div>
 			}
@@ -77,33 +79,37 @@
 	
 	</div>-->
 	
-	<app-button-fullscreen
-		#buttonFullscreenComponent
-		[color]="'transparent'"
-		[backgroundColor]="'transparent'"
-		[borderRadiusPx]="50"
-		[borderWidthPx]="0"
-		[borderColor]="'transparent'"
-		[disabled]="false"
-		[left]="document.fullscreenEnabled ? '38px' : '38px'"
-		[right]="'auto'"
-		[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
-		(click)="soundService.playSound(SoundNameEnum.click, true);"
-	></app-button-fullscreen>
-	
-	<app-button-sound-on-off
-		#buttonSoundOnOffComponent
-		[color]="'transparent'"
-		[backgroundColor]="'transparent'"
-		[borderRadiusPx]="50"
-		[borderWidthPx]="0"
-		[borderColor]="'transparent'"
-		[disabled]="false"
-		[left]="document.fullscreenEnabled ? '188px' : '188px'"
-		[right]="'auto'"
-		[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
-		(click)="soundService.playSound(SoundNameEnum.click, true);"
-	></app-button-sound-on-off>
+	<div
+		[style.display]="fileLoadService.signalIsLoading() ? undefined : 'none'"
+	>
+		<app-button-fullscreen
+			#buttonFullscreenComponent
+			[color]="'transparent'"
+			[backgroundColor]="'transparent'"
+			[borderRadiusPx]="50"
+			[borderWidthPx]="0"
+			[borderColor]="'transparent'"
+			[disabled]="false"
+			[left]="document.fullscreenEnabled ? '38px' : '38px'"
+			[right]="'auto'"
+			[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
+			(click)="soundService.playSound(SoundNameEnum.click, true);"
+		></app-button-fullscreen>
+		
+		<app-button-sound-on-off
+			#buttonSoundOnOffComponent
+			[color]="'transparent'"
+			[backgroundColor]="'transparent'"
+			[borderRadiusPx]="50"
+			[borderWidthPx]="0"
+			[borderColor]="'transparent'"
+			[disabled]="false"
+			[left]="document.fullscreenEnabled ? '188px' : '188px'"
+			[right]="'auto'"
+			[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
+			(click)="soundService.playSound(SoundNameEnum.click, true);"
+		></app-button-sound-on-off>
+	</div>
 </div>
 <!--
 @if (legalTextDialogType()) {
@@ -117,4 +123,6 @@
 		></app-dialog-legal>
 	</div>
 }-->
-<app-game-footer></app-game-footer>
+@if (!fileLoadService.signalIsLoading()) {
+	<app-game-footer></app-game-footer>
+}

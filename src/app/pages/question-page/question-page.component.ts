@@ -42,6 +42,7 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	
 	protected imgCorrect: HTMLImageElement = new Image();
 	protected imgWrong: HTMLImageElement = new Image();
+	protected readonly signalQuestionImageUrl = signal<string>('none');
 	protected readonly signalCorrectImageUrl = signal<string>('none');
 	protected readonly signalWrongImageUrl = signal<string>('none');
 	
@@ -55,14 +56,14 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	{
 		//this.gameQuestionsService.setNextQuestion();
 		//this.gameQuestionsService.setNextQuestion();
-		const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
+		/*const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
 		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 2000);
 		this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
 			() => {
 				this.backgroundSoundTimeoutSubscription = null;
 				this.soundService.playBackgroundSound(songName);
 			}, 1600// 500
-		);
+		);*/
 		
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (
@@ -76,8 +77,9 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 				id === 'prLiliCactusPhotoRoom' ||
 				id === 'prLiliPushingPhotoRoom' ||
 				id === 'prCouple' ||
-				id === 'imgCorrect' ||
-				id === 'imgWrong'
+				id === 'productIconQuestion' ||
+				id === 'productIconCorrect' ||
+				id === 'productIconWrong'
 			)
 			{
 				this.getImages();
@@ -122,9 +124,9 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	{
 		if (isCanceled)
 		{
-			this.gameQuestionsService.init();
-			
-			this.initService.navigateToRoute(AppRoutesEnum.base).then();
+			this.initService.navigateToRoute(AppRoutesEnum.base).then(() => {
+				this.gameQuestionsService.init();
+			});
 		}
 		else
 		{
@@ -167,7 +169,7 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 		this.routeTimeoutSubscription = UtilTimeout.setTimeout(() => {
 			this.routeTimeoutSubscription = null;
 			this.initService.navigateToRoute(AppRoutesEnum.questionResult).then();
-		}, 2000);
+		}, 3000);
 	}
 	
 	/*protected onClickAnswer(index: number): void
@@ -235,14 +237,20 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 			this.scratchMonster3 = image;
 		}
 		
-		image = this.imageLoadService.getImage('imgCorrect');
+		image = this.imageLoadService.getImage('productIconQuestion');
+		if (image)
+		{
+			this.signalQuestionImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('productIconCorrect');
 		if (image)
 		{
 			this.imgCorrect = image;
 			this.signalCorrectImageUrl.set(`url('${image.src}')`);
 		}
 		
-		image = this.imageLoadService.getImage('imgWrong');
+		image = this.imageLoadService.getImage('productIconWrong');
 		if (image)
 		{
 			this.imgWrong = image;

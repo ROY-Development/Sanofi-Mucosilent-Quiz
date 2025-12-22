@@ -223,7 +223,7 @@
 
 	&.monster-container2 {
 		right: 2px;
-		bottom: 0;
+		bottom: 90px;
 
 		width: 440px;
 		height: 430px;
@@ -253,7 +253,7 @@
 	}
 
 	&.monster-container3 {
-		right: 5px;
+		right: 2px;
 		bottom: 170px;
 		width: 440px;
 		height: 760px;
@@ -263,6 +263,7 @@
 			bottom: -172px;
 			width: 470px;
 			height: 770px;
+			background-size: contain;
 
 			animation: monster3 2600ms ease-in-out infinite alternate-reverse;
 		}
@@ -378,6 +379,15 @@
 
 						scale: 0;
 					}
+
+					.img-question {
+						position: relative;
+						width: 100%;
+						height: 100%;
+						background-repeat: no-repeat;
+						background-position: center;
+						background-size: contain;
+					}
 				}
 			}
 
@@ -410,11 +420,11 @@
 					width: 65%;
 					height: 65%;
 
-					mask-image: none;
-					mask-repeat: no-repeat;
-					mask-size: contain;
-					mask-position: center;
-					background-color: #fff;
+					background-image: none;
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center;
+					/*background-color: #fff;
 
 					&.img-correct {
 						background-color: #0b8000;
@@ -422,7 +432,7 @@
 
 					&.img-wrong {
 						background-color: #d50000;
-					}
+					}*/
 				}
 
 				&.result-enter {

@@ -500,6 +500,14 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 							60,
 							10
 						);
+						
+						/*if (Math.round(Math.random() * 2) === 0)
+							this.aniExplosion.callExplosion(
+								x, y, 5,
+								this.lastScratchDirection?.angleDeg,
+								60,
+								10
+							);*/
 					}
 				}
 			}

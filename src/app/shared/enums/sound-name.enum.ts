@@ -13,6 +13,7 @@ export enum SoundNameEnum
 	multiplierFinish = 'multiplierFinish',
 	categoryFlash = 'categoryFlash',
 	scoreArrive = 'scoreArrive',
+	showResult = 'showResult',
 	endGame = 'endGame',
 	
 	introMusic = 'introMusic',

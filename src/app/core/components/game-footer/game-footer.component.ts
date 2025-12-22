@@ -64,8 +64,9 @@ export class GameFooterComponent implements AfterViewInit, OnDestroy
 		
 		this.soundService.playSound(SoundNameEnum.click, true);
 		
-		/*let url: string | null = null;
-		if (type === 'imprint')
+		let url: string = 'https://www.ehub-healthcare.com/de-de/s/legal-notice?language=de';
+		window.open(url, '_blank');
+		/*if (type === 'imprint')
 		{
 			if (
 				this.gameService.signalGameConfig()?.typeImprint === 'url' &&
@@ -79,8 +80,8 @@ export class GameFooterComponent implements AfterViewInit, OnDestroy
 				this.legalTextDialogType.set('imprint');
 				return;
 			}
-		}
-		else if (type === 'privacy-policy')
+		}*/
+		/*else if (type === 'privacy-policy')
 		{
 			if (
 				this.gameService.signalGameConfig()?.typePrivacyPolicy === 'url' &&

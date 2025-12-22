@@ -24,12 +24,10 @@
 			<div class="monster lilly-pointing-arm" [style.background-image]="signalLillyPointingArmImageUrl()"></div>
 		} @else if (gameQuestionsService.questionIndex === 1) {
 			<div class="monster" [style.background-image]="signalMonster2ImageUrl()"></div>
-		}
-		@else if (gameQuestionsService.questionIndex === 2) {
+		} @else if (gameQuestionsService.questionIndex === 2) {
 			<div class="monster" [style.background-image]="signalMonster3ImageUrl()"></div>
 		}
 	</div>
-	
 	
 	<div class="question-counter">Frage {{ gameQuestionsService.questionIndex + 1 }}
 		/ {{ gameQuestionsService.maxQuestionNr }}
@@ -48,7 +46,13 @@
 						<div class="scratch-bg"
 							 [class.enabled]="gameQuestionsService.currentQuestion.answers[i].scratchFactor >= 1"
 						>
-							@if (gameQuestionsService.questionIndex === 0) {
+							@if (!signalScratchFinished()) {
+								<div class="img-question"
+									 [style.background-image]="signalQuestionImageUrl()"
+									 [style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor"
+								></div>
+							}
+							<!--@if (gameQuestionsService.questionIndex === 0) {
 								<img [src]="scratchMonster1.src" alt=""
 									 [style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor">
 							} @else if (gameQuestionsService.questionIndex === 1) {
@@ -57,7 +61,7 @@
 							} @else if (gameQuestionsService.questionIndex === 2) {
 								<img [src]="scratchMonster3.src" alt=""
 									 [style.scale]="gameQuestionsService.currentQuestion.answers[i].scratchFactor">
-							}
+							}-->
 						</div>
 						
 						<app-scratch-free
@@ -78,7 +82,7 @@
 							<div class="img-result"
 								 [class.img-correct]="gameQuestionsService.currentQuestion.rightAnswerIndex === i"
 								 [class.img-wrong]="gameQuestionsService.currentQuestion.rightAnswerIndex !== i"
-								 [style.mask-image]="gameQuestionsService.currentQuestion.rightAnswerIndex === i  ? signalCorrectImageUrl() : signalWrongImageUrl()"
+								 [style.background-image]="gameQuestionsService.currentQuestion.rightAnswerIndex === i  ? signalCorrectImageUrl() : signalWrongImageUrl()"
 							></div>
 							<!--	@if (gameQuestionsService.currentQuestion.rightAnswerIndex === i) {
 									<img [src]="imgCorrect.src" alt="correct" class="img-correct">

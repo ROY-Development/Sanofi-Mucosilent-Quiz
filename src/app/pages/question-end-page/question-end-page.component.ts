@@ -26,7 +26,7 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 	@ViewChild('confetti') public confetti!: ConfettiComponent;
 	
 	protected readonly signalProductBgImageUrl = signal<string>('none');
-	protected readonly signalGameLogoImageUrl = signal<string>('none');
+	protected readonly signalHeaderBgImageUrl = signal<string>('none');
 	protected readonly signalBillyHeadImageUrl = signal<string>('none');
 	protected readonly signalBillyLeftImageUrl = signal<string>('none');
 	protected readonly signalBillyRightImageUrl = signal<string>('none');
@@ -58,14 +58,14 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 			}
 		});
 		
-		const songName: SoundNameEnum = SoundNameEnum.endGameMusic;
+		/*const songName: SoundNameEnum = SoundNameEnum.endGameMusic;
 		this.soundService.fadeOutSound(SoundNameEnum.mainMusic01, 2000);
 		this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
 			() => {
 				this.backgroundSoundTimeoutSubscription = null;
 				this.soundService.playBackgroundSound(songName);
 			}, 1600// 500
-		);
+		);*/
 	}
 	
 	public ngAfterViewInit(): void
@@ -73,7 +73,10 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 		this.getImages();
 		
 		this.confetti.callConfetti();
-		this.soundService.playSound(SoundNameEnum.endGame, true);
+		
+		UtilTimeout.setTimeout(() => {
+			this.soundService.playSound(SoundNameEnum.endGame, true);
+		}, 600);
 	}
 	
 	public ngOnDestroy(): void
@@ -121,7 +124,7 @@ export class QuestionEndPageComponent implements OnInit, AfterViewInit, OnDestro
 		image = this.imageLoadService.getImage('productHeaderBg');
 		if (image)
 		{
-			this.signalGameLogoImageUrl.set(`url('${image.src}')`);
+			this.signalHeaderBgImageUrl.set(`url('${image.src}')`);
 		}
 		
 		image = this.imageLoadService.getImage('billyHead');

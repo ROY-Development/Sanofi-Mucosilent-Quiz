@@ -6,6 +6,7 @@ import {ImageLoadService} from '../../core/services/image-load.service';
 import {SoundNameEnum} from '../../shared/enums/sound-name.enum';
 import {AppRoutesEnum} from '../../app-routes.enum';
 import {Subscription} from 'rxjs';
+import {UtilTimeout} from '../../shared/utils/util-timeout';
 
 @Component({
 	selector: 'app-question-result-page',
@@ -23,8 +24,7 @@ export class QuestionResultPageComponent implements OnInit, AfterViewInit, OnDes
 	protected readonly isShowingConfirmCancelDialog = signal<boolean>(false);
 	
 	protected readonly signalProductBgImageUrl = signal<string>('none');
-	protected readonly signalTitleBgImageUrl = signal<string>('none');
-	protected readonly signalTitleAnswerBgImageUrl = signal<string>('none');
+	protected readonly signalFeedbackTitleBgImageUrl = signal<string>('none');
 	protected readonly signalBtnCloseImageUrl = signal<string>('none');
 	protected readonly signalBillyHeadImageUrl = signal<string>('none');
 	protected readonly signalBillyLeftImageUrl = signal<string>('none');
@@ -45,8 +45,7 @@ export class QuestionResultPageComponent implements OnInit, AfterViewInit, OnDes
 			if (
 				id === 'btnClose' ||
 				id === 'productBg' ||
-				id === 'productResultTitleBg' ||
-				id === 'productResultAnswerBg' ||
+				id === 'productFeedbackTitleBg' ||
 				id === 'productResultFeedback1' ||
 				id === 'billyHead' ||
 				id === 'billyLeft' ||
@@ -62,6 +61,10 @@ export class QuestionResultPageComponent implements OnInit, AfterViewInit, OnDes
 	public ngAfterViewInit(): void
 	{
 		this.getImages();
+		
+		UtilTimeout.setTimeout(() => {
+			this.soundService.playSound(SoundNameEnum.showResult, true);
+		}, 600);
 	}
 	
 	public ngOnDestroy(): void
@@ -123,16 +126,10 @@ export class QuestionResultPageComponent implements OnInit, AfterViewInit, OnDes
 			this.signalProductBgImageUrl.set(`url('${image.src}')`);
 		}
 		
-		image = this.imageLoadService.getImage('productResultTitleBg');
+		image = this.imageLoadService.getImage('productFeedbackTitleBg');
 		if (image)
 		{
-			this.signalTitleBgImageUrl.set(`url('${image.src}')`);
-		}
-		
-		image = this.imageLoadService.getImage('productResultAnswerBg');
-		if (image)
-		{
-			this.signalTitleAnswerBgImageUrl.set(`url('${image.src}')`);
+			this.signalFeedbackTitleBgImageUrl.set(`url('${image.src}')`);
 		}
 		
 		image = this.imageLoadService.getImage('billyHead');

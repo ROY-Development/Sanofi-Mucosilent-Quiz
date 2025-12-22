@@ -489,6 +489,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{key: SoundNameEnum.answerWrong, oUrl: 'answer-wrong.mp3'},
 			{key: SoundNameEnum.categoryFlash, oUrl: 'category-flash.mp3'},
 			{key: SoundNameEnum.scoreArrive, oUrl: 'score-arrive.mp3'},
+			{key: SoundNameEnum.showResult, oUrl: 'show-result.mp3'},
 			{key: SoundNameEnum.endGame, oUrl: 'end-game.mp3'}
 		];
 		
@@ -550,7 +551,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			
 			{name: 'prBillyPhotoRoom', url: 'assets/images/product/billy-v3-1-photo-room.png'},
 			{name: 'prLiliPushingPhotoRoom', url: 'assets/images/product/lili-pushing-v2-photo-room.png'},
-			{name: 'prLiliCactusPhotoRoom', url: 'assets/images/product/lili-cactus-v1-photo-room.png'},
+			{name: 'prLiliCactusPhotoRoom', url: 'assets/images/product/Monster_red_adapted.png'},
 			{name: 'prCouple', url: 'assets/images/product/couple.png'},
 			
 			{name: 'imgCorrect', url: 'assets/images/svg/btn-correct.svg'},
@@ -561,22 +562,25 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'productImage', url: 'assets/images/product/4_Product.png'},
 			{name: 'productFooterBg', url: 'assets/images/product/FooterDisclaimer_BG.png'},
 			{name: 'productTitle', url: 'assets/images/product/1_Title_ProductImage.png'},
-			{name: 'productResultTitleBg', url: 'assets/images/product/4_Title_BG.png'},
-			{name: 'productResultAnswerBg', url: 'assets/images/product/1_TitleStart_BG.png'},
 			{name: 'productResultFeedback1', url: 'assets/images/product/3_Feedback1_Product.png'},
 			{name: 'productResultFeedback2', url: 'assets/images/product/3_Feedback2_Product.png'},
 			{name: 'productResultFeedback3', url: 'assets/images/product/3_Feedback3_Product.png'},
-			{name: 'productHeaderBg', url: 'assets/images/product/3_HeaderBg_1.png'},
+			{name: 'productHeaderBg', url: 'assets/images/product/4_Title_BG.png'},
+			{name: 'productFeedbackTitleBg', url: 'assets/images/product/3_Feedback_Title_BG_noMonster.png'},
 			{name: 'product1', url: 'assets/images/product/Mucosilent_Hustensaft1.png'},
 			{name: 'product2', url: 'assets/images/product/Mucosilent_Hustensaft2.png'},
-			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart.png'},
+			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart_BG.png'},
 			{name: 'productBtnBgImage', url: 'assets/images/product/3_BTN_BG.png'},
+			{name: 'productBtnStartBgImage', url: 'assets/images/product/1_ButtonStart_BG.png'},
 			{name: 'btnPlayImage', url: 'assets/images/product/1_ButtonStart.png'},
 			{name: 'billyHead', url: 'assets/images/product/Monster_green_head.png'},
 			{name: 'billyLeft', url: 'assets/images/product/Monster_green_hand_right.png'},
 			{name: 'billyRight', url: 'assets/images/product/Monster_green_hand_left.png'},
 			{name: 'lilyPointing', url: 'assets/images/product/2_ScratchTutorial_Monster.png'},
-			{name: 'lilyPointingArm', url: 'assets/images/product/2_ScratchTutorial_Arm.png'}
+			{name: 'lilyPointingArm', url: 'assets/images/product/2_ScratchTutorial_Arm.png'},
+			{name: 'productIconQuestion', url: 'assets/images/product/Icon_Question_BG.png'},
+			{name: 'productIconCorrect', url: 'assets/images/product/Icon_Question_Correct.png'},
+			{name: 'productIconWrong', url: 'assets/images/product/Icon_Question_Wrong.png'},
 			
 			// {name: 'howToPlay01', url: 'assets/images/how-to-play.png'}
 		);
