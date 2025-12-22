@@ -563,6 +563,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'productResultTitleBg', url: 'assets/images/product/4_Title_BG.png'},
 			{name: 'productResultAnswerBg', url: 'assets/images/product/1_TitleStart_BG.png'},
 			{name: 'productResultFeedback1', url: 'assets/images/product/3_Feedback1_Product.png'},
+			{name: 'productResultFeedback2', url: 'assets/images/product/3_Feedback2_Product.png'},
+			{name: 'productResultFeedback3', url: 'assets/images/product/3_Feedback3_Product.png'},
 			{name: 'product1', url: 'assets/images/product/Mucosilent_Hustensaft1.png'},
 			{name: 'product2', url: 'assets/images/product/Mucosilent_Hustensaft2.png'},
 			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart.png'},
