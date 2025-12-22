@@ -1,24 +1,27 @@
-<footer class="game-footer"
-		[style.background-image]="signalProductFooterBgImageUrl()"
->
-	<div>
-		<strong>Mucosilent<sup>&reg;</sup> gegen Reizhusten</strong> Levodropropizin 6 mg/ml Saft <strong>Wirkstoff:</strong> Levodropropizin.
-		<strong>Anwendungsgebiet:</strong> Symptomatische Therapie des Reizhustens (unproduktiver Husten).
-	<strong>Apothekenpflichtig.</strong><br>
-	<strong>Zu Risiken und Nebenwirkungen lesen Sie die Packungsbeilage und fragen Sie Ihre Ärztin, Ihren
-		Arzt oder in Ihrer Apotheke.</strong><br>
-		<strong>A. Nattermann & Cie. GmbH</strong>, Brüningstraße 50, 65929 Frankfurt am Main.<br>
-		<strong>Stand:</strong> April 2025
-	</div>
-	<div class="legal-links">
-		<!--<button type="button" class="btn btn-link btn-legal"
-				[style.color]="gameService.signalGameConfig()?.fontColorLink"
-				(click)="onClickLegalText('privacy-policy')"
-		>{{ 'privacy-policy' | nativeTranslate }}
-		</button>-->
-		<button type="button" class="btn btn-link btn-legal"
-				(click)="onClickLegalText('imprint')"
-		>Impressum<!--{{ 'imprint' | nativeTranslate }}-->
-		</button>
-	</div>
-</footer>
+@if (signalIsReady()) {
+	<footer class="game-footer"
+			[style.background-image]="signalProductFooterBgImageUrl()"
+	>
+		<div>
+			<strong>Mucosilent<sup>&reg;</sup> gegen Reizhusten</strong> Levodropropizin 6 mg/ml Saft
+			<strong>Wirkstoff:</strong> Levodropropizin.
+			<strong>Anwendungsgebiet:</strong> Symptomatische Therapie des Reizhustens (unproduktiver Husten).
+			<strong>Apothekenpflichtig.</strong><br>
+			<strong>Zu Risiken und Nebenwirkungen lesen Sie die Packungsbeilage und fragen Sie Ihre Ärztin, Ihren
+				Arzt oder in Ihrer Apotheke.</strong><br>
+			<strong>A. Nattermann & Cie. GmbH</strong>, Brüningstraße 50, 65929 Frankfurt am Main.<br>
+			<strong>Stand:</strong> April 2025
+		</div>
+		<div class="legal-links">
+			<!--<button type="button" class="btn btn-link btn-legal"
+					[style.color]="gameService.signalGameConfig()?.fontColorLink"
+					(click)="onClickLegalText('privacy-policy')"
+			>{{ 'privacy-policy' | nativeTranslate }}
+			</button>-->
+			<button type="button" class="btn btn-link btn-legal"
+					(click)="onClickLegalText('imprint')"
+			>Impressum<!--{{ 'imprint' | nativeTranslate }}-->
+			</button>
+		</div>
+	</footer>
+}

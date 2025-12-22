@@ -15,6 +15,7 @@ export class GameFooterComponent implements AfterViewInit, OnDestroy
 	protected soundService = inject(SoundService);
 	private imageLoadService = inject(ImageLoadService);
 	
+	protected readonly signalIsReady = signal<boolean>(false);
 	protected readonly signalProductFooterBgImageUrl = signal<string>('none');
 	
 	private addImageSubscription: Subscription | null = null;
@@ -31,7 +32,6 @@ export class GameFooterComponent implements AfterViewInit, OnDestroy
 	
 	public ngOnDestroy(): void
 	{
-		
 		if (this.addImageSubscription)
 		{
 			this.addImageSubscription.unsubscribe();
@@ -42,6 +42,8 @@ export class GameFooterComponent implements AfterViewInit, OnDestroy
 	public ngAfterViewInit(): void
 	{
 		this.getImages();
+		
+		this.signalIsReady.set(true);
 	}
 	
 	private getImages(): void

@@ -7,7 +7,7 @@
 		[btnRadius]="'50%'"
 		[btnDisabled]="false"
 		(clickButton)="onClickExit()"
-	><span [style.mask-image]="signalBtnCloseImageUrl()"
+	><span [style.background-image]="signalBtnCloseImageUrl()"
 		   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
 	></span>
 	</app-base-button>
@@ -15,6 +15,7 @@
 
 <div class="content"
 	 [class]="'question' + (gameQuestionsService.questionIndex + 1)"
+	 [style.background-image]="signalProductBgImageUrl()"
 >
 	<!--<div class="question-counter">Frage {{ questionIndex + 1 }} / {{ maxQuestionNr }}</div>
 	<div class="question">{{ gameQuestionsService.currentQuestion.question }}</div>
@@ -52,7 +53,27 @@
 			<div class="answer">{{ gameQuestionsService.currentQuestion.answer3 }}</div>
 		</app-base-button>
 	</div>-->
-	@if (gameQuestionsService.selectedAnswerIndex === gameQuestionsService.currentQuestion.rightAnswerIndex) {
+	
+	<div class="title-container">
+		<div class="monster">
+			<div class="monster-tile monster-head" [style.background-image]="signalBillyHeadImageUrl()"></div>
+			<div class="monster-tile monster-left" [style.background-image]="signalBillyLeftImageUrl()"></div>
+			<div class="monster-tile monster-right" [style.background-image]="signalBillyRightImageUrl()"></div>
+		</div>
+		<div class="title"
+			 [style.background-image]="signalTitleBgImageUrl()"
+		><span [innerHTML]="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + gameQuestionsService.currentQuestion.question"></span>
+		</div>
+		<div class="answer"
+			 [style.background-image]="signalTitleAnswerBgImageUrl()"
+		>
+			<span [innerHTML]="gameQuestionsService.currentQuestion.answers[
+				gameQuestionsService.currentQuestion.rightAnswerIndex
+			].answer"></span>
+		</div>
+	</div>
+	
+	<!--@if (gameQuestionsService.selectedAnswerIndex === gameQuestionsService.currentQuestion.rightAnswerIndex) {
 		RICHTIG
 	} @else {
 		FALSCH
@@ -72,23 +93,41 @@
 			Hustenreiz entsteht. Dadurch ist es besser verträglich und macht nicht müde – ein
 			wichtiger Vorteil gegenüber zentral wirkenden Hustenstillern.
 	}
-	<br><br>
+	<br><br>-->
+	<div class="product-container">
+		<div class="image-container">
+			@if (gameQuestionsService.questionIndex === 0) {
+				<div class="image" [style.background-image]="signalTitleFeedback1BgImageUrl()"></div>
+			} @else if (gameQuestionsService.questionIndex === 1) {
+				<div class="image" [style.background-image]="signalTitleFeedback2BgImageUrl()"></div>
+			} @else if (gameQuestionsService.questionIndex === 2) {
+				<div class="image" [style.background-image]="signalTitleFeedback3BgImageUrl()"></div>
+			}
+		</div>
+	</div>
 	
-	<app-base-button
-		[configBtn]="null"
-		[btnWidth]="'100%'"
-		[btnContentWidth]="'100%'"
-		[btnContentPadding]="'15px 10px'"
-		[btnDisabled]="false"
-		(clickButton)="onClickNextQuestion()"
-	>
-		@if (gameQuestionsService.questionIndex < gameQuestionsService.questions.length - 1) {
-			Zur nächsten Frage
+	<div class="button-container">
+		<app-base-button
+			[configBtn]="null"
+			[btnWidth]="'100%'"
+			[btnContentWidth]="'100%'"
+			[btnContentHeight]="'220px'"
+			[btnRadius]="'80px'"
+			[btnDisabled]="false"
+			(clickButton)="onClickNextQuestion()"
+		>
+		<span class="btn-bg"
+			  [style.background-image]="signalBtnBgImageUrl()"
+		>@if (gameQuestionsService.questionIndex < gameQuestionsService.questions.length - 1) {
+			Nächste Frage
 		} @else {
 			Quiz beenden
-		}
-	</app-base-button>
+		}</span>
+		</app-base-button>
+	</div>
 </div>
+
+<app-game-footer></app-game-footer>
 
 @if (isShowingConfirmCancelDialog()) {
 	<div class="dialog-animation-container"
