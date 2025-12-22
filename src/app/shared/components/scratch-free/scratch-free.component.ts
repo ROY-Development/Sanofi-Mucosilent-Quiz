@@ -1,11 +1,11 @@
 import {
 	AfterViewInit,
-	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	EventEmitter,
 	inject,
 	Input,
+	NgZone,
 	OnChanges,
 	OnDestroy,
 	Output,
@@ -35,7 +35,8 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	private static readonly CHECK_TIMEOUT_MS: number = 20;
 	private static readonly SCRATCH_FINISH_FACTOR: number = 0.8;
 	
-	private changeDetectorRef = inject(ChangeDetectorRef);
+	// private changeDetectorRef = inject(ChangeDetectorRef);
+	private ngZone = inject(NgZone);
 	
 	@ViewChild('canvas') public canvas?: ElementRef<HTMLCanvasElement>;
 	@ViewChild("aniExplosion") aniExplosion!: AniExplosionComponent;
@@ -43,6 +44,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 	@Input({required: false}) public enabled: boolean = true;
 	@Input({required: false}) public widthPx: number = 300;
 	@Input({required: false}) public heightPx: number = 200;
+	@Input({required: false}) public borderRadius: number = 0;
 	@Input({required: false}) public scratchRadius: number = 20;
 	@Input({required: false}) public scratchFreeBg: HTMLImageElement | null = null;
 	
@@ -275,7 +277,9 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 			this.onTouchStart(event);
 		}
 		
-		this.draw(event);
+		this.ngZone.runOutsideAngular(() => {
+			this.draw(event);
+		});
 	}
 	
 	private onTouchEnd(event: TouchEvent): void
@@ -411,7 +415,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 		this.ctx.arc(this.mousePos.x, this.mousePos.y, this.scratchRadius, 0, Math.PI * 2);
 		this.ctx.fill();
 		
-		this.changeDetectorRef.detectChanges();
+		//	this.changeDetectorRef.detectChanges();
 		
 		if (this.checkTimeout <= 0)
 		{
@@ -460,7 +464,7 @@ export class ScratchFreeComponent implements AfterViewInit, OnChanges, OnDestroy
 			this.scratchFinished.emit();
 		}
 		
-		this.changeDetectorRef.detectChanges();
+		//	this.changeDetectorRef.detectChanges();
 	}
 	
 	private loop(delta: number): void

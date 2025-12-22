@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, Input, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, Input, NgZone, OnDestroy} from '@angular/core';
 import {AppLoopService} from '../../../core/services/app-loop.service';
 
 class Particle
@@ -27,6 +27,7 @@ class Particle
 })
 export class AniExplosionComponent implements OnDestroy
 {
+	private ngZone = inject(NgZone);
 	private changeDetectorRef = inject(ChangeDetectorRef);
 	
 	@Input({required: false}) public width: number = 100;
@@ -63,7 +64,7 @@ export class AniExplosionComponent implements OnDestroy
 	{
 		this.appLoopService.stop();
 		this.appLoopService.setRuntime(0);
-		this.appLoopService.init('AniExplosionComponent');
+		this.appLoopService.init('AniExplosionComponent', this.ngZone);
 	}
 	
 	/*public ngOnChanges(changes: SimpleChanges): void
