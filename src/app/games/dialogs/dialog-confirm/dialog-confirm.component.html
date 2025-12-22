@@ -1,15 +1,9 @@
 <div class="dialog-container dialog-multiplier-solved">
-	<div class="dialog"
-		 [style.background-color]="globalGameService.signalGameConfig()?.dialogColorBg"
-		 [style.color]="globalGameService.signalGameConfig()?.fontColorDialog"
-		 [style.border-radius.px]="globalGameService.signalGameConfig()?.dialogRadius"
-		 [style.border-width.px]="globalGameService.signalGameConfig()?.dialogBorder"
-		 [style.border-color]="globalGameService.signalGameConfig()?.dialogBorderColor"
-	>
+	<div class="dialog">
 		<div class="dialog-header">
-			<div class="dialog-title mx-auto my-auto">
+			<!--<div class="dialog-title mx-auto my-auto">
 				<div class="title" [innerHTML]="titleKey ? (titleKey | nativeTranslate) : title"></div>
-			</div>
+			</div>-->
 			<!--<button type="button" class="btn" aria-label="Close"
 			(click)="onClickClose(false)"
 			>
@@ -23,7 +17,7 @@
 				<div [innerHTML]="(contentKey ? (contentKey | nativeTranslate) : content)"></div>
 			}
 		</div>
-		<div class="dialog-footer justify-content-evenly">
+		<div class="dialog-footer">
 			@if (hasSafetyCheck) {
 				<input type="checkbox"
 					   id="safetyCheck"
@@ -32,30 +26,37 @@
 				>&nbsp;<label for="safetyCheck" class="me-auto user-select-none">{{ 'safety-check' }}</label>
 			}
 			
+			
 			<app-base-button
-				[configBtn]="globalGameService.signalGameConfig()?.defaultBtn ?? null"
-				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[configBtn]="null"
 				[btnWidth]="'100%'"
-				[btnContentPadding]="'15px 10px'"
-				[btnContentFontSize]="'56px'"
-				(clickButton)="onClickClose(true)"
-			><span
-				[innerHTML]="contentYes ? contentYes : (contentYesKey ? (contentYesKey | nativeTranslate) : 'yes' | nativeTranslate)"
-			></span>
+				[btnContentWidth]="'100%'"
+				[btnContentHeight]="'220px'"
+				[btnRadius]="'80px'"
+				[btnDisabled]="false"
+				(clickButton)="onClickClose(false)"
+			>
+					<span class="btn-bg"
+						  [style.background-image]="signalBtnBgImageUrl()"
+						  [innerHTML]="contentNo ? contentNo : (contentNoKey ? (contentNoKey | nativeTranslate) : 'no' | nativeTranslate)"
+					></span>
 			</app-base-button>
 			
 			<div class="empty-line"></div>
 			
 			<app-base-button
-				[configBtn]="globalGameService.signalGameConfig()?.defaultBtn ?? null"
-				[backgroundImageUrl]="initService.signalBtnBackgroundImageUrl()"
+				[configBtn]="null"
 				[btnWidth]="'100%'"
-				[btnContentPadding]="'15px 10px'"
-				[btnContentFontSize]="'56px'"
-				(clickButton)="onClickClose(false)"
-			><span
-				[innerHTML]="contentNo ? contentNo : (contentNoKey ? (contentNoKey | nativeTranslate) : 'no' | nativeTranslate)"
-			></span>
+				[btnContentWidth]="'100%'"
+				[btnContentHeight]="'220px'"
+				[btnRadius]="'80px'"
+				[btnDisabled]="false"
+				(clickButton)="onClickClose(true)"
+			>
+					<span class="btn-bg"
+						  [style.background-image]="signalBtnBgImageUrl()"
+						  [innerHTML]="contentYes ? contentYes : (contentYesKey ? (contentYesKey | nativeTranslate) : 'yes' | nativeTranslate)"
+					></span>
 			</app-base-button>
 		</div>
 	</div>
