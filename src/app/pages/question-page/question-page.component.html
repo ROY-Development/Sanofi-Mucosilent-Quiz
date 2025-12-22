@@ -7,19 +7,37 @@
 		[btnRadius]="'50%'"
 		[btnDisabled]="false"
 		(clickButton)="onClickExit()"
-	><span [style.mask-image]="signalBtnCloseImageUrl()"
+	><span [style.background-image]="signalBtnCloseImageUrl()"
 		   class="btn-close-icon" aria-hidden="true" [title]="'close' | nativeTranslate"
 	></span>
 	</app-base-button>
 </div>
 
 <div class="content"
-	[class]="'question' + (gameQuestionsService.questionIndex + 1)"
+	 [class]="'question' + (gameQuestionsService.questionIndex + 1)"
+	 [style.background-image]="signalProductBgImageUrl()"
 >
+	
+	<div class="monster-container" [class]="'monster-container' + (gameQuestionsService.questionIndex + 1)">
+		@if (gameQuestionsService.questionIndex === 0) {
+			<div class="monster lilly-pointing" [style.background-image]="signalLillyPointingImageUrl()"></div>
+			<div class="monster lilly-pointing-arm" [style.background-image]="signalLillyPointingArmImageUrl()"></div>
+		} @else if (gameQuestionsService.questionIndex === 1) {
+			<div class="monster" [style.background-image]="signalMonster2ImageUrl()"></div>
+		}
+		@else if (gameQuestionsService.questionIndex === 2) {
+			<div class="monster" [style.background-image]="signalMonster3ImageUrl()"></div>
+		}
+	</div>
+	
+	
 	<div class="question-counter">Frage {{ gameQuestionsService.questionIndex + 1 }}
 		/ {{ gameQuestionsService.maxQuestionNr }}
 	</div>
-	<div class="question">{{ gameQuestionsService.currentQuestion.question }}</div>
+	<div class="question" [class]="'question' + (gameQuestionsService.questionIndex + 1)">
+		<span [innerHTML]="gameQuestionsService.currentQuestion.question"></span>
+	</div>
+	<div class="tutorial">Rubbel die richtige Antwort frei.</div>
 	<div class="answers"
 		 [class.scratch-finished]="signalScratchFinished()"
 	>
@@ -44,8 +62,9 @@
 						
 						<app-scratch-free
 							[enabled]="!signalScratchFinished()"
-							[widthPx]="360"
-							[heightPx]="360"
+							[widthPx]="390"
+							[heightPx]="332"
+							[borderRadius]="80"
 							[scratchRadius]="30"
 							[scratchFreeBg]="scratchFreeBg"
 							(scratch)="onScratch(i, $event)"
@@ -99,6 +118,8 @@
 		}
 	</div>
 </div>
+
+<app-game-footer></app-game-footer>
 
 @if (isShowingConfirmCancelDialog()) {
 	<div class="dialog-animation-container"

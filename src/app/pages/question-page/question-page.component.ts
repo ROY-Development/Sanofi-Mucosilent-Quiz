@@ -28,7 +28,12 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	
 	protected readonly isShowingConfirmCancelDialog = signal<boolean>(false);
 	
+	protected readonly signalProductBgImageUrl = signal<string>('none');
 	protected readonly signalBtnCloseImageUrl = signal<string>('none');
+	protected readonly signalLillyPointingImageUrl = signal<string>('none');
+	protected readonly signalLillyPointingArmImageUrl = signal<string>('none');
+	protected readonly signalMonster2ImageUrl = signal<string>('none');
+	protected readonly signalMonster3ImageUrl = signal<string>('none');
 	
 	protected scratchFreeBg: HTMLImageElement = new Image();
 	protected scratchMonster1: HTMLImageElement = new Image();
@@ -48,6 +53,8 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 	
 	public ngOnInit(): void
 	{
+		//this.gameQuestionsService.setNextQuestion();
+		//this.gameQuestionsService.setNextQuestion();
 		//const songName: SoundNameEnum = SoundNameEnum.mainMusic01;
 		this.soundService.fadeOutSound(SoundNameEnum.introMusic, 2000);
 		/*this.backgroundSoundTimeoutSubscription = UtilTimeout.setTimeout(
@@ -60,9 +67,13 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (
 				id === 'btnClose' ||
+				id === 'productBg2' ||
 				id === 'scratchFreeBg' ||
 				//id === 'scratchFree01' ||
+				id === 'lilyPointing' ||
+				id === 'lilyPointingArm' ||
 				id === 'prBillyPhotoRoom' ||
+				id === 'prLiliCactusPhotoRoom' ||
 				id === 'prLiliPushingPhotoRoom' ||
 				id === 'prCouple' ||
 				id === 'imgCorrect' ||
@@ -175,16 +186,41 @@ export class QuestionPageComponent implements OnInit, AfterViewInit, OnDestroy
 			this.signalBtnCloseImageUrl.set(`url('${image.src}')`);
 		}
 		
+		image = this.imageLoadService.getImage('productBg2');
+		if (image)
+		{
+			this.signalProductBgImageUrl.set(`url('${image.src}')`);
+		}
+		
 		image = this.imageLoadService.getImage('scratchFreeBg');
 		if (image)
 		{
 			this.scratchFreeBg = image;
 		}
 		
+		image = this.imageLoadService.getImage('lilyPointing');
+		if (image)
+		{
+			this.signalLillyPointingImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('lilyPointingArm');
+		if (image)
+		{
+			this.signalLillyPointingArmImageUrl.set(`url('${image.src}')`);
+		}
+		
 		image = this.imageLoadService.getImage('prBillyPhotoRoom');
 		if (image)
 		{
 			this.scratchMonster1 = image;
+			this.signalMonster2ImageUrl.set(`url('${image.src}')`);
+		}
+		
+		image = this.imageLoadService.getImage('prLiliCactusPhotoRoom');
+		if (image)
+		{
+			this.signalMonster3ImageUrl.set(`url('${image.src}')`);
 		}
 		
 		image = this.imageLoadService.getImage('prLiliPushingPhotoRoom');

@@ -9,7 +9,7 @@ export class GameQuestionsService
 {
 	public questions: Array<GameQuestionModel> = [
 		new GameQuestionModel(
-			'Wie heißen die Monster von Mucosolvan und Mucosilent?',
+			'Wie heißen die Monster von Mucosolvan<sup>&reg;</sup> und Mucosilent<sup>&reg;</sup>?',
 			[
 				new GameQuestionAnswerModel(
 					'Ella und Emil'
@@ -24,7 +24,7 @@ export class GameQuestionsService
 			1
 		),
 		new GameQuestionModel(
-			'Für wen ist Mucosilent® geeignet?',
+			'Für wen ist Mucosilent<sup>&reg;</sup> geeignet?',
 			[
 				new GameQuestionAnswerModel(
 					'Nur für Erwachsene'
@@ -39,7 +39,7 @@ export class GameQuestionsService
 			1
 		),
 		new GameQuestionModel(
-			'Welchen Geschmack hat Mucosilent?',
+			'Welchen Geschmack hat Mucosilent<sup>&reg;</sup>?',
 			[
 				new GameQuestionAnswerModel(
 					'Himbeere'

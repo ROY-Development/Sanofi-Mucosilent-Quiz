@@ -567,7 +567,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'billyHead', url: 'assets/images/product/Monster_green_head.png'},
 			{name: 'billyLeft', url: 'assets/images/product/Monster_green_hand_right.png'},
 			{name: 'billyRight', url: 'assets/images/product/Monster_green_hand_left.png'},
-			{name: 'lilyPosing', url: 'assets/images/product/lily-posing.png'}
+			{name: 'lilyPointing', url: 'assets/images/product/2_ScratchTutorial_Monster.png'},
+			{name: 'lilyPointingArm', url: 'assets/images/product/2_ScratchTutorial_Arm.png'}
 			
 			// {name: 'howToPlay01', url: 'assets/images/how-to-play.png'}
 		);
