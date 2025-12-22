@@ -13,7 +13,6 @@ import {
 	WritableSignal
 } from '@angular/core';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {Meta, Title} from '@angular/platform-browser';
 import {InitService} from './core/services/init.service';
 import {PageService} from './core/services/page.service';
 import {UtilTimeout} from './shared/utils/util-timeout';
@@ -21,12 +20,9 @@ import {AppConfig} from './app.config';
 import {FileLoadService} from './core/services/file-load.service';
 import {ImageLoadService} from './core/services/image-load.service';
 import {SoundService} from './core/services/sound.service';
-import {UtilHttp} from './shared/utils/util-http';
 import {AppRoutesEnum} from './app-routes.enum';
-import {NativeTranslateService} from './core/services/native-translate.service';
 import {Subscription} from 'rxjs';
 import {PanelService} from './core/services/panel.service';
-import {LocaleEnum} from './shared/enums/locale.enum';
 import {BackgroundImageService} from './core/services/background-image.service';
 import {GameCoinsComponent} from './core/components/game-coins/game-coins.component';
 import {GameHeaderComponent} from './core/components/game-header/game-header.component';
@@ -66,15 +62,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 	protected backgroundGradientService = inject(BackgroundGradientService);
 	protected backgroundAnimationService = inject(BackgroundAnimationService);
 	protected fontStyleService = inject(FontStyleService);
-	private nativeTranslateService = inject(NativeTranslateService);
+	//private nativeTranslateService = inject(NativeTranslateService);
 	// private appBackendConfigService = inject(AppBackendConfigService);
 	protected swipeYesNoService = inject(SwipeYesNoService);
 	//private iFrameEventRuleService = inject(IframeEventRuleService);
 	private scormService = inject(ScormService);
 	private router = inject(Router);
 	// private contexts = inject(ChildrenOutletContexts);
-	private titleService = inject(Title);
-	private metaService = inject(Meta);
+	//private titleService = inject(Title);
+	//private metaService = inject(Meta);
 	private changeDetectorRef = inject(ChangeDetectorRef);
 	
 	@ViewChild("overlayContainer") overlayContainer!: ElementRef<HTMLDivElement>;
@@ -550,23 +546,28 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			{name: 'iconReviewCorrect', url: 'assets/images/svg/icon-review-correct.svg'},
 			{name: 'iconReviewWrong', url: 'assets/images/svg/icon-review-wrong.svg'},
 			{name: 'arrowsDown', url: 'assets/images/svg/arrows-down.svg'},
-			{name: 'scratchFreeBg', url: 'assets/images/scratch-free-bg.jpg'},
+			{name: 'scratchFreeBg', url: 'assets/images/product/2_ScratchCoverNoRounds.png'},
 			
 			{name: 'prBillyPhotoRoom', url: 'assets/images/product/billy-v3-1-photo-room.png'},
 			{name: 'prLiliPushingPhotoRoom', url: 'assets/images/product/lili-pushing-v2-photo-room.png'},
+			{name: 'prLiliCactusPhotoRoom', url: 'assets/images/product/lili-cactus-v1-photo-room.png'},
 			{name: 'prCouple', url: 'assets/images/product/couple.png'},
 			
 			{name: 'imgCorrect', url: 'assets/images/svg/btn-correct.svg'},
 			{name: 'imgWrong', url: 'assets/images/svg/btn-incorrect.svg'},
 			
 			{name: 'productBg', url: 'assets/images/product/1_BG-A.png'},
+			{name: 'productBg2', url: 'assets/images/product/2_BG.png'},
+			{name: 'productFooterBg', url: 'assets/images/product/FooterDisclaimer_BG.png'},
+			{name: 'productTitle', url: 'assets/images/product/1_Title_ProductImage.png'},
 			{name: 'product1', url: 'assets/images/product/Mucosilent_Hustensaft1.png'},
 			{name: 'product2', url: 'assets/images/product/Mucosilent_Hustensaft2.png'},
-			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart@2x.png'},
+			{name: 'gameLogo', url: 'assets/images/product/1_TitleStart.png'},
 			{name: 'btnPlayImage', url: 'assets/images/product/1_ButtonStart@2x.png'},
 			{name: 'billyHead', url: 'assets/images/product/Monster_green_head.png'},
 			{name: 'billyLeft', url: 'assets/images/product/Monster_green_hand_right.png'},
-			{name: 'billyRight', url: 'assets/images/product/Monster_green_hand_left.png'}
+			{name: 'billyRight', url: 'assets/images/product/Monster_green_hand_left.png'},
+			{name: 'lilyPosing', url: 'assets/images/product/lily-posing.png'}
 			
 			// {name: 'howToPlay01', url: 'assets/images/how-to-play.png'}
 		);
@@ -742,108 +743,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy
 			this.scormService.setValue('cmi.core.score.max', 100);
 			this.scormService.setValue('cmi.core.score.raw', 0);
 		}
-	}
-	
-	private initLocalization(): Promise<void>
-	{
-		NativeTranslateService.TRANSLATION_FILE_PATH = 'assets/i18n/';
-		const locale = this.getBrowserLanguage(); // call init
-		
-		let additionalPath: Array<string> = [];
-		/*if (this.gameService.signalGameConfig()?.isFtpReady)
-		{
-			// if game is ready for ftp, don't add a path
-			// because it is concatenated in the ZIP file
-		}
-		else if (this.initService.qz)
-		{
-			const qz: string = this.initService.qz;
-			
-			additionalPath = [
-				`uploads/quiz-game/${qz}/i18n/{{locale}}.json`,
-				`api/game/get-localizations.php?qz=${qz}&locale={{locale}}`
-			];
-		}
-		else
-		{
-			additionalPath = ['uploads/quiz-game/base/i18n/{{locale}}.json'];
-		}*/
-		
-		return this.nativeTranslateService.use(locale, additionalPath);
-	}
-	
-	/*private playVideo(): void
-	{
-		this.videoService.showVideo('videoMain', this.videoElements.toArray());
-	}*/
-	
-	private getBrowserLanguage(): LocaleEnum
-	{
-		let getLocale: string | undefined = (window.navigator as any).userLanguage || window.navigator.language;
-		
-		// check subdomain
-		const host: string = window.location.host;
-		const subdomain = host.split('.')[0];
-		// let isSubDomainFound: boolean = false;
-		
-		const keys = Object.keys(LocaleEnum);
-		
-		for (let i = 0, n = keys.length; i < n; ++i)
-		{
-			if (keys.includes(subdomain))
-			{
-				//	isSubDomainFound = true;
-				getLocale = keys[i];
-				break;
-			}
-		}
-		
-		// check bot
-		/*if (!isSubDomainFound && this.botService.isBot$.value)
-		{
-			getLanguage = LanguageEnum.en;
-		}
-		else*/
-		/*if (!!getLanguage && getLanguage.indexOf('-') !== -1)
-		{
-			getLanguage = getLanguage.split('-')[0];
-		}*/
-		
-		if (!getLocale)
-		{
-			getLocale = AppConfig.defaultLocale;
-		}
-		// else
-		{
-			/*		this.initService.send(getLocale).pipe(untilDestroyed(this)).subscribe(
-						{
-							next: () => {
-							},
-							error: () => {
-							}
-						}
-					);*/
-		}
-		
-		const queryParams: object | { locale: string } = UtilHttp.getQueryParams();
-		
-		if ('locale' in queryParams)
-		{
-			getLocale = queryParams.locale!.toString();
-		}
-		
-		if (getLocale)
-		{
-			for (let i = 0, n = keys.length; i < n; ++i)
-			{
-				if (keys[i].includes(getLocale))
-				{
-					return keys[i] as LocaleEnum;
-				}
-			}
-		}
-		
-		return AppConfig.defaultLocale;
 	}
 	
 	private initGameTitleImage(): void

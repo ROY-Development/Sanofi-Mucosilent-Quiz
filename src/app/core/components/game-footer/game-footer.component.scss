@@ -1,0 +1,44 @@
+@use "../../../../assets/scss/variables" as variables;
+
+.game-footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 181px;
+	z-index: 1;
+
+	// background-image: url(../../../../assets/images/product/FooterDisclaimer.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	color: variables.$app-main-blue-color;
+
+	font-size: 20px;
+	line-height: 1.25;
+
+	padding: 24px 0 0 42px;
+
+	display: flex;
+
+	.legal-links {
+		width: 500px;
+		padding-top: 76px;
+
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: center;
+		flex-wrap: nowrap;
+
+		.btn-legal {
+			text-decoration: none;
+
+			font-size: 34px;
+			background-color: transparent;
+
+			color: variables.$app-main-blue-color;
+		}
+	}
+}

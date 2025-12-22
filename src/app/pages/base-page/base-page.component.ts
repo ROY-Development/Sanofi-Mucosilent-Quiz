@@ -61,8 +61,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		signal<'imprint' | 'privacy-policy' | 'crm-info' | null>(null);
 	
 	protected readonly signalProductBgImageUrl = signal<string>('none');
-	protected readonly signalProduct1ImageUrl = signal<string>('none');
-	protected readonly signalProduct2ImageUrl = signal<string>('none');
+	protected readonly signalProductTitleImageUrl = signal<string>('none');
 	protected readonly signalGameLogoImageUrl = signal<string>('none');
 	protected readonly signalBtnPlayImageUrl = signal<string>('none');
 	protected readonly signalBillyHeadImageUrl = signal<string>('none');
@@ -82,8 +81,7 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		this.addImageSubscription = this.imageLoadService.addImageEmitter.subscribe((id: string) => {
 			if (
 				id === 'productBg' ||
-				id === 'product1' ||
-				id === 'product2' ||
+				id === 'productTitle' ||
 				id === 'gameLogo' ||
 				id === 'billyHead' ||
 				id === 'billyLeft' ||
@@ -264,16 +262,10 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 			this.signalProductBgImageUrl.set(`url('${image.src}')`);
 		}
 		
-		image = this.imageLoadService.getImage('product1');
+		image = this.imageLoadService.getImage('productTitle');
 		if (image)
 		{
-			this.signalProduct1ImageUrl.set(`url('${image.src}')`);
-		}
-		
-		image = this.imageLoadService.getImage('product2');
-		if (image)
-		{
-			this.signalProduct2ImageUrl.set(`url('${image.src}')`);
+			this.signalProductTitleImageUrl.set(`url('${image.src}')`);
 		}
 		
 		image = this.imageLoadService.getImage('billyHead');

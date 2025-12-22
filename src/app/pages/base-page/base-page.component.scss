@@ -40,7 +40,7 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	margin-top: 11%;
+	margin-top: 127px;
 
 	font-size: 44px;
 	line-height: 64px;
@@ -49,17 +49,13 @@
 		width: 50%;
 
 		.image {
-			position: absolute;
-			left: 0;
-			top: -28px;
-
 			background-image: none;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
 
-			width: 630px;
-			height: 620px;
+			width: 700px;
+			height: 550px;
 		}
 	}
 
@@ -161,17 +157,17 @@
 			}
 
 			100% {
-				transform: translate3d(-10px, 0, 0) rotate3d(0, 0, 1, -3deg);
+				transform: translate3d(-15px, 0, 0) rotate3d(0, 0, 1, -3deg);
 			}
 		}
 
 		@keyframes moveY {
 			0% {
-				transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 200px, 0);
 			}
 
 			15% {
-				transform: translate3d(-3px, 0, 0) rotate3d(0, 0, 1, -1.5deg);
+				transform: translate3d(-3px, 100px, 0) rotate3d(0, 0, 1, -1.5deg);
 			}
 
 			50% {
@@ -187,7 +183,7 @@
 			}
 
 			100% {
-				transform: translate3d(-10px, 14px, 0) rotate3d(0, 0, 1, -3deg);
+				transform: translate3d(-10px, 200px, 0) rotate3d(0, 0, 1, -3deg);
 			}
 		}
 	}
@@ -291,7 +287,7 @@
 
 .button-container {
 	width: 100%;
-	margin-top: 140px;
+	margin-top: 100px;
 
 	display: flex;
 	flex-direction: column;

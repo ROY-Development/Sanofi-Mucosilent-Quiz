@@ -1,0 +1,24 @@
+<footer class="game-footer"
+		[style.background-image]="signalProductFooterBgImageUrl()"
+>
+	<div>
+	Mucosilent® gegen Reizhusten Levodropropizin 6 mg/ml Saft Wirkstoff: Levodropropizin.
+	Anwendungsgebiet: Symptomatische Therapie des Reizhustens (unproduktiver Husten).
+	Apothekenpflichtig.<br>
+	Zu Risiken und Nebenwirkungen lesen Sie die Packungsbeilage und fragen Sie Ihre Ärztin, Ihren
+	Arzt oder in Ihrer Apotheke.<br>
+	A. Nattermann & Cie. GmbH, Brüningstraße 50, 65929 Frankfurt am Main.<br>
+	Stand: April 2025
+	</div>
+	<div class="legal-links">
+		<!--<button type="button" class="btn btn-link btn-legal"
+				[style.color]="gameService.signalGameConfig()?.fontColorLink"
+				(click)="onClickLegalText('privacy-policy')"
+		>{{ 'privacy-policy' | nativeTranslate }}
+		</button>-->
+		<button type="button" class="btn btn-link btn-legal"
+				(click)="onClickLegalText('imprint')"
+		>Impressum<!--{{ 'imprint' | nativeTranslate }}-->
+		</button>
+	</div>
+</footer>

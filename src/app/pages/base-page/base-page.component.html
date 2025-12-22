@@ -1,5 +1,5 @@
 <div class="content"
-	[style.background-image]="signalProductBgImageUrl()"
+	 [style.background-image]="signalProductBgImageUrl()"
 >
 	<div class="content-container">
 		@if (AppModule.initError) {
@@ -49,33 +49,33 @@
 		
 		<div class="product-container">
 			<div class="image-container">
-				<div class="image" [style.background-image]="signalProduct2ImageUrl()"></div>
+				<div class="image" [style.background-image]="signalProductTitleImageUrl()"></div>
 			</div>
-			<div class="text-container">
+			<!--<div class="text-container">
 				Mach mit beim Quiz rund um <strong>Mucosilent®</strong> und entdecke den innovativen Hustenstiller
 				mit dem Wirkstoff Levodropropizin.<br><br> Teste dein Wissen und erfahre, was für ruhige Tage
 				und erholsame Nächte sorgen kann.
-			</div>
+			</div>-->
 		</div>
-		
+	
 	</div>
 	
 	
-	<div class="legal-links">
+	<!--<div class="legal-links">
 		
 		<button type="button" class="btn btn-link btn-legal"
 				[style.color]="gameService.signalGameConfig()?.fontColorLink"
 				(click)="onClickLegalText('imprint')"
-		>Impressum<!--{{ 'imprint' | nativeTranslate }}-->
+		>{{ 'imprint' | nativeTranslate }}
 		</button>
 		
-		<!--<button type="button" class="btn btn-link btn-legal"
+		<button type="button" class="btn btn-link btn-legal"
 				[style.color]="gameService.signalGameConfig()?.fontColorLink"
 				(click)="onClickLegalText('privacy-policy')"
 		>{{ 'privacy-policy' | nativeTranslate }}
-		</button>-->
+		</button>
 	
-	</div>
+	</div>-->
 	
 	<app-button-fullscreen
 		#buttonFullscreenComponent
@@ -85,9 +85,9 @@
 		[borderWidthPx]="0"
 		[borderColor]="'transparent'"
 		[disabled]="false"
-		[left]="document.fullscreenEnabled ? '71px' : '71px'"
+		[left]="document.fullscreenEnabled ? '38px' : '38px'"
 		[right]="'auto'"
-		[bottom]="'50px'"
+		[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
 		(click)="soundService.playSound(SoundNameEnum.click, true);"
 	></app-button-fullscreen>
 	
@@ -99,12 +99,11 @@
 		[borderWidthPx]="0"
 		[borderColor]="'transparent'"
 		[disabled]="false"
-		[left]="document.fullscreenEnabled ? '231px' : '231px'"
+		[left]="document.fullscreenEnabled ? '188px' : '188px'"
 		[right]="'auto'"
-		[bottom]="'50px'"
+		[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
 		(click)="soundService.playSound(SoundNameEnum.click, true);"
 	></app-button-sound-on-off>
-	
 </div>
 <!--
 @if (legalTextDialogType()) {
@@ -118,3 +117,4 @@
 		></app-dialog-legal>
 	</div>
 }-->
+<app-game-footer></app-game-footer>

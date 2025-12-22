@@ -11,6 +11,7 @@ import {ScreenPartComponent} from './screen-part/screen-part.component';
 import {StillThereComponent} from './still-there/still-there.component';
 import {GameCategoryCardComponent} from './game-category-card/game-category-card.component';
 import {BaseButtonComponent} from './buttons/base-button/base-button.component';
+import {GameFooterComponent} from './game-footer/game-footer.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import {BaseButtonComponent} from './buttons/base-button/base-button.component';
 		ModalBackgroundComponent,
 		ScreenPartComponent,
 		StillThereComponent,
-		GameCategoryCardComponent
+		GameCategoryCardComponent,
+		GameFooterComponent
 	],
 	exports: [
 		GameBackgroundComponent,
@@ -31,7 +33,8 @@ import {BaseButtonComponent} from './buttons/base-button/base-button.component';
 		ModalBackgroundComponent,
 		ScreenPartComponent,
 		StillThereComponent,
-		GameCategoryCardComponent
+		GameCategoryCardComponent,
+		GameFooterComponent
 	],
 	imports: [
 		CommonModule,
