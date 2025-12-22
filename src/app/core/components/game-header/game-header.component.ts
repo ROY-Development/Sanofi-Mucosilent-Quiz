@@ -160,8 +160,8 @@ export class GameHeaderComponent implements OnInit, AfterViewInit, OnDestroy
 		
 		if (imageSoundOnUrl && imageSoundOffUrl && imageFullscreenOn && imageFullscreenOff)
 		{
-			this.buttonFullscreenComponent.initImages(imageFullscreenOn.src, imageFullscreenOff.src);
-			this.buttonSoundOnOffComponent.initImages(imageSoundOnUrl.src, imageSoundOffUrl.src);
+			this.buttonFullscreenComponent?.initImages(imageFullscreenOn.src, imageFullscreenOff.src);
+			this.buttonSoundOnOffComponent?.initImages(imageSoundOnUrl.src, imageSoundOffUrl.src);
 		}
 	}
 }

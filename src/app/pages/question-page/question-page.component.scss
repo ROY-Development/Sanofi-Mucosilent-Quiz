@@ -88,14 +88,16 @@
 		}
 
 		.lilly-pointing-arm {
-			top: 240px;
-			left: -114px;
+			top: 260px;
+			left: -124px;
 			width: 390px;
 			height: 310px;
 
 			transform-origin: left center 0;
 
 			animation: monsterArm1 15000ms ease-in-out infinite normal;
+
+			will-change: transform;
 		}
 
 		@keyframes monster1 {
@@ -103,8 +105,7 @@
 				transform: translate3d(-250px, 0, 0) rotate3d(0, 0, 1, -6deg);
 			}
 
-			8% {
-
+			12% {
 				transform: translate3d(-250px, 0, 0) rotate3d(0, 0, 1, -6deg);
 			}
 
@@ -112,7 +113,7 @@
 				transform: translate3d(-3px, 0, 0) rotate3d(0, 0, 1, 1deg);
 			}
 
-			24% {
+			28% {
 				transform: translate3d(-3px, 0, 0) rotate3d(0, 0, 1, -3deg);
 			}
 
@@ -161,60 +162,110 @@
 			0% {
 				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -6deg);
 			}
-
-			8% {
-
+			13% {
 				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -6deg);
 			}
-
-			16% {
+			17% {
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			18% {
 				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, -6deg);
 			}
-
+			19% {
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, 2deg);
+			}
 			20% {
-				transform: translate3d(-3px, 0, 0) rotate3d(0, 0, 1, -16deg);
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, -6deg);
 			}
-
+			21% {
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			22% {
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, -6deg);
+			}
 			24% {
-				transform: translate3d(-3px, 0, 0) rotate3d(0, 0, 1, 1deg);
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, 2deg);
 			}
-
+			26% {
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, -6deg);
+			}
+			28% {
+				transform: translate3d(-30px, -40px, 0) rotate3d(0, 0, 1, 1deg);
+			}
 			32% {
 				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -16deg);
 			}
+
 
 			40% {
 				transform: translate3d(-260px, 800px, 0) rotate3d(0, 0, 1, -16deg);
 			}
 
 			48% {
-				transform: translate3d(-3px, 800px, 0) rotate3d(0, 0, 1, 6deg);
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, 2deg);
 			}
-
+			49% {
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, -6deg);
+			}
+			50% {
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			51% {
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, -6deg);
+			}
+			52% {
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			53% {
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, -6deg);
+			}
+			54% {
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			55% {
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, -6deg);
+			}
 			56% {
-				transform: translate3d(-3px, 800px, 0) rotate3d(0, 0, 1, 6deg);
+				transform: translate3d(-30px, 800px, 0) rotate3d(0, 0, 1, 2deg);
 			}
-
 			64% {
 				transform: translate3d(-260px, 800px, 0) rotate3d(0, 0, 1, -16deg);
 			}
 
+
 			72% {
 				transform: translate3d(-260px, 440px, 0) rotate3d(0, 0, 1, -16deg);
 			}
-
 			80% {
-				transform: translate3d(-10px, 440px, 0) rotate3d(0, 0, 1, -5deg);
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, -6deg);
 			}
-
+			81% {
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			82% {
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, -6deg);
+			}
+			83% {
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			84% {
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, -6deg);
+			}
+			85% {
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, 2deg);
+			}
+			86% {
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, -6deg);
+			}
+			87% {
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, 2deg);
+			}
 			88% {
-				transform: translate3d(-10px, 440px, 0) rotate3d(0, 0, 1, 0deg);
+				transform: translate3d(-30px, 440px, 0) rotate3d(0, 0, 1, -6deg);
 			}
-
 			96% {
 				transform: translate3d(-260px, 440px, 0) rotate3d(0, 0, 1, -16deg);
 			}
-
 			100% {
 				transform: translate3d(-260px, 0, 0) rotate3d(0, 0, 1, -16deg);
 			}

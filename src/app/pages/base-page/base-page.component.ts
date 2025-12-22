@@ -248,8 +248,8 @@ export class BasePageComponent implements OnInit, AfterViewInit, OnDestroy
 		
 		if (imageSoundOnUrl && imageSoundOffUrl && imageFullscreenOn && imageFullscreenOff)
 		{
-			this.buttonFullscreenComponent.initImages(imageFullscreenOn.src, imageFullscreenOff.src);
-			this.buttonSoundOnOffComponent.initImages(imageSoundOnUrl.src, imageSoundOffUrl.src);
+			this.buttonFullscreenComponent?.initImages(imageFullscreenOn.src, imageFullscreenOff.src);
+			this.buttonSoundOnOffComponent?.initImages(imageSoundOnUrl.src, imageSoundOffUrl.src);
 		}
 		
 		let image: HTMLImageElement | null = this.imageLoadService.getImage('gameLogo');

@@ -79,10 +79,8 @@
 	
 	</div>-->
 	
-	<div
-		[style.display]="fileLoadService.signalIsLoading() ? undefined : 'none'"
-	>
-		<app-button-fullscreen
+	<div [style.opacity]="fileLoadService.signalIsLoading() ? 0 : 1">
+		<!--<app-button-fullscreen
 			#buttonFullscreenComponent
 			[color]="'transparent'"
 			[backgroundColor]="'transparent'"
@@ -94,7 +92,7 @@
 			[right]="'auto'"
 			[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
 			(click)="soundService.playSound(SoundNameEnum.click, true);"
-		></app-button-fullscreen>
+		></app-button-fullscreen>-->
 		
 		<app-button-sound-on-off
 			#buttonSoundOnOffComponent
@@ -104,7 +102,7 @@
 			[borderWidthPx]="0"
 			[borderColor]="'transparent'"
 			[disabled]="false"
-			[left]="document.fullscreenEnabled ? '188px' : '188px'"
+			[left]="document.fullscreenEnabled ? '38px' : '38px'"
 			[right]="'auto'"
 			[bottom]="document.fullscreenEnabled ? '217px' : '217px'"
 			(click)="soundService.playSound(SoundNameEnum.click, true);"
